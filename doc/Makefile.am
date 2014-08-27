@@ -18,4 +18,4 @@ info_TEXINFOS=moria.texi
 
 CLEANFILES=moria.dvi
 
-EXTRA_DIST=faq faq.html
+EXTRA_DIST=faq
