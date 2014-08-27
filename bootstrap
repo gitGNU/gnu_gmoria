@@ -32,11 +32,6 @@ scriptversion=2010-05-14.09; # UTC
 
 nl='
 '
-grep "po/Makefile.in" configure.ac >/dev/null
-if [ "$?" == "1" ]; then
-gettextize --no-changelog --po-dir=po
-fi
-
 
 # Ensure file names are sorted consistently across platforms.
 LC_ALL=C
