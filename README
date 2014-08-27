@@ -1,0 +1,74 @@
+
+   Copyright (c) 1989-94 James E. Wilson, Robert A. Koeneke
+   Copyright (C) 2005, 2014 Ben Asselstine
+
+   gmoria is free software; you can redistribute it and/or modify 
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   gmoria is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of 
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License 
+   along with gmoria, in the files/COPYING file.  If not, see 
+   <http://www.gnu.org/licenses/>. 
+
+This is the source for gmoria 5.7.1, a dungeon exploration game.  This
+is based on Umoria 5.7, which itself was based James Wilson's second major 
+release of the game.  
+
+I consider these to be production sources.  Some minor bugs must surely remain,
+but there should be no major program bugs encountered.
+
+gmoria 5.x does not understand Umoria 4.87 savefiles.  The changes to the
+game are so great, that supporting the old savefile format is not worth
+the effort.
+
+This version of the software is different than Umoria 5.7 in the following ways:
+
+1. PDF and HTML manuals are included in texinfo format.
+2. A data file defines what monsters are in the game.
+3. A data file defines what items are in the game.
+4. A data file defines what races and classes are in the game.
+5. Some of Lars Helgeland's unofficial patches from http://www.oocities.org/lhelgeland/umoria.html are included:
+  a. auto haggling. 
+  b. lost items feedback (e.g. which item was disenchanted)
+  c. buy/sell any number (e.g. sell 4 torches in a store)
+  d. cancel Word of Recall spell (e.g. a tension leaves the air around you)
+6. Support for other operating systems is dropped.  Only GNU+Linux is targeted.
+gmoria uses gnulib which targets many operating systems, and ncurses is everywhere.
+7. Fixed to work with the `script' and `scriptreplay' commands.
+8. The hours file has been nixed.  Moria can be played at all times on any day.
+9. Increased the maximum number of classes from 8 to 32.
+10. Increased the maximum number of spells from 32 to 2^32-2.  This changes the save-game format.
+11. Increased the maximum number of scroll, wand and staff effects to from 32 per TVAL to 2^32-1.  TV_SCROLL2 has disappeared.  The opportunity for multiple simultaneous effects has disappeared for these TVALs (but none had multiple simultaneous effects anyway, like potions and food have).
+
+
+To build this software from the tarball you need the following:
+
+Libraries:
+  a curses library (like ncurses)
+
+For the build system:
+  make
+  yacc
+
+For the man page:
+  help2man
+
+For the manual:
+  makeinfo (texinfo package on fedora, and ubuntu)
+  texi2dvi (texinfo-tex package on fedora, and texinfo package on ubuntu)
+
+
+The build sequence is in this order:
+
+1. ./bootstrap [gets gnulib]
+2. ./configure 
+3. make [builds the monster compiler, treasure compiler, and then the game]
+4. sudo make install
+
+To run bootstrap, you require git.

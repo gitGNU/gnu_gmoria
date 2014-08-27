@@ -1,0 +1,3 @@
+@setfilename package.info
+
+@set VERSION @PACKAGE_VERSION@

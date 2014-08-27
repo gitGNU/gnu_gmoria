@@ -1,0 +1,870 @@
+\input texinfo @c -*-texinfo-*-
+@c This file uses the @command command introduced in Texinfo 4.0.
+@c %**start of header
+@setfilename moria-rcc.info
+@settitle Race & Class Compiler for gmoria
+@finalout
+@setchapternewpage odd
+@c %**end of header
+
+@include package.texi
+
+
+@ifinfo
+This file documents the @command{moria-rcc} software
+
+Copyright (C) 2014 Ben Asselstine
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+@ignore
+Permission is granted to process this file through TeX and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+
+@end ignore
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.
+@end ifinfo
+
+@titlepage
+@title rcc
+@subtitle The Race & Class Compiler for gmoria
+@subtitle Version @value{VERSION}
+@author by Ben Asselstine
+
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2014 Ben Asselstine
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.
+@end titlepage
+
+@contents
+
+@c All the nodes can be updated using the EMACS command
+@c texinfo-every-node-update, which is normally bound to C-c C-u C-e.
+@node Top, Overview, (dir), (dir)
+
+@ifinfo
+This file documents the Race & Class Compiler for gmoria @command{moria-rcc} software.
+@end ifinfo
+
+@c All the menus can be updated with the EMACS command
+@c texinfo-all-menus-update, which is normally bound to C-c C-u C-a.
+@menu
+* Overview::                    Introduction.
+* The Definition File::	        About @command{moria-rcc}'s input file.
+* A Small Example::		See it in action.
+* Invoking rcc::		How to run @command{moria-rcc}.
+* Workflow::			Where @command{moria-rcc} fits in.
+* Contributors::		Who to thank profusely.
+* Problems::                    Reporting bugs.
+@end menu
+
+@node Overview, The Definition File, Top, Top
+@chapter Overview
+@cindex greetings
+@cindex overview
+
+This document describes the race & class compiler (@emph{rcc}).  In more precise terms, this is a code-generation tool that is used to create files called race_class_tables.c and race_class_constant.h in gmoria.  It reads in a single human-readable file that completely describes all of the races and classes in the game, and it generates code that can be compiled into the game.  @emph{rcc} issues warnings and errors when things don't quite make sense.  This document describes how to use @emph{rcc}, and the format of the definition file.
+
+The audience for this tool is a person who wants to add new races or classes to moria in a safe way.  Although it's easy to add new races or classes, the definition file only goes so far; for example it doesn't allow the adding of new spells, or prayers.  There is a hard-coded limit in the game that allows a maximum of 32 classes.  There are issues with displaying more than the current number of races in the character creation screen.  The limiting factor on the number of races is character creation interface, there is currently space to add 2 more races.  When the syntax of the definition file is insufficient, the next step is to change actual C code.  Beware that adding new classes and races to the game breaks save-game compatibility with other versions of gmoria.
+
+Some attributes are stored in unsigned 8-bit integers, and others are in unsigned or signed 16-bit integers.  Special care needs to be taken to prevent integer overflow in the values of attributes.  This document states the allowed values for each attribute.  
+
+@node The Definition File, Class Blocks, Overview, Top
+@chapter The Defintion File
+
+The definition file describes all of the races and classes in the game.  A race is something like a human, or dwarf; while a class is an occupation, like warrior, or mage.  @emph{rcc} reads in this definition file to create the race_class_tables.c and race_class_constant.h files.  It is meant to be human-readable, easily understood and modified by non-programmers.
+
+The definition file is comprised of blocks.  A block looks something like this:
+
+@verbatim
+race "Dwarf" {
+	...
+};
+@end verbatim
+
+The block starts with a keyword denoting the kind of block (a @code{race} block).  Following that there's a name for the block (@code{"Dwarf"}), and then there are a set of braces, followed by a semicolon.  The attributes of the dwarf race go inside of the braces (instead of @code{...}).
+
+The definition file has one @code{race} block for every race in the game, and one @code{class} block for every class in the game.  Lastly there is a @code{experience_levels} block that defines the number of experience points required to reach a given level.
+
+The top-level structure of the definition file looks like this:
+
+@verbatim
+race "Human" {
+	...
+};
+.
+.
+.
+class "Warrior" {
+	...
+};
+.
+.
+.
+experience_levels {
+        ...
+};
+@end verbatim
+@menu
+* Race Blocks:: 		Detailed information on race blocks.
+* Class Blocks::		Detailed information on class blocks.
+* Experience Levels Block::	Detailed information on experience levels block.
+@end menu
+
+The race & class compiler will stop processing the definition file when a semi-colon is missing or a required block is forgotten.  If an attribute is missing, the compiler will emit a warning. The consistency check option performs extra checking on the races and classes.
+
+@node Race Blocks, Class Blocks, The Definition File, The Definition File
+@section Race Blocks
+
+The @code{race} block defines the humans, elves, dwarves (etc), that a character can be in the game.  It consists of a series of attributes and some other blocks.  The structure of the @code{race} block looks like this:
+@verbatim
+race "foo" {
+  attribute: value;
+  .
+  .
+  .
+
+  classes { ... };
+
+  store_price_adjust_by_race {
+    .
+    .
+    .
+  };
+
+  shopkeep "name" "race" "store" {
+    .
+    .
+    .
+  };
+  .
+  .
+  .
+  backgrounds {
+    .
+    .
+    .
+  };
+};
+@end verbatim
+There are about 20 different required attributes.  The @code{classes} block defines which classes this race can be.  The @code{shopkeep} blocks declare the characteristics of the store owners of this race.  Store owners change their prices based on what race the character is.  The @code{adjust_price_by_race} block contains these adjustments.  Lastly, the @code{backgrounds} block declares a series of sentence fragments that comprise the social history of the character.  e.g. @samp{you were the black sheep of the family}, etc.
+
+@menu
+* Race Attributes:: 		Detailed information on race attributes.
+* Price Adjustment Block::	Information on the adjust_price_by_race block.
+* Shopkeep Blocks::	        Detailed information on shopkeep blocks.
+* Backgrounds Block::	        Detailed information on the backgrounds block.
+@end menu
+
+@node Race Attributes, Price Adjustment Block, Race Blocks, Race Blocks
+@section Race Attributes
+
+  Most of these attributes are added to a same-named attribute in the @code{class} block (all attributes except age, weights, heights, and infra-vision).
+  @code{rcc} will complain if any of these attributes are missing.
+
+@table @samp
+@item age
+  When characters begin the game they need an age.  The @code{age} attribute specifies the base age (in years), and a modifier value of a random delta.  The maximum value for both halves of the value is @code{255}.
+@verbatim
+  age: 100|20; # race's age is between 101 and 120.
+@end verbatim
+@item infra_vision
+  Some races can see farther into the darkness than others.  The @code{infra_vision} attribute specifies how far away (in tiles) the character can sense a warm-blooded creature.  The maximum value for this attribute is @code{255}.
+@verbatim
+  infra_vision: 3; # race can sense warm-blooded creatures 3 tiles away. 
+@end verbatim
+@item male_height
+  When male characters begin the game they need a height, but some races are taller than others.  The @code{male_height} attribute specifies the base height (in inches), and a modifier value of a random delta.  The maximum value for both halves of this attribute is @code{255}.
+@verbatim
+  male_height: 62|6; # males in this race are 63 to 69 inches tall.
+@end verbatim
+@item male_weight
+  When male characters begin the game they need a weight, but some races are heavier than others.  The @code{male_height} attribute specifies the base weight (in pounds), and a modifier value of a random delta.  The maximum value for both halves of this attribute is @code{255}.
+@verbatim
+  male_weight: 190|10; # males in this race weigh 191 to 200 lbs.
+@end verbatim
+@item female_height
+  Just like @code{male_height} but for females in the race.
+@item female_weight
+  Just like @code{male_weight} but for females in the race.
+@item hit_points
+  When characters begin a game they need a starting amount of hitpoints, but some races can take more damage than others.  This attribute has a maximum value of @code{255}.
+@verbatim
+  hit_points: 10; # the race starts out with a base amount of 10 hp.
+@end verbatim
+@item disarming
+  When characters begin the game they have a base chance of disarming traps.  The calculation to disarm a trap takes a lot of different factors into account, and this attribute is one of them.  The unit of measurement of @code{disarming} is unknown, but @code{200} will disarm the vast majority of traps, and @code{0} will seldomly disarm traps.  The attribute is stored in a 16-bit unsigned integer.
+@verbatim
+  disarming: 1; #this race has a small chance of disarming a trap.
+@end verbatim
+@item search_chance
+  When characters begin the game they have a base chance of finding hidden doors and traps.  The maximum value for this attribute is @code{200}.
+@verbatim
+  search_chance: 10; # has a 5% chance at finding a hidden door or trap.
+@end verbatim
+@item stealth_factor
+  When a monster seemingly doesn't care that the character is walking past them in the dungeon, that's the stealth factor at work.  The maximum value for this attribute is @code{18}.  A higher value means more stealth.
+@verbatim
+  stealth_factor: 18; # a very stealthy race.
+@end verbatim
+@item base_to_hit
+  Some races are better at melee fighting than others.  The @code{base_to_hit} attribute is the base chance of hitting a foe.  The maximum value for this attribute is @code{200}.
+@verbatim
+  base_to_hit: 100; #has an innate ability to hit a foe 50% of the time.
+@end verbatim
+@item base_to_hit_with_bows
+  Just like @code{base_to_hit}, but for ranged weapons.
+@item saving_throw
+  Some races have an innate ability to avoid getting hit.  The @code{saving_throw} attribute is the base chance of avoiding an attack.  The unit of measurement for this attribute is unknown, but a value of @code{100} will probably always avoid an attack.
+@verbatim
+  saving_throw: 1; # a small innate ability to avoid attacks.
+@end verbatim
+@item strength_modifier
+  Some races are stronger than others when characters are created.  The @code{strength_modifier} typically ranges from @code{1} to @code{18}, but a low value is sensible because this value is added to a die roll.  Negative values are also allowed.
+To understand what the strength attribute is for (or any of the other main stats), see the Character Stats section of the game manual.
+@verbatim
+  strength_modifier: -1; #race has an initial strength penalty.
+@end verbatim
+@item intelligence_modifier
+  Like @code{strength_modifier} but for intelligence.
+@item wisdom_modifier
+  Like @code{strength_modifier} but for wisdom.
+@item dexteriy_modifier
+  Like @code{strength_modifier} but for dexterity.
+@item constitution_modifier
+  Like @code{strength_modifier} but for constitution.
+@item charisma_modifier
+  Like @code{strength_modifier} but for charisma.
+@item experience_factor
+  Gaining levels in the game means acruing experience points.  The experience levels are not the same per race because of the @code{experience_factor} attribute,  Experience levels can be raised or lowered according to this factor.  A value of @code{0} would break the game, making all experience levels happen at zero experience points.  A value of @code{100} means the levels are the standard levels as described in the @code{experience_levels} block.  A value of @code{200} means that the experience levels for this race are doubled the standard.
+Take care when setting this value, because the @code{experience_factor} attribute is one of the greatest determiners of game balance.
+@verbatim
+  experience_factor: 105;  # race finds it more difficult to level-up.
+@end verbatim
+@end table
+@node Price Adjustment Block, Shopkeep Blocks, Race Attributes, Race Blocks
+@section Price Adjustment Block
+The @code{store_price_adjust_by_race} block specifies how store owners (shopkeeps) raise or lower their prices for characters of a given race.  Yes it's true, the Half-Troll gives higher prices, and the Halfling might even give a bit of a break if the player's character is also a Halfling.
+
+The @code{store_price_adjust_by_race} block requires one line for every race specified in the definition file.  The structure of the block is: 
+@verbatim
+  store_price_adjust_by_race {
+    "race-name" : price;
+    .
+    .
+    .
+  };
+@end verbatim
+When the value of a price is @code{100}, it means that the price is neither raised or lowered.  When the value of a price is @code{50} it means the shopkeep of that race will sell things at half off to the given race.  For example:
+@verbatim
+  store_price_adjust_by_race {
+    "Human" : 100;
+    "Dwarf" : 105;
+    "Elf"   : 95;
+  };
+@end verbatim
+If this @code{store_price_adjust_by_race} block is inside a @code{race "Human"} block, and we go to a store with an Elven shopkeep, as a member of the Human race we will get a %5 deal on everything sold in that store.  The dwarf will make us pay more.
+
+Whenever a new race is added to, or removed from the definition file, all of the @code{store_price_adjust_by_race} blocks need to be updated.
+
+@node Shopkeep Blocks, Backgrounds Block, Price Adjustment Block, Race Blocks
+@section Shopkeep Blocks
+
+Shopkeeps are the owners of stores who buy and sell items.  These quirky characters behave differently according to their attributes specified in a @code{shopkeep} block.  Each of the six stores needs at least one shopkeep.  The game will randomly select shopkeeps when a character is created.  
+
+Here is a sample @code{shopkeep} block:
+@verbatim
+  shopkeep "Erick the Honest" "Human" "General Store" {
+    store: "1";         haggle_per: 4;          inflate: 108|67;
+    max_insults: 12;    max_cost: 250;
+  };
+@end verbatim
+The first three chunks of text before the opening brace are used to create the top line that is seen in the store; so there are limits to the width of these chunks of text.  The name chunk should be 22 characters or less; the class chunk should be 11 characters or less, and the store name chunk should be 14 characters or less.  Although it might seem like the class name should align with the text seen in @code{class} blocks, it is @emph{not} the case.  One shopkeep in the game has a class specified here as "Human?".
+
+There are 5 attributes in the @code{shopkeep} block:
+
+@table @samp
+@item store
+  The store attribute species which store the shopkeep occupies. "1" means the general store.  All stores must be covered by at least one @code{shopkeep} block somewhere in the definition file.
+@verbatim
+  store: "1"; # the shopkeep occupies the general store.
+@end verbatim
+@item haggle_per 
+  Some shopkeeps haggle more intensely than others.  The @code{haggle_per} sets the minimum haggling percent between the prices the player offers before the shopkeep gets insulted.  A maximum haggling percent is 3 times @code{haggle_per}, where the shopkeep will try to offer a fairer price.  The maximum value for @code{haggle_per} attribute is @code{33}, but values much lower than this make more sense.
+@verbatim
+  haggle_per: 4; #allow 4% diff. in haggling offers before being insulted.
+@end verbatim
+@item max_insults
+  Shopkeeps will ban characters forever if they insults them too many times by giving outrageous offers while haggling.  @code{max_insults} is the number of times a shopkeep can be insulted before the shop-doors are closed forever.  This value is per-game, not per-visit to the store.  Players would definitely be surprised if the shopkeep only allowed one insult!  Values of @code{10} to @code{20} make more sense.  The @code{max_insults} attribute has a maxmimum value of @code{255}, and a minimum value of @code{1}.
+@verbatim
+  max_insults: 12; # can receive 12 insults before refusing service.
+@end verbatim
+@item inflate
+When shopkeeps start haggling they haggle the price between a set of goalposts.  The @code{inflate} attribute sets these goalposts, as a percent.  The first number is the minimum haggling percent, and the second number is added to the minimum to make the maximum haggling percent.  The maximum value for both numbers added together is @code{255}.
+@verbatim
+  inflate: 108|67; #haggles between 108-175 percent of real price.
+@end verbatim
+@item max_cost
+Some shopkeeps won't sell items that are above a certain price.  The @code{max_cost} attribute sets that price in gold pieces.  It is also the amount of money the shopkeep has on hand to pay out when purchasing an item from the character, which means that there are some items that are just too expensive for the shopkeep to purchase from the character.  The maximum value for this attribute is @code{65535}.
+@verbatim
+max_cost: 250; #can't buy or sell items worth more than 250gp.
+@end verbatim
+@end table
+@node Backgrounds Block, Background Blocks, Shopkeep Blocks, Race Blocks
+@section Backgrounds Block
+The @code{backgrounds} block has two purposes: to assist in setting the initial social class of a character (which affects how many gold pieces is started with), and also to assist in setting the history blurb of the character.  The history blurb is the randomized @samp{you were a well liked child, with black hair} text that appears in the character creation screen.
+The @code{backgrounds} block is the most confusing block in the definition file, because it consists of a non-linear chain of @code{background} blocks like so:
+@verbatim
+  backgrounds {
+    background 1 2 { . . . },
+    background 2 3 { . . . },
+    background 3 0 { . . . }
+  };
+@end verbatim
+Where the first background (@code{background 1}) points to the second, and the second points to the third and the third @code{background} block points to nothing which ends the chain.
+
+Note that the @code{background} blocks are separated by commas, not semi-colons like other blocks.
+
+These @code{background} blocks can be chained across @code{race} blocks.
+
+The user-interface of the game can support a history blurb of about 250 characters, or approximately 50 words, over a maximum of 4 lines.
+@menu
+* Background Blocks::           Detailed information on background blocks.
+@end menu
+
+@node Background Blocks, Fragment Blocks, Backgrounds Block, Backgrounds Block
+@subsection Background Blocks
+A @code{background} block defines a set of random history blurbs that form a sentence or part of a sentence.  The structure of a @code{background} block is:
+@verbatim
+  background id next-id {
+    fragment "foo" { . . . },
+    fragment "bar" { . . . },
+    fragment "baz" { . . . }
+  },
+@end verbatim
+The @code{id} variable is a unique numeric identifier for this @code{background} block among all other blocks.  The @code{next-id} variable represents which @code{background} block this block is tied, or chained to.
+
+The central purpose of the @code{background} block is to randomly select one of the contained fragments, and then move on to the next background block, unless the @code{next-id} is @code{0}.
+
+This partial example shows a background that defines a set of eye colours:
+@verbatim
+  background 1 2 {
+    fragment "You have blue eyes." { . . . },
+    fragment "You have green eyes." { . . . },
+    fragment "You have hazel eyes." { . . . }
+  },
+@end verbatim
+The @code{id} of the background has a maximum value of @code{255} and @emph{cannot} be @code{0}.  The @code{next-id} can be @code{0} (the value that ends the chain of background blocks), and can also have a maximum value of @code{255}.  
+@menu
+* Fragment Blocks::             Detailed information on fragment blocks.
+@end menu
+
+@node Fragment Blocks, Class Blocks, Background Blocks, Background Blocks
+@subsection Fragment Blocks
+Each fragment contains a sentence or a part of a sentence to be randomly selected according to some simple rules.
+@verbatim
+  fragment "foo" {
+    roll: 50;                   social_class_bonus: 49;
+  },
+  fragment "bar" {
+    roll: 100;                  social_class_bonus: 51;
+  },
+@end verbatim
+
+In this example, the @code{bar} fragment is randomly selected half of the time, and adds one (not @code{51}) from the character's social class.  The @code{foo} fragment is also selected randomly half of the time, and it subtracts one from the character's social class.
+
+The @code{fragment} block starts off with a chunk of text before the opening brace.  Sometimes these chunks of text are whole sentences, and sometimes they are just portions of a sentence.  These chunks of text often end in spaces because they will be joined with other fragments.
+
+There are two attributes in the @code{fragment} block:
+@table @samp
+@item roll
+The @code{roll} attribute is a number between @code{1} and @code{100} that represents the @emph{chance interval} of this fragment being randomly selected.  When a fragment is being selected, a random number between @code{1} and @code{100} is selected.  The first fragment with a @code{roll} value of more than the random number is selected.
+@item social_class_bonus
+The @code{social_class_bonus} attribute is how much to add to the character's social class if this fragment is randomly selected.  A value of @code{50} is the break-even value -- it represents adding zero to the character's social class.  @code{49} means subtract @code{1} from the character's social class.
+The maximum value for this attribute is @code{255}.
+@end table
+
+Each set of @code{fragment} blocks must contain a @code{roll} of @code{100} to guarntee that one of the fragments is randomly selected.
+
+When creating backgrounds, it is important to note that the character's social class has a maximum value of @code{100}, and a minimum value of @code{1}.
+@node Class Blocks, Class Attributes, Fragment Blocks, The Definition File
+@section Class Blocks
+
+The @code{class} block defines the warriors, mages, rogues (etc), that a character can be in the game.  It consists of a series of attributes and some other blocks.  The structure of the @code{class} block looks like this:
+@verbatim
+  class "Rogue" {
+    attribute: value;
+    .
+    .
+    .
+
+    adjust_per_one_third_level { . . . };
+
+    titles { . . . };
+
+    spells { . . . };
+
+    prayers { . . . };
+  };
+@end verbatim
+A class can have a @code{spells} block or a @code{prayers} block (or neither), but a class @emph{cannot have both}.
+@menu
+* Class Attributes::            Detailed information on class attributes.
+* Level Adjustment Block::      Info on adjust_per_one_third_level blocks.
+* Titles Block::                Detailed information on the titles block.
+* Spells Block::                Detailed information on the spells block.
+* Prayers Block::               Detailed information on the prayers block.
+@end menu
+
+@node Class Attributes, Level Adjustment Block, Class Blocks, Class Blocks
+@section Class Attributes
+The attributes of the @code{class} block all have their equivalents in the @code{race} block.  At the beginning of the game when a player selects a race and a class, these same-named attributes are added together.  The attributes are:
+@verbatim
+  hit_points: 6;             strength_modifier: 2;
+  disarming: 45;             intelligence_modifier: 1;
+  search_chance: 32;         wisdom_modifier: -2;
+  stealth_factor: 5;         dexterity_modifier: 3;
+  frequency_of_search: 16;   constitution_modifier: 1;
+  base_to_hit: 60;           charisma_modifier: -1;
+  base_to_hit_with_bows: 66; experience_factor: 0;
+  saving_throw: 30;
+@end verbatim
+The class is the main driver of these attributes.  The ethos behind this is: what the character does is more important than what the character was born as.  Some of these attributes are modified again according to the character's level in the @code{adjust_per_one_third_level} block.  The race modifies the values set in this block.  For information on what these attributes mean, see @ref{Race Attributes}.
+The attributes on the left are all unsigned 8-bit integers (unlike their same-named race counterparts which are 16-bit signed integers).  The attributes on the right are all signed 16-bit integers.
+
+@node Level Adjustment Block, Titles Block, Class Attributes, Class Blocks
+@section Level Adjustment Block
+Some of the class' abilities are improved as the character gains experience.  The @code{adjust_per_one_third_level} block is what controls this effect.  Here is a sample of the block:
+@verbatim
+  adjust_per_one_third_level {
+    adjust_base_to_hit: 3;
+    adjust_base_to_hit_with_bows: 4;
+    adjust_use_device: 3;
+    adjust_disarming: 4;
+    adjust_saving_throw: 3;
+  };
+@end verbatim
+The idea behind this block is that the character just naturally improves in these attributes during the game.  The effect is meant to be subtle because only one third of the characters' levels are considered in the calculation.  For example, if the character has attained the 31st experience level, the @code{base_to_hit_with_bows} attribute is adjusted by +41 points (31 / 3 * 4).
+
+@node Titles Block, Spells Block, Titles Block, Class Blocks
+@section Titles Block
+Every experience level has a new "title", or name.  A first level mage is a @samp{Novice}.  A 38th level rogue is an @samp{Assassin}.  The @code{titles} block sets all of the names of the experience levels for the @code{class} that contains it.  There must be one title for every level specified in the @code{experience_levels} block.  For example if there are only 5 experience levels, a title block for a fictional "Mechanic" class might look like:
+@verbatim
+  titles {
+    "Grease Monkey", "Oil Changer", "Journeyman Mechanic",
+    "Engine Specialist", "Master Mechanic"
+  };
+@end verbatim
+The @code{titles} block is one way that the game reveals itself slowly over time.  Seeing a new title is a reward for attaining a new level, so create them with that in mind (e.g. try not to make boring titles).  This can be a difficult task because there are usually 40 titles per class.
+Titles are limited to a maximum length of 13 characters on the main game screen.
+
+@node Spells Block, Prayers Block, Titles Block, Class Blocks
+@section Spells Block
+Some classes can cast spells and some can't.  When classes can cast spells, the class has a @code{spells} block which defines which spells the class can cast.  The @code{spells} block has this structure:
+@verbatim
+  spells {
+    spell cure_light_wounds { . . . },
+    spell lightning_bolt { . . . }
+  };
+@end verbatim
+It is important to note that subsequent @code{spell} blocks are separated by commas, and not semi-colons.
+A spell-casting class can cast the following spells:
+@multitable {12345} {1234567890123456789012345678} {123} {12345678901234567890123456}
+@item
+@tab @code{magic_missile} @tab @tab @code{detect_monsters}
+@item
+@tab @code{phase_door} @tab @tab @code{light_area}
+@item
+@tab @code{cure_light_wounds} @tab @tab @code{stinking_cloud}
+@item
+@tab @code{find_hidden_traps_and_doors} @tab @tab @code{confusion}
+@item
+@tab @code{lightning_bolt} @tab @tab @code{trap_and_door_destruction}
+@item
+@tab @code{sleep_i} @tab @tab @code{cure_poison}
+@item
+@tab @code{teleport_self} @tab @tab @code{remove_curse}
+@item
+@tab @code{frost_bolt} @tab @tab @code{turn_stone_to_mud}
+@item
+@tab @code{create_food} @tab @tab @code{recharge_item_i}
+@item
+@tab @code{sleep_ii} @tab @tab @code{polymorph_other}
+@item
+@tab @code{identify} @tab @tab @code{sleep_iii}
+@item
+@tab @code{fire_bolt} @tab @tab @code{slow_monster}
+@item
+@tab @code{frost_ball} @tab @tab @code{recharge_item_ii}
+@item
+@tab @code{teleport_other} @tab @tab @code{haste_self}
+@item
+@tab @code{fire_ball} @tab @tab @code{word_of_destruction}
+@item
+@tab @code{genocide}
+@end multitable
+For a short description about what these spells do, see the Treasure Compiler manual.
+
+Each @code{spell} block declares when the spell becomes available to cast to the character, how much mana it takes to cast, how often it fails, and how many experience points are gained when the spell is cast for the first time.
+The @code{spell} block has the following structure:
+@verbatim
+  spell magic_missile {
+    level: 1;         mana: 1;        fail: 22;       exp: 1;
+  },
+@end verbatim
+The @code{spell} block contains the following attributes:
+@table @samp
+@item level
+The @code{level} attribute is the experience level that the spell can be cast at, if the character has the correct book.  This attribute is stored in an 8-bit unsigned integer; so the maximum value is @code{255}.
+@item mana
+The @code{mana} attribute is the number of mana points required to cast to spell.  After the casting, this many mana points is subtracted from the players' mana.  This attribute is stored as an 8-bit unsigned integer; so the maximum value is @code{255}.  The minimum value for this attribute is @code{1}.
+@item fail
+The @code{fail} attribute is the percent chance that the spell cannot be cast.  The player's chance of failure takes other factors into account other than just this attribute -- so it is properly thought of as a base chance.
+The maximum value of this attribute is @code{100}, but even that is too high in a practical sense.
+@item exp
+The @code{exp} attribute represents the number of experience points that are gained when the spell is successfully cast for the first time.
+The actual value of experience points gained is the given value @emph{bit-shifted} two bits to the left.  A value of @code{1} becomes @code{4}; a value of @code{32} becomes @code{128}, and a value of @code{128} becomes @code{512} experience points.  The maximum value for the @code{exp} attribute is @code{255} (which results in @code{1020} experience points).
+@end table
+
+@node Prayers Block, Experience Levels Block, Spells Block, Class Blocks
+@section Prayers Block
+
+The @code{prayers} block is just like the @code{spells} block but it contains @code{prayer} blocks instead of @code{spell} blocks.  The following prayers can be prayed:
+@multitable {12345} {123456789012345678901234} {12345} {123456789012345678901234}
+@item
+@tab @code{detect_evil} @tab @tab @code{cure_light_wounds}
+@item
+@tab @code{bless} @tab @tab @code{remove_fear}
+@item
+@tab @code{call_light} @tab @tab @code{find_traps}
+@item
+@tab @code{detect_doors_and_stairs} @tab @tab @code{slow_poison}
+@item
+@tab @code{blind_creature} @tab @tab @code{portal}
+@item
+@tab @code{cure_medium_wounds} @tab @tab @code{chant}
+@item
+@tab @code{sanctuary} @tab @tab @code{create_food}
+@item
+@tab @code{remove_curse} @tab @tab @code{resist_heat_and_cold}
+@item
+@tab @code{neutralize_poison} @tab @tab @code{orb_of_draining}
+@item
+@tab @code{cure_serious_wounds} @tab @tab @code{sense_invisible}
+@item
+@tab @code{protection_from_evil} @tab @tab @code{earthquake}
+@item
+@tab @code{sense_surroundings} @tab @tab @code{cure_critical_wounds}
+@item
+@tab @code{turn_undead} @tab @tab @code{pray_prayer}
+@item
+@tab @code{dispel_undead} @tab @tab @code{heal}
+@item
+@tab @code{dispel_evil} @tab @tab @code{glyph_of_warding}
+@item
+@tab @code{holy_word}
+@end multitable
+For a short description about what these prayers do, see the Treasure Compiler manual.
+
+@node Experience Levels Block, A Small Example, Prayers Block, The Definition File
+@section Experience Levels Block
+The @code{experience_levels} block defines the number of experience levels in the game, and what number of experience points is required to attain each level.
+These levels are augmented for each race and class combination, as seen in the @code{experience_factor} attribute of the @code{race} and @code{class} blocks.
+
+The @code{experience_levels} block looks like:
+@verbatim
+  experience_levels {
+    10, 100, 1000, 1000
+  };
+@end verbatim
+The first experience level is at 10 points, the second is at 100 points and so on.  The numbers must always increase.
+
+Take care when setting the values in this block, because it is one of the greatest determiners of game balance.
+@node A Small Example, Invoking rcc, Experience Levels Block, Top
+@chapter A Small Example
+Let's take this definition file as an example; one race and one class is define.:
+@verbatim
+race "Istari" {                 experience_factor: 100;
+  age: 114|30;                  infra_vision: 2;
+  male_height: 72|6;            male_weight: 180|25;
+  female_height: 72|6;          female_weight: 180|25;
+  hit_points: 14;               intelligence_modifier: 2;
+  wisdom_modifier: 2;           dexterity_modifier: 2;
+
+  classes { "Magic-User" };
+  store_price_adjust_by_race { "Istari": 100; };
+
+  shopkeep "Hundar the Blue " "Wizard" "Ye Olde Magic Shoppe" {
+    store: "1"; haggle_per: 4; inflate: 108|67; max_insults: 12; max_cost: 250;
+  };
+
+  backgrounds {
+    background 1 2 {
+      fragment "You are affiliated with water spirits, " {
+        roll: 44;       social_class_bonus: 35; },
+      fragment "You are affiliated with fire spirits, " {
+        roll: 100;      social_class_bonus: 50; } },
+    background 2 0 {
+      fragment "and remember some of the song of creation." {
+        roll: 35;       social_class_bonus: 80; },
+      fragment "and remember most of the song of creation." {
+        roll: 80;       social_class_bonus: 90; },
+      fragment "and remember the entire song of creation." {
+        roll: 100;      social_class_bonus: 105; } }
+  };
+};
+
+class "Magic-User" {            experience_factor: 30;
+  disarming: 30;                search_chance: 16;
+  stealth_factor: 2;            frequency_of_search: 20;
+  base_to_hit: 34;              base_to_hit_with_bows: 20;
+  saving_throw: 36;             strength_modifier: -5;
+  intelligence_modifier: 3;     dexterity_modifier: 1;
+  constitution_modifier: -2;    charisma_modifier: 1;
+
+  adjust_per_one_third_level {  adjust_saving_throw: 3;
+    adjust_base_to_hit: 2;      adjust_base_to_hit_with_bows: 2;
+    adjust_use_device: 4;       adjust_disarming: 3;
+  };
+
+  titles {
+    "Wizard (1st)", "Wizard (2nd)", "Wizard (3rd)", "Wizard (4th)",
+    "Wizard (5th)", "Wizard (6th)", "Wizard (7th)", "Wizard (8th)"
+  };
+
+  spells {
+    spell magic_missile  { level: 1;  mana: 1; fail: 22; exp: 1; },
+    spell lightning_bolt { level: 10; mana: 4; fail: 30; exp: 6; }
+  };
+};
+
+experience_levels {
+  100, 500, 1800, 4400, 10200, 35000, 150000, 500000
+};
+@end verbatim
+The resulting file that @emph{rcc} outputs looks like this:
+
+@verbatim
+/* The following was generated by the gmoria race & class compiler */
+#include "constant.h"
+#include "types.h"
+
+/* Store owners have different characteristics for pricing and haggling*/
+owner_type owners[MAX_OWNERS] = {
+  {"Hundar the Blue        (Wizard)     Ye Olde Magic Shoppe",
+   250, 175, 108, 4, 0, 12, 0},
+};
+
+/* Buying and selling adjustments for character race VS store   */
+/* owner race                                                    */
+int8u rgold_adj[MAX_RACES][MAX_RACES] = {
+                  /* Ist */
+/*Istari         */ {100}
+};
+
+/* Class titles for different levels                            */
+char *player_title[MAX_CLASS][MAX_PLAYER_LEVEL] = {
+  /* Magic-User    */
+  {"Wizard (1st)", "Wizard (2nd)", "Wizard (3rd)", "Wizard (4th)", 
+   "Wizard (5th)", "Wizard (6th)", "Wizard (7th)", "Wizard (8th)"},
+};
+
+/* Base experience levels, may be adjusted up for race and/or class*/
+int32u player_exp[MAX_PLAYER_LEVEL] = {
+  100, 500, 1800, 4400, 10200, 35000L, 150000L, 500000L,
+};
+
+/*  Race  STR,INT,WIS,DEX,CON,CHR, 
+    Ages, heights, and weights (male then female)
+    Racial Bases for: dis,srh,stl,fos,bth,bthb,bsav,hitdie,
+    infra, exp base, choice-classes */
+race_type race[MAX_RACES] = {
+  {"Istari", 0, 2, 2, 2, 0, 0,
+   114, 30, 72, 6, 180, 25, 72, 6, 180, 25,
+   0, 0, 0, 0, 0, 0, 0, 14, 2, 100, 0x01,
+   },
+};
+
+/* Classes.                                                     */
+class_type class[MAX_CLASS] = {
+/*            HP Dis Src Stl Fos bth btb sve  S  I  W  D Co Ch Spell Exp spl */
+  {"Magic-User",  0, 30, 16,  2, 20, 34, 20, 36,-5, 3, 0, 1,-2, 1,MAGE,  30,  1}
+};
+
+/* making it 16 bits wastes a little space, but saves much signed/unsigned
+   headaches in its use */
+/* CLA_MISC_HIT is identical to CLA_SAVE, which takes advantage of
+   the fact that the save values are independent of the class */
+int16 class_level_adj[MAX_CLASS][MAX_LEV_ADJ] = {
+/*             bth bthb  devices disarm save/misc hit  */
+/* Magic-User */ {  2,   2,       4,     3,            3}
+};
+
+/* Background information                                       */
+int background_start[MAX_RACES] = { /* starting .chart not index */
+    1, /* Istari */
+};
+
+background_type background[MAX_BACKGROUND] = {
+  {"You are affiliated with water spirits, ", 44, 1, 2, 35},
+  {"You are affiliated with fire spirits, ", 100, 1, 2, 50},
+  {"and remember some of the song of creation.", 35, 2, 0, 80},
+  {"and remember most of the song of creation.", 80, 2, 0, 90},
+  {"and remember the entire song of creation.", 100, 2, 0, 105}
+};
+
+spell_type magic_spell[MAX_CLASS][31] = {
+  {                              /* Magic-User    */
+   {1, 1, 22, 1},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {10, 4, 30, 6},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0},
+   {99, 99, 0, 0}
+   }
+};
+@end verbatim
+
+
+@node Invoking rcc, Consistency Checks, A Small Example, Top
+@chapter Invoking @command{moria-rcc}
+@cindex invoking
+@cindex version
+@cindex options
+@cindex usage
+@cindex help
+@cindex getting help
+
+This is the output of the command @samp{rcc --help}:
+@noindent
+@verbatiminclude usage
+@verbatim
+@end verbatim
+
+@code{FILE} is the defintion file to "compile".  If it is "-", then it will be read from the standard input.
+
+@code{rcc} supports the following options:
+
+@c Formatting copied from the Texinfo 4.0 manual.
+@table @code
+@item -o
+@itemx --outputfile
+Put generated code into FILE.
+This option puts the generated race_class_tables.c file into the given FILE.  If FILE is "-", then it will go to the standard output.  This is the default.
+@item -c
+@itemx --consistency-check
+Check for consistency errors.
+A loose set of rules is applied the definition file.
+@item -C
+@itemx --constants
+Generate constants instead of tables.
+This option makes @command{moria-rcc} generate the race_class_constant.h file instead of the race_class_tables.c file.
+@end table
+@menu
+* Consistency Checks::		The rules that are applied during -c.
+@end menu
+
+@node Consistency Checks, Workflow, Invoking rcc, Invoking rcc 
+@section Consistency Checks
+
+
+@node Workflow, Contributors, Consistency Checks, Top
+@chapter Workflow
+
+@command{moria-mc} will typically be used in this fashion:
+
+@enumerate
+@item
+start a new definition file
+@item
+add and modify race and class blocks
+@item
+run @command{moria-rcc} on the new definition file
+@item
+check for warning and errors, goto 2 if there are any
+@item
+put the resulting file in src/race_class_tables.c.
+@item
+now re-run @command{moria-rcc} with the --constants option and the same defintion file.
+@item
+put the resulting file in src/race_class_constant.h.
+@item
+recompile gmoria by typing `make' in the top level directory.
+@end enumerate
+
+@node Contributors, Problems, Workflow, Top
+@chapter Contributors
+
+The following persons have contributed to this software:
+
+@itemize
+@item Joseph Hall
+@item Ben Asselstine
+@end itemize
+
+@node Problems, , Contributors, Top
+@chapter Reporting Bugs
+@cindex bugs
+@cindex problems
+
+If you find a bug in @command{moria-rcc}, please send electronic mail to
+@email{gmoria@@nym.hush.com}.  Include the version number, which you can find by
+running @w{@samp{rcc --version}}.  Also include in your message the
+output that the program produced and the output you expected.@refill
+
+If you have other questions, comments or suggestions about
+@command{moria-rcc}, contact the author via electronic mail to
+@email{gmoria@@nym.hush.com}.
+
+@bye

@@ -1,0 +1,37 @@
+Copyright (C) 2014 Ben Asselstine
+This file is licensed under the terms of the GPL version 3 or later.
+
+The files in this directory have various roles:
+
+mon.inf:
+  This file is used by the monster compiler (utils/mc) to generate monsters_tables.c, and monsters_constant.h
+
+race-class.inf:
+  This file is used by the race & class compiler (utils/rcc) to generate race_class_tables.c, and race_class_constant.h
+
+items.inf:
+  This file is used by the treasure compiler (utils/tc) to generate treasure_tables.c, and treasure_constant.h
+
+moria-scores:
+  This is the high score file that records your current character's score as well as any characters who have died.  
+
+news:
+  This is a data file that gets displayed when the game starts.  It is Copyright (c) 1989-94 James E. Wilson, Robert A. Koeneke.
+
+origcmds.hlp:
+  This is a data file that gets displayed when the player hits the "?" to see the help and they're using the original moria keyboard bindings.  This file is Copyright (c) 1989-94 James E. Wilson, Robert A. Koeneke.
+
+roglcmds.hlp:
+  This is a data file that is displayed when the player hits the "?" to see the help and they're using the roguelike keyboard bindings.  This file is Copyright (c) 1989-94 James E. Wilson, Robert A. Koeneke.
+
+owizcmds.hlp:
+  This is a data file that is displayed whe nthe player hits the "\" key to see the wizard mode help screen, and is using the original moria keybindings.  This file is Copyright (c) 1989-94 James E. Wilson, Robert A. Koeneke.
+
+rwizcmds.hlp:
+  This is a data file that is displayed whe nthe player hits the "\" key to see the wizard mode help screen, and is using the roguelike keybindings.  This file is Copyright (c) 1989-94 James E. Wilson, Robert A. Koeneke.
+
+version.hlp:
+  This is a data file that is displayed when the player hits the V key to see the version information.  This file is Copyright (c) 1989-94 James E. Wilson, Robert A. Koeneke.
+
+welcome.hlp:
+  This is a data file that gets displayed when the player creates a new character for.  This file is Copyright (c) 1989-94 James E. Wilson, Robert A. Koeneke.

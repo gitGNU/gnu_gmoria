@@ -1,0 +1,3298 @@
+#Copyright (C) 2014 Ben Asselstine
+#This file is licensed under the terms of the GNU GPL v3 or later.
+class stacks_with_others_of_this_kind {
+      stackable: with_same_kind;
+};
+
+class not_stackable {
+      stackable: never;
+};
+
+class stacks_with_others_of_same_p1 {
+      stackable: with_same_p1;
+};
+
+class stacks_with_same_p1_and_kind {
+      stackable: with_same_p1, with_same_kind;
+};
+
+class not_pickupable {
+      stackable: never;
+};
+
+class scroll: stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";      p1: 0;       weight: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+class potion : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";  weight: 4;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+class edible : stacks_with_others_of_this_kind {
+	 letter: ",";
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+class foodstuff : edible {
+	  kind: FOOD;	  quantity: 1;
+};
+
+class mushroom : edible {
+	   kind: MUSHROOM;	   weight: 1;	     p1: 500;
+       quantity: 1;
+};
+
+class worthless {
+	      cost: 0;
+};
+
+
+class identify_scroll : scroll {
+	 relsubval: 3;		     cost: 50;
+   scroll_casts: identify;
+};
+
+class light_scroll : scroll {
+	 relsubval: 5;		     cost: 15;
+   scroll_casts: light;
+};
+
+class phase_door_scroll : scroll {
+	 relsubval: 7;		     cost: 15;
+   scroll_casts: phase_door;
+};
+
+class magic_mapping_scroll : scroll {
+	 relsubval: 11;		     cost: 40;
+   scroll_casts: magic_mapping;
+};
+
+class treasure_detection_scroll : scroll {
+	 relsubval: 14;		     cost: 15;
+   scroll_casts: detect_treasure;
+};
+
+class object_detection_scroll : scroll {
+	 relsubval: 15;		     cost: 15;
+   scroll_casts: detect_objects;
+};
+
+class detect_invisible_scroll : scroll {
+	 relsubval: 19;		     cost: 15;
+   scroll_casts: detect_invisble;
+};
+
+class blessing_scroll : scroll {
+	 relsubval: 35;		     cost: 15;
+   scroll_casts: bless_i;
+};
+
+class word_of_recall_scroll : scroll {
+	 relsubval: 38;		     cost: 150;
+   scroll_casts: recall;
+};
+
+class cure_light_wounds_potion : potion {
+         relsubval: 15;		     cost: 15;	     p1: 50;
+     potion_causes: cure_wounds_i, cure_blindness;
+};
+
+class heroism_potion : potion {
+      relsubval: 34;		     cost: 35;	     p1: 0;
+  potion_causes: heroism;
+};
+
+class boldness_potion : potion {
+      relsubval: 36;		     cost: 10;       p1: 0;
+  potion_causes: cure_fear;
+};
+
+class slow_poison_potion : potion {
+      relsubval: 41;		     cost: 25;	     p1: 0;
+  potion_causes: slow_poison;
+};
+
+class waybread : foodstuff {
+	 relsubval: 28;		     cost: 25;	 weight: 3;	      p1: 7500;
+  eating_causes: cure_poison, cure_wounds_iv;
+};
+
+class ration_food : foodstuff {
+	 relsubval: 26;		     cost: 3;	 weight: 10;	      p1: 5000;
+};
+
+class flask: stacks_with_others_of_this_kind {
+	   kind: FLASK;		   letter: "!";
+	 relsubval: 0;		     cost: 3;	 weight: 10;	      p1: 7500;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+	special: ego_flame_tongue;
+};
+
+treasure "Poison" : mushroom, worthless {
+	     level: 7; relsubval: 0;
+  eating_causes: poisoning;
+};
+
+treasure "Blindness" : mushroom, worthless {
+	     level: 9; relsubval: 1;
+  eating_causes: blindness;
+};
+
+treasure "Paranoia" : mushroom, worthless {
+	     level: 9; relsubval: 2;
+  eating_causes: fear;
+};
+
+treasure "Confusion" : mushroom, worthless {
+	     level: 7; relsubval: 3;
+  eating_causes: confusion_i;
+};
+
+treasure "Hallucination" : mushroom, worthless {
+	     level: 13; relsubval: 4;
+  eating_causes: confusion_ii;
+};
+
+treasure "Cure Poison" : mushroom {
+	     level: 8; relsubval: 5;		     cost: 60;
+  eating_causes: cure_poison;
+};
+
+treasure "Cure Blindness" : mushroom {
+	     level: 10;	relsubval: 6;		     cost: 50;
+  eating_causes: cure_blindness;
+};
+
+treasure "Cure Paranoia" : mushroom {
+	     level: 12; relsubval: 7;		     cost: 25;
+  eating_causes: cure_fear;
+};
+
+treasure "Cure Confusion" : mushroom {
+	     level: 6; relsubval: 8;		     cost: 50;
+  eating_causes: cure_confusion;
+};
+
+treasure "Weakness" : mushroom, worthless {
+	     level: 7; relsubval: 9;
+  eating_causes: lose_strength, cause_wounds;
+};
+
+treasure "Unhealth" : mushroom {
+	     level: 15; relsubval: 10;		     cost: 50;
+	 damage: 10|10;
+  eating_causes: lose_constitution, cause_wounds;
+};
+
+treasure "Restore Constitution" : mushroom {
+	    level: 20; relsubval: 11;		     cost: 350;
+  eating_causes: restore_constitution;
+};
+
+treasure "First-Aid" : mushroom {
+	     level: 6; relsubval: 12;		     cost: 5;
+  eating_causes: cure_wounds_i;
+};
+
+treasure "Minor Cures" : mushroom {
+	     level: 7; relsubval: 13;		     cost: 20;
+  eating_causes: cure_wounds_ii;
+};
+
+treasure "Light Cures" : mushroom {
+	     level: 10; relsubval: 14;		     cost: 30;
+  eating_causes: cure_wounds_iii;
+};
+
+treasure "Restoration" : mushroom {
+	     level: 30; relsubval: 15;		     cost: 1000;
+  eating_causes: restore_strength, restore_constitution, restore_intelligence;
+  eating_causes: restore_wisdom, restore_dexterity, restore_charisma;
+};
+
+treasure "Poison" : mushroom, worthless {
+	     level: 15; relsubval: 16;		       p1: 1200;
+  eating_causes: poisoning;
+};
+
+treasure "Hallucination" : mushroom, worthless {
+	     level: 18; relsubval: 17;		       p1: 1200;
+  eating_causes: confusion_ii;
+};
+
+treasure "Cure Poison" : mushroom {
+	     level: 19; relsubval: 18;		     cost: 75;	     p1: 1200;
+  eating_causes: cure_poison;
+};
+
+treasure "Unhealth" : mushroom {
+	     level: 28; relsubval: 19;		     cost: 75;	     p1: 1200;
+	 damage: 10|12;
+  eating_causes: lose_constitution, cause_wounds;
+};
+
+treasure "Major Cures" : mushroom {
+	     level: 16; relsubval: 20;		     cost: 75;	     p1: 1200;
+	    weight: 2;
+  eating_causes: cure_wounds_iv;
+};
+
+treasure "& Ration~ of Food" : ration_food {
+	  level: 0;	quantity: 1;
+};
+
+treasure "& Ration~ of Food" : ration_food {
+	  level: 5;	quantity: 1;
+};
+
+treasure "& Ration~ of Food" : ration_food {
+	 level: 10;	quantity: 1;
+};
+
+treasure "& Slime Mold~" : stacks_with_others_of_this_kind {
+	   kind: FOOD;		   letter: ",";	  level: 1;	quantity: 1;
+	 relsubval: 27;		     cost: 2;	 weight: 5;	      p1: 3000;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "& Piece~ of Elvish Waybread" : waybread {
+	  level: 6;	quantity: 1;
+};
+
+treasure "& Piece~ of Elvish Waybread" : waybread {
+	  level: 12;	quantity: 1;
+};
+
+treasure "& Piece~ of Elvish Waybread" : waybread {
+	  level: 20;	quantity: 1;
+};
+
+treasure "& Dagger (Main Gauche)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 2;	quantity: 1;
+	 relsubval: 1;		     cost: 25;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|5;
+};
+
+treasure "& Dagger (Misericorde)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 0;	quantity: 1;
+	 relsubval: 2;		     cost: 10;	 weight: 15;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+           sold: by_weaponsmith*2;
+};
+
+treasure "& Dagger (Stiletto)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 0;	quantity: 1;
+	 relsubval: 3;		     cost: 10;	 weight: 12;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+           sold: by_weaponsmith*2;
+};
+
+treasure "& Dagger (Bodkin)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 1;	quantity: 1;
+	 relsubval: 4;		     cost: 10;	 weight: 20;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+};
+
+treasure "& Broken Dagger" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 0;	quantity: 1;
+	 relsubval: 5;		     cost: 0;	 weight: 15;	      p1: 0;
+	  to_ac: 0;		   to_hit: -2;	 to_dam: -2;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Backsword" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 7;	quantity: 1;
+	 relsubval: 6;		     cost: 150;	 weight: 95;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|9;
+};
+
+treasure "& Bastard Sword" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 14;	quantity: 1;
+	 relsubval: 7;		     cost: 350;	 weight: 140;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 3|4;
+           sold: by_weaponsmith;
+};
+
+treasure "& Thrusting Sword (Bilbo)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 4;	quantity: 1;
+	 relsubval: 8;		     cost: 60;	 weight: 80;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|6;
+};
+
+treasure "& Thrusting Sword (Baselard)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 5;	quantity: 1;
+	 relsubval: 9;		     cost: 80;	 weight: 100;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|7;
+};
+
+treasure "& Broadsword" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 9;	quantity: 1;
+	 relsubval: 10;		     cost: 255;	 weight: 150;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|5;
+           sold: by_weaponsmith;
+};
+
+treasure "& Two-Handed Sword (Claymore)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 30;	quantity: 1;
+	 relsubval: 11;		     cost: 775;	 weight: 200;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 3|6;
+};
+
+treasure "& Cutlass" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 7;	quantity: 1;
+	 relsubval: 12;		     cost: 85;	 weight: 110;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|7;
+};
+
+treasure "& Two-Handed Sword (Espadon)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 35;	quantity: 1;
+	 relsubval: 13;		     cost: 655;	 weight: 180;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 3|6;
+};
+
+treasure "& Executioner's Sword" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 40;	quantity: 1;
+	 relsubval: 14;		     cost: 850;	 weight: 260;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 4|5;
+};
+
+treasure "& Two-Handed Sword (Flamberge)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 45;	quantity: 1;
+	 relsubval: 15;		     cost: 1000; weight: 240;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 4|5;
+};
+
+treasure "& Foil" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 2;	quantity: 1;
+	 relsubval: 16;		     cost: 35;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|5;
+};
+
+treasure "& Katana" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 18;	quantity: 1;
+	 relsubval: 17;		     cost: 400;	 weight: 120;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 3|4;
+};
+
+treasure "& Longsword" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 12;	quantity: 1;
+	 relsubval: 18;		     cost: 200;	 weight: 130;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|10;
+           sold: by_weaponsmith;
+};
+
+treasure "& Two-Handed Sword (No-Dachi)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 45;	quantity: 1;
+	 relsubval: 19;		     cost: 675;	 weight: 200;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 4|4;
+};
+
+treasure "& Rapier" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 4;	quantity: 1;
+	 relsubval: 20;		     cost: 42;	 weight: 40;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|6;
+};
+
+treasure "& Sabre" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 5;	quantity: 1;
+	 relsubval: 21;		     cost: 50;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|7;
+};
+
+treasure "& Small Sword" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 5;	quantity: 1;
+	 relsubval: 22;		     cost: 48;	 weight: 75;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|6;
+           sold: by_weaponsmith;
+};
+
+treasure "& Two-Handed Sword (Zweihander)" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 50;	quantity: 1;
+	 relsubval: 23;		     cost: 1500; weight: 280;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 4|6;
+};
+
+treasure "& Broken Sword" : not_stackable {
+	   kind: SWORD;		   letter: "|";	  level: 0;	quantity: 1;
+	 relsubval: 24;		     cost: 0;	 weight: 75;	      p1: 0;
+	  to_ac: 0;		   to_hit: -2;	 to_dam: -2;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Ball and Chain" : not_stackable {
+	   kind: HAFTED;	   letter: "\";	  level: 20;	quantity: 1;
+	 relsubval: 1;		     cost: 200;	 weight: 150;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|4;
+};
+
+treasure "& Cat-o'-Nine-Tails" : not_stackable {
+	   kind: HAFTED;	   letter: "\";	  level: 3;	quantity: 1;
+	 relsubval: 2;		     cost: 14;	 weight: 40;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+};
+
+treasure "& Wooden Club" : not_stackable {
+	   kind: HAFTED;	   letter: "\";	  level: 0;	quantity: 1;
+	 relsubval: 3;		     cost: 10;	 weight: 100;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|3;
+};
+
+treasure "& Flail" : not_stackable {
+	   kind: HAFTED;	   letter: "\";	  level: 12;	quantity: 1;
+	 relsubval: 4;		     cost: 353;	 weight: 150;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+};
+
+treasure "& Two-Handed Great Flail" : not_stackable {
+	   kind: HAFTED;	   letter: "\";	  level: 45;	quantity: 1;
+	 relsubval: 5;		     cost: 590;	 weight: 280;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 3|6;
+};
+
+treasure "& Morningstar" : not_stackable {
+	   kind: HAFTED;	   letter: "\";	  level: 10;	quantity: 1;
+	 relsubval: 6;		     cost: 396;	 weight: 150;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+           sold: by_weaponsmith, by_temple;
+};
+
+treasure "& Mace" : not_stackable {
+	   kind: HAFTED;	   letter: "\";	  level: 6;	quantity: 1;
+	 relsubval: 7;		     cost: 130;	 weight: 120;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|4;
+           sold: by_weaponsmith, by_temple;
+};
+
+treasure "& War Hammer" : not_stackable {
+	   kind: HAFTED;	   letter: "\";	  level: 5;	quantity: 1;
+	 relsubval: 8;		     cost: 225;	 weight: 120;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 3|3;
+           sold: by_weaponsmith, by_temple;
+};
+
+treasure "& Lead-Filled Mace" : not_stackable {
+	   kind: HAFTED;	   letter: "\";	  level: 15;	quantity: 1;
+	 relsubval: 9;		     cost: 502;	 weight: 180;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 3|4;
+};
+
+treasure "& Awl-Pike" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 8;	quantity: 1;
+	 relsubval: 1;		     cost: 200;	 weight: 160;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|8;
+};
+
+treasure "& Beaked Axe" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 15;	quantity: 1;
+	 relsubval: 2;		     cost: 408;	 weight: 180;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+};
+
+treasure "& Fauchard" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 17;	quantity: 1;
+	 relsubval: 3;		     cost: 326;	 weight: 170;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|10;
+};
+
+treasure "& Glaive" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 20;	quantity: 1;
+	 relsubval: 4;		     cost: 363;	 weight: 190;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+};
+
+treasure "& Halberd" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 22;	quantity: 1;
+	 relsubval: 5;		     cost: 430;	 weight: 190;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 3|4;
+           sold: by_weaponsmith;
+};
+
+treasure "& Lucerne Hammer" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 11;	quantity: 1;
+	 relsubval: 6;		     cost: 376;	 weight: 120;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|5;
+};
+
+treasure "& Pike" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 15;	quantity: 1;
+	 relsubval: 7;		     cost: 358;	 weight: 160;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|5;
+           sold: by_weaponsmith;
+};
+
+treasure "& Spear" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 5;	quantity: 1;
+	 relsubval: 8;		     cost: 36;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|6;
+           sold: by_weaponsmith;
+};
+
+treasure "& Lance" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 10;	quantity: 1;
+	 relsubval: 9;		     cost: 230;	 weight: 300;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|8;
+};
+
+treasure "& Javelin" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 4;	quantity: 1;
+	 relsubval: 10;		     cost: 18;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+};
+
+treasure "& Battle Axe (Balestarius)" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 30;	quantity: 1;
+	 relsubval: 11;		     cost: 500;	 weight: 180;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|8;
+};
+
+treasure "& Battle Axe (European)" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 13;	quantity: 1;
+	 relsubval: 12;		     cost: 334;	 weight: 170;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 3|4;
+};
+
+treasure "& Broad Axe" : not_stackable {
+	   kind: POLEARM;	   letter: "/";	  level: 17;	quantity: 1;
+	 relsubval: 13;		     cost: 304;	 weight: 160;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+           sold: by_weaponsmith;
+};
+
+treasure "& Short Bow" : not_stackable {
+	   kind: BOW;		   letter: "}";	  level: 3;	quantity: 1;
+	 relsubval: 1;		     cost: 50;	 weight: 30;	      p1: 2;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+           sold: by_weaponsmith;
+};
+
+treasure "& Long Bow" : not_stackable {
+	   kind: BOW;		   letter: "}";	  level: 10;	quantity: 1;
+	 relsubval: 2;		     cost: 120;	 weight: 40;	      p1: 3;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+           sold: by_weaponsmith;
+};
+
+treasure "& Composite Bow" : not_stackable {
+	   kind: BOW;		   letter: "}";	  level: 40;	quantity: 1;
+	 relsubval: 3;		     cost: 240;	 weight: 40;	      p1: 4;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "& Light Crossbow" : not_stackable {
+	   kind: BOW;		   letter: "}";	  level: 15;	quantity: 1;
+	 relsubval: 10;		     cost: 140;	 weight: 110;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+           sold: by_weaponsmith;
+};
+
+treasure "& Heavy Crossbow" : not_stackable {
+	   kind: BOW;		   letter: "}";	  level: 30;	quantity: 1;
+	 relsubval: 11;		     cost: 300;	 weight: 200;	      p1: 6;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Sling" : not_stackable {
+	   kind: BOW;		   letter: "}";	  level: 1;	quantity: 1;
+	 relsubval: 20;		     cost: 5;	 weight: 5;	      p1: 1;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+           sold: by_weaponsmith;
+};
+
+treasure "& Arrow~" : stacks_with_others_of_same_p1 {
+	   kind: ARROW;		   letter: "{";	  level: 2;	quantity: 1;
+	 relsubval: 0;		     cost: 1;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+           sold: by_weaponsmith*3;
+};
+
+treasure "& Bolt~" : stacks_with_others_of_same_p1 {
+	   kind: BOLT;		   letter: "{";	  level: 2;	quantity: 1;
+	 relsubval: 0;		     cost: 2;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|5;
+           sold: by_weaponsmith;
+};
+
+treasure "& Rounded Pebble~" : stacks_with_others_of_same_p1 {
+	   kind: SLING_AMMO;	   letter: "{";	  level: 0;	quantity: 1;
+	 relsubval: 0;		     cost: 1;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+      stackable: with_same_p1;
+};
+
+treasure "& Iron Shot~" : stacks_with_others_of_same_p1 {
+	   kind: SLING_AMMO;	   letter: "{";	  level: 3;	quantity: 1;
+	 relsubval: 1;		     cost: 2;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|3;
+           sold: by_weaponsmith*3;
+      stackable: with_same_p1;
+};
+
+treasure "& Iron Spike~" : stacks_with_others_of_same_p1 {
+	   kind: SPIKE;		   letter: "~";	  level: 1;	quantity: 1;
+	 relsubval: 0;		     cost: 1;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+           sold: by_general_store*2;
+      stackable: with_same_p1;
+};
+
+treasure "& Brass Lantern~" : not_stackable {
+	   kind: LIGHT;		   letter: "~";	  level: 1;	quantity: 1;
+	 relsubval: 1;		     cost: 35;	 weight: 50;	      p1: 7500;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Wooden Torch~" : stacks_with_others_of_same_p1 {
+	   kind: LIGHT;		   letter: "~";	  level: 1;	quantity: 1;
+	 relsubval: 0;		     cost: 2;	 weight: 30;	      p1: 4000;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+      stackable: with_same_p1;
+};
+
+treasure "& Orcish Pick" : not_stackable {
+	   kind: DIGGING;	   letter: "\";	  level: 20;	quantity: 1;
+	 relsubval: 2;		     cost: 500;	 weight: 180;	      p1: 2;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|3;
+	special: tunnel;
+};
+
+treasure "& Dwarven Pick" : not_stackable {
+	   kind: DIGGING;	   letter: "\";	  level: 50;	quantity: 1;
+	 relsubval: 3;		     cost: 1200; weight: 200;	      p1: 3;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+	special: tunnel;
+};
+
+treasure "& Gnomish Shovel" : not_stackable {
+	   kind: DIGGING;	   letter: "\";	  level: 20;	quantity: 1;
+	 relsubval: 5;		     cost: 100;	 weight: 50;	      p1: 1;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+	special: tunnel;
+};
+
+treasure "& Dwarven Shovel" : not_stackable {
+	   kind: DIGGING;	   letter: "\";	  level: 40;	quantity: 1;
+	 relsubval: 6;		     cost: 250;	 weight: 120;	      p1: 2;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|3;
+	special: tunnel;
+};
+
+treasure "& Pair of Soft Leather Shoes" : not_stackable {
+	   kind: BOOTS;		   letter: "]";	  level: 1;	quantity: 1;
+	 relsubval: 1;		     cost: 4;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 1;
+	 damage: 0|0;
+           sold: by_armoury;
+};
+
+treasure "& Pair of Soft Leather Boots" : not_stackable {
+	   kind: BOOTS;		   letter: "]";	  level: 4;	quantity: 1;
+	 relsubval: 2;		     cost: 7;	 weight: 20;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 2;
+	 damage: 1|1;
+           sold: by_armoury;
+};
+
+treasure "& Pair of Hard Leather Boots" : not_stackable {
+	   kind: BOOTS;		   letter: "]";	  level: 6;	quantity: 1;
+	 relsubval: 3;		     cost: 12;	 weight: 40;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 3;
+	 damage: 1|1;
+};
+
+treasure "& Soft Leather Cap" : not_stackable {
+	   kind: HELM;		   letter: "]";	  level: 2;	quantity: 1;
+	 relsubval: 1;		     cost: 4;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 1;
+	 damage: 0|0;
+           sold: by_armoury;
+};
+
+treasure "& Hard Leather Cap" : not_stackable {
+	   kind: HELM;		   letter: "]";	  level: 4;	quantity: 1;
+	 relsubval: 2;		     cost: 12;	 weight: 15;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 2;
+	 damage: 0|0;
+           sold: by_armoury*2;
+};
+
+treasure "& Metal Cap" : not_stackable {
+	   kind: HELM;		   letter: "]";	  level: 7;	quantity: 1;
+	 relsubval: 3;		     cost: 30;	 weight: 20;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 3;
+	 damage: 1|1;
+           sold: by_armoury*2;
+};
+
+treasure "& Iron Helm" : not_stackable {
+	   kind: HELM;		   letter: "]";	  level: 20;	quantity: 1;
+	 relsubval: 4;		     cost: 75;	 weight: 75;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 5;
+	 damage: 1|3;
+};
+
+treasure "& Steel Helm" : not_stackable {
+	   kind: HELM;		   letter: "]";	  level: 40;	quantity: 1;
+	 relsubval: 5;		     cost: 200;	 weight: 60;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 6;
+	 damage: 1|3;
+};
+
+treasure "& Silver Crown" : not_stackable {
+	   kind: HELM;		   letter: "]";	  level: 44;	quantity: 1;
+	 relsubval: 6;		     cost: 500;	 weight: 20;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Golden Crown" : not_stackable {
+	   kind: HELM;		   letter: "]";	  level: 47;	quantity: 1;
+	 relsubval: 7;		     cost: 1000; weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+};
+
+treasure "& Jewel-Encrusted Crown" : not_stackable {
+	   kind: HELM;		   letter: "]";	  level: 50;	quantity: 1;
+	 relsubval: 8;		     cost: 2000; weight: 40;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|3;
+};
+
+treasure "& Robe" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "(";	  level: 1;	quantity: 1;
+	 relsubval: 1;		     cost: 4;	 weight: 20;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 2;
+	 damage: 0|0;
+};
+
+treasure "Soft Leather Armor" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "(";	  level: 2;	quantity: 1;
+	 relsubval: 2;		     cost: 18;	 weight: 80;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 4;
+	 damage: 0|0;
+           sold: by_armoury*2;
+};
+
+treasure "Soft Studded Leather" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "(";	  level: 3;	quantity: 1;
+	 relsubval: 3;		     cost: 35;	 weight: 90;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 5;
+	 damage: 1|1;
+           sold: by_armoury*2;
+};
+
+treasure "Hard Leather Armor" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "(";	  level: 5;	quantity: 1;
+	 relsubval: 4;		     cost: 55;	 weight: 100;	      p1: 0;
+	  to_ac: 0;		   to_hit: -1;	 to_dam: 0;	      ac: 6;
+	 damage: 1|1;
+           sold: by_armoury;
+};
+
+treasure "Hard Studded Leather" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "(";	  level: 7;	quantity: 1;
+	 relsubval: 5;		     cost: 100;	 weight: 110;	      p1: 0;
+	  to_ac: 0;		   to_hit: -1;	 to_dam: 0;	      ac: 7;
+	 damage: 1|2;
+           sold: by_armoury;
+};
+
+treasure "Woven Cord Armor" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "(";	  level: 7;	quantity: 1;
+	 relsubval: 6;		     cost: 45;	 weight: 150;	      p1: 0;
+	  to_ac: 0;		   to_hit: -1;	 to_dam: 0;	      ac: 6;
+	 damage: 0|0;
+};
+
+treasure "Soft Leather Ring Mail" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "(";	  level: 10;	quantity: 1;
+	 relsubval: 7;		     cost: 160;	 weight: 130;	      p1: 0;
+	  to_ac: 0;		   to_hit: -1;	 to_dam: 0;	      ac: 6;
+	 damage: 1|2;
+};
+
+treasure "Hard Leather Ring Mail" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "(";	  level: 12;	quantity: 1;
+	 relsubval: 8;		     cost: 230;	 weight: 150;	      p1: 0;
+	  to_ac: 0;		   to_hit: -2;	 to_dam: 0;	      ac: 8;
+	 damage: 1|3;
+           sold: by_armoury;
+};
+
+treasure "Leather Scale Mail" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "(";	  level: 14;	quantity: 1;
+	 relsubval: 9;		     cost: 330;	 weight: 140;	      p1: 0;
+	  to_ac: 0;		   to_hit: -1;	 to_dam: 0;	      ac: 11;
+	 damage: 1|1;
+           sold: by_armoury;
+};
+
+treasure "Metal Scale Mail" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 24;	quantity: 1;
+	 relsubval: 1;		     cost: 430;	 weight: 250;	      p1: 0;
+	  to_ac: 0;		   to_hit: -2;	 to_dam: 0;	      ac: 13;
+	 damage: 1|4;
+           sold: by_armoury;
+};
+
+treasure "Chain Mail" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 26;	quantity: 1;
+	 relsubval: 2;		     cost: 530;	 weight: 220;	      p1: 0;
+	  to_ac: 0;		   to_hit: -2;	 to_dam: 0;	      ac: 14;
+	 damage: 1|4;
+           sold: by_armoury;
+};
+
+treasure "Rusty Chain Mail" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 26;	quantity: 1;
+	 relsubval: 3;		     cost: 0;	 weight: 220;	      p1: 0;
+	  to_ac: -8;		   to_hit: -5;	 to_dam: 0;	      ac: 14;
+	 damage: 1|4;
+};
+
+treasure "Double Chain Mail" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 28;	quantity: 1;
+	 relsubval: 4;		     cost: 630;	 weight: 260;	      p1: 0;
+	  to_ac: 0;		   to_hit: -2;	 to_dam: 0;	      ac: 15;
+	 damage: 1|4;
+           sold: by_armoury;
+};
+
+treasure "Augmented Chain Mail" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 30;	quantity: 1;
+	 relsubval: 5;		     cost: 675;	 weight: 270;	      p1: 0;
+	  to_ac: 0;		   to_hit: -2;	 to_dam: 0;	      ac: 16;
+	 damage: 1|4;
+};
+
+treasure "Bar Chain Mail" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 34;	quantity: 1;
+	 relsubval: 6;		     cost: 720;	 weight: 280;	      p1: 0;
+	  to_ac: 0;		   to_hit: -2;	 to_dam: 0;	      ac: 18;
+	 damage: 1|4;
+           sold: by_armoury;
+};
+
+treasure "Metal Brigandine Armor" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 36;	quantity: 1;
+	 relsubval: 7;		     cost: 775;	 weight: 290;	      p1: 0;
+	  to_ac: 0;		   to_hit: -3;	 to_dam: 0;	      ac: 19;
+	 damage: 1|4;
+};
+
+treasure "Laminated Armor" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 38;	quantity: 1;
+	 relsubval: 8;		     cost: 825;	 weight: 300;	      p1: 0;
+	  to_ac: 0;		   to_hit: -3;	 to_dam: 0;	      ac: 20;
+	 damage: 1|4;
+};
+
+treasure "Partial Plate Armor" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 42;	quantity: 1;
+	 relsubval: 9;		     cost: 900;	 weight: 320;	      p1: 0;
+	  to_ac: 0;		   to_hit: -3;	 to_dam: 0;	      ac: 22;
+	 damage: 1|6;
+};
+
+treasure "Metal Lamellar Armor" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 44;	quantity: 1;
+	 relsubval: 10;		     cost: 950;	 weight: 340;	      p1: 0;
+	  to_ac: 0;		   to_hit: -3;	 to_dam: 0;	      ac: 23;
+	 damage: 1|6;
+};
+
+treasure "Full Plate Armor" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 48;	quantity: 1;
+	 relsubval: 11;		     cost: 1050; weight: 380;	      p1: 0;
+	  to_ac: 0;		   to_hit: -3;	 to_dam: 0;	      ac: 25;
+	 damage: 2|4;
+};
+
+treasure "Ribbed Plate Armor" : not_stackable {
+	   kind: HARD_ARMOR;	   letter: "[";	  level: 50;	quantity: 1;
+	 relsubval: 12;		     cost: 1200; weight: 380;	      p1: 0;
+	  to_ac: 0;		   to_hit: -3;	 to_dam: 0;	      ac: 28;
+	 damage: 2|4;
+};
+
+treasure "& Cloak" : not_stackable {
+	   kind: CLOAK;		   letter: "(";	  level: 1;	quantity: 1;
+	 relsubval: 1;		     cost: 3;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 1;
+	 damage: 0|0;
+           sold: by_general_store;
+};
+
+treasure "& Set of Leather Gloves" : not_stackable {
+	   kind: GLOVES;	   letter: "]";	  level: 1;	quantity: 1;
+	 relsubval: 1;		     cost: 3;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 1;
+	 damage: 0|0;
+           sold: by_armoury*2;
+};
+
+treasure "& Set of Gauntlets" : not_stackable {
+	   kind: GLOVES;	   letter: "]";	  level: 12;	quantity: 1;
+	 relsubval: 2;		     cost: 35;	 weight: 25;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 2;
+	 damage: 1|1;
+           sold: by_armoury*2;
+};
+
+treasure "& Small Leather Shield" : not_stackable {
+	   kind: SHIELD;	   letter: ")";	  level: 3;	quantity: 1;
+	 relsubval: 1;		     cost: 30;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 2;
+	 damage: 1|1;
+           sold: by_armoury;
+};
+
+treasure "& Medium Leather Shield" : not_stackable {
+	   kind: SHIELD;	   letter: ")";	  level: 8;	quantity: 1;
+	 relsubval: 2;		     cost: 60;	 weight: 75;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 3;
+	 damage: 1|2;
+           sold: by_armoury;
+};
+
+treasure "& Large Leather Shield" : not_stackable {
+	   kind: SHIELD;	   letter: ")";	  level: 15;	quantity: 1;
+	 relsubval: 3;		     cost: 120;	 weight: 100;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 4;
+	 damage: 1|2;
+};
+
+treasure "& Small Metal Shield" : not_stackable {
+	   kind: SHIELD;	   letter: ")";	  level: 10;	quantity: 1;
+	 relsubval: 4;		     cost: 50;	 weight: 65;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 3;
+	 damage: 1|2;
+           sold: by_armoury;
+};
+
+treasure "& Medium Metal Shield" : not_stackable {
+	   kind: SHIELD;	   letter: ")";	  level: 20;	quantity: 1;
+	 relsubval: 5;		     cost: 125;	 weight: 90;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 4;
+	 damage: 1|3;
+};
+
+treasure "& Large Metal Shield" : not_stackable {
+	   kind: SHIELD;	   letter: ")";	  level: 30;	quantity: 1;
+	 relsubval: 6;		     cost: 200;	 weight: 120;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 5;
+	 damage: 1|3;
+};
+
+treasure "Strength" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 30;	quantity: 1;
+	 relsubval: 0;		     cost: 400;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: strength;
+};
+
+treasure "Dexterity" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 30;	quantity: 1;
+	 relsubval: 1;		     cost: 400;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: dexterity;
+};
+
+treasure "Constitution" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 30;	quantity: 1;
+	 relsubval: 2;		     cost: 400;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: constitution;
+};
+
+treasure "Intelligence" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 30;	quantity: 1;
+	 relsubval: 3;		     cost: 400;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: intelligence;
+};
+
+treasure "Speed" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 50;	quantity: 1;
+	 relsubval: 4;		     cost: 3000; weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: speed;
+};
+
+treasure "Searching" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 7;	quantity: 1;
+	 relsubval: 5;		     cost: 250;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: search;
+};
+
+treasure "Teleportation" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 7;	quantity: 1;
+	 relsubval: 6;		     cost: 0;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: teleport, cursed;
+};
+
+treasure "Slow Digestion" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 7;	quantity: 1;
+	 relsubval: 7;		     cost: 200;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: slow_digestion;
+};
+
+treasure "Resist Fire" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 14;	quantity: 1;
+	 relsubval: 8;		     cost: 250;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: resist_fire;
+           sold: by_magic_shop;
+};
+
+treasure "Resist Cold" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 14;	quantity: 1;
+	 relsubval: 9;		     cost: 250;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: resist_cold;
+           sold: by_magic_shop;
+};
+
+treasure "Feather Falling" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 7;	quantity: 1;
+	 relsubval: 10;		     cost: 200;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: free_falling;
+           sold: by_magic_shop;
+};
+
+treasure "Adornment" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 7;	quantity: 1;
+	 relsubval: 11;		     cost: 20;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "& Arrow~" : stacks_with_others_of_same_p1 {
+	   kind: ARROW;		   letter: "{";	  level: 15;	quantity: 1;
+	 relsubval: 0;		     cost: 1;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+      stackable: with_same_p1;
+};
+
+treasure "Weakness" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 7;	quantity: 1;
+	 relsubval: 13;		     cost: 0;	 weight: 2;	      p1: -5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: strength, cursed;
+};
+
+treasure "Lordly Protection (FIRE)" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 50;	quantity: 1;
+	 relsubval: 14;		     cost: 1200; weight: 2;	      p1: 0;
+	  to_ac: 5;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: resist_fire;
+};
+
+treasure "Lordly Protection (ACID)" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 50;	quantity: 1;
+	 relsubval: 15;		     cost: 1200; weight: 2;	      p1: 0;
+	  to_ac: 5;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: resist_acid;
+};
+
+treasure "Lordly Protection (COLD)" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 50;	quantity: 1;
+	 relsubval: 16;		     cost: 1200; weight: 2;	      p1: 0;
+	  to_ac: 5;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: resist_cold;
+};
+
+treasure "WOE" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 50;	quantity: 1;
+	 relsubval: 17;		     cost: 0;	 weight: 2;	      p1: -5;
+	  to_ac: -3;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: wisdom, search, aggravate, teleport;
+	special: cursed;
+};
+
+treasure "Stupidity" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 7;	quantity: 1;
+	 relsubval: 18;		     cost: 0;	 weight: 2;	      p1: -5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: intelligence, cursed;
+};
+
+treasure "Increase Damage" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 20;	quantity: 1;
+	 relsubval: 19;		     cost: 100;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "Increase To-Hit" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 20;	quantity: 1;
+	 relsubval: 20;		     cost: 100;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "Protection" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 7;	quantity: 1;
+	 relsubval: 21;		     cost: 100;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+           sold: by_magic_shop;
+};
+
+treasure "Aggravate Monster" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 7;	quantity: 1;
+	 relsubval: 22;		     cost: 0;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: aggravate, cursed;
+};
+
+treasure "See Invisible" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 40;	quantity: 1;
+	 relsubval: 23;		     cost: 500;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: see_invisible;
+};
+
+treasure "Sustain Strength" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 44;	quantity: 1;
+	 relsubval: 24;		     cost: 750;	 weight: 2;	      p1: 1;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: sustain_stat;
+};
+
+treasure "Sustain Intelligence" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 44;	quantity: 1;
+	 relsubval: 25;		     cost: 600;	 weight: 2;	      p1: 2;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: sustain_stat;
+};
+
+treasure "Sustain Wisdom" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 44;	quantity: 1;
+	 relsubval: 26;		     cost: 600;	 weight: 2;	      p1: 3;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: sustain_stat;
+};
+
+treasure "Sustain Constitution" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 44;	quantity: 1;
+	 relsubval: 27;		     cost: 750;	 weight: 2;	      p1: 4;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: sustain_stat;
+};
+
+treasure "Sustain Dexterity" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 44;	quantity: 1;
+	 relsubval: 28;		     cost: 750;	 weight: 2;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: sustain_stat;
+};
+
+treasure "Sustain Charisma" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 44;	quantity: 1;
+	 relsubval: 29;		     cost: 500;	 weight: 2;	      p1: 6;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: sustain_stat;
+};
+
+treasure "Slaying" : not_stackable {
+	   kind: RING;		   letter: "=";	  level: 50;	quantity: 1;
+	 relsubval: 30;		     cost: 1000; weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "Wisdom" : not_stackable {
+	   kind: AMULET;	   letter: 34;  level: 20;	quantity: 1;
+	 relsubval: 0;		     cost: 300;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: wisdom;
+};
+
+treasure "Charisma" : not_stackable {
+	   kind: AMULET;	   letter: 34;  level: 20;	quantity: 1;
+	 relsubval: 1;		     cost: 250;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: charisma;
+           sold: by_magic_shop;
+};
+
+treasure "Searching" : not_stackable {
+	   kind: AMULET;	   letter: 34;  level: 14;	quantity: 1;
+	 relsubval: 2;		     cost: 250;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: search;
+};
+
+treasure "Teleportation" : not_stackable {
+	   kind: AMULET;	   letter: 34;  level: 14;	quantity: 1;
+	 relsubval: 3;		     cost: 0;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: teleport, cursed;
+};
+
+treasure "Slow Digestion" : not_stackable {
+	   kind: AMULET;	   letter: 34;  level: 14;	quantity: 1;
+	 relsubval: 4;		     cost: 200;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: slow_digestion;
+           sold: by_magic_shop;
+};
+
+treasure "Resist Acid" : not_stackable {
+	   kind: AMULET;	   letter: 34;  level: 24;	quantity: 1;
+	 relsubval: 5;		     cost: 250;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: resist_acid;
+           sold: by_magic_shop;
+};
+
+treasure "Adornment" : not_stackable {
+	   kind: AMULET;	   letter: 34;  level: 16;	quantity: 1;
+	 relsubval: 6;		     cost: 20;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "& Bolt~" : stacks_with_others_of_same_p1 {
+	   kind: BOLT;		   letter: "{";	  level: 25;	quantity: 1;
+	 relsubval: 0;		     cost: 2;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|5;
+      stackable: with_same_p1;
+};
+
+treasure "the Magi" : not_stackable {
+	   kind: AMULET;	   letter: 34;  level: 50;	quantity: 1;
+	 relsubval: 8;		     cost: 5000; weight: 3;	      p1: 0;
+	  to_ac: 3;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: search, free_action, see_invisible;
+};
+
+treasure "DOOM" : not_stackable {
+	   kind: AMULET;	   letter: 34;  level: 50;	quantity: 1;
+	 relsubval: 9;		     cost: 0;	 weight: 3;	      p1: -5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+	special: strength, intelligence, wisdom, dexterity;
+	special: constitution, charisma, search, cursed;
+};
+
+treasure "Enchant Weapon To-Hit" : stacks_with_others_of_this_kind  {
+	   kind: SCROLL;	   letter: "?";	  level: 12;	quantity: 1;
+	 relsubval: 0;		     cost: 125;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: increase_tohit;
+           sold: by_alchemist;
+};
+
+treasure "Enchant Weapon To-Dam" : stacks_with_others_of_this_kind  {
+	   kind: SCROLL;	   letter: "?";	  level: 12;	quantity: 1;
+	 relsubval: 1;		     cost: 125;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: increase_todam;
+           sold: by_alchemist;
+};
+
+treasure "Enchant Armor" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 12;	quantity: 1;
+	 relsubval: 2;		     cost: 125;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: enchant_armor_i;
+           sold: by_alchemist;
+};
+
+treasure "Identify" : identify_scroll {
+	  level: 1;	quantity: 1;
+};
+
+treasure "Identify" : identify_scroll {
+	  level: 5;	quantity: 1;
+};
+
+treasure "Identify" : identify_scroll {
+	  level: 10;	quantity: 1;
+};
+
+treasure "Identify" : identify_scroll {
+	  level: 30;	quantity: 1;
+};
+
+treasure "Remove Curse" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 7;	quantity: 1;
+	 relsubval: 4;		     cost: 100;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: remove_curse;
+           sold: by_temple*2;
+};
+
+treasure "Light" : light_scroll {
+	  level: 0;	quantity: 1;
+};
+
+treasure "Light" : light_scroll {
+	  level: 3;	quantity: 1;
+};
+
+treasure "Light" : light_scroll {
+	  level: 7;	quantity: 1;
+};
+
+treasure "Summon Monster" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 1;	quantity: 1;
+	 relsubval: 6;		     cost: 0;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: summon_monster;
+};
+
+treasure "Phase Door" : phase_door_scroll {
+	  level: 1;	quantity: 1;
+};
+
+treasure "Teleport" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 10;	quantity: 1;
+	 relsubval: 8;		     cost: 40;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: teleport;
+};
+
+treasure "Teleport Level" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 20;	quantity: 1;
+	 relsubval: 9;		     cost: 50;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: teleport_level;
+};
+
+treasure "Monster Confusion" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 5;	quantity: 1;
+	 relsubval: 10;		     cost: 30;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: confuse_monster;
+};
+
+treasure "Magic Mapping" : magic_mapping_scroll {
+	  level: 5;	quantity: 1;
+};
+
+treasure "Sleep Monster" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 5;	quantity: 1;
+	 relsubval: 12;		     cost: 35;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: sleep_monsters_i;
+};
+
+treasure "Rune of Protection" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 50;	quantity: 1;
+	 relsubval: 13;		     cost: 500;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: warding_glyph;
+};
+
+treasure "Treasure Detection" : treasure_detection_scroll {
+	  level: 0;	quantity: 1;
+};
+
+treasure "Object Detection" : object_detection_scroll {
+	  level: 0;	quantity: 1;
+};
+
+treasure "Trap Detection" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 5;	quantity: 1;
+	 relsubval: 16;		     cost: 35;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: detect_traps;
+};
+
+treasure "Trap Detection" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 8;	quantity: 1;
+	 relsubval: 16;		     cost: 35;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: detect_traps;
+};
+
+treasure "Trap Detection" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 12;	quantity: 1;
+	 relsubval: 16;		     cost: 35;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: detect_traps;
+};
+
+treasure "Door/Stair Location" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 5;	quantity: 1;
+	 relsubval: 17;		     cost: 35;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: detect_secret_doors;
+};
+
+treasure "Door/Stair Location" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 10;	quantity: 1;
+	 relsubval: 17;		     cost: 35;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: detect_secret_doors;
+};
+
+treasure "Door/Stair Location" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 15;	quantity: 1;
+	 relsubval: 17;		     cost: 35;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: detect_secret_doors;
+};
+
+treasure "Mass Genocide" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 50;	quantity: 1;
+	 relsubval: 18;		     cost: 1000; weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: mass_genocide;
+};
+
+treasure "Detect Invisible" : detect_invisible_scroll {
+	  level: 1;	quantity: 1;
+};
+
+treasure "Aggravate Monster" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 5;	quantity: 1;
+	 relsubval: 20;		     cost: 0;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: aggravate_monster;
+};
+
+treasure "Trap Creation" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 12;	quantity: 1;
+	 relsubval: 21;		     cost: 0;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: create_trap;
+};
+
+treasure "Trap/Door Destruction" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 12;	quantity: 1;
+	 relsubval: 22;		     cost: 50;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: trap_or_door_destruction;
+};
+
+treasure "Door Creation" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 12;	quantity: 1;
+	 relsubval: 23;		     cost: 100;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: create_door;
+};
+
+treasure "Recharging" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 24;		     cost: 200;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: recharge;
+           sold: by_alchemist;
+};
+
+treasure "Genocide" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 35;	quantity: 1;
+	 relsubval: 25;		     cost: 750;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: genocide;
+};
+
+treasure "Darkness" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 1;	quantity: 1;
+	 relsubval: 26;		     cost: 0;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: darkness;
+};
+
+treasure "Protection from Evil" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 30;	quantity: 1;
+	 relsubval: 27;		     cost: 100;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: protection_from_evil;
+};
+
+treasure "Create Food" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 5;	quantity: 1;
+	 relsubval: 28;		     cost: 10;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: create_food;
+};
+
+treasure "Dispel Undead" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 29;		     cost: 200;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: dispel_undead;
+};
+
+treasure "*Enchant Weapon*" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 50;	quantity: 1;
+	 relsubval: 30;		     cost: 500;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: enchant_weapon;
+};
+
+treasure "Curse Weapon" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 50;	quantity: 1;
+	 relsubval: 31;		     cost: 0;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: curse_weapon;
+};
+
+treasure "*Enchant Armor*" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 50;	quantity: 1;
+	 relsubval: 32;		     cost: 500;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: enchant_armor_ii;
+};
+
+treasure "Curse Armor" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 50;	quantity: 1;
+	 relsubval: 33;		     cost: 0;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: curse_armor;
+};
+
+treasure "Summon Undead" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 15;	quantity: 1;
+	 relsubval: 34;		     cost: 0;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: summon_undead;
+};
+
+treasure "Blessing" : blessing_scroll {
+	  level: 1;	quantity: 1;
+};
+
+treasure "Holy Chant" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 12;	quantity: 1;
+	 relsubval: 36;		     cost: 40;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: bless_ii;
+};
+
+treasure "Holy Prayer" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 24;	quantity: 1;
+	 relsubval: 37;		     cost: 80;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: bless_iii;
+};
+
+treasure "Word-of-Recall" : word_of_recall_scroll {
+	  level: 5;	quantity: 1;
+};
+
+treasure "*Destruction*" : stacks_with_others_of_this_kind {
+	   kind: SCROLL;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 39;		     cost: 750;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+   scroll_casts: earthquake;
+};
+
+treasure "Slime Mold Juice" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 0;	quantity: 1;
+	 relsubval: 0;		     cost: 2;	 weight: 4;	      p1: 400;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: cure_blindness, cure_confusion;
+};
+
+treasure "Apple Juice" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 0;	quantity: 1;
+	 relsubval: 1;		     cost: 1;	 weight: 4;	      p1: 250;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "Water" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 0;	quantity: 1;
+	 relsubval: 2;		     cost: 0;	 weight: 4;	      p1: 200;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "Strength" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 3;		     cost: 300;	 weight: 4;	      p1: 50;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: gain_strength;
+};
+
+treasure "Weakness" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 3;	quantity: 1;
+	 relsubval: 4;		     cost: 0;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: lose_strength;
+};
+
+treasure "Restore Strength" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 40;	quantity: 1;
+	 relsubval: 5;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: restore_strength;
+           sold: by_alchemist;
+};
+
+treasure "Intelligence" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 6;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: gain_intelligence;
+};
+
+treasure "Lose Intelligence" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 7;		     cost: 0;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: lose_intelligence;
+};
+
+treasure "Restore Intelligence" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 40;	quantity: 1;
+	 relsubval: 8;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: restore_intelligence;
+           sold: by_alchemist;
+};
+
+treasure "Wisdom" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 9;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: gain_wisdom;
+};
+
+treasure "Lose Wisdom" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 10;		     cost: 0;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: lose_wisdom;
+};
+
+treasure "Restore Wisdom" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 40;	quantity: 1;
+	 relsubval: 11;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: restore_wisdom;
+           sold: by_temple;
+};
+
+treasure "Charisma" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 12;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: gain_charisma;
+};
+
+treasure "Ugliness" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 13;		     cost: 0;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: lose_charisma;
+};
+
+treasure "Restore Charisma" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 40;	quantity: 1;
+	 relsubval: 14;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: restore_charisma;
+           sold: by_alchemist;
+};
+
+treasure "Cure Light Wounds" : cure_light_wounds_potion {
+	  level: 0;	quantity: 1;
+           sold: by_temple*3;
+};
+
+treasure "Cure Light Wounds" : cure_light_wounds_potion {
+	  level: 1;	quantity: 1;
+};
+
+treasure "Cure Light Wounds" : cure_light_wounds_potion {
+	  level: 2;	quantity: 1;
+};
+
+treasure "Cure Serious Wounds" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 3;	quantity: 1;
+	 relsubval: 16;		     cost: 40;	 weight: 4;	      p1: 100;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: cure_wounds_ii, cure_blindness, cure_confusion;
+           sold: by_temple*3;
+};
+
+treasure "Cure Critical Wounds" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 5;	quantity: 1;
+	 relsubval: 17;		     cost: 100;	 weight: 4;	      p1: 100;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: cure_wounds_iii, cure_blindness, cure_confusion;
+  potion_causes: cure_poison;
+           sold: by_temple*2;
+};
+
+treasure "Healing" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 12;	quantity: 1;
+	 relsubval: 18;		     cost: 200;	 weight: 4;	      p1: 200;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: healing, cure_blindness, cure_confusion;
+  potion_causes: cure_poison;
+};
+
+treasure "Constitution" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 19;		     cost: 300;	 weight: 4;	      p1: 50;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: gain_constitution;
+};
+
+treasure "Gain Experience" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 50;	quantity: 1;
+	 relsubval: 20;		     cost: 2500; weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: gain_experience;
+};
+
+treasure "Sleep" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 0;	quantity: 1;
+	 relsubval: 21;		     cost: 0;	 weight: 4;	      p1: 100;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: sleep;
+};
+
+treasure "Blindness" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 0;	quantity: 1;
+	 relsubval: 22;		     cost: 0;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: blindness;
+};
+
+treasure "Confusion" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 0;	quantity: 1;
+	 relsubval: 23;		     cost: 0;	 weight: 4;	      p1: 50;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: confusion;
+};
+
+treasure "Poison" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 3;	quantity: 1;
+	 relsubval: 24;		     cost: 0;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: poisoning;
+};
+
+treasure "Haste Self" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 1;	quantity: 1;
+	 relsubval: 25;		     cost: 75;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: speed;
+};
+
+treasure "Slowness" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 1;	quantity: 1;
+	 relsubval: 26;		     cost: 0;	 weight: 4;	      p1: 50;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: slowness;
+};
+
+treasure "Dexterity" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 27;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: gain_dexterity;
+};
+
+treasure "Restore Dexterity" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 40;	quantity: 1;
+	 relsubval: 28;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: restore_dexterity;
+           sold: by_alchemist;
+};
+
+treasure "Restore Constitution" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 40;	quantity: 1;
+	 relsubval: 29;		     cost: 300;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: restore_constitution, cure_confusion, cure_poison;
+           sold: by_alchemist;
+};
+
+treasure "Lose Experience" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 10;	quantity: 1;
+	 relsubval: 31;		     cost: 0;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: lose_experience;
+};
+
+treasure "Salt Water" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 0;	quantity: 1;
+	 relsubval: 32;		     cost: 0;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: throw_up;
+};
+
+treasure "Invulnerability" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 40;	quantity: 1;
+	 relsubval: 33;		     cost: 1000; weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: invulnerability;
+};
+
+treasure "Heroism" : heroism_potion {
+	  level: 1;	quantity: 1;
+};
+
+treasure "Super Heroism" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 3;	quantity: 1;
+	 relsubval: 35;		     cost: 100;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: super_heroism;
+};
+
+treasure "Boldness" : boldness_potion {
+	  level: 1;	quantity: 1;
+};
+
+treasure "Restore Life Levels" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 40;	quantity: 1;
+	 relsubval: 37;		     cost: 400;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: restore_life_levels;
+           sold: by_temple;
+};
+
+treasure "Resist Heat" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 1;	quantity: 1;
+	 relsubval: 38;		     cost: 30;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: resist_heat;
+           sold: by_temple;
+};
+
+treasure "Resist Cold" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 1;	quantity: 1;
+	 relsubval: 39;		     cost: 30;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: resist_cold;
+};
+
+treasure "Detect Invisible" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 3;	quantity: 1;
+	 relsubval: 40;		     cost: 50;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: see_invisible;
+};
+
+treasure "Slow Poison" : slow_poison_potion {
+	  level: 1;	quantity: 1;
+};
+
+treasure "Neutralize Poison" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 5;	quantity: 1;
+	 relsubval: 42;		     cost: 75;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: cure_poison;
+           sold: by_temple;
+};
+
+treasure "Restore Mana" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 25;	quantity: 1;
+	 relsubval: 43;		     cost: 350;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: restore_mana;
+};
+
+treasure "Infra-Vision" : stacks_with_others_of_this_kind {
+	   kind: POTION;	   letter: "!";	  level: 3;	quantity: 1;
+	 relsubval: 44;	     cost: 20;	 weight: 4;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+  potion_causes: infravision;
+};
+
+treasure "& Flask~ of Oil" : flask {
+	  level: 1;	quantity: 1;
+};
+
+treasure "Light" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 2;	quantity: 1;
+	 relsubval: 0;		     cost: 200;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: light_line;
+           sold: by_magic_shop*2;
+};
+
+treasure "Lightning Bolts" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 15;	quantity: 1;
+	 relsubval: 1;		     cost: 600;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: lightning_bolt;
+           sold: by_magic_shop;
+};
+
+treasure "Frost Bolts" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 20;	quantity: 1;
+	 relsubval: 2;		     cost: 800;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: frost_bolt;
+};
+
+treasure "Fire Bolts" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 30;	quantity: 1;
+	 relsubval: 3;		     cost: 1000; weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: fire_bolt;
+};
+
+treasure "Stone-to-Mud" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 12;	quantity: 1;
+	 relsubval: 4;		     cost: 300;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: stone_to_mud;
+};
+
+treasure "Polymorph" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 20;	quantity: 1;
+	 relsubval: 5;		     cost: 400;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: polymorph_monster;
+};
+
+treasure "Heal Monster" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 2;	quantity: 1;
+	 relsubval: 6;		     cost: 0;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: heal_monster;
+};
+
+treasure "Haste Monster" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 2;	quantity: 1;
+	 relsubval: 7;		     cost: 0;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: haste_monster;
+};
+
+treasure "Slow Monster" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 2;	quantity: 1;
+	 relsubval: 8;		     cost: 500;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: slow_monster;
+};
+
+treasure "Confuse Monster" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 2;	quantity: 1;
+	 relsubval: 9;		     cost: 400;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: confuse_monster;
+};
+
+treasure "Sleep Monster" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 7;	quantity: 1;
+	 relsubval: 10;		     cost: 500;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: sleep_monster;
+};
+
+treasure "Drain Life" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 50;	quantity: 1;
+	 relsubval: 11;		     cost: 1200; weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: drain_life;
+};
+
+treasure "Trap/Door Destruction" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 12;	quantity: 1;
+	 relsubval: 12;		     cost: 500;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: destroy_traps_and_doors;
+};
+
+treasure "Magic Missile" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 2;	quantity: 1;
+	 relsubval: 13;		     cost: 200;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: magic_missile;
+           sold: by_magic_shop*2;
+};
+
+treasure "Wall Building" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 25;	quantity: 1;
+	 relsubval: 14;		     cost: 400;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: build_wall;
+};
+
+treasure "Clone Monster" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 15;	quantity: 1;
+	 relsubval: 15;		     cost: 0;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: clone_monster;
+};
+
+treasure "Teleport Away" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 20;	quantity: 1;
+	 relsubval: 16;		     cost: 350;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: teleport_monster;
+};
+
+treasure "Disarming" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 20;	quantity: 1;
+	 relsubval: 17;		     cost: 500;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: disarm_all;
+           sold: by_magic_shop;
+};
+
+treasure "Lightning Balls" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 35;	quantity: 1;
+	 relsubval: 18;		     cost: 1200; weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: lightning_ball;
+           sold: by_magic_shop;
+};
+
+treasure "Cold Balls" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 40;	quantity: 1;
+	 relsubval: 19;		     cost: 1500; weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: cold_ball;
+};
+
+treasure "Fire Balls" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 50;	quantity: 1;
+	 relsubval: 20;		     cost: 1800; weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: fire_ball;
+};
+
+treasure "Stinking Cloud" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 5;	quantity: 1;
+	 relsubval: 21;		     cost: 400;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: poison_gas;
+           sold: by_magic_shop;
+};
+
+treasure "Acid Balls" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 48;	quantity: 1;
+	 relsubval: 22;		     cost: 1650; weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: acid_ball;
+};
+
+treasure "Wonder" : not_stackable {
+	   kind: WAND;		   letter: "-";	  level: 2;	quantity: 1;
+	 relsubval: 23;		     cost: 250;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+     wand_casts: wonder;
+           sold: by_magic_shop;
+};
+
+treasure "Light" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 5;	quantity: 1;
+	 relsubval: 0;		     cost: 250;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: light;
+           sold: by_magic_shop;
+};
+
+treasure "Door/Stair Location" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 10;	quantity: 1;
+	 relsubval: 1;		     cost: 350;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: detect_secret_doors;
+           sold: by_magic_shop;
+};
+
+treasure "Trap Location" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 10;	quantity: 1;
+	 relsubval: 2;		     cost: 350;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: detect_traps;
+           sold: by_magic_shop;
+};
+
+treasure "Treasure Location" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 5;	quantity: 1;
+	 relsubval: 3;		     cost: 200;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: detect_treasures;
+};
+
+treasure "Object Location" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 5;	quantity: 1;
+	 relsubval: 4;		     cost: 200;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: detect_objects;
+};
+
+treasure "Teleportation" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 20;	quantity: 1;
+	 relsubval: 5;		     cost: 800;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: teleport;
+};
+
+treasure "Earthquakes" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 40;	quantity: 1;
+	 relsubval: 6;		     cost: 350;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: earthquake;
+};
+
+treasure "Summoning" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 10;	quantity: 1;
+	 relsubval: 7;		     cost: 0;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: summon_monster;
+};
+
+treasure "Summoning" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 50;	quantity: 1;
+	 relsubval: 7;		     cost: 0;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: summon_monster;
+};
+
+treasure "*Destruction*" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 50;	quantity: 1;
+	 relsubval: 8;		     cost: 2500; weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: earthquake_ii;
+};
+
+treasure "Starlight" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 20;	quantity: 1;
+	 relsubval: 9;		     cost: 400;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: starlight;
+};
+
+treasure "Haste Monsters" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 10;	quantity: 1;
+	 relsubval: 10;		     cost: 0;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: speed_monsters;
+};
+
+treasure "Slow Monsters" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 10;	quantity: 1;
+	 relsubval: 11;		     cost: 800;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: slow_monsters;
+};
+
+treasure "Sleep Monsters" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 10;	quantity: 1;
+	 relsubval: 12;		     cost: 700;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: sleep_monsters_ii;
+};
+
+treasure "Cure Light Wounds" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 5;	quantity: 1;
+	 relsubval: 13;		     cost: 200;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: cure_wounds_i;
+};
+
+treasure "Detect Invisible" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 5;	quantity: 1;
+	 relsubval: 14;		     cost: 200;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: detect_invisible;
+           sold: by_magic_shop;
+};
+
+treasure "Speed" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 40;	quantity: 1;
+	 relsubval: 15;		     cost: 1000; weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: speed;
+};
+
+treasure "Slowness" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 40;	quantity: 1;
+	 relsubval: 16;		     cost: 0;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: slowness;
+};
+
+treasure "Mass Polymorph" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 46;	quantity: 1;
+	 relsubval: 17;		     cost: 750;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: mass_polymorph;
+};
+
+treasure "Remove Curse" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 47;	quantity: 1;
+	 relsubval: 18;		     cost: 500;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: remove_curse;
+};
+
+treasure "Detect Evil" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 20;	quantity: 1;
+	 relsubval: 19;		     cost: 350;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: detect_evil;
+};
+
+treasure "Curing" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 25;	quantity: 1;
+	 relsubval: 20;		     cost: 1000; weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: curing;
+};
+
+treasure "Dispel Evil" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 49;	quantity: 1;
+	 relsubval: 21;		     cost: 1200; weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: dispel_undead;
+};
+
+treasure "Darkness" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 50;	quantity: 1;
+	 relsubval: 22;		     cost: 0;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: darkness;
+};
+
+treasure "Darkness" : not_stackable {
+	   kind: STAFF;		   letter: "_";	  level: 5;	quantity: 1;
+	 relsubval: 22;		     cost: 0;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+    staff_casts: darkness;
+};
+
+treasure "[Beginners-Magick]" : stacks_with_others_of_this_kind {
+	   kind: MAGIC_BOOK;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 0;		     cost: 25;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+	  spell: magic_missile, detect_monsters, phase_door;
+	  spell: light_area, cure_light_wounds, find_hidden_traps_and_doors;
+	  spell: stinking_cloud;
+           sold: by_magic_shop;
+};
+
+treasure "[Magick I]" : stacks_with_others_of_this_kind {
+	   kind: MAGIC_BOOK;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 1;		     cost: 100;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+	  spell: confusion, lightning_bolt, trap_and_door_destruction;
+	  spell: sleep_i, cure_poison, teleport_self;
+	  spell: remove_curse, frost_bolt, turn_stone_to_mud;
+           sold: by_magic_shop*2;
+};
+
+treasure "[Magick II]" : stacks_with_others_of_this_kind {
+	   kind: MAGIC_BOOK;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 2;		     cost: 400;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+	  spell: create_food, recharge_item_i, sleep_ii;
+	  spell: polymorph_other, identify, sleep_iii;
+	  spell: fire_bolt, slow_monster;
+           sold: by_magic_shop*2;
+};
+
+treasure "[The Mages' Guide to Power]" : stacks_with_others_of_this_kind {
+	   kind: MAGIC_BOOK;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 3;		     cost: 800;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+	  spell: frost_ball, recharge_item_ii, teleport_other;
+	  spell: haste_self, fire_ball, word_of_destruction;
+	  spell: genocide;
+           sold: by_magic_shop;
+};
+
+treasure "[Beginners Handbook]" : stacks_with_others_of_this_kind {
+	   kind: PRAYER_BOOK;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 0;		     cost: 25;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+	 prayer: detect_evil, cure_light_wounds, bless;
+	 prayer: remove_fear, call_light, find_traps;
+	 prayer: detect_doors_and_stairs, slow_poison;
+           sold: by_temple;
+};
+
+treasure "[Words of Wisdom]" : stacks_with_others_of_this_kind {
+	   kind: PRAYER_BOOK;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 1;		     cost: 100;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+	 prayer: blind_creature, portal, cure_medium_wounds;
+	 prayer: chant, sanctuary, create_food;
+	 prayer: remove_curse, resist_heat_and_cold;
+           sold: by_temple*2;
+};
+
+treasure "[Chants and Blessings]" : stacks_with_others_of_this_kind {
+	   kind: PRAYER_BOOK;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 2;		     cost: 400;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+	 prayer: neutralize_poison, orb_of_draining, cure_serious_wounds;
+	 prayer: sense_invisible, protection_from_evil, earthquake;
+	 prayer: sense_surroundings, cure_critical_wounds, turn_undead;
+           sold: by_temple;
+};
+
+treasure "[Exorcisms and Dispellings]" : stacks_with_others_of_this_kind {
+	   kind: PRAYER_BOOK;	   letter: "?";	  level: 40;	quantity: 1;
+	 relsubval: 3;		     cost: 800;	 weight: 30;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+	 prayer: pray_prayer, dispel_undead, heal;
+	 prayer: dispel_evil, glyph_of_warding, holy_word;
+           sold: by_temple;
+};
+
+treasure "& Small Wooden Chest" : not_stackable {
+	   kind: CHEST;		   letter: "&";	  level: 7;	quantity: 1;
+	 relsubval: 1;		     cost: 20;	 weight: 250;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|3;
+       contains: carry_small_obj, carry_obj, carry_gold;
+       contains: has_1d2_obj;
+};
+
+treasure "& Large Wooden Chest" : not_stackable {
+	   kind: CHEST;		   letter: "&";	  level: 15;	quantity: 1;
+	 relsubval: 4;		     cost: 60;	 weight: 500;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|5;
+       contains: carry_small_obj, carry_obj, carry_gold;
+       contains: has_random_60, has_1d2_obj;
+};
+
+treasure "& Small Iron Chest" : not_stackable {
+	   kind: CHEST;		   letter: "&";	  level: 25;	quantity: 1;
+	 relsubval: 7;		     cost: 100;	 weight: 500;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|4;
+       contains: carry_small_obj, carry_obj, carry_gold;
+       contains: has_random_60, has_1d2_obj;
+};
+
+treasure "& Large Iron Chest" : not_stackable {
+	   kind: CHEST;		   letter: "&";	  level: 35;	quantity: 1;
+	 relsubval: 10;		     cost: 150;	 weight: 1000;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+       contains: carry_small_obj, carry_obj, carry_gold;
+       contains: has_2d2_obj;
+};
+
+treasure "& Small Steel Chest" : not_stackable {
+	   kind: CHEST;		   letter: "&";	  level: 45;	quantity: 1;
+	 relsubval: 13;		     cost: 200;	 weight: 500;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|4;
+       contains: carry_small_obj, carry_obj, carry_gold;
+       contains: has_random_90, has_1d2_obj;
+};
+
+treasure "& Large Steel Chest" : not_stackable {
+	   kind: CHEST;		   letter: "&";	  level: 50;	quantity: 1;
+	 relsubval: 16;		     cost: 250;	 weight: 1000;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+       contains: carry_small_obj, carry_obj, carry_gold;
+       contains: has_1d2_obj, has_2d2_obj;
+};
+
+treasure "& Rat Skeleton" : not_stackable {
+	   kind: MISC;		   letter: "s";	  level: 1;	quantity: 1;
+	 relsubval: 1;		     cost: 0;	 weight: 10;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Giant Centipede Skeleton" : not_stackable {
+	   kind: MISC;		   letter: "s";	  level: 1;	quantity: 1;
+	 relsubval: 2;		     cost: 0;	 weight: 25;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "some Filthy Rags" : not_stackable {
+	   kind: SOFT_ARMOR;	   letter: "~";	  level: 0;	quantity: 1;
+	 relsubval: 63;		     cost: 0;	 weight: 20;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 1;
+	 damage: 0|0;
+};
+
+treasure "& empty bottle" : not_stackable {
+	   kind: MISC;		   letter: "!";	  level: 0;	quantity: 1;
+	 relsubval: 4;		     cost: 0;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "some shards of pottery" : not_stackable {
+	   kind: MISC;		   letter: "~";	  level: 0;	quantity: 1;
+	 relsubval: 5;		     cost: 0;	 weight: 5;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Human Skeleton" : not_stackable {
+	   kind: MISC;		   letter: "s";	  level: 1;	quantity: 1;
+	 relsubval: 7;		     cost: 0;	 weight: 60;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Dwarf Skeleton" : not_stackable {
+	   kind: MISC;		   letter: "s";	  level: 1;	quantity: 1;
+	 relsubval: 8;		     cost: 0;	 weight: 50;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Elf Skeleton" : not_stackable {
+	   kind: MISC;		   letter: "s";	  level: 1;	quantity: 1;
+	 relsubval: 9;		     cost: 0;	 weight: 40;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Gnome Skeleton" : not_stackable {
+	   kind: MISC;		   letter: "s";	  level: 1;	quantity: 1;
+	 relsubval: 10;		     cost: 0;	 weight: 25;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& broken set of teeth" : not_stackable {
+	   kind: MISC;		   letter: "s";	  level: 0;	quantity: 1;
+	 relsubval: 11;		     cost: 0;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& large broken bone" : not_stackable {
+	   kind: MISC;		   letter: "s";	  level: 0;	quantity: 1;
+	 relsubval: 12;		     cost: 0;	 weight: 2;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& broken stick" : not_stackable {
+	   kind: MISC;		   letter: "~";	  level: 0;	quantity: 1;
+	 relsubval: 13;		     cost: 0;	 weight: 3;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& Ration~ of Food" : ration_food {
+	   level: 0;	quantity: 5;
+         relsubval: 26;
+           sold: by_general_store*8;
+};
+
+treasure "& Hard Biscuit~" : stacks_with_others_of_this_kind {
+	   kind: FOOD;		   letter: ",";	  level: 0;	quantity: 5;
+	 relsubval: 29;		     cost: 1;	 weight: 2;	      p1: 500;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+           sold: by_general_store*3, exclusively_in_town;
+};
+
+treasure "& Strip~ of Beef Jerky" : stacks_with_others_of_this_kind {
+	   kind: FOOD;		   letter: ",";	  level: 0;	quantity: 5;
+	 relsubval: 30;		     cost: 2;	 weight: 4;	      p1: 1750;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+           sold: by_general_store*2, exclusively_in_town;
+};
+
+treasure "& Pint~ of Fine Ale" : stacks_with_others_of_this_kind {
+	   kind: FOOD;		   letter: ",";	  level: 0;	quantity: 3;
+	 relsubval: 31;		     cost: 1;	 weight: 10;	      p1: 500;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+           sold: by_general_store, exclusively_in_town;
+};
+
+treasure "& Pint~ of Fine Wine" : stacks_with_others_of_this_kind {
+	   kind: FOOD;		   letter: ",";	  level: 0;	quantity: 1;
+	 relsubval: 32;		     cost: 2;	 weight: 10;	      p1: 400;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+           sold: by_general_store, exclusively_in_town;
+};
+
+treasure "& Pick" : not_stackable {
+	   kind: DIGGING;	   letter: "\";	  level: 0;	quantity: 1;
+	 relsubval: 1;		     cost: 50;	 weight: 150;	      p1: 1;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|3;
+	special: tunnel;
+           sold: by_general_store, exclusively_in_town;
+};
+
+treasure "& Shovel" : not_stackable {
+	   kind: DIGGING;	   letter: "\";	  level: 0;	quantity: 1;
+	 relsubval: 4;		     cost: 15;	 weight: 60;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|2;
+	special: tunnel;
+           sold: by_general_store, exclusively_in_town;
+};
+
+treasure "Identify" : identify_scroll {
+	  level: 0;	quantity: 2;
+           sold: by_alchemist*2, exclusively_in_town;
+};
+
+treasure "Light" : light_scroll {
+	  level: 0;	quantity: 3;
+           sold: by_alchemist*2, exclusively_in_town;
+};
+
+treasure "Phase Door" : phase_door_scroll {
+	  level: 0;	quantity: 2;
+           sold: by_alchemist*2, exclusively_in_town;
+};
+
+treasure "Magic Mapping" : magic_mapping_scroll {
+	  level: 0;	quantity: 2;
+           sold: by_alchemist*2, exclusively_in_town;
+};
+
+treasure "Treasure Detection" : treasure_detection_scroll {
+	  level: 0;	quantity: 2;
+           sold: by_alchemist*2, exclusively_in_town;
+};
+
+treasure "Object Detection" : object_detection_scroll {
+	  level: 0;	quantity: 2;
+           sold: by_alchemist*2, exclusively_in_town;
+};
+
+treasure "Detect Invisible" : detect_invisible_scroll {
+	  level: 0;	quantity: 2;
+           sold: by_alchemist, exclusively_in_town;
+};
+
+treasure "Blessing" : blessing_scroll {
+	  level: 0;	quantity: 2;
+           sold: by_temple, exclusively_in_town;
+};
+
+treasure "Word-of-Recall" : word_of_recall_scroll {
+	  level: 0;	quantity: 3;
+           sold: by_temple, by_alchemist*3, exclusively_in_town;
+};
+
+treasure "Cure Light Wounds" : cure_light_wounds_potion {
+	  level: 0;	quantity: 2;
+           sold: exclusively_in_town;
+};
+
+treasure "Heroism" : heroism_potion {
+	  level: 0;	quantity: 2;
+           sold: by_temple, exclusively_in_town;
+};
+
+treasure "Boldness" : boldness_potion {
+	  level: 0;	quantity: 2;
+          sold: by_temple, exclusively_in_town;
+};
+
+treasure "Slow Poison" : slow_poison_potion {
+	  level: 0;	quantity: 2;
+           sold: by_alchemist, exclusively_in_town;
+};
+
+treasure "& Brass Lantern~" : not_stackable {
+	   kind: LIGHT;		   letter: "~";	  level: 1;	quantity: 1;
+	 relsubval: 0;		     cost: 35;	 weight: 50;	      p1: 7500;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+           sold: by_general_store, exclusively_in_town;
+};
+
+treasure "& Wooden Torch~" : stacks_with_same_p1_and_kind {
+	   kind: LIGHT;		   letter: "~";	  level: 1;	quantity: 5;
+	 relsubval: 0;		     cost: 2;	 weight: 30;	      p1: 4000;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+           sold: by_general_store*3, exclusively_in_town;
+};
+
+treasure "& Flask~ of Oil" : flask {
+	  level: 1;	quantity: 5;
+           sold: by_general_store*2, exclusively_in_town;
+};
+
+treasure "& open door" : not_pickupable {
+	   kind: OPEN_DOOR;	   letter: "'";	  level: 0;	quantity: 1;
+	 relsubval: 1;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& closed door" : not_pickupable {
+	   kind: CLOSED_DOOR;	   letter: "+";	  level: 0;	quantity: 1;
+	 relsubval: 19;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "& secret door" : not_pickupable {
+	   kind: SECRET_DOOR;	   letter: 35;	  level: 0;	quantity: 1;
+	 relsubval: 19;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "an up staircase" : not_pickupable {
+	   kind: UP_STAIR;	   letter: "<";	  level: 0;	quantity: 1;
+	 relsubval: 1;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "a down staircase" : not_pickupable {
+	   kind: DOWN_STAIR;	   letter: ">";	  level: 0;	quantity: 1;
+	 relsubval: 1;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+};
+
+treasure "General Store" : stacks_with_others_of_this_kind {
+	   kind: STORE_DOOR;	   letter: "1";	  level: 0;	quantity: 1;
+	 relsubval: 37;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "Armory" : stacks_with_others_of_this_kind {
+	   kind: STORE_DOOR;	   letter: "2";	  level: 0;	quantity: 1;
+	 relsubval: 38;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "Weapon Smiths" : stacks_with_others_of_this_kind {
+	   kind: STORE_DOOR;	   letter: "3";	  level: 0;	quantity: 1;
+	 relsubval: 39;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "Temple" : stacks_with_others_of_this_kind {
+	   kind: STORE_DOOR;	   letter: "4";	  level: 0;	quantity: 1;
+	 relsubval: 40;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "Alchemy Shop" : stacks_with_others_of_this_kind {
+	   kind: STORE_DOOR;	   letter: "5";	  level: 0;	quantity: 1;
+	 relsubval: 41;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "Magic Shop" : stacks_with_others_of_this_kind {
+	   kind: STORE_DOOR;	   letter: "6";	  level: 0;	quantity: 1;
+	 relsubval: 42;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "an open pit" : not_pickupable {
+	   kind: VIS_TRAP;	   letter: " ";	  level: 50;	quantity: 1;
+	 relsubval: 1;		     cost: 0;	 weight: 0;	      p1: 1;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+};
+
+treasure "an arrow trap" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 90;	quantity: 1;
+	 relsubval: 2;		     cost: 0;	 weight: 0;	      p1: 3;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|8;
+};
+
+treasure "a covered pit" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 60;	quantity: 1;
+	 relsubval: 3;		     cost: 0;	 weight: 0;	      p1: 2;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+};
+
+treasure "a trap door" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 75;	quantity: 1;
+	 relsubval: 4;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|8;
+};
+
+treasure "a gas trap" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 95;	quantity: 1;
+	 relsubval: 5;		     cost: 0;	 weight: 0;	      p1: 3;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+};
+
+treasure "a loose rock" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: ";";	  level: 10;	quantity: 1;
+	 relsubval: 6;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "a dart trap" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 110;	quantity: 1;
+	 relsubval: 7;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+};
+
+treasure "a strange rune" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 90;	quantity: 1;
+	 relsubval: 8;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "some loose rock" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 90;	quantity: 1;
+	 relsubval: 9;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+};
+
+treasure "a gas trap" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 105;	quantity: 1;
+	 relsubval: 10;		     cost: 0;	 weight: 0;	      p1: 10;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+};
+
+treasure "a strange rune" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 90;	quantity: 1;
+	 relsubval: 11;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "a blackened spot" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 110;	quantity: 1;
+	 relsubval: 12;		     cost: 0;	 weight: 0;	      p1: 10;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 4|6;
+};
+
+treasure "some corroded rock" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 110;	quantity: 1;
+	 relsubval: 13;		     cost: 0;	 weight: 0;	      p1: 10;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 4|6;
+};
+
+treasure "a gas trap" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 105;	quantity: 1;
+	 relsubval: 14;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 2|6;
+};
+
+treasure "a gas trap" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 110;	quantity: 1;
+	 relsubval: 15;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|4;
+};
+
+treasure "a gas trap" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 105;	quantity: 1;
+	 relsubval: 16;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|8;
+};
+
+treasure "a dart trap" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 110;	quantity: 1;
+	 relsubval: 17;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|8;
+};
+
+treasure "a dart trap" : not_pickupable {
+	   kind: INVIS_TRAP;	   letter: "^";	  level: 110;	quantity: 1;
+	 relsubval: 18;		     cost: 0;	 weight: 0;	      p1: 5;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|8;
+};
+
+treasure "some rubble" : not_pickupable {
+	   kind: RUBBLE;	   letter: ":";	  level: 0;	quantity: 1;
+	 relsubval: 1;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "& Pint~ of Fine Grade Mush" : stacks_with_others_of_this_kind {
+	   kind: FOOD;		   letter: ",";	  level: 1;	quantity: 1;
+	 relsubval: 127;	     cost: 1;	 weight: 1;	      p1: 1500;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 1|1;
+unique_function: created_by_spell;
+};
+
+treasure "a strange rune" : stacks_with_others_of_this_kind {
+	   kind: VIS_TRAP;	   letter: "^";	  level: 10;	quantity: 1;
+	 relsubval: 35;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+unique_function: scare_monster;
+};
+
+treasure "copper" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 1;		     cost: 3;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "copper" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 2;		     cost: 4;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "copper" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 3;		     cost: 5;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "silver" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 4;		     cost: 6;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "silver" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 5;		     cost: 7;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "silver" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 6;		     cost: 8;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "garnets" : not_stackable {
+	   kind: GOLD;		   letter: "*";	  level: 1;	quantity: 1;
+	 relsubval: 7;		     cost: 9;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "garnets" : not_stackable {
+	   kind: GOLD;		   letter: "*";	  level: 1;	quantity: 1;
+	 relsubval: 8;		     cost: 10;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "gold" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 9;		     cost: 12;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "gold" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 10;		     cost: 14;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "gold" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 11;		     cost: 16;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "opals" : not_stackable {
+	   kind: GOLD;		   letter: "*";	  level: 1;	quantity: 1;
+	 relsubval: 12;		     cost: 18;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "sapphires" : not_stackable {
+	   kind: GOLD;		   letter: "*";	  level: 1;	quantity: 1;
+	 relsubval: 13;		     cost: 20;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "gold" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 14;		     cost: 24;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "rubies" : not_stackable {
+	   kind: GOLD;		   letter: "*";	  level: 1;	quantity: 1;
+	 relsubval: 15;		     cost: 28;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "diamonds" : not_stackable {
+	   kind: GOLD;		   letter: "*";	  level: 1;	quantity: 1;
+	 relsubval: 16;		     cost: 32;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "emeralds" : not_stackable {
+	   kind: GOLD;		   letter: "*";	  level: 1;	quantity: 1;
+	 relsubval: 17;		     cost: 40;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "mithril" : not_stackable {
+	   kind: GOLD;		   letter: "$";	  level: 1;	quantity: 1;
+	 relsubval: 18;		     cost: 80;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+};
+
+treasure "nothing" : stacks_with_others_of_this_kind {
+	   kind: NOTHING;	   letter: " ";	  level: 0;	quantity: 0;
+	 relsubval: 0;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+unique_function: inventory_object;
+};
+
+treasure "& ruined chest" : not_stackable {
+	   kind: CHEST;		   letter: "&";	  level: 0;	quantity: 1;
+	 relsubval: 0;		     cost: 0;	 weight: 250;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+unique_function: chest_ruined;
+};
+
+treasure "" : not_stackable {
+	   kind: NOTHING;	   letter: " ";	  level: 0;	quantity: 0;
+	 relsubval: 0;		     cost: 0;	 weight: 0;	      p1: 0;
+	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
+	 damage: 0|0;
+unique_function: wizard_object;
+};
+
+unidentified MUSHROOM { 
+  "Blue","Black","Black Spotted","Brown","Dark Blue","Dark Green","Dark Red",
+  "Ecru","Furry","Green","Grey","Light Blue","Light Green","Plaid","Red",
+  "Slimy","Tan","White","White Spotted","Wooden","Wrinkled","Yellow"
+};
+
+unidentified POTION {
+  "Icky Green", "Light Brown", "Clear",
+  "Azure","Blue","Blue Speckled","Black","Brown","Brown Speckled","Bubbling",
+  "Chartreuse","Cloudy","Copper Speckled","Crimson","Cyan","Dark Blue",
+  "Dark Green","Dark Red","Gold Speckled","Green","Green Speckled","Grey",
+  "Grey Speckled","Hazy","Indigo","Light Blue","Light Green","Magenta",
+  "Metallic Blue","Metallic Red","Metallic Green","Metallic Purple","Misty",
+  "Orange","Orange Speckled","Pink","Pink Speckled","Puce","Purple",
+  "Purple Speckled","Red","Red Speckled","Silver Speckled","Smoky",
+  "Tangerine","Violet","Vermilion","White","Yellow"
+};
+
+unidentified STAFF {
+  "Aspen","Balsa","Banyan","Birch","Cedar","Cottonwood","Cypress","Dogwood",
+  "Elm","Eucalyptus","Hemlock","Hickory","Ironwood","Locust","Mahogany",
+  "Maple","Mulberry","Oak","Pine","Redwood","Rosewood","Spruce","Sycamore",
+  "Teak","Walnut"
+};
+
+unidentified WAND {
+  "Aluminum","Cast Iron","Chromium","Copper","Gold","Iron","Magnesium",
+  "Molybdenum","Nickel","Rusty","Silver","Steel","Tin","Titanium","Tungsten",
+  "Zirconium","Zinc","Aluminum-Plated","Copper-Plated","Gold-Plated",
+  "Nickel-Plated","Silver-Plated","Steel-Plated","Tin-Plated","Zinc-Plated"
+};
+
+unidentified RING {
+  "Alexandrite","Amethyst","Aquamarine","Azurite","Beryl","Bloodstone",
+  "Calcite","Carnelian","Corundum","Diamond","Emerald","Fluorite","Garnet",
+  "Granite","Jade","Jasper","Lapis Lazuli","Malachite","Marble","Moonstone",
+  "Onyx","Opal","Pearl","Quartz","Quartzite","Rhodonite","Ruby","Sapphire",
+  "Tiger Eye","Topaz","Turquoise","Zircon"
+};
+unidentified AMULET {
+  "Amber","Driftwood","Coral","Agate","Ivory","Obsidian",
+  "Bone","Brass","Bronze","Pewter","Tortoise Shell"
+};
+
+syllable {
+  "a","ab","ag","aks","ala","an","ankh","app",
+  "arg","arze","ash","aus","ban","bar","bat","bek",
+  "bie","bin","bit","bjor","blu","bot","bu",
+  "byt","comp","con","cos","cre","dalf","dan",
+  "den","doe","dok","eep","el","eng","er","ere","erk",
+  "esh","evs","fa","fid","for","fri","fu","gan",
+  "gar","glen","gop","gre","ha","he","hyd","i",
+  "ing","ion","ip","ish","it","ite","iv","jo",
+  "kho","kli","klis","la","lech","man","mar",
+  "me","mi","mic","mik","mon","mung","mur","nej",
+  "nelg","nep","ner","nes","nis","nih","nin","o",
+  "od","ood","org","orn","ox","oxy","pay","pet",
+  "ple","plu","po","pot","prok","re","rea","rhov",
+  "ri","ro","rog","rok","rol","sa","san","sat",
+  "see","sef","seh","shu","ski","sna","sne","snik",
+  "sno","so","sol","sri","sta","sun","ta","tab",
+  "tem","ther","ti","tox","trol","tue","turs","u",
+  "ulk","um","un","uni","ur","val","viv","vly",
+  "vom","wah","wed","werg","wex","whon","wun","x",
+  "yerg","yp","zun"
+};

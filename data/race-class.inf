@@ -1,0 +1,1550 @@
+#Copyright (C) 2014 Ben Asselstine
+#This file is licensed under the terms of the GNU GPL v3 or later.
+
+race "Human" {
+
+  age: 14|6;			infra_vision: 0;
+  male_height: 72|6;		male_weight: 180|25;
+  female_height: 66|4;		female_weight: 150|20;
+
+  hit_points: 10;
+  disarming: 0;
+  search_chance: 0;
+  stealth_factor: 0;
+  frequency_of_search: 0;
+  base_to_hit: 0;
+  base_to_hit_with_bows: 0;
+  saving_throw: 0;
+  strength_modifier: 0;
+  intelligence_modifier: 0;
+  wisdom_modifier: 0;
+  dexterity_modifier: 0;
+  constitution_modifier: 0;
+  charisma_modifier: 0;
+  experience_factor: 100;
+
+  classes {
+    "Warrior", "Mage", "Priest", "Rogue", "Ranger", "Paladin"
+  };
+
+  store_price_adjust_by_race {
+    "Human": 100;
+    "Half-Elf": 105;
+    "Elf": 105;
+    "Halfling": 110;
+    "Gnome": 113;
+    "Dwarf": 115;
+    "Half-Orc": 120;
+    "Half-Troll": 125;
+  };
+
+  shopkeep "Erick the Honest" "Human" "General Store" {
+    store: "1";		haggle_per: 4;		inflate: 108|67;
+    max_insults: 12;	max_cost: 250;
+  };
+
+  shopkeep "Hardblow the Humble" "Human" "Temple" {
+    store: "4";		haggle_per: 6;		inflate: 109|66;
+    max_insults: 15;	max_cost: 3500;	
+  };
+
+  shopkeep "Gunnar the Paladin" "Human" "Temple" {
+    store: "4";		haggle_per: 5;		inflate: 110|75;
+    max_insults: 23;	max_cost: 5000;
+  };
+
+  shopkeep "Darg-Low the Grim" "Human" "Armory" {
+    store: "2";		haggle_per: 4;		inflate: 111|79;
+    max_insults: 9;	max_cost: 10000;
+  };
+
+  shopkeep "Inglorian the Mage" "Human?" "Magic Shop" {
+    store: "6";		haggle_per: 7;		inflate: 110|90;
+    max_insults: 10;	max_cost: 32000;
+  };
+
+  backgrounds {
+    background 1 2 {
+      fragment "You are the illegitimate and unacknowledged child " {
+        roll: 10;	social_class_bonus: 25;
+      },
+      fragment "You are the illegitimate and acknowledged child " {
+        roll: 20;	social_class_bonus: 35;
+      },
+      fragment "You are one of several children " {
+        roll: 95;	social_class_bonus: 45;
+      },
+      fragment "You are the first child " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+
+    background 2 3 {
+      fragment "of a Serf.  " {
+        roll: 40;	social_class_bonus: 65;
+      },
+      fragment "of a Yeoman.  " {
+        roll: 65;	social_class_bonus: 80;
+      },
+      fragment "of a Townsman.  " {
+        roll: 80;	social_class_bonus: 90;
+      },
+      fragment "of a Guildsman.  " {
+        roll: 90;	social_class_bonus: 105;
+      },
+      fragment "of a Landed Knight.  " {
+        roll: 96;	social_class_bonus: 120;
+      },
+      fragment "of a Titled Noble.  " {
+        roll: 99;	social_class_bonus: 130;
+      },
+      fragment "of a Royal Blood Line.  " {
+        roll: 100;	social_class_bonus: 140;
+      }
+    },
+
+    background 3 50 {
+      fragment "You are the black sheep of the family.  " {
+        roll: 20;	social_class_bonus: 20;
+      },
+      fragment "You are a credit to the family.  " {
+        roll: 80;	social_class_bonus: 55;
+      },
+      fragment "You are a well liked child.  " {
+        roll: 100;	social_class_bonus: 60;
+      }
+    },
+
+    background 50 51 {
+      fragment "You have dark brown eyes, " {
+        roll: 20;	social_class_bonus: 50;
+      },
+      fragment "You have brown eyes, " {
+        roll: 60;	social_class_bonus: 50;
+      },
+      fragment "You have hazel eyes, " {
+        roll: 70;	social_class_bonus: 50;
+      },
+      fragment "You have green eyes, " {
+        roll: 80;	social_class_bonus: 50;
+      },
+      fragment "You have blue eyes, " {
+        roll: 90;	social_class_bonus: 50;
+      },
+      fragment "You have blue-gray eyes, " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+
+    background 51 52 {
+      fragment "straight " {
+        roll: 70;	social_class_bonus: 50;
+      },
+      fragment "wavy " {
+        roll: 90;	social_class_bonus: 50;
+      },
+      fragment "curly " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+
+    background 52 53 {
+      fragment "black hair, " {
+        roll: 30;	social_class_bonus: 50;
+      },
+      fragment "brown hair, " {
+        roll: 70;	social_class_bonus: 50;
+      },
+      fragment "auburn hair, " {
+        roll: 80;	social_class_bonus: 50;
+      },
+      fragment "red hair, " {
+        roll: 90;	social_class_bonus: 50;
+      },
+      fragment "blond hair, " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+
+    background 53 0 {
+      fragment "and a very dark complexion." {
+        roll: 10;	social_class_bonus: 50;
+      },
+      fragment "and a dark complexion." {
+        roll: 30;	social_class_bonus: 50;
+      },
+      fragment "and an average complexion." {
+        roll: 80;	social_class_bonus: 50;
+      },
+      fragment "and a fair complexion." {
+        roll: 90;	social_class_bonus: 50;
+      },
+      fragment "and a very fair complexion." {
+        roll: 100;	social_class_bonus: 50;
+      }
+    }
+  };
+
+};
+
+race "Half-Elf" {
+  age: 24|16;			infra_vision: 2;
+  male_height: 66|6;		male_weight: 130|15;
+  female_height: 62|6;		female_weight: 100|10;
+
+  hit_points: 9;
+  disarming: 2;
+  search_chance: 6;
+  stealth_factor: 1;
+  frequency_of_search: -1;
+  base_to_hit: -1;
+  base_to_hit_with_bows: 5;
+  saving_throw: 3;
+  strength_modifier: -1;
+  intelligence_modifier: 1;
+  wisdom_modifier: 0;
+  dexterity_modifier: 1;
+  constitution_modifier: -1;
+  charisma_modifier: 1;
+  experience_factor: 110;
+
+  classes {
+    "Warrior", "Mage", "Priest", "Rogue", "Ranger", "Paladin"
+  };
+
+  store_price_adjust_by_race {
+    "Human": 110;
+    "Half-Elf": 100;
+    "Elf": 100;
+    "Halfling": 105;
+    "Gnome": 110;
+    "Dwarf": 120;
+    "Half-Orc": 125;
+    "Half-Troll": 130;
+  };
+
+  shopkeep "Arndal Beast-Slayer" "Half-Elf" "Weaponsmith" {
+    store: "3";		haggle_per: 5;		inflate: 110|75;
+    max_insults: 8;	max_cost: 10000;
+  };
+
+  shopkeep "Mauser the Chemist" "Half-Elf" "Alchemist" {
+    store: "5";		haggle_per: 5;		inflate: 111|79;
+    max_insults: 8;	max_cost: 10000;
+  };
+
+  shopkeep "Delilah the Pure" "Half-Elf" "Temple" {
+    store: "4";		haggle_per: 6;		inflate: 107|73;
+    max_insults: 20;	max_cost: 25000;
+  };
+
+  backgrounds {
+    background 4 1 {
+      fragment "Your mother was a Green-Elf.  " {
+        roll: 40;	social_class_bonus: 50;
+      },
+      fragment "Your father was a Green-Elf.  " {
+        roll: 75;	social_class_bonus: 55;
+      },
+      fragment "Your mother was a Grey-Elf.  " {
+        roll: 90;	social_class_bonus: 55;
+      },
+      fragment "Your father was a Grey-Elf.  " {
+        roll: 95;	social_class_bonus: 60;
+      },
+      fragment "Your mother was a High-Elf.  " {
+        roll: 98;	social_class_bonus: 65;
+      },
+      fragment "Your father was a High-Elf.  " {
+        roll: 100;	social_class_bonus: 70;
+      }
+    }
+  };
+};
+
+race "Elf" {
+
+  age: 75|75;				infra_vision: 3;
+  male_height: 60|4;			male_weight: 100|6;
+  female_height: 54|4;			female_weight: 80|6;
+
+  hit_points: 8;
+  disarming: 5;
+  search_chance: 8;
+  stealth_factor: 1;
+  frequency_of_search: -2;
+  base_to_hit: -5;
+  base_to_hit_with_bows: 15;
+  saving_throw: 6;
+  strength_modifier: -1;
+  intelligence_modifier: 2;
+  wisdom_modifier: 1;
+  dexterity_modifier: 1;
+  constitution_modifier: -2;
+  charisma_modifier: 1;
+  experience_factor: 120;
+
+  classes {
+    "Warrior", "Mage", "Priest", "Rogue", "Ranger"
+  };
+
+  store_price_adjust_by_race {
+    "Human": 110;
+    "Half-Elf": 105;
+    "Elf": 100;
+    "Halfling": 105;
+    "Gnome": 110;
+    "Dwarf": 120;
+    "Half-Orc": 125;
+    "Half-Troll": 130;
+  };
+
+  shopkeep "Valeria Starshine" "Elf" "Magic Shop" {
+    store: "6";		haggle_per: 5;		inflate: 110|65;
+    max_insults: 11;	max_cost: 32000;
+  };
+
+  shopkeep "Lyar-el the Comely" "Elf" "General Store" {
+    store: "1";		haggle_per: 6;		inflate: 107|58;
+    max_insults: 18;	max_cost: 300;
+  };
+
+  backgrounds {
+    background 7 8 {
+      fragment "You are one of several children " {
+        roll: 60;	social_class_bonus: 50;
+      },
+      fragment "You are the only child " {
+        roll: 100;	social_class_bonus: 55;
+      }
+    },
+    background 8 9 {
+      fragment "of a Green-Elf " {
+        roll: 75;	social_class_bonus: 50;
+      },
+      fragment "of a Grey-Elf " {
+        roll: 95;	social_class_bonus: 55;
+      },
+      fragment "of a High-Elf" {
+        roll: 100;	social_class_bonus: 60;
+      }
+    },
+    background 9 54 {
+      fragment "Ranger.  " {
+        roll: 40;	social_class_bonus: 80;
+      },
+      fragment "Archer.  " {
+        roll: 70;	social_class_bonus: 90;
+      },
+      fragment "Warrior.  " {
+        roll: 87;	social_class_bonus: 110;
+      },
+      fragment "Mage.  " {
+        roll: 95;	social_class_bonus: 125;
+      },
+      fragment "Prince.  " {
+        roll: 99;	social_class_bonus: 140;
+      },
+      fragment "King.  " {
+        roll: 100;	social_class_bonus: 145;
+      }
+    },
+    background 54 55 {
+      fragment "You have light grey eyes, " {
+        roll: 85;	social_class_bonus: 50;
+      },
+      fragment "You have light blue eyes, " {
+        roll: 95;	social_class_bonus: 50;
+      },
+      fragment "You have light green eyes, " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+    background 55 56 {
+      fragment "straight " {
+        roll: 75;	social_class_bonus: 50;
+      },
+      fragment "wavy " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+    background 56 0 {
+      fragment "black hair, and a fair complexion." {
+        roll: 75;	social_class_bonus: 50;
+      },
+      fragment "brown hair, and a fair complexion." {
+        roll: 85;	social_class_bonus: 50;
+      },
+      fragment "blond hair, and a fair complexion." {
+        roll: 95;	social_class_bonus: 50;
+      },
+      fragment "silver hair, and a fair complexion." {
+        roll: 100;	social_class_bonus: 50;
+      }
+    }
+  };
+};
+
+
+race "Halfling" {
+
+  age: 21|12;				infra_vision: 4;
+  male_height: 36|3; 			male_weight: 60|3;
+  female_height: 33|3;			female_weight: 50|3;
+
+  hit_points: 6;
+  disarming: 15;
+  search_chance: 12;
+  stealth_factor: 4;
+  frequency_of_search: -5;
+  base_to_hit: -10;
+  base_to_hit_with_bows: 20;
+  saving_throw: 18;
+  strength_modifier: -2;
+  intelligence_modifier: 2;
+  wisdom_modifier: 1;
+  dexterity_modifier: 3;
+  constitution_modifier: 1;
+  charisma_modifier: 1;
+  experience_factor: 110;
+
+  classes {
+    "Warrior", "Mage", "Rogue"
+  };
+
+  store_price_adjust_by_race {
+    "Human": 115;
+    "Half-Elf": 110;
+    "Elf": 105;
+    "Halfling": 95;
+    "Gnome": 105;
+    "Dwarf": 110;
+    "Half-Orc": 115;
+    "Half-Troll": 130;
+  };
+
+
+  shopkeep "Andy the Friendly" "Halfling" "General Store" {
+    store: "1";		haggle_per: 5;		inflate: 108|62;
+    max_insults: 15;	max_cost: 200;
+  };
+
+  shopkeep "Wizzle the Chaotic" "Halfling" "Alchemist" {
+    store: "5";		haggle_per: 6;		inflate: 110|80;
+    max_insults: 8;	max_cost: 10000;
+  };
+
+  backgrounds {
+    background 10 11 {
+      fragment "You are one of several children of a Halfling " {
+        roll: 85;	social_class_bonus: 45;
+      },
+      fragment "You are the only child of a Halfling " {
+        roll: 100;	social_class_bonus: 55;
+      }
+    },
+    background 11 3 {
+      fragment "Bum.  " {
+        roll: 20;	social_class_bonus: 55;
+      },
+      fragment "Tavern Owner.  " {
+        roll: 30;	social_class_bonus: 80;
+      },
+      fragment "Miller.  " {
+        roll: 40;	social_class_bonus: 90;
+      },
+      fragment "Home Owner.  " {
+        roll: 50;	social_class_bonus: 100;
+      },
+      fragment "Burglar.  " {
+        roll: 80;	social_class_bonus: 110;
+      },
+      fragment "Warrior.  " {
+        roll: 95;	social_class_bonus: 115;
+      },
+      fragment "Mage.  " {
+        roll: 99;	social_class_bonus: 125;
+      },
+      fragment "Clan Elder.  " {
+        roll: 100;	social_class_bonus: 140;
+      }
+    }
+  };
+
+};
+
+race "Gnome" {
+
+  age: 50|40;				infra_vision: 4;
+  male_height: 42|3; 			male_weight: 90|6;
+  female_height: 39|3;			female_weight: 75|3;
+
+  hit_points: 7;
+  disarming: 10;
+  search_chance: 6;
+  stealth_factor: 3;
+  frequency_of_search: -3;
+  base_to_hit: -8;
+  base_to_hit_with_bows: 12;
+  saving_throw: 12;
+  strength_modifier: -1;
+  intelligence_modifier: 2;
+  wisdom_modifier: 0;
+  dexterity_modifier: 2;
+  constitution_modifier: 1;
+  charisma_modifier: -2;
+  experience_factor: 125;
+
+  classes {
+    "Warrior", "Mage", "Priest", "Rogue"
+  };
+
+  store_price_adjust_by_race {
+    "Human": 115;
+    "Half-Elf": 115;
+    "Elf": 110;
+    "Halfling": 105;
+    "Gnome": 95;
+    "Dwarf": 110;
+    "Half-Orc": 115;
+    "Half-Troll": 130;
+  };
+
+  shopkeep "Ga-nat the Greedy" "Gnome" "Alchemist" {
+    store: "5";		haggle_per: 4;		inflate: 115|105;
+    max_insults: 9;	max_cost: 12000;
+  };
+
+  shopkeep "Gopher the Great!" "Gnome" "Magic Shop" {
+    store: "6";		haggle_per: 6;		inflate: 113|102;
+    max_insults: 10;	max_cost: 20000;
+  };
+
+  backgrounds {
+    background 13 14 {
+      fragment "You are one of several children of a Gnome " {
+        roll: 85;	social_class_bonus: 45;
+      },
+      fragment "You are the only child of a Gnome " {
+        roll: 100;	social_class_bonus: 55;
+      }
+    },
+    background 14 3 {
+      fragment "Beggar.  " {
+        roll: 20;	social_class_bonus: 55;
+      },
+      fragment "Braggart.  " {
+        roll: 50;	social_class_bonus: 70;
+      },
+      fragment "Prankster.  " {
+        roll: 75;	social_class_bonus: 85;
+      },
+      fragment "Warrior.  " {
+        roll: 95;	social_class_bonus: 100;
+      },
+      fragment "Mage.  " {
+        roll: 100;	social_class_bonus: 125;
+      }
+    }
+  };
+
+};
+
+race "Dwarf" {
+
+  age: 35|15;				infra_vision: 5;
+  male_height: 48|3; 			male_weight: 150|10;
+  female_height: 46|3;			female_weight: 120|10;
+
+  hit_points: 9;
+  disarming: 2;
+  search_chance: 7;
+  stealth_factor: -1;
+  frequency_of_search: 0;
+  base_to_hit: 15;
+  base_to_hit_with_bows: 0;
+  saving_throw: 9;
+  strength_modifier: 2;
+  intelligence_modifier: -3;
+  wisdom_modifier: 1;
+  dexterity_modifier: -2;
+  constitution_modifier: 2;
+  charisma_modifier: -3;
+  experience_factor: 120;
+
+  classes {
+    "Warrior",  "Priest"
+  };
+
+  store_price_adjust_by_race {
+    "Human": 115;
+    "Half-Elf": 120;
+    "Elf": 120;
+    "Halfling": 110;
+    "Gnome": 110;
+    "Dwarf": 95;
+    "Half-Orc": 125;
+    "Half-Troll": 135;
+  };
+
+  shopkeep "Mauglin the Grumpy" "Dwarf" "Armory" {
+    store: "2";		haggle_per: 4;		inflate: 112|88;
+    max_insults: 5;	max_cost: 32000;
+  };
+
+  shopkeep "Oglign Dragon-Slayer" "Dwarf" "Weaponsmith" {
+    store: "3";		haggle_per: 4;		inflate: 112|83;
+    max_insults: 8;	max_cost: 32000;
+  };
+
+  backgrounds {
+    background 16 17 {
+      fragment "You are one of two children of a Dwarven " {
+        roll: 25;	social_class_bonus: 40;
+      },
+      fragment "You are the only child of a Dwarven " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+    background 17 18 {
+      fragment "Thief.  " {
+        roll: 10;	social_class_bonus: 60;
+      },
+      fragment "Prison Guard.  " {
+        roll: 25;	social_class_bonus: 75;
+      },
+      fragment "Miner.  " {
+        roll: 75;	social_class_bonus: 90;
+      },
+      fragment "Warrior.  " {
+        roll: 90;	social_class_bonus: 110;
+      },
+      fragment "Priest.  " {
+        roll: 99;	social_class_bonus: 130;
+      },
+      fragment "King.  " {
+        roll: 100;	social_class_bonus: 150;
+      }
+    },
+    background 18 57 {
+      fragment "You are the black sheep of the family.  " {
+        roll: 15;	social_class_bonus: 10;
+      },
+      fragment "You are a credit to the family.  " {
+        roll: 85;	social_class_bonus: 50;
+      },
+      fragment "You are a well liked child.  " {
+        roll: 100;	social_class_bonus: 55;
+      }
+    },
+    background 57 58 {
+      fragment "You have dark brown eyes, " {
+        roll: 99;	social_class_bonus: 50;
+      },
+      fragment "You have glowing red eyes," {
+        roll: 100;	social_class_bonus: 60;
+      }
+    },
+    background 58 59 {
+      fragment "straight" {
+        roll: 90;	social_class_bonus: 50;
+      },
+      fragment "wavy" {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+    background 59 60 {
+      fragment "black hair, " {
+        roll: 75;	social_class_bonus: 50;
+      },
+      fragment "brown hair, " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+    background 60 61 {
+      fragment "a one foot beard, " {
+        roll: 25;	social_class_bonus: 50;
+      },
+      fragment "a two foot beard, " {
+        roll: 60;	social_class_bonus: 51;
+      },
+      fragment "a three foot beard, " {
+        roll: 90;	social_class_bonus: 53;
+      },
+      fragment "a four foot beard, " {
+        roll: 100;	social_class_bonus: 55;
+      }
+    },
+    background 61 0 {
+      fragment "and a dark complexion." {
+        roll: 100;	social_class_bonus: 50;
+      }
+    }
+  };
+
+};
+
+race "Half-Orc" {
+
+  age: 11|4;				infra_vision: 3;
+  male_height: 66|1;			male_weight: 150|5;
+  female_height: 62|1;			female_weight: 120|5;
+
+  hit_points: 10;
+  disarming: -3;
+  search_chance: 0;
+  stealth_factor: -1;
+  frequency_of_search: 3;
+  base_to_hit: 12;
+  base_to_hit_with_bows: -5;
+  saving_throw: -3;
+  strength_modifier: 2;
+  intelligence_modifier: -1;
+  wisdom_modifier: 0;
+  dexterity_modifier: 0;
+  constitution_modifier: 1;
+  charisma_modifier: -4;
+  experience_factor: 110;
+
+  classes {
+    "Warrior", "Priest", "Rogue"
+  };
+
+  store_price_adjust_by_race {
+    "Human": 115;
+    "Half-Elf": 120;
+    "Elf": 125;
+    "Halfling": 115;
+    "Gnome": 115;
+    "Dwarf": 130;
+    "Half-Orc": 110;
+    "Half-Troll": 115;
+  };
+
+  shopkeep "Mauglim the Horrible" "Half-Orc" "Armory" {
+    store: "2";		haggle_per: 5;		inflate: 113|87;
+    max_insults: 9;	max_cost: 3000;
+  };
+
+  backgrounds {
+    background 19 20 {
+      fragment "Your mother was an Orc, but it is unacknowledged.  " {
+        roll: 25;	social_class_bonus: 25;
+      },
+      fragment "Your father was an Orc, but it is unacknowledged.  " {
+        roll: 100;	social_class_bonus: 25;
+      }
+    },
+    background 20 2 {
+      fragment "You are the adopted child " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    }
+  };
+
+};
+
+race "Half-Troll" {
+
+  age: 20|10;				infra_vision: 3;
+  male_height: 96|10; 			male_weight: 255|50;
+  female_height: 84|8;			female_weight: 225|40;
+
+  hit_points: 12;
+  disarming: -5;
+  search_chance: -1;
+  stealth_factor: -2;
+  frequency_of_search: 5;
+  base_to_hit: 20;
+  base_to_hit_with_bows: -10;
+  saving_throw: -8;
+  strength_modifier: 4;
+  intelligence_modifier: -4;
+  wisdom_modifier: -2;
+  dexterity_modifier: -4;
+  constitution_modifier: 3;
+  charisma_modifier: -6;
+  experience_factor: 120;
+
+  classes {
+    "Warrior",  "Priest"
+  };
+
+  store_price_adjust_by_race {
+    "Human": 110;
+    "Half-Elf": 115;
+    "Elf": 115;
+    "Halfling": 110;
+    "Gnome": 110;
+    "Dwarf": 130;
+    "Half-Orc": 110;
+    "Half-Troll": 110;
+  };
+
+  shopkeep "Ithyl-Mak the Beastly" "Half-Troll" "Weaponsmith" {
+    store: "3";		haggle_per: 6;		inflate: 115|95;
+    max_insults: 8;	max_cost: 3000;
+  };
+
+  backgrounds {
+    background 22 23 {
+      fragment "Your mother was a Cave-Troll " {
+        roll: 30;	social_class_bonus: 20;
+      },
+      fragment "Your father was a Cave-Troll " {
+        roll: 60;	social_class_bonus: 25;
+      },
+      fragment "Your mother was a Hill-Troll " {
+        roll: 75;	social_class_bonus: 30;
+      },
+      fragment "Your father was a Hill Troll " {
+        roll: 90;	social_class_bonus: 35;
+      },
+      fragment "Your mother was a Water-Troll " {
+        roll: 95;	social_class_bonus: 40;
+      },
+      fragment "Your father was a Water-Troll  " {
+        roll: 100;	social_class_bonus: 45;
+      }
+    },
+    background 23 62 {
+      fragment "Cook.  " {
+        roll: 5;	social_class_bonus: 60;
+      },
+      fragment "Warrior.  " {
+        roll: 95;	social_class_bonus: 55;
+      },
+      fragment "Shaman.  " {
+        roll: 99;	social_class_bonus: 65;
+      },
+      fragment "Clan Chief.  " {
+        roll: 100;	social_class_bonus: 80;
+      }
+    },
+    background 62 63 {
+      fragment "You have slime green eyes, " {
+        roll: 60;	social_class_bonus: 50;
+      },
+      fragment "You have puke yellow eyes, " {
+        roll: 85;	social_class_bonus: 50;
+      },
+      fragment "You have blue-bloodshot eyes, " {
+        roll: 99;	social_class_bonus: 50;
+      },
+      fragment "You have glowing red eyes, " {
+        roll: 100;	social_class_bonus: 55;
+      }
+    },
+    background 63 64 {
+      fragment "dirty " {
+        roll: 33;	social_class_bonus: 50;
+      },
+      fragment "mangy " {
+        roll: 66;	social_class_bonus: 50;
+      },
+      fragment "oily " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+    background 64 65 {
+      fragment "sea-weed green hair, " {
+        roll: 33;	social_class_bonus: 50;
+      },
+      fragment "bright red hair, " {
+        roll: 66;	social_class_bonus: 50;
+      },
+      fragment "dark purple hair, " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+    background 65 66 {
+      fragment "and green " {
+        roll: 25;	social_class_bonus: 50;
+      },
+      fragment "and blue " {
+        roll: 50;	social_class_bonus: 50;
+      },
+      fragment "and white " {
+        roll: 75;	social_class_bonus: 50;
+      },
+      fragment "and black " {
+        roll: 100;	social_class_bonus: 50;
+      }
+    },
+    background 66 0 {
+      fragment "ulcerous skin." {
+        roll: 33;	social_class_bonus: 50;
+      },
+      fragment "scabby skin." {
+        roll: 66;	social_class_bonus: 50;
+      },
+      fragment "leprous skin." {
+        roll: 100;	social_class_bonus: 50;
+      }
+    }
+  };
+
+};
+
+
+class "Warrior" {
+
+  hit_points: 9;
+  disarming: 25;
+  search_chance: 14;
+  stealth_factor: 1;
+  frequency_of_search: 38;
+  base_to_hit: 70;
+  base_to_hit_with_bows: 55;
+  saving_throw: 18;
+  strength_modifier: 5;
+  intelligence_modifier: -2;
+  wisdom_modifier: -2;
+  dexterity_modifier: 2;
+  constitution_modifier: 2;
+  charisma_modifier: -1;
+  experience_factor: 0;
+
+  adjust_per_one_third_level {
+    adjust_base_to_hit: 4;
+    adjust_base_to_hit_with_bows: 4;
+    adjust_use_device: 2;
+    adjust_disarming: 2;
+    adjust_saving_throw: 3;
+  };
+
+  titles {
+    "Rookie", "Private", "Soldier", "Mercenary", "Veteran(1st)", "Veteran(2nd)", "Veteran(3rd)", "Warrior(1st)", "Warrior(2nd)", "Warrior(3rd)","Warrior(4th)", "Swordsman-1", "Swordsman-2", "Swordsman-3", "Hero", "Swashbuckler", "Myrmidon", "Champion-1", "Champion-2", "Champion-3", "Superhero", "Knight", "Superior Knt", "Gallant Knt", "Knt Errant", "Guardian Knt", "Baron", "Duke", "Lord (1st)", "Lord (2nd)", "Lord (3rd)", "Lord (4th)", "Lord (5th)", "Lord (6th)", "Lord (7th)", "Lord (8th)", "Lord (9th)", "Lord Gallant", "Lord Keeper", "Lord Noble"
+  };
+
+};
+
+class "Mage" {
+
+  hit_points: 0;
+  disarming: 30;
+  search_chance: 16;
+  stealth_factor: 2;
+  frequency_of_search: 20;
+  base_to_hit: 34;
+  base_to_hit_with_bows: 20;
+  saving_throw: 36;
+  strength_modifier: -5;
+  intelligence_modifier: 3;
+  wisdom_modifier: 0;
+  dexterity_modifier: 1;
+  constitution_modifier: -2;
+  charisma_modifier: 1;
+  experience_factor: 30;
+
+  adjust_per_one_third_level {
+    adjust_base_to_hit: 2;
+    adjust_base_to_hit_with_bows: 2;
+    adjust_use_device: 4;
+    adjust_disarming: 3;
+    adjust_saving_throw: 3;
+  };
+
+  titles {
+    "Novice", "Apprentice", "Trickster-1", "Trickster-2", "Trickster-3", 
+    "Cabalist-1", "Cabalist-2", "Cabalist-3", "Visionist", "Phantasmist", 
+    "Shadowist", "Spellbinder", "Illusionist", "Evoker (1st)", "Evoker (2nd)",
+    "Evoker (3rd)", "Evoker (4th)", "Conjurer", "Theurgist", "Thaumaturge", 
+    "Magician", "Enchanter", "Warlock", "Sorcerer", "Necromancer", 
+    "Mage (1st)", "Mage (2nd)", "Mage (3rd)", "Mage (4th)", "Mage (5th)", 
+    "Wizard (1st)", "Wizard (2nd)", "Wizard (3rd)", "Wizard (4th)",
+    "Wizard (5th)", "Wizard (6th)", "Wizard (7th)", "Wizard (8th)",
+    "Wizard (9th)", "Wizard Lord"
+  };
+
+  spells {
+    spell magic_missile {
+      level: 1;		mana: 1;	fail: 22;	exp: 1;
+    },
+    spell detect_monsters {
+      level: 1;		mana: 1;	fail: 23;	exp: 1;
+    },
+    spell phase_door {
+      level: 1;		mana: 2;	fail: 24;	exp: 1;
+    },
+    spell light_area {
+      level: 1;		mana: 2;	fail: 26;	exp: 1;
+    },
+    spell cure_light_wounds {
+      level: 3;		mana: 3;	fail: 25;	exp: 2;
+    },
+    spell find_hidden_traps_and_doors {
+      level: 3;		mana: 3;	fail: 25;	exp: 1;
+    },
+    spell stinking_cloud {
+      level: 3;		mana: 3;	fail: 27;	exp: 2;
+    },
+    spell confusion {
+      level: 3;		mana: 4;	fail: 30;	exp: 1;
+    },
+    spell lightning_bolt {
+      level: 5;		mana: 4;	fail: 30;	exp: 6;
+    },
+    spell trap_and_door_destruction {
+      level: 5;		mana: 5;	fail: 30;	exp: 8;
+    },
+    spell sleep_i {
+      level: 5;		mana: 5;	fail: 30;	exp: 5;
+    },
+    spell cure_poison {
+      level: 5;		mana: 5;	fail: 35;	exp: 6;
+    },
+    spell teleport_self {
+      level: 7;		mana: 6;	fail: 35;	exp: 9;
+    },
+    spell remove_curse {
+      level: 7;		mana: 6;	fail: 50;	exp: 10;
+    },
+    spell frost_bolt {
+      level: 7;		mana: 6;	fail: 40;	exp: 12;
+    },
+    spell turn_stone_to_mud {
+      level: 9;		mana: 7;	fail: 44;	exp: 19;
+    },
+    spell create_food {
+      level: 9;		mana: 7;	fail: 45;	exp: 19;
+    },
+    spell recharge_item_i {
+      level: 9;		mana: 7;	fail: 75;	exp: 22;
+    },
+    spell sleep_ii {
+      level: 9;		mana: 7;	fail: 45;	exp: 19;
+    },
+    spell polymorph_other {
+      level: 11;	mana: 7;	fail: 45;	exp: 25;
+    },
+    spell identify {
+      level: 11;	mana: 7;	fail: 99;	exp: 19;
+    },
+    spell sleep_iii {
+      level: 13;	mana: 7;	fail: 50;	exp: 22;
+    },
+    spell fire_bolt {
+      level: 15;	mana: 9;	fail: 50;	exp: 25;
+    },
+    spell slow_monster {
+      level: 17;	mana: 9;	fail: 50;	exp: 31;
+    },
+    spell frost_ball {
+      level: 19;	mana: 12;	fail: 55;	exp: 38;
+    },
+    spell recharge_item_ii {
+      level: 21;	mana: 12;	fail: 90;	exp: 44;
+    },
+    spell teleport_other {
+      level: 23;	mana: 12;	fail: 60;	exp: 50;
+    },
+    spell haste_self {
+      level: 25;	mana: 12;	fail: 65;	exp: 63;
+    },
+    spell fire_ball {
+      level: 29;	mana: 18;	fail: 65;	exp: 88;
+    },
+    spell word_of_destruction {
+      level: 33;	mana: 21;	fail: 80;	exp: 125;
+    },
+    spell genocide {
+      level: 37;	mana: 25;	fail: 95;	exp: 200;
+    }
+  };
+
+};
+
+
+class "Priest" {
+
+  hit_points: 2;
+  disarming: 25;
+  search_chance: 16;
+  stealth_factor: 2;
+  frequency_of_search: 32;
+  base_to_hit: 48;
+  base_to_hit_with_bows: 35;
+  saving_throw: 30;
+  strength_modifier: -3;
+  intelligence_modifier: -3;
+  wisdom_modifier: 3;
+  dexterity_modifier: -1;
+  constitution_modifier: 0;
+  charisma_modifier: 2;
+  experience_factor: 20;
+
+  adjust_per_one_third_level {
+    adjust_base_to_hit: 2;
+    adjust_base_to_hit_with_bows: 2;
+    adjust_use_device: 4;
+    adjust_disarming: 3;
+    adjust_saving_throw: 3;
+  };
+
+  titles {
+    "Believer", "Acolyte(1st)", "Acolyte(2nd)", "Acolyte(3rd)", "Adept (1st)",
+    "Adept (2nd)", "Adept (3rd)", "Priest (1st)", "Priest (2nd)",
+    "Priest (3rd)", "Priest (4th)", "Priest (5th)", "Priest (6th)", 
+    "Priest (7th)", "Priest (8th)", "Priest (9th)", "Curate (1st)", 
+    "Curate (2nd)", "Curate (3rd)", "Curate (4th)", "Curate (5th)", 
+    "Curate (6th)", "Curate (7th)", "Curate (8th)", "Curate (9th)",
+    "Canon (1st)", "Canon (2nd)", "Canon (3rd)", "Canon (4th)", "Canon (5th)",
+    "Low Lama", "Lama-1", "Lama-2", "Lama-3", "High Lama", "Great Lama",
+    "Patriarch", "High Priest", "Great Priest", "Noble Priest"
+  };
+
+  prayers {
+    prayer detect_evil {
+      level: 1;		mana: 1;	fail: 10;	exp: 1;
+    },
+    prayer cure_light_wounds {
+      level: 1;		mana: 2;	fail: 15;	exp: 1;
+    },
+    prayer bless {
+      level: 1;		mana: 2;	fail: 20;	exp: 1;
+    },
+    prayer remove_fear {
+      level: 1;		mana: 2;	fail: 25;	exp: 1;
+    },
+    prayer call_light {
+      level: 3;		mana: 2;	fail: 25;	exp: 1;
+    },
+    prayer find_traps {
+      level: 3;		mana: 3;	fail: 27;	exp: 2;
+    },
+    prayer detect_doors_and_stairs {
+      level: 3;		mana: 3;	fail: 27;	exp: 2;
+    },
+    prayer slow_poison {
+      level: 3;		mana: 3;	fail: 28;	exp: 3;
+    },
+    prayer blind_creature {
+      level: 5;		mana: 4;	fail: 29;	exp: 4;
+    },
+    prayer portal {
+      level: 5;		mana: 4;	fail: 30;	exp: 5;
+    },
+    prayer cure_medium_wounds {
+      level: 5;		mana: 4;	fail: 32;	exp: 5;
+    },
+    prayer chant {
+      level: 5;		mana: 5;	fail: 34;	exp: 5;
+    },
+    prayer sanctuary {
+      level: 7;		mana: 5;	fail: 36;	exp: 6;
+    },
+    prayer create_food {
+      level: 7;		mana: 5;	fail: 38;	exp: 7;
+    },
+    prayer remove_curse {
+      level: 7;		mana: 6;	fail: 38;	exp: 9;
+    },
+    prayer resist_heat_and_cold {
+      level: 7;		mana: 7;	fail: 38;	exp: 9;
+    },
+    prayer neutralize_poison {
+      level: 9;		mana: 6;	fail: 38;	exp: 10;
+    },
+    prayer orb_of_draining {
+      level: 9;		mana: 7;	fail: 38;	exp: 10;
+    },
+    prayer cure_serious_wounds {
+      level: 9;		mana: 7;	fail: 40;	exp: 10;
+    },
+    prayer sense_invisible {
+      level: 11;	mana: 8;	fail: 42;	exp: 10;
+    },
+    prayer protection_from_evil {
+      level: 11;	mana: 8;	fail: 42;	exp: 12;
+    },
+    prayer earthquake {
+      level: 11;	mana: 9;	fail: 55;	exp: 15;
+    },
+    prayer sense_surroundings {
+      level: 13;	mana: 10;	fail: 45;	exp: 15;
+    },
+    prayer cure_critical_wounds {
+      level: 13;	mana: 11;	fail: 45;	exp: 16;
+    },
+    prayer turn_undead {
+      level: 15;	mana: 12;	fail: 50;	exp: 20;
+    },
+    prayer pray_prayer {
+      level: 15;	mana: 14;	fail: 50;	exp: 22;
+    },
+    prayer dispel_undead {
+      level: 17;	mana: 14;	fail: 55;	exp: 32;
+    },
+    prayer heal {
+      level: 21;	mana: 16;	fail: 60;	exp: 38;
+    },
+    prayer dispel_evil {
+      level: 25;	mana: 20;	fail: 70;	exp: 75;
+    },
+    prayer glyph_of_warding {
+      level: 33;	mana: 24;	fail: 90;	exp: 125;
+    },
+    prayer holy_word {
+      level: 39;	mana: 32;	fail: 80;	exp: 200;
+    }
+  };
+};
+
+class "Rogue" {
+
+  hit_points: 6;
+  disarming: 45;
+  search_chance: 32;
+  stealth_factor: 5;
+  frequency_of_search: 16;
+  base_to_hit: 60;
+  base_to_hit_with_bows: 66;
+  saving_throw: 30;
+  strength_modifier: 2;
+  intelligence_modifier: 1;
+  wisdom_modifier: -2;
+  dexterity_modifier: 3;
+  constitution_modifier: 1;
+  charisma_modifier: -1;
+  experience_factor: 0;
+
+  adjust_per_one_third_level {
+    adjust_base_to_hit: 3;
+    adjust_base_to_hit_with_bows: 4;
+    adjust_use_device: 3;
+    adjust_disarming: 4;
+    adjust_saving_throw: 3;
+  };
+
+  titles {
+    "Vagabond", "Footpad", "Cutpurse", "Robber", "Burglar", "Filcher", 
+    "Sharper", "Magsman", "Common Rogue", "Rogue (1st)", "Rogue (2nd)", 
+    "Rogue (3rd)", "Rogue (4th)", "Rogue (5th)", "Rogue (6th)", "Rogue (7th)",
+    "Rogue (8th)", "Rogue (9th)", "Master Rogue", "Expert Rogue", 
+    "Senior Rogue", "Chief Rogue", "Prime Rogue", "Low Thief", "Thief (1st)", 
+    "Thief (2nd)", "Thief (3rd)", "Thief (4th)", "Thief (5th)", "Thief (6th)",
+    "Thief (7th)", "Thief (8th)", "Thief (9th)", "High Thief", "Master Thief",
+    "Executioner", "Low Assassin", "Assassin", "High Assassin", "Guildsmaster"
+  };
+
+  spells {
+    spell detect_monsters {
+      level: 5;		mana: 1;	fail: 50;	exp: 1;
+    },
+    spell phase_door {
+      level: 7;		mana: 2;	fail: 55;	exp: 1;
+    },
+    spell light_area {
+      level: 9;		mana: 3;	fail: 60;	exp: 2;
+    },
+    spell cure_light_wounds {
+      level: 11;	mana: 4;	fail: 65;	exp: 2;
+    },
+    spell find_hidden_traps_and_doors {
+      level: 13;	mana: 5;	fail: 70;	exp: 3;
+    },
+    spell confusion {
+      level: 15;	mana: 6;	fail: 75;	exp: 3;
+    },
+    spell trap_and_door_destruction {
+      level: 17;	mana: 7;	fail: 80;	exp: 4;
+    },
+    spell sleep_i {
+      level: 19;	mana: 8;	fail: 85;	exp: 5;
+    },
+    spell cure_poison {
+      level: 21;	mana: 9;	fail: 90;	exp: 6;
+    },
+    spell remove_curse {
+      level: 23;	mana: 10;	fail: 95;	exp: 7;
+    },
+    spell create_food {
+      level: 25;	mana: 12;	fail: 95;	exp: 9;
+    },
+    spell recharge_item_i {
+      level: 27;	mana: 15;	fail: 99;	exp: 11;
+    },
+    spell identify {
+      level: 29;	mana: 18;	fail: 99;	exp: 19;
+    }
+  };
+};
+
+class "Ranger" {
+
+  hit_points: 4;
+  disarming: 30;
+  search_chance: 24;
+  stealth_factor: 3;
+  frequency_of_search: 24;
+  base_to_hit: 56;
+  base_to_hit_with_bows: 72;
+  saving_throw: 30;
+  strength_modifier: 2;
+  intelligence_modifier: 2;
+  wisdom_modifier: 0;
+  dexterity_modifier: 1;
+  constitution_modifier: 1;
+  charisma_modifier: 1;
+  experience_factor: 40;
+
+  adjust_per_one_third_level {
+    adjust_base_to_hit: 3;
+    adjust_base_to_hit_with_bows: 4;
+    adjust_use_device: 3;
+    adjust_disarming: 3;
+    adjust_saving_throw: 3;
+  };
+
+  titles {
+    "Runner (1st)", "Runner (2nd)", "Runner (3rd)", "Strider (1st)", 
+    "Strider (2nd)", "Strider (3rd)", "Scout (1st)", "Scout (2nd)", 
+    "Scout (3rd)", "Scout (4th)", "Scout (5th)", "Courser (1st)", 
+    "Courser (2nd)", "Courser (3rd)", "Courser (4th)", "Courser (5th)",
+    "Tracker (1st)", "Tracker (2nd)", "Tracker (3rd)", "Tracker (4th)", 
+    "Tracker (5th)", "Tracker (6th)", "Tracker (7th)", "Tracker (8th)", 
+    "Tracker (9th)", "Guide (1st)", "Guide (2nd)", "Guide (3rd)", 
+    "Guide (4th)", "Guide (5th)", "Guide (6th)", "Guide (7th)", "Guide (8th)",
+    "Guide (9th)", "Pathfinder-1", "Pathfinder-2", "Pathfinder-3", "Ranger",
+    "High Ranger", "Ranger Lord"
+  };
+
+  spells {
+    spell magic_missile {
+      level: 3;		mana: 1;	fail: 30;	exp: 1;
+    },
+   spell detect_monsters {
+      level: 3;		mana: 2;	fail: 35;	exp: 2;
+    },
+    spell phase_door {
+      level: 3;		mana: 2;	fail: 35;	exp: 2;
+    },
+    spell light_area {
+      level: 5;		mana: 3;	fail: 35;	exp: 2;
+    },
+    spell cure_light_wounds {
+      level: 5;		mana: 3;	fail: 40;	exp: 2;
+    },
+    spell find_hidden_traps_and_doors {
+      level: 5;		mana: 4;	fail: 45;	exp: 3;
+    },
+    spell stinking_cloud {
+      level: 7;		mana: 5;	fail: 40;	exp: 6;
+    },
+    spell confusion {
+      level: 7;		mana: 6;	fail: 40;	exp: 5;
+    },
+    spell lightning_bolt {
+      level: 9;		mana: 7;	fail: 40;	exp: 7;
+    },
+    spell trap_and_door_destruction {
+      level: 9;		mana: 8;	fail: 45;	exp: 8;
+    },
+    spell sleep_i {
+      level: 11;	mana: 8;	fail: 40;	exp: 10;
+    },
+    spell cure_poison {
+      level: 11;	mana: 9;	fail: 45;	exp: 10;
+    },
+    spell teleport_self {
+      level: 13;	mana: 10;	fail: 45;	exp: 12;
+    },
+    spell remove_curse {
+      level: 13;	mana: 11;	fail: 55;	exp: 13;
+    },
+    spell frost_bolt {
+      level: 15;	mana: 12;	fail: 50;	exp: 15;
+    },
+    spell turn_stone_to_mud {
+      level: 15;	mana: 13;	fail: 50;	exp: 15;
+    },
+    spell create_food {
+      level: 17;	mana: 17;	fail: 55;	exp: 15;
+    },
+    spell recharge_item_i {
+      level: 17;	mana: 17;	fail: 90;	exp: 17;
+    },
+    spell sleep_ii {
+      level: 21;	mana: 17;	fail: 55;	exp: 17;
+    },
+    spell polymorph_other {
+      level: 21;	mana: 19;	fail: 60;	exp: 18;
+    },
+    spell identify {
+      level: 23;	mana: 25;	fail: 95;	exp: 20;
+    },
+    spell sleep_iii {
+      level: 23;	mana: 20;	fail: 60;	exp: 20;
+    },
+    spell fire_bolt {
+      level: 25;	mana: 20;	fail: 60;	exp: 20;
+    },
+    spell slow_monster {
+      level: 25;	mana: 21;	fail: 65;	exp: 20;
+    },
+    spell frost_ball {
+      level: 27;	mana: 21;	fail: 65;	exp: 22;
+    },
+    spell recharge_item_ii {
+      level: 29;	mana: 23;	fail: 95;	exp: 23;
+    },
+    spell teleport_other {
+      level: 31;	mana: 25;	fail: 70;	exp: 25;
+    },
+    spell haste_self {
+      level: 33;	mana: 25;	fail: 75;	exp: 38;
+    },
+    spell fire_ball {
+      level: 35;	mana: 25;	fail: 80;	exp: 50;
+    },
+    spell word_of_destruction {
+      level: 37;	mana: 30;	fail: 95;	exp: 100;
+    }
+  };
+};
+
+class "Paladin" {
+
+  hit_points: 6;
+  disarming: 20;
+  search_chance: 12;
+  stealth_factor: 1;
+  frequency_of_search: 38;
+  base_to_hit: 68;
+  base_to_hit_with_bows: 40;
+  saving_throw: 24;
+  strength_modifier: 3;
+  intelligence_modifier: -3;
+  wisdom_modifier: 1;
+  dexterity_modifier: 0;
+  constitution_modifier: 2;
+  charisma_modifier: 2;
+  experience_factor: 35;
+
+  adjust_per_one_third_level {
+    adjust_base_to_hit: 3;
+    adjust_base_to_hit_with_bows: 3;
+    adjust_use_device: 3;
+    adjust_disarming: 2;
+    adjust_saving_throw: 3;
+  };
+
+  titles {
+    "Gallant", "Keeper (1st)", "Keeper (2nd)", "Keeper (3rd)", "Keeper (4th)",
+    "Keeper (5th)", "Keeper (6th)", "Keeper (7th)", "Keeper (8th)", 
+    "Keeper (9th)", "Protector-1", "Protector-2", "Protector-3", 
+    "Protector-4", "Protector-5", "Protector-6", "Protector-7", "Protector-8",
+    "Defender-1", "Defender-2", "Defender-3", "Defender-4", "Defender-5", 
+    "Defender-6", "Defender-7", "Defender-8", "Warder (1st)", "Warder (2nd)",
+    "Warder (3rd)", "Warder (4th)", "Warder (5th)", "Warder (6th)", 
+    "Warder (7th)", "Warder (8th)", "Warder (9th)", "Guardian", "Chevalier",
+    "Justiciar", "Paladin", "High Lord"
+  };
+
+  prayers {
+    prayer detect_evil {
+      level: 1;		mana: 1;	fail: 30;	exp: 1;
+    },
+    prayer cure_light_wounds {
+      level: 2;		mana: 2;	fail: 35;	exp: 2;
+    },
+    prayer bless {
+      level: 3;		mana: 3;	fail: 35;	exp: 3;
+    },
+    prayer remove_fear {
+      level: 5;		mana: 3;	fail: 35;	exp: 5;
+    },
+    prayer call_light {
+      level: 5;		mana: 4;	fail: 35;	exp: 5;
+    },
+    prayer find_traps {
+      level: 7;		mana: 5;	fail: 40;	exp: 6;
+    },
+    prayer detect_doors_and_stairs {
+      level: 7;		mana: 5;	fail: 40;	exp: 6;
+    },
+    prayer slow_poison {
+      level: 9;		mana: 7;	fail: 40;	exp: 7;
+    },
+    prayer blind_creature {
+      level: 9;		mana: 7;	fail: 40;	exp: 8;
+    },
+    prayer portal {
+      level: 9;		mana: 8;	fail: 40;	exp: 8;
+    },
+    prayer cure_medium_wounds {
+      level: 11;	mana: 9;	fail: 40;	exp: 10;
+    },
+    prayer chant {
+      level: 11;	mana: 10;	fail: 45;	exp: 10;
+    },
+    prayer sanctuary {
+      level: 11;	mana: 10;	fail: 45;	exp: 10;
+    },
+    prayer create_food {
+      level: 13;	mana: 10;	fail: 45;	exp: 12;
+    },
+    prayer remove_curse {
+      level: 13;	mana: 11;	fail: 45;	exp: 13;
+    },
+    prayer resist_heat_and_cold {
+      level: 15;	mana: 13;	fail: 45;	exp: 15;
+    },
+    prayer neutralize_poison {
+      level: 15;	mana: 15;	fail: 50;	exp: 15;
+    },
+    prayer orb_of_draining {
+      level: 17;	mana: 15;	fail: 50;	exp: 17;
+    },
+    prayer cure_serious_wounds {
+      level: 17;	mana: 15;	fail: 50;	exp: 18;
+    },
+    prayer sense_invisible {
+      level: 19;	mana: 15;	fail: 50;	exp: 19;
+    },
+    prayer protection_from_evil {
+      level: 19;	mana: 15;	fail: 50;	exp: 19;
+    },
+    prayer earthquake {
+      level: 21;	mana: 17;	fail: 50;	exp: 20;
+    },
+    prayer sense_surroundings {
+      level: 23;	mana: 17;	fail: 50;	exp: 20;
+    },
+    prayer cure_critical_wounds {
+      level: 25;	mana: 20;	fail: 50;	exp: 20;
+    },
+    prayer turn_undead {
+      level: 27;	mana: 21;	fail: 50;	exp: 22;
+    },
+    prayer pray_prayer {
+      level: 29;	mana: 22;	fail: 50;	exp: 24;
+    },
+    prayer dispel_undead {
+      level: 31;	mana: 24;	fail: 60;	exp: 25;
+    },
+    prayer heal {
+      level: 33;	mana: 28;	fail: 60;	exp: 31;
+    },
+    prayer dispel_evil {
+      level: 35;	mana: 32;	fail: 70;	exp: 38;
+    },
+    prayer glyph_of_warding {
+      level: 37;	mana: 36;	fail: 90;	exp: 50;
+    },
+    prayer holy_word {
+      level: 39;	mana: 38;	fail: 90;	exp: 100;
+    }
+  };
+
+};
+
+
+experience_levels {
+  10, 25, 45, 70, 100, 140, 200, 280, 380, 500, 650, 850, 1100, 1400, 1800, 
+  2300, 2900, 3600, 4400, 5400, 6800, 8400, 10200, 12500, 17500, 25000, 35000,
+  50000, 75000, 100000, 150000, 200000, 300000, 400000, 500000, 750000, 
+  1500000, 2500000, 5000000, 10000000
+};
+

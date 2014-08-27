@@ -1,0 +1,913 @@
+\input texinfo @c -*-texinfo-*-
+@c This file uses the @command command introduced in Texinfo 4.0.
+@c %**start of header
+@setfilename moria-mc.info
+@settitle Monster Compiler for gmoria
+@finalout
+@setchapternewpage odd
+@c %**end of header
+
+@include package.texi
+
+
+@ifinfo
+This file documents the @command{moria-mc} software
+
+Copyright (C) 2005, 2014 Ben Asselstine
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+@ignore
+Permission is granted to process this file through TeX and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+
+@end ignore
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.
+@end ifinfo
+
+@titlepage
+@title mc
+@subtitle The Monster-Compiler for gmoria
+@subtitle Version @value{VERSION}
+@author by Ben Asselstine
+
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2005, 2014 Ben Asselstine
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.
+@end titlepage
+
+@contents
+
+@c All the nodes can be updated using the EMACS command
+@c texinfo-every-node-update, which is normally bound to C-c C-u C-e.
+@node Top, Overview, (dir), (dir)
+
+@ifinfo
+This file documents the Monster-Compiler for gmoria @command{moria-mc} software.
+@end ifinfo
+
+@c All the menus can be updated with the EMACS command
+@c texinfo-all-menus-update, which is normally bound to C-c C-u C-a.
+@menu
+* Overview::                    Introduction.
+* The Monster-Definition File::	About @command{moria-mc}'s input file.
+* A Small Example::		See it in action.
+* Invoking mc::			How to run @command{moria-mc}.
+* Workflow::			Where @command{moria-mc} fits in.
+* Contributors::		Who to thank profusely.
+* Problems::                    Reporting bugs.
+@end menu
+
+@node Overview, The Monster-Definition File, Top, Top
+@chapter Overview
+@cindex greetings
+@cindex overview
+
+This document describes the monster-compiler (@emph{mc}).  In more precise terms, this is a code-generation tool that is used to create files called monsters_tables.c and monsters_constant.h in gmoria.  It reads in a single human-readable file that completely describes the attributes of all of the creatures in the game, and it generates code that is compiled into the game.  The compiler issues warnings and errors when things don't quite make sense.  This document describes how to use this tool, and the format of the monster-definition file.
+
+The audience for this tool is a person who wants to add new monsters to moria in a safe way.  Although it's easy to add new monsters, the monster definition file only goes so far; for example it doesn't allow the adding of new spells, defenses or modes of attack.  When the syntax of the monsters definition file is insufficient, the next step is to change actual C code.  Beware that adding new monsters to the game breaks save-game compatibility.
+
+@node The Monster-Definition File, Class Blocks, Overview, Top
+@chapter The Monster-Defintion File
+
+The monster-definition file describes all of the monsters in the game.  A monster is anything that can attack the character in the game.  Although it doesn't seem very monsterish, a @samp{Swordsman} is a monster.  @emph{mc} reads in this monster definition file to create the monsters_tables.c and monsters_constant.h files.  It is meant to be human-readable, easily understood and modified by non-programmers.  The file consists of a series of blocks.
+
+The monster-definition file is comprised of blocks.  A block looks something like this:
+
+@verbatim
+creature "Swordsman" {
+	...
+};
+@end verbatim
+
+As you can see, the block starts with a keyword denoting the kind of block (a creature block).  Following that there's a name for the block (@samp{"Swordsman"}), and then there are a set of braces, followed by a semicolon.  The attributes of the swordsman creature go inside of the braces (instead of @samp{...}) .
+
+There are two kinds of blocks: creature blocks and class blocks.  A creature canbe derived from a class.  A class block looks like:
+
+@verbatim
+class humanoid {
+	...
+};
+@end verbatim
+
+It is very similar to the creature block.  The name isn't in quotes because the name of the class will not show up anywhere in the monsters_tables.c file.  The attributes that go inside of a class block are the same as the creature block.  
+
+@menu
+* Class Blocks::		Detailed information on class blocks.
+* Creature Blocks::		Detailed information on creature blocks.
+@end menu
+
+The monster-definition file is made up of sequences of these class and creature blocks.  A complete monster-defintion file would have many creatures, that derive from many classes which derive from many classes.  The use of classes help reduce errors, and increase consistency in the final product.  Using too many classes make changing the monster-definition file a trickier thing to accomplish.  you will want to strike a balance.
+
+The monster compiler will tell you when you reference a class that doesn't exist or if you've forgotten a semi-colon.  It will also tell you if you've forgotten an important attribute.
+
+@menu
+* Attributes::			Detailed information on supported attributes.
+* Deriving Attributes::		What to watch out for when deriving attributes.
+@end menu
+
+
+@node Class Blocks, Creature Blocks, The Monster-Definition File, The Monster-Definition File
+@section Class Blocks
+
+Class blocks are used by creature blocks to derive attributes.  For example all dragon creature blocks share a dragon class that make them "dragonish".
+
+You derive a creature from a class like so:
+
+@verbatim
+creature "Swordsman": warrior {
+	...
+};
+@end verbatim
+
+You can derive a class from zero or more classes.  For example:
+
+@verbatim
+class warrior: humanoid {
+	...
+};
+@end verbatim
+
+All of the attributes contained in the humanoid class will be pulled into the warrior class.
+
+@node Creature Blocks, Attributes, Class Blocks, The Monster-Definition File
+@section Creature Blocks
+
+Creature blocks are thought of as the most important block, and they relate directly to the monsters_tables.c file.  This means you have an "Evil Iggy" in the game because there exists an "Evil Iggy" creature block in the monster-defintion file.
+
+A creature block can derive from zero or more class blocks.  For example:
+
+@verbatim
+creature "Swordsman": humanoid, swordwarrior {
+	...
+};
+@end verbatim
+
+All of the attributes from the humanoid and swordwarrior class will be present in this creature called @samp{Swordsman}.  The name @samp{Swordsman} will appear in the game when the player looks at the monster.
+
+@node Attributes, Deriving Attributes, Creature Blocks, The Monster-Definition File
+@section Attributes
+Every creature in moria is made up of a set of attributes.  Every creature and class block in the monster-definition file describes attributes.  
+
+Attributes have a name, and a value, and are always followed by a semicolon.  For example:
+
+@verbatim
+class humanoid {
+	speed: 1;
+	ac: 1;
+}
+@end verbatim
+
+The @samp{speed} and @samp{ac} attributes are set to a value of 1.  The semicolon must follow each attribute value, or the compiler be unable to parse the file due to a syntax error.
+
+The allowable attributes are: @samp{level}, @samp{hd}, @samp{letter}, @samp{exp}, @samp{speed}, @samp{ac}, @samp{radius}, @samp{sleep}, @samp{treasure}, @samp{defense}, @samp{move}, @samp{special}, @samp{spell}, @samp{breath}, @samp{resist} and @samp{attack}.  Here is an explanation of these attributes -- what they do, and what their allowable values are:
+
+@table @samp
+@item level
+This attribute represents which depth the creature will most prominently appear at.  A level of @samp{1} is 50 feet, @samp{2} is 100 feet and so on.  The value must always an integer between @samp{0} and @samp{100}.
+@verbatim
+class humanoid {
+	level: 1;
+};
+@end verbatim
+@item hd
+This attribute represents the hitdice of the creature.  This is used to describe the maximum hit-points of the creature.  A hitdice is two numbers, the number of dice, and the number of sides on a die.  It is represented as an integer followed by a bar @samp{|}, followed by another integer.  For example @samp{2|10}.  This means @samp{2} dice, with @samp{10} sides.  The creature's hit-points will be somewhere between 2 and 20.
+@verbatim
+class humanoid {
+	hd: 2|10;
+};
+@end verbatim
+@item letter
+This attribute represents the ascii character that the creature appears on the screen as.  This value is a string, where the first character in that string is the character used to represent the creature onscreen.
+@verbatim
+class humanoid {
+	letter: "p";
+};
+@end verbatim
+@item exp
+This attribute represents how many experience-points that the player receives when killing this creature.  A legal value for this attribute is @samp{0} or more.
+@item speed
+This attribute represents how fast the creature moves in the game.  A legal value for this attribute is @samp{0}, @samp{1}, @samp{2}, or @samp{3}.  @samp{1} is normal speed.
+@verbatim
+class humanoid {
+	speed: 2;
+};
+@end verbatim
+@item ac
+This attribute represents the armour class of the creature.  The higher the armour class, the harder it is for the player to hit the creature.  A legal value for this attribute is @samp{0} or more, where the largest practical value is @samp{125}.
+@verbatim
+class humanoid {
+	ac: 20;
+};
+@end verbatim
+@item radius
+This attribute is the area-affect radius of the creature.  The creature "notices" things this far away from it.  If the creature is asleep and you walk within it's radius, it has a chance of waking up.  A legal value for this attribute is @samp{2} or more, where the largest practical value is @samp{40}.
+@verbatim
+class humanoid {
+	radius: 6;
+};
+@end verbatim
+@item sleep
+This attribute represents how difficult it is to wake up this creature when it is sleeping.  Most creatures are sleeping when the level is generated.  Legal values for this attribute are @samp{0} or more, where the largest practical value is @samp{250}.
+@verbatim
+class humanoid {
+	sleep: 10;
+};
+@end verbatim
+@item treasure
+This attribute represents what kind of treasure the creature is carrying, if any.  The following are legal values for this attribute:
+	@table @samp
+	@item carry_small_obj
+	The creature carries small objects.
+	@item carry_obj
+	The creature carries normal sized objects.
+	@item carry_gold
+	The creature carries money.
+	@item has_random_60
+	The creature has money or objects 60% of the time.
+	@item has_random_90
+	The creature has money or obejcts 90% of the time.
+	@item has_1d2_obj
+	The creature holds 1 to 2 objects.
+	@item has_2d2_obj
+	The creature holds 2 to 4 objects.
+	@item has_4d2_obj
+	The creature holds 4 to 8 objects.
+	@item none
+	The creature holds no objects or money at all.
+	@end table
+	This attribute can have more than one of these values set at one time.  This logical AND is accompished by separating them with a comma (@samp{,}).  A logical NOT is accomplished by prepending @samp{~} to the keyword.
+@verbatim
+class humanoid {
+	treasure: carry_gold, has_random_60, ~has_random_90;
+};
+
+class humanoid {
+	treasure: none;
+};
+@end verbatim
+@item defense
+This attribute represents the susceptibilities of the creature, if any.  The following are legal values for this attribute:
+	@table @samp
+	@item dragon
+	The creature is a dragon, and is susceptible to attacks from dragon-slaying (@samp{SD}) weapons.
+	@item animal
+	The creature is an animal, and is susceptible to attacks from animal-slaying (@samp{SA}) weapons.  It is susceptible to spells and prayers that are designed to work on animals.
+	@item evil
+	The creature is evil, and is susceptible to attacks from evil-slaying (@samp{SE}) weapons.  It is susceptible to spells and prayers that are designed to work on evil creatures.
+	@item undead
+	The creature is undead, and is susceptible to attacks from undead-slaying (@samp{SU}) weapons.  It is susceptible to spells and prayers that are designed to work on undead creatures.
+	@item frost
+	The creature is susceptible to frost-based attacks.
+	@item fire
+	The creature is susceptible to fire-based attacks.
+	@item poison
+	The creature is susceptible to poison-based attacks.
+	@item acid
+	The creature is susceptible to acid-based attacks.
+	@item light
+	The creature is susceptible to light, or electricity-based attacks.
+	@item stone
+	The creature is susceptible to attacks that involve disolving stone.
+	@item no_sleep
+	This creature cannot be slept or charmed.
+	@item infra
+	This creature can be seen by infra-vision because it has a warm body.
+	@item max_hp
+	This creature has the maximum number of hit-points, regardless of what it's hitdice attribute (@samp{hd})suggests.
+	@item none
+	This creature is susceptible to nothing in particular.
+	@end table 
+	This attribute can have more than one of these values set at one time.  This logical AND is accompished by separating them with a comma (@samp{,}).  A logical NOT is accomplished by prepending @samp{~} to the keyword.
+@verbatim
+class humanoid {
+	defenses: evil, undead, acid;
+};
+
+class humanoid {
+	defenses: none;
+};
+@end verbatim
+@item move
+This attribute represents how the creature moves.  The following are legal values for this attribute:
+	@table @samp
+	@item attack_only
+	The creature doesn't move at all.  It can only attack from where it sits, stands, or hovers.
+	@item move_normal
+	The creature moves normally.
+	@item magic_only
+	The creature moves by means of magic, teleporting itself short or long distances periodically.
+	@item random_20
+	The creature moves 20% randomly.
+	@item random_40
+	The creature moves 40% randomly.
+	@item random_75
+	The creature moves 75% randomly.
+	@end table
+	This attribute can have more than one of these values set at one time.  This logical AND is accompished by separating them with a comma (@samp{,}).  A logical NOT is accomplished by prepending @samp{~} to the keyword.
+@verbatim
+class humanoid {
+	move: move_normal, random_20;
+};
+@end verbatim
+@item special
+This attribute represents various abilities that the creature might have.  The following are legal values for this attribute:
+	@table @samp
+	@item invisible
+	The creature is invisible, and can only be seen when the character is able to see invisible creatures.
+	@item open_door
+	The creature may open doors.
+	@item phase
+	The creature passes through rock.
+	@item eats_other
+	The creature eats other creatures.
+	@item picks_up
+	The creature picks up objects or money.
+	@item multiply
+	The creature can breed.
+	@item win_creature
+	Killing this creature makes the player win the game.
+	@item none
+	There are no special abilities for the creature.
+	@end table
+	This attribute can have more than one of these values set at one time.  This logical AND is accompished by separating them with a comma (@samp{,}).  A logical NOT is accomplished by prepending @samp{~} to the keyword.
+@verbatim
+class humanoid {
+	special: open_door, picks_up, multiply;
+};
+
+class humanoid {
+	special: none;
+};
+@end verbatim
+@item spell
+This attribute describes which spells can be cast if any.  The structure of this attribute is slightly different from others in that there is a chance represented along with some keywords that represent spells.  The chance represents how often the spell will be casted.  The chance may be represented in 2 different ways:
+@itemize
+@item by a percent
+@verbatim
+class humanoid {
+	spell 33.3%: blind;
+};
+@end verbatim
+@item by a fraction
+@verbatim
+class humanoid {
+	spell 1/3: blind;
+};
+@end verbatim
+@end itemize
+Only one frequency may only be stated per creature block.  This extends to breaths too!
+A creature can cast the following spells:
+
+	@table @samp
+	@item tel_short
+	Teleport the creature a short distance.
+	@item tel_long
+	Teleport the creature a longer distance.
+	@item tel_to
+	Teleport the player to the creature.
+	@item lght_wnd
+	Cause the player some light wounds.
+	@item ser_wnd
+	Cause the player some serious wounds.
+	@item hold_per
+	Paralyse the player.
+	@item blind
+	Take away the sight of the player.
+	@item confuse
+	Stupify the player.
+	@item fear
+	Make the player afraid.
+	@item summon_mon
+	Summon a monster.
+	@item summon_und
+	Summon an undead monster.
+	@item slow_per
+	Make the player move slower.
+	@item drain_mana
+	Reduce the player's mana points.
+	@item none
+	The creature casts no spells.
+	@end table
+	This attribute can have more than one of these values set at one time.  This logical AND is accompished by separating them with a comma (@samp{,}).  A logical NOT is accomplished by prepending @samp{~} to the keyword.
+@verbatim
+class humanoid {
+	spell 1/3: summon_und, slow_per, tel_to;
+};
+
+class humanoid {
+	spell: none;
+};
+@end verbatim
+@item breath
+This attribute describes which breaths can be breathed if any.  A breath works exactly like a spell, in that it requires a frequency chance.  The chance represents how often the breath will be breathed.  The chance may be represented in 2 different ways:
+@itemize
+@item by a percent
+@verbatim
+class humanoid {
+	breath 33.3%: fire;
+};
+@end verbatim
+@item by a fraction
+@verbatim
+class humanoid {
+	breath 1/3: fire;
+};
+@end verbatim
+@end itemize
+Only one frequency may only be stated per creature block.  This extends to spells too!
+A creature can breathe the following breaths:
+	@table @samp
+	@item light
+	Electrcity.
+	@item gas
+	Gaseous poison.
+	@item acid
+	Acrid, corrosive splash.
+	@item frost
+	Extreme cold.
+	@item fire
+	Extreme heat.
+	@item none;
+	The creature doesn't attack by breathing.
+	@end table
+	This attribute can have more than one of these values set at one time.  This logical AND is accompished by separating them with a comma (@samp{,}).  A logical NOT is accomplished by prepending @samp{~} to the keyword.
+Breaths imply that the creature is also resistant to that kind of attack.  This means that even if the creature block doesn't describe a @samp{resist} attribute, it will still be set implicitly.
+@verbatim
+class humanoid {
+	breath 2/3: light, fire;
+};
+
+class humanoid {
+	breath: none;
+};
+@end verbatim
+@item resist
+This attribute represents resistance to one of the basic elements.  Legal values are the following keywords:
+	@table @samp
+	@item light
+	The creature is resistant to electricity.
+	@item gas
+	The creature is resistant to gas attacks.
+	@item acid
+	The creature is resistant to acid-based attacks.
+	@item frost
+	The creature is resistant to frost-based attacks.
+	@item fire
+	The creature is resistant to fire-based attacks.
+	@end table
+@samp{resist} can only be set in conjunction with @samp{breath} when resisting a breath that's already set.  It @emph{cannot} be used when another breath or spell is set.  This is a limitation of gmoria.
+@verbatim
+class humanoid {
+	resist: fire;
+};
+@end verbatim
+@item attack
+This attribute is the most complex of all of the attributes.  Every attack reads like a sentence of the form @samp{hit for 1|1 of normal_damage}.  @samp{hit} is the attack description, @samp{normal_damage} is the kind of attack.  @samp{1|1} is the hitdice for how hard this attack will hit the player.
+The possible attack descriptions are: @samp{hits}, @samp{bites}, @samp{claws}, @samp{stings}, @samp{touches}, @samp{kicks}, @samp{gazes}, @samp{breathes}, @samp{spits}, @samp{wails}, @samp{embraces}, @samp{crawls_on}, @samp{releases_spores}, @samp{begs_for_money}, @samp{slimes}, @samp{crushes}, @samp{tramples}, @samp{drools_on}, and @samp{insults}.
+
+The possible attack types are:
+	@table @samp
+	@item normal_damage
+	Causes the player's hit-points to decrease.
+	@item lose_str
+	Causes the player's strength stat to decrease.
+	@item confusion
+	Stupifies the player.
+	@item cause_fear
+	Makes the player afraid.
+	@item fire_damage.
+	Extreme heat hits the player.
+	@item acid_damage
+	Acid splashes the player.
+	@item cold_damage
+	Extreme cold hits the player.
+	@item lightning_damage
+	Electricity hits the player.
+	@item corrosion
+	Corrosive acid hits the player's equipment.
+	@item cause_blindness
+	Causes the player not to see.
+	@item cause_paralysis
+	Makes the player unable to move.
+	@item steal_money
+	Makes the player lose gold pieces.
+	@item steal_obj
+	Makes the player lose an item from the inventory.
+	@item poison
+	Poisons the player.
+	@item lose_dex
+	Causes the player's dexterity stat to decrease.
+	@item lose_con
+	Causes the player's constitution stat to decrease.
+	@item lose_int
+	Causes the player's intelligence stat to decrease.
+	@item lose_wis
+	Causes the player's wisdom stat to decrease.
+	@item lose_exp
+	Causes the player's experience to decrease.
+	@item aggravation
+	Wakes up nearby monsters.
+	@item disenchant
+	Causes an item of the player's to become less magical.
+	@item eat_food
+	Causes the player to lose food rations.
+	@item eat_light
+	Causes the player to lose light turns.
+	@item eat_charges
+	Causes the player's staves to have fewer charges.
+	@end table 
+	This attribute can have more than one of these values set at one time, by separating them with the comma (@samp{,}).  Up to 4 attacks may be specified.
+@end table
+@verbatim
+creature humanoid {
+	attack: wails for 0|0 of cause_fear,
+		touches for 22|8 of lose_exp,
+		claws for 1|10 of lose_int;
+};
+
+creature humanoid {
+	attack: none;
+};
+@end verbatim
+
+@node Deriving Attributes, A Small Example, Attributes, The Monster-Definition File
+@section Deriving Attributes
+Certain attributes behave differently when derived from a class.  Attributes can be overridden, merged, and negated.
+
+Attributes like ac, level and speed only have one value, and their value is overwritten when they are derived from a class.  
+
+For example:
+
+@verbatim
+class warrior {
+	ac: 2;
+};
+
+class humanoid : warrior {
+	ac: 1;
+};
+@end verbatim
+
+This collection of classes results in ac being 1, not 2.  The value of ac is taken from warrior as 2, and then is replaced with 1.
+
+Other attributes like treasure, defense, move, special, spell, breath, resist and attack have more than one value, and they are @emph{merged} when deriving.
+
+For example:
+
+@verbatim
+class warrior {
+	treasure: carry_obj, has_random_60;
+};
+
+class humanoid : warrior {
+	treasure: has_random_90;
+};
+@end verbatim
+
+This collection of classes results in treasure being @samp{carry_obj, has_random_60, has_random_90}.  It is easy to merge attributes in an unexpected fashion; the user must beware.  A more proper example would be:
+
+@verbatim
+class warrior {
+	treasure: carry_obj, has_random_60;
+};
+
+class humanoid : warrior {
+	treasure: has_random_90, ~has_random_60;
+};
+@end verbatim
+
+This collection of classes results in treasure being @samp{carry_obj, has_random_90}, which is more appropriate.  
+
+It should be noted that attack attributes are also merged.  For example:
+
+@verbatim
+class warrior {
+	speed: 2;
+	attack: hits for 2|10 of normal_damage;
+};
+
+class humanoid : warrior {
+	attack: hits for 1|1 of normal_damage;
+};
+@end verbatim
+
+This collection of classes results in attack being: @samp{hits for 2|10 of normal_damage, hits for 1|1 of normal damage}.  This means the warrior sometimes hits as a warrior, and sometimes she hits as a humanoid.  This probably isn't desired.  Let's pretend there is a very good reason for deriving the @samp{humanoid} class from @samp{warrior} class, and the situation needs to be resolved.  A more appropriate example would be:
+
+@verbatim
+class warrior {
+	speed: 2;
+	attack: hits for 2|10 of normal_damage;
+};
+
+class humanoid : warrior {
+	attack: none;
+	attack: hits for 1|1 of normal_damage;
+};
+@end verbatim
+
+This collection of classes result in attack being @samp{hits for 1|1 of normal_damage}.  The warrior class' 2|10 attack has been overridden, and the speed attribute has been gained.
+
+Through the practice of derivation, attributes can be merged that just don't go together.  Often there's a way to undo it, like by using the @samp{~} operator, or the @samp{none} value.  The compiler will try to complain when things don't make sense, but it doesn't catch all of the cases.
+
+
+@node A Small Example, Invoking mc, Deriving Attributes, Top
+@chapter A Small Example
+Let's take this monster-definition file as an example.  It describes five of the people who move around on the town level of the game.
+
+@verbatim
+class town_scum {
+	level: 0;
+	exp: 0;
+	speed: 1;
+	letter: "p";
+	defense: infra, frost, fire;
+	ac: 1;
+	special: picks_up, open_door;
+	move: random_20;
+};
+
+creature "Filthy Street Urchin" : town_scum {
+	move: move_normal;
+	sleep: 40;
+	radius: 4;
+	hd: 1|4;
+	defense: evil;
+	treasure: none;
+	attack: begs_for_money for 0|0 of normal_damage,
+		touches for 0|0 of steal_money;
+};
+
+creature "Blubbering Idiot" : town_scum {
+	move: move_normal;
+	sleep: 0;
+	radius: 6;
+	hd: 1|2;
+	attack: drools_on for 0|0 of normal_damage;
+	treasure: none;
+};
+
+creature "Pitiful-Looking Beggar" : town_scum {
+	move: move_normal;
+	sleep: 40;
+	radius: 10;
+	hd: 1|4;
+	attack: begs_for_money for 0|0 of normal_damage;
+	treasure: none;
+};
+
+creature "Mangy-Looking Leper" : town_scum {
+	move: move_normal;
+	sleep: 50;
+	radius: 10;
+	hd: 1|1;
+	attack: begs_for_money for 0|0 of normal_damage;
+};
+
+creature "Singing, Happy Drunk" : town_scum {
+	sleep: 0;
+	radius: 10;
+	hd: 2|3;
+	treasure: carry_gold, has_random_60;
+	move: random_40, random_75;
+	attack: begs_for_money for 0|0 of normal_damage;
+};
+@end verbatim
+
+
+Five creatures are derived from the @samp{town_scum} class.  They all appear at the same level, the player is awarded with no experience points when they're killed, they move at normal speed, they all appear as the letter 'p' on the screen, and they all have the same ac.  They can all open doors and pick up objects, and they all move somewhat randomly.  All five persons are subject to being seen with infra-vision because they have warm bodies, and they are susceptible to frost and fire.
+
+In every creature in the example, the move attribute is merged with the move value in the @samp{"town_scum} class.  No attributes have negated values, and no attributes are being overridden.
+
+When compiling this example, the compiler will warn that @samp{TREASURE not defined for "Mangy-Looking Leper", line 47}.  This is one of the reasons why the compiler is so useful -- to point out the obvious errors.  To silence this warning, add "@samp{treasure: none;} to the @samp{Mangy-Looking Leper} creature block.
+
+The resulting file that @emph{mc} outputs looks like this:
+
+@verbatim
+/* These values should match the values defined in constant.h. */
+#define MAX_CREATURES   5
+#define N_MON_ATTS      4
+
+/* The following code belongs in the file monster.c. */
+
+/* The following data was generated by the mc program.*/
+
+creature_type c_list[MAX_CREATURES] = {
+{"Blubbering Idiot"          , 0x0012000AL,0x00000000L,0x2030,    0,  0,
+ 6,   1, 11, 'p', {  1, 2}, {  3,  0,  0,  0},   0},
+{"Filthy Street Urchin"      , 0x0012000AL,0x00000000L,0x2034,    0, 40,
+ 4,   1, 11, 'p', {  1, 4}, {  1,  2,  0,  0},   0},
+{"Mangy-Looking Leper"       , 0x0012000AL,0x00000000L,0x2030,    0, 50,
+ 10,   1, 11, 'p', {  1, 1}, {  1,  0,  0,  0},   0},
+{"Pitiful-Looking Beggar"    , 0x0012000AL,0x00000000L,0x2030,    0, 40,
+ 10,   1, 11, 'p', {  1, 4}, {  1,  0,  0,  0},   0},
+{"Singing, Happy Drunk"      , 0x06120038L,0x00000000L,0x2030,    0,  0,
+ 10,   1, 11, 'p', {  2, 3}, {  1,  0,  0,  0},   0},
+};
+struct m_attack_type monster_attacks[N_MONS_ATTS] = {
+/*  0 */{ 0, 0, 0, 0},  { 1,14, 0, 0},  {12, 5, 0, 0},  { 1,18, 0, 0}
+};
+@end verbatim
+
+The entries in the c_list array happen to line up exactly with the monsters_tables.c that's shipped with gmoria (except for the attack/damage array).
+
+
+@node Invoking mc, Consistency Checks, A Small Example, Top
+@chapter Invoking @command{moria-mc}
+@cindex invoking
+@cindex version
+@cindex options
+@cindex usage
+@cindex help
+@cindex getting help
+
+This is the output of the command @samp{mc --help}:
+@noindent
+@verbatiminclude usage
+@verbatim
+@end verbatim
+
+@code{FILE} is the monster-defintion file to "compile".  If it is "-", then it will be read from the standard input.
+
+@code{mc} supports the following options:
+
+@c Formatting copied from the Texinfo 4.0 manual.
+@table @code
+@item -o
+@itemx --outputfile
+Put generated code into FILE.
+This option puts the generated monsters_tables.c file into a FILE of your choosing.  If FILE is "-", then it will go to the standard output.  This is the default.
+@item -c
+@itemx --consistency-check
+Check for consistency errors.
+A loose set of rules is applied to creatures in your monster-definition file.
+For example, if your dragon doesn't breathe an attack, it tells you.  See the section on Consistency Checks for more information.
+@item -C
+@itemx --constants
+Generate constants instead of tables.
+This option makes @command{moria-mc} generate the monsters_constant.h file instead of the monsters_tables.c file.
+@end table
+@menu
+* Consistency Checks::		The rules that are applied during -c.
+@end menu
+
+@node Consistency Checks, Workflow, Invoking mc, Invoking mc
+@section Consistency Checks
+
+The following is taken from mcheck.inf, a file produced by David Grabiner and distributed with gmoria.  When a line begins with @emph{**} it is a further clarification of a consistency check by Ben Asselstine.  There are seven general classes that monsters fit into: Dragons, Humanoids, Undead, Animals, Demons, Quylthulgs, and Others.  The consistency checks fall into these categories.
+
+@table @samp
+@item dragon
+@itemx d, D
+never invisible, can't open doors, never phase, never eats others,
+never pick up objects, never multiply, carry objects/gold, breath
+weapons, cast spells, hurt by slay dragon, hurt by slay evil, can be
+slept, seen by infravision, young/mature 20% random movement
+@item humanoid
+@itemx h, H, k, n, o, p, P, T, U, y, Y
+can open doors, never eats others, all that carry treasure pick up obj,
+never multiply, h/U/Y and some people don't carry treasure,
+some cast spells, no breath weapons, all except some humans evil,
+hurt by slay evil, can be slept, seen by infravision, never random
+movement (except 0 level humans which are all 20% random)
+@emph{**}harpies/nagas can't open doors, and move randomly
+@emph{**}invisible humanoids can't be seen with infravision
+@emph{**}frost-resistant humanoids can't be seen with infravision
+@emph{**}the carry treasure must pick-up object rule is not applied
+@item undead
+@itemx G, L, M, s, V, W, Z
+only G invisible, all except s/Z open doors, only G/W phase,
+never eats others, only G picks up objects, never multiply,
+only s/Z do not carry objects/gold, some cast spells,
+no breath weapons, all evil except s/Z, hurt by slay evil,
+hurt by slay undead, can't be slept, never seen by infravision,
+G very random movement, W 20% random movement, others never random
+movement
+@emph{**}Z isn't a kind of creature, but z is
+@emph{**}Liches carry treasure
+@emph{**}nether-creatures are also invisible
+@emph{**}undead creatures who phase don't open doors
+@emph{**}Spirit troll is a ghost and doesn't move randomly
+@emph{**}the treasure rule isn't applied
+@item animal
+@itemx a, A, b c, f, F, j, K, l, r, R, S, t, w
+only one of a/c invisible, can't open doors, never phase,
+only A eats others, never pick up objects, only a/b/F/l/r/w multiply,
+never carry objects or gold, never cast spells, some breath weapons,
+not evil, hurt by slay animal, can be slept, mammals seen by
+infravision, most have 20% random movement
+@emph{**}everyone but ants and centipedes move randomly
+@item demons
+@itemx B, p(Evil Iggy), q
+always invisible, only B can phase, only B eats others, always pick up
+objects, never multiply, carry objects/gold, cast spells, only B
+breath weapon, all evil, hurt by slay evil, can not be slept, not seen
+by infravision, never random movement
+@emph{**}quasits don't pick stuff up
+@emph{**}quasits move randomly
+@item quylthulg
+@itemx Q
+in a class by itself, almost exactly the same as demon except not
+evil and does not carry objects/gold, should be in class other
+@emph{**}always moves via magic.
+@item other
+@itemx C, e, E, g, i, J, m, O, X, $, ','
+some can be invisible, never open doors, only X phase,
+only C/E/i/O eats others, only C/E/i/O pick up objects, only
+O/',' multiply, only C/i/O carry objects/gold, $ carries only
+gold, no breath weapons, not evil (all brainless
+creatures), not hurt by any special weapon, can't be slept,
+never seen with infravision, brainless creatures,
+some drain mana/exp/etc., fire/air elementals (includes invisible
+stalker) move quickly, golems are animated and should never move
+randomly, the rest never move or move slowly/randomly if they do
+@emph{**}$ carries objects, "only gold" isn't represented.
+@emph{**}not checking fire/air elemental speed as it's not very regular
+@emph{**}eyes can be seen with infravision
+@emph{**}stationary creatures do not move randomly
+@emph{**}earth based creatures can phase
+@emph{**}fire based creatures can be seen with infravision
+@emph{**}xorn picks up objects too
+@emph{**}xorn moves at normal speed and not randomly
+@emph{**}eyes and icky-things CAN be slept
+@emph{**}Earth and Air elementals/spirits CAN open doors
+@emph{**}Oozes may sometimes open doors
+@end table
+
+By default none of these rules are breached with the default monster data from gmoria.  The consistency checker is somewhat lacking as it doesn't look at the attack attribute, but it is a start.  It is hoped that these rules aren't too constricting to would-be game designers making new monsters for gmoria.
+
+@node Workflow, Contributors, Consistency Checks, Top
+@chapter Workflow
+
+@command{moria-mc} will typically be used in this fashion:
+
+@enumerate
+@item
+start a new monster-definition file
+@item
+add and modify creature and class blocks
+@item
+run @command{moria-mc} on the new monster-definition file
+@item
+check for warning and errors, goto 2 if there are any
+@item
+put the resulting file in src/monsters_tables.c.
+@item
+now re-run @command{moria-mc} with the --constants option and the same monster-defintion file.
+@item
+put the resulting file in src/monsters_constant.h.
+@item
+recompile gmoria by typing `make' in the top level directory.
+@end enumerate
+
+@node Contributors, Problems, Workflow, Top
+@chapter Contributors
+
+The following persons have contributed to this software:
+
+@itemize
+@item Joseph Hall
+@item Ben Asselstine
+@end itemize
+
+@node Problems, , Contributors, Top
+@chapter Reporting Bugs
+@cindex bugs
+@cindex problems
+
+If you find a bug in @command{moria-mc}, please send electronic mail to
+@email{gmoria@@nym.hush.com}.  Include the version number, which you can find by
+running @w{@samp{mc --version}}.  Also include in your message the
+output that the program produced and the output you expected.@refill
+
+If you have other questions, comments or suggestions about
+@command{moria-mc}, contact the author via electronic mail to
+@email{gmoria@@nym.hush.com}.
+
+@bye

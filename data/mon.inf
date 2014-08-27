@@ -1,0 +1,3396 @@
+#Copyright (C) 2014 Ben Asselstine
+#This file is licensed under the terms of the GNU GPL v3 or later.
+
+creature "Filthy Street Urchin" {
+	level: 0;	hd: 1|4;	letter: "p";	exp: 0;
+	speed: 1;	ac: 1;		radius: 4;	sleep: 40;
+	treasure: none;
+	defense: evil, frost, fire, infra;
+	move: move_normal, random_20;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	begs_for_money for 0|0 of normal_damage,
+		touches for 0|0 of steal_money;
+};
+
+creature "Blubbering Idiot" {
+	level: 0;	hd: 1|2;	letter: "p";	exp: 0;
+	speed: 1;	ac: 1;		radius: 6;	sleep: 0;
+	treasure: none;
+	defense: frost, fire, infra;
+	move: move_normal, random_20;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	drools_on for 0|0 of normal_damage;
+};
+
+creature "Pitiful-Looking Beggar" {
+	level: 0;	hd: 1|4;	letter: "p";	exp: 0;
+	speed: 1;	ac: 1;		radius: 10;	sleep: 40;
+	treasure: none;
+	defense: frost, fire, infra;
+	move: move_normal, random_20;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	begs_for_money for 0|0 of normal_damage;
+};
+
+creature "Mangy-Looking Leper" {
+	level: 0;	hd: 1|1;	letter: "p";	exp: 0;
+	speed: 1;	ac: 1;		radius: 10;	sleep: 50;
+	treasure: none;
+	defense: frost, fire, infra;
+	move: move_normal, random_20;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	begs_for_money for 0|0 of normal_damage;
+};
+
+creature "Squint-Eyed Rogue" {
+	level: 0;	hd: 2|8;	letter: "p";	exp: 0;
+	speed: 1;	ac: 8;		radius: 10;	sleep: 99;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage,
+		touches for 0|0 of steal_obj;
+};
+
+creature "Singing, Happy Drunk" {
+	level: 0;	hd: 2|3;	letter: "p";	exp: 0;
+	speed: 1;	ac: 1;		radius: 10;	sleep: 0;
+	treasure: carry_gold, has_random_60;
+	defense: frost, fire, infra;
+	move: random_20, random_40, random_75;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	begs_for_money for 0|0 of normal_damage;
+};
+
+creature "Mean-Looking Mercenary" {
+	level: 0;	hd: 5|8;	letter: "p";	exp: 0;
+	speed: 1;	ac: 20;		radius: 10;	sleep: 250;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: evil, frost, fire, infra;
+	move: move_normal, random_20;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	hits for 1|10 of normal_damage;
+};
+
+creature "Battle-Scarred Veteran" {
+	level: 0;	hd: 7|8;	letter: "p";	exp: 0;
+	speed: 1;	ac: 30;		radius: 10;	sleep: 250;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: frost, fire, infra;
+	move: move_normal, random_20;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	hits for 2|6 of normal_damage;
+};
+
+creature "Grey Mushroom patch" {
+	level: 1;	hd: 1|2;	letter: ",";	exp: 1;
+	speed: 1;	ac: 1;		radius: 2;	sleep: 0;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	releases_spores for 1|4 of confusion;
+};
+
+creature "Giant Yellow Centipede" {
+	level: 1;	hd: 2|6;	letter: "c";	exp: 2;
+	speed: 1;	ac: 12;		radius: 8;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	bites for 1|3 of normal_damage,
+		stings for 1|3 of normal_damage;
+};
+
+creature "Giant White Centipede" {
+	level: 1;	hd: 3|5;	letter: "c";	exp: 2;
+	speed: 1;	ac: 10;		radius: 7;	sleep: 40;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|2 of normal_damage,
+		stings for 1|2 of normal_damage;
+};
+
+creature "White Icky-Thing" {
+	level: 1;	hd: 3|5;	letter: "i";	exp: 2;
+	speed: 1;	ac: 7;		radius: 12;	sleep: 10;
+	treasure: none;
+	defense: fire;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	touches for 1|2 of normal_damage;
+};
+
+creature "Clear Icky-Thing" {
+	level: 1;	hd: 2|5;	letter: "i";	exp: 1;
+	speed: 1;	ac: 6;		radius: 12;	sleep: 10;
+	treasure: none;
+	defense: fire;
+	move: move_normal, random_40;
+	special: invisible;
+	spell: none;
+	attack:	touches for 1|2 of normal_damage;
+};
+
+creature "Giant White Mouse" {
+	level: 1;	hd: 1|3;	letter: "r";	exp: 1;
+	speed: 1;	ac: 4;		radius: 8;	sleep: 20;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	defense: infra;
+	move: move_normal, random_20;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|2 of normal_damage;
+};
+
+creature "Large Brown Snake" {
+	level: 1;	hd: 4|6;	letter: "R";	exp: 3;
+	speed: 0;	ac: 35;		radius: 4;	sleep: 99;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|3 of normal_damage,
+		crushes for 1|4 of normal_damage;
+};
+
+creature "Large White Snake" {
+	level: 1;	hd: 3|6;	letter: "R";	exp: 2;
+	speed: 1;	ac: 30;		radius: 4;	sleep: 99;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 1|1 of normal_damage;
+};
+
+creature "Kobold" {
+	level: 1;	hd: 3|7;	letter: "k";	exp: 5;
+	speed: 1;	ac: 16;		radius: 20;	sleep: 10;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage;
+};
+
+creature "White Worm mass" {
+	level: 1;	hd: 4|4;	letter: "w";	exp: 2;
+	speed: 0;	ac: 1;		radius: 7;	sleep: 10;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	defense: light;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	crawls_on for 1|2 of poison;
+};
+
+creature "Floating Eye" {
+	level: 1;	hd: 3|6;	letter: "e";	exp: 1;
+	speed: 1;	ac: 6;		radius: 2;	sleep: 10;
+	treasure: none;
+	defense: light, infra;
+	move: attack_only;
+	special: none;
+	  spell 1/13: drain_mana;
+	attack:	gazes for 0|0 of cause_paralysis;
+};
+
+creature "Shrieker Mushroom patch" {
+	level: 2;	hd: 1|1;	letter: ",";	exp: 1;
+	speed: 1;	ac: 1;		radius: 2;	sleep: 0;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	wails for 0|0 of aggravation;
+};
+
+creature "Blubbering Icky-Thing" {
+	level: 2;	hd: 5|8;	letter: "i";	exp: 8;
+	speed: 1;	ac: 4;		radius: 14;	sleep: 10;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_90;
+	defense: fire;
+	move: move_normal, random_40;
+	special: eats_other, picks_up;
+	spell: none;
+	attack:	crawls_on for 1|4 of poison,
+		crawls_on for 0|0 of eat_food;
+};
+
+creature "Metallic Green Centipede" {
+	level: 2;	hd: 4|4;	letter: "c";	exp: 3;
+	speed: 2;	ac: 4;		radius: 5;	sleep: 10;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	crawls_on for 1|1 of normal_damage;
+};
+
+creature "Novice Warrior" {
+	level: 2;	hd: 9|4;	letter: "p";	exp: 6;
+	speed: 1;	ac: 16;		radius: 20;	sleep: 5;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|7 of normal_damage;
+};
+
+creature "Novice Rogue" {
+	level: 2;	hd: 8|4;	letter: "p";	exp: 6;
+	speed: 1;	ac: 12;		radius: 20;	sleep: 5;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage,
+		touches for 0|0 of steal_money;
+};
+
+creature "Novice Priest" {
+	level: 2;	hd: 7|4;	letter: "p";	exp: 7;
+	speed: 1;	ac: 10;		radius: 20;	sleep: 5;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	  spell 1/12: lght_wnd, fear;
+	attack:	hits for 1|5 of normal_damage;
+};
+
+creature "Novice Mage" {
+	level: 2;	hd: 6|4;	letter: "p";	exp: 7;
+	speed: 1;	ac: 6;		radius: 20;	sleep: 5;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	  spell 1/12: tel_short, lght_wnd, confuse;
+	attack:	hits for 1|4 of normal_damage;
+};
+
+creature "Yellow Mushroom patch" {
+	level: 2;	hd: 1|1;	letter: ",";	exp: 2;
+	speed: 1;	ac: 1;		radius: 2;	sleep: 0;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	releases_spores for 1|6 of cause_fear;
+};
+
+creature "White Jelly" {
+	level: 2;	hd: 8|8;	letter: "J";	exp: 10;
+	speed: 2;	ac: 1;		radius: 2;	sleep: 99;
+	treasure: none;
+	defense: fire, acid, light, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	touches for 1|2 of poison;
+};
+
+creature "Giant Green Frog" {
+	level: 2;	hd: 2|8;	letter: "f";	exp: 6;
+	speed: 1;	ac: 8;		radius: 12;	sleep: 30;
+	treasure: none;
+	defense: animal, fire, acid;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|3 of normal_damage;
+};
+
+creature "Giant Black Ant" {
+	level: 2;	hd: 3|6;	letter: "a";	exp: 8;
+	speed: 1;	ac: 20;		radius: 8;	sleep: 80;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|4 of normal_damage;
+};
+
+creature "White Harpy" {
+	level: 2;	hd: 2|5;	letter: "h";	exp: 5;
+	speed: 1;	ac: 17;		radius: 16;	sleep: 10;
+	treasure: none;
+	defense: evil, frost, fire, infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	claws for 1|1 of normal_damage,
+		claws for 1|1 of normal_damage,
+		bites for 1|2 of normal_damage;
+};
+
+creature "Blue Yeek" {
+	level: 2;	hd: 2|6;	letter: "y";	exp: 4;
+	speed: 1;	ac: 14;		radius: 18;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|5 of normal_damage;
+};
+
+creature "Green Worm mass" {
+	level: 2;	hd: 6|4;	letter: "w";	exp: 3;
+	speed: 0;	ac: 3;		radius: 7;	sleep: 10;
+	treasure: none;
+	defense: animal, frost, fire, light;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	crawls_on for 1|3 of corrosion;
+};
+
+creature "Large Black Snake" {
+	level: 2;	hd: 4|8;	letter: "R";	exp: 9;
+	speed: 0;	ac: 38;		radius: 5;	sleep: 75;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|4 of normal_damage,
+		crushes for 1|6 of normal_damage;
+};
+
+creature "Poltergeist" {
+	level: 3;	hd: 2|5;	letter: "G";	exp: 6;
+	speed: 3;	ac: 15;		radius: 8;	sleep: 10;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	treasure: has_random_90;
+	defense: evil, undead, light, no_sleep;
+	move: move_normal, random_20, random_40, random_75;
+	special: invisible, phase, picks_up;
+	  spell 1/15: tel_short;
+	attack:	hits for 1|1 of cause_fear;
+};
+
+creature "Metallic Blue Centipede" {
+	level: 3;	hd: 4|5;	letter: "c";	exp: 7;
+	speed: 2;	ac: 6;		radius: 6;	sleep: 15;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	crawls_on for 1|2 of normal_damage;
+};
+
+creature "Giant White Louse" {
+	level: 3;	hd: 1|1;	letter: "l";	exp: 1;
+	speed: 2;	ac: 5;		radius: 6;	sleep: 10;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	defense: acid, light;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|1 of normal_damage;
+};
+
+creature "Black Naga" {
+	level: 3;	hd: 6|8;	letter: "n";	exp: 20;
+	speed: 1;	ac: 40;		radius: 16;	sleep: 120;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, fire, poison, acid;
+	defense: infra;
+	move: move_normal, random_20;
+	special: picks_up;
+	spell: none;
+	attack:	crushes for 1|8 of normal_damage;
+};
+
+creature "Spotted Mushroom patch" {
+	level: 3;	hd: 1|1;	letter: ",";	exp: 3;
+	speed: 1;	ac: 1;		radius: 2;	sleep: 0;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	releases_spores for 2|4 of poison;
+};
+
+creature "Yellow Jelly" {
+	level: 3;	hd: 10|8;	letter: "J";	exp: 12;
+	speed: 2;	ac: 1;		radius: 2;	sleep: 99;
+	treasure: none;
+	defense: fire, acid, light, no_sleep;
+	move: attack_only;
+	special: none;
+	  spell 1/15: drain_mana;
+	attack:	touches for 1|3 of poison;
+};
+
+creature "Scruffy-Looking Hobbit" {
+	level: 3;	hd: 3|5;	letter: "p";	exp: 4;
+	speed: 1;	ac: 8;		radius: 16;	sleep: 10;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	hits for 1|4 of normal_damage,
+		touches for 0|0 of steal_money;
+};
+
+creature "Huge Brown Bat" {
+	level: 3;	hd: 2|6;	letter: "b";	exp: 4;
+	speed: 3;	ac: 12;		radius: 8;	sleep: 40;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	defense: infra;
+	move: move_normal, random_75;
+	special: none;
+	spell: none;
+	attack:	bites for 1|2 of normal_damage;
+};
+
+creature "Giant White Ant" {
+	level: 3;	hd: 3|6;	letter: "a";	exp: 7;
+	speed: 1;	ac: 16;		radius: 8;	sleep: 80;
+	treasure: none;
+	defense: animal;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	bites for 1|4 of normal_damage;
+};
+
+creature "Yellow Mold" {
+	level: 3;	hd: 8|8;	letter: "m";	exp: 9;
+	speed: 1;	ac: 10;		radius: 2;	sleep: 99;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	hits for 1|4 of normal_damage;
+};
+
+creature "Metallic Red Centipede" {
+	level: 3;	hd: 4|8;	letter: "c";	exp: 12;
+	speed: 2;	ac: 9;		radius: 8;	sleep: 20;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	crawls_on for 1|2 of normal_damage;
+};
+
+creature "Yellow Worm mass" {
+	level: 3;	hd: 4|8;	letter: "w";	exp: 4;
+	speed: 0;	ac: 4;		radius: 7;	sleep: 10;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	defense: light;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	crawls_on for 1|3 of lose_dex;
+};
+
+creature "Large Green Snake" {
+	level: 3;	hd: 6|8;	letter: "R";	exp: 10;
+	speed: 0;	ac: 40;		radius: 5;	sleep: 70;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|4 of normal_damage,
+		crushes for 1|6 of normal_damage;
+};
+
+creature "Radiation Eye" {
+	level: 3;	hd: 3|6;	letter: "e";	exp: 6;
+	speed: 1;	ac: 6;		radius: 2;	sleep: 10;
+	treasure: none;
+	defense: light, infra;
+	move: attack_only;
+	special: none;
+	  spell 1/11: drain_mana;
+	attack:	gazes for 1|6 of lose_str;
+};
+
+creature "Drooling Harpy" {
+	level: 3;	hd: 2|8;	letter: "h";	exp: 7;
+	speed: 1;	ac: 22;		radius: 16;	sleep: 10;
+	treasure: none;
+	defense: evil, frost, fire, infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	claws for 1|1 of normal_damage,
+		claws for 1|1 of normal_damage,
+		bites for 1|2 of normal_damage,
+		drools_on for 0|0 of normal_damage;
+};
+
+creature "Silver Mouse" {
+	level: 4;	hd: 1|1;	letter: "r";	exp: 1;
+	speed: 1;	ac: 5;		radius: 8;	sleep: 10;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	move: move_normal, random_20;
+	special: multiply;
+	spell: none;
+	attack:	hits for 1|1 of eat_light;
+};
+
+creature "Black Mushroom patch" {
+	level: 4;	hd: 8|8;	letter: ",";	exp: 8;
+	speed: 1;	ac: 1;		radius: 2;	sleep: 0;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	releases_spores for 1|3 of normal_damage;
+};
+
+creature "Blue Jelly" {
+	level: 4;	hd: 12|8;	letter: "J";	exp: 14;
+	speed: 1;	ac: 1;		radius: 2;	sleep: 99;
+	treasure: none;
+	defense: fire, acid, light, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	touches for 1|6 of cold_damage;
+};
+
+creature "Creeping Copper Coins" {
+	level: 4;	hd: 7|8;	letter: "$";	exp: 9;
+	speed: 0;	ac: 24;		radius: 3;	sleep: 10;
+	treasure: carry_gold, has_1d2_obj;
+	defense: no_sleep;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	hits for 1|4 of normal_damage,
+		touches for 2|4 of poison;
+};
+
+creature "Giant White Rat" {
+	level: 4;	hd: 2|2;	letter: "r";	exp: 1;
+	speed: 1;	ac: 7;		radius: 8;	sleep: 30;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	defense: infra;
+	move: move_normal, random_20;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|3 of poison;
+};
+
+creature "Giant Black Centipede" {
+	level: 4;	hd: 5|8;	letter: "c";	exp: 11;
+	speed: 1;	ac: 20;		radius: 8;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|2 of normal_damage,
+		stings for 1|2 of normal_damage;
+};
+
+creature "Giant Blue Centipede" {
+	level: 4;	hd: 4|8;	letter: "c";	exp: 10;
+	speed: 1;	ac: 20;		radius: 8;	sleep: 50;
+	treasure: none;
+	defense: animal;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	bites for 1|3 of normal_damage,
+		stings for 1|4 of normal_damage;
+};
+
+creature "Blue Worm mass" {
+	level: 4;	hd: 5|8;	letter: "w";	exp: 5;
+	speed: 0;	ac: 12;		radius: 7;	sleep: 10;
+	treasure: none;
+	defense: animal, fire, acid, light;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	crawls_on for 1|4 of cold_damage;
+};
+
+creature "Large Grey Snake" {
+	level: 4;	hd: 6|8;	letter: "R";	exp: 14;
+	speed: 0;	ac: 41;		radius: 6;	sleep: 50;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|5 of normal_damage,
+		crushes for 1|8 of normal_damage;
+};
+
+creature "Jackal" {
+	level: 4;	hd: 3|8;	letter: "j";	exp: 8;
+	speed: 1;	ac: 16;		radius: 12;	sleep: 30;
+	treasure: none;
+	defense: animal, frost, fire, infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 1|6 of normal_damage;
+};
+
+creature "Green Naga" {
+	level: 5;	hd: 9|8;	letter: "n";	exp: 30;
+	speed: 1;	ac: 40;		radius: 18;	sleep: 120;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, fire, poison, infra;
+	move: move_normal, random_20;
+	special: picks_up;
+	spell: none;
+	attack:	crushes for 1|8 of normal_damage,
+		spits for 2|6 of acid_damage;
+};
+
+creature "Green Glutton Ghost" {
+	level: 5;	hd: 3|6;	letter: "G";	exp: 15;
+	speed: 3;	ac: 20;		radius: 10;	sleep: 10;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	treasure: has_random_90;
+	defense: evil, undead, light, no_sleep;
+	move: move_normal, random_40, random_75;
+	special: invisible, phase, picks_up;
+	  spell 1/15: tel_short, tel_long;
+	attack:	slimes for 1|1 of eat_food;
+};
+
+creature "White Mushroom patch" {
+	level: 5;	hd: 1|1;	letter: ",";	exp: 5;
+	speed: 1;	ac: 1;		radius: 2;	sleep: 0;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	releases_spores for 2|4 of cause_paralysis;
+};
+
+creature "Green Jelly" {
+	level: 5;	hd: 22|8;	letter: "J";	exp: 18;
+	speed: 2;	ac: 1;		radius: 2;	sleep: 99;
+	treasure: none;
+	defense: fire, light, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	touches for 1|2 of corrosion;
+};
+
+creature "Skeleton Kobold" {
+	level: 5;	hd: 5|8;	letter: "s";	exp: 12;
+	speed: 1;	ac: 26;		radius: 20;	sleep: 40;
+	treasure: none;
+	defense: evil, undead, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage;
+};
+
+creature "Silver Jelly" {
+	level: 5;	hd: 20|8;	letter: "J";	exp: 15;
+	speed: 1;	ac: 25;		radius: 2;	sleep: 40;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	touches for 1|3 of eat_light;
+};
+
+creature "Giant Black Frog" {
+	level: 5;	hd: 4|8;	letter: "f";	exp: 12;
+	speed: 1;	ac: 18;		radius: 12;	sleep: 40;
+	treasure: none;
+	defense: animal, fire, acid;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|6 of normal_damage;
+};
+
+creature "Grey Icky-Thing" {
+	level: 5;	hd: 4|8;	letter: "i";	exp: 10;
+	speed: 1;	ac: 12;		radius: 14;	sleep: 15;
+	treasure: none;
+	defense: fire;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	touches for 1|5 of normal_damage;
+};
+
+creature "Disenchanter Eye" {
+	level: 5;	hd: 7|8;	letter: "e";	exp: 20;
+	speed: 0;	ac: 10;		radius: 2;	sleep: 10;
+	treasure: none;
+	defense: light, infra;
+	move: attack_only;
+	special: none;
+	  spell 1/9: drain_mana;
+	attack:	gazes for 0|0 of disenchant;
+};
+
+creature "Black Yeek" {
+	level: 5;	hd: 2|8;	letter: "y";	exp: 8;
+	speed: 1;	ac: 16;		radius: 18;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|5 of normal_damage;
+};
+
+creature "Red Worm mass" {
+	level: 5;	hd: 5|8;	letter: "w";	exp: 6;
+	speed: 0;	ac: 12;		radius: 7;	sleep: 10;
+	treasure: none;
+	defense: animal, frost, acid, light;
+	defense: infra;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	crawls_on for 1|6 of fire_damage;
+};
+
+creature "Giant House Fly" {
+	level: 5;	hd: 3|8;	letter: "F";	exp: 10;
+	speed: 3;	ac: 16;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal, fire, poison;
+	move: move_normal, random_75;
+	special: none;
+	spell: none;
+	attack:	bites for 1|2 of normal_damage;
+};
+
+creature "Copperhead Snake" {
+	level: 5;	hd: 4|6;	letter: "R";	exp: 15;
+	speed: 1;	ac: 20;		radius: 6;	sleep: 1;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 2|4 of poison;
+};
+
+creature "Rot Jelly" {
+	level: 5;	hd: 20|8;	letter: "J";	exp: 15;
+	speed: 1;	ac: 30;		radius: 2;	sleep: 99;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	touches for 2|3 of eat_food;
+};
+
+creature "Purple Mushroom patch" {
+	level: 6;	hd: 1|1;	letter: ",";	exp: 12;
+	speed: 2;	ac: 1;		radius: 2;	sleep: 0;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	releases_spores for 1|2 of lose_con;
+};
+
+creature "Brown Mold" {
+	level: 6;	hd: 15|8;	letter: "m";	exp: 20;
+	speed: 1;	ac: 12;		radius: 2;	sleep: 99;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	hits for 1|4 of confusion;
+};
+
+creature "Giant Brown Bat" {
+	level: 6;	hd: 3|8;	letter: "b";	exp: 10;
+	speed: 3;	ac: 15;		radius: 10;	sleep: 30;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	defense: infra;
+	move: move_normal, random_20, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 1|3 of normal_damage;
+};
+
+creature "Creeping Silver Coins" {
+	level: 6;	hd: 12|8;	letter: "$";	exp: 18;
+	speed: 0;	ac: 30;		radius: 4;	sleep: 10;
+	treasure: carry_gold, has_random_60, has_1d2_obj;
+	defense: no_sleep;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage,
+		touches for 2|6 of poison;
+};
+
+creature "Orc" {
+	level: 6;	hd: 9|8;	letter: "o";	exp: 16;
+	speed: 1;	ac: 32;		radius: 20;	sleep: 30;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|8 of normal_damage;
+};
+
+creature "Grey Harpy" {
+	level: 6;	hd: 3|8;	letter: "h";	exp: 14;
+	speed: 2;	ac: 20;		radius: 16;	sleep: 10;
+	treasure: none;
+	defense: evil, frost, fire, infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	claws for 1|2 of normal_damage,
+		claws for 1|2 of normal_damage,
+		bites for 1|2 of normal_damage;
+};
+
+creature "Blue Icky-Thing" {
+	level: 6;	hd: 4|8;	letter: "i";	exp: 12;
+	speed: 1;	ac: 14;		radius: 14;	sleep: 20;
+	treasure: none;
+	defense: fire;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	touches for 2|3 of cold_damage;
+};
+
+creature "Rattlesnake" {
+	level: 6;	hd: 6|7;	letter: "R";	exp: 20;
+	speed: 1;	ac: 24;		radius: 6;	sleep: 1;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 2|5 of poison;
+};
+
+creature "Bloodshot Eye" {
+	level: 7;	hd: 4|8;	letter: "e";	exp: 15;
+	speed: 1;	ac: 6;		radius: 2;	sleep: 10;
+	treasure: none;
+	defense: light, infra;
+	move: attack_only;
+	special: none;
+	  spell 1/7: drain_mana;
+	attack:	gazes for 2|6 of cause_blindness;
+};
+
+creature "Red Naga" {
+	level: 7;	hd: 11|8;	letter: "n";	exp: 40;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 120;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, fire, poison, acid;
+	defense: infra;
+	move: move_normal, random_20;
+	special: picks_up;
+	spell: none;
+	attack:	crushes for 1|10 of normal_damage,
+		bites for 1|4 of lose_str;
+};
+
+creature "Red Jelly" {
+	level: 7;	hd: 26|8;	letter: "J";	exp: 26;
+	speed: 1;	ac: 1;		radius: 2;	sleep: 99;
+	treasure: none;
+	defense: fire, acid, light, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	touches for 1|5 of lose_str;
+};
+
+creature "Giant Red Frog" {
+	level: 7;	hd: 5|8;	letter: "f";	exp: 16;
+	speed: 1;	ac: 16;		radius: 12;	sleep: 50;
+	treasure: none;
+	defense: animal, fire, acid;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 2|4 of lose_str;
+};
+
+creature "Green Icky-Thing" {
+	level: 7;	hd: 5|8;	letter: "i";	exp: 18;
+	speed: 1;	ac: 12;		radius: 14;	sleep: 20;
+	treasure: none;
+	defense: fire;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	touches for 2|5 of corrosion;
+};
+
+creature "Zombie Kobold" {
+	level: 7;	hd: 6|8;	letter: "z";	exp: 14;
+	speed: 1;	ac: 14;		radius: 20;	sleep: 30;
+	treasure: none;
+	defense: evil, undead, fire, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|2 of normal_damage,
+		hits for 1|2 of normal_damage;
+};
+
+creature "Lost Soul" {
+	level: 7;	hd: 2|8;	letter: "G";	exp: 18;
+	speed: 1;	ac: 10;		radius: 12;	sleep: 10;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	treasure: has_random_90;
+	defense: evil, undead, light, no_sleep;
+	move: move_normal, random_20, random_40;
+	special: invisible, phase, picks_up;
+	  spell 1/15: tel_long, drain_mana;
+	attack:	hits for 2|2 of normal_damage,
+		touches for 0|0 of lose_wis;
+};
+
+creature "Greedy Little Gnome" {
+	level: 7;	hd: 3|8;	letter: "p";	exp: 13;
+	speed: 1;	ac: 14;		radius: 18;	sleep: 10;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_90;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	hits for 1|7 of normal_damage,
+		touches for 0|0 of steal_obj;
+};
+
+creature "Giant Green Fly" {
+	level: 7;	hd: 3|8;	letter: "F";	exp: 15;
+	speed: 2;	ac: 14;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal, fire, poison;
+	move: move_normal, random_75;
+	special: none;
+	spell: none;
+	attack:	bites for 1|4 of normal_damage;
+};
+
+creature "Brown Yeek" {
+	level: 8;	hd: 3|8;	letter: "y";	exp: 11;
+	speed: 1;	ac: 18;		radius: 18;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage;
+};
+
+creature "Green Mold" {
+	level: 8;	hd: 21|8;	letter: "m";	exp: 28;
+	speed: 1;	ac: 14;		radius: 2;	sleep: 75;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	hits for 1|4 of cause_fear;
+};
+
+creature "Skeleton Orc" {
+	level: 8;	hd: 10|8;	letter: "s";	exp: 26;
+	speed: 1;	ac: 36;		radius: 20;	sleep: 40;
+	treasure: none;
+	defense: evil, undead, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 2|5 of normal_damage;
+};
+
+creature "Seedy Looking Human" {
+	level: 8;	hd: 8|8;	letter: "p";	exp: 22;
+	speed: 1;	ac: 26;		radius: 20;	sleep: 20;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|4 of normal_damage;
+};
+
+creature "Red Icky-Thing" {
+	level: 8;	hd: 4|8;	letter: "i";	exp: 22;
+	speed: 2;	ac: 18;		radius: 14;	sleep: 20;
+	treasure: none;
+	defense: fire;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	touches for 1|3 of normal_damage,
+		breathes for 1|5 of acid_damage;
+};
+
+creature "Bandit" {
+	level: 8;	hd: 8|8;	letter: "p";	exp: 26;
+	speed: 1;	ac: 24;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	hits for 2|4 of normal_damage,
+		touches for 0|0 of steal_money;
+};
+
+creature "Yeti" {
+	level: 9;	hd: 11|8;	letter: "Y";	exp: 30;
+	speed: 1;	ac: 24;		radius: 20;	sleep: 10;
+	treasure: none;
+	defense: evil, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	claws for 1|3 of normal_damage,
+		claws for 1|3 of normal_damage,
+		bites for 1|4 of normal_damage;
+};
+
+creature "Bloodshot Icky-Thing" {
+	level: 9;	hd: 7|8;	letter: "i";	exp: 24;
+	speed: 1;	ac: 18;		radius: 14;	sleep: 20;
+	treasure: none;
+	defense: fire;
+	move: move_normal, random_40;
+	special: none;
+	  spell 1/11: drain_mana;
+	attack:	touches for 1|4 of normal_damage,
+		breathes for 2|4 of corrosion;
+};
+
+creature "Giant Grey Rat" {
+	level: 9;	hd: 2|3;	letter: "r";	exp: 2;
+	speed: 1;	ac: 12;		radius: 8;	sleep: 20;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	defense: infra;
+	move: move_normal, random_20;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|4 of poison;
+};
+
+creature "Black Harpy" {
+	level: 9;	hd: 3|8;	letter: "h";	exp: 19;
+	speed: 2;	ac: 22;		radius: 16;	sleep: 10;
+	treasure: none;
+	defense: evil, frost, fire, infra;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	claws for 1|2 of normal_damage,
+		claws for 1|2 of normal_damage,
+		bites for 1|3 of normal_damage;
+};
+
+creature "Giant Black Bat" {
+	level: 9;	hd: 2|8;	letter: "b";	exp: 16;
+	speed: 3;	ac: 18;		radius: 12;	sleep: 25;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 1|6 of normal_damage;
+};
+
+creature "Clear Yeek" {
+	level: 9;	hd: 3|6;	letter: "y";	exp: 14;
+	speed: 1;	ac: 24;		radius: 18;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: frost, fire;
+	move: move_normal;
+	special: invisible, open_door;
+	spell: none;
+	attack:	hits for 1|5 of normal_damage;
+};
+
+creature "Orc Shaman" {
+	level: 9;	hd: 7|8;	letter: "o";	exp: 30;
+	speed: 1;	ac: 15;		radius: 20;	sleep: 20;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	  spell 1/5: lght_wnd, slow_per;
+	attack:	hits for 1|6 of normal_damage;
+};
+
+creature "Giant Red Ant" {
+	level: 9;	hd: 4|8;	letter: "a";	exp: 22;
+	speed: 1;	ac: 34;		radius: 12;	sleep: 60;
+	treasure: none;
+	defense: animal;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	bites for 1|4 of normal_damage,
+		stings for 1|4 of lose_str;
+};
+
+creature "King Cobra" {
+	level: 9;	hd: 8|8;	letter: "R";	exp: 28;
+	speed: 1;	ac: 30;		radius: 8;	sleep: 1;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	spits for 1|2 of cause_blindness,
+		bites for 3|4 of poison;
+};
+
+creature "Clear Mushroom patch" {
+	level: 10;	hd: 1|1;	letter: ",";	exp: 1;
+	speed: 2;	ac: 1;		radius: 4;	sleep: 0;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: invisible, multiply;
+	spell: none;
+	attack:	releases_spores for 1|1 of normal_damage;
+};
+
+creature "Giant White Tick" {
+	level: 10;	hd: 15|8;	letter: "t";	exp: 27;
+	speed: 0;	ac: 40;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal, fire;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 2|6 of poison;
+};
+
+creature "Hairy Mold" {
+	level: 10;	hd: 15|8;	letter: "m";	exp: 32;
+	speed: 1;	ac: 15;		radius: 2;	sleep: 70;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	hits for 1|3 of poison;
+};
+
+creature "Disenchanter Mold" {
+	level: 10;	hd: 16|8;	letter: "m";	exp: 40;
+	speed: 1;	ac: 20;		radius: 2;	sleep: 70;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	  spell 1/11: drain_mana;
+	attack:	touches for 1|6 of disenchant;
+};
+
+creature "Giant Red Centipede" {
+	level: 10;	hd: 3|8;	letter: "c";	exp: 24;
+	speed: 2;	ac: 26;		radius: 12;	sleep: 50;
+	treasure: none;
+	defense: animal;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	bites for 1|2 of normal_damage,
+		stings for 1|2 of poison;
+};
+
+creature "Creeping Gold Coins" {
+	level: 10;	hd: 18|8;	letter: "$";	exp: 32;
+	speed: 0;	ac: 36;		radius: 5;	sleep: 10;
+	treasure: carry_gold, has_random_90, has_1d2_obj;
+	defense: no_sleep;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	hits for 2|5 of normal_damage,
+		touches for 3|5 of poison;
+};
+
+creature "Giant Fruit Fly" {
+	level: 10;	hd: 2|2;	letter: "F";	exp: 4;
+	speed: 2;	ac: 14;		radius: 8;	sleep: 10;
+	treasure: none;
+	defense: animal, fire, poison;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|2 of normal_damage;
+};
+
+creature "Brigand" {
+	level: 10;	hd: 9|8;	letter: "p";	exp: 35;
+	speed: 1;	ac: 32;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door, picks_up;
+	spell: none;
+	attack:	hits for 2|4 of normal_damage,
+		touches for 0|0 of steal_obj;
+};
+
+creature "Orc Zombie" {
+	level: 11;	hd: 11|8;	letter: "z";	exp: 30;
+	speed: 1;	ac: 24;		radius: 20;	sleep: 25;
+	treasure: none;
+	defense: evil, undead, fire, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|4 of normal_damage,
+		hits for 1|4 of normal_damage;
+};
+
+creature "Orc Warrior" {
+	level: 11;	hd: 11|8;	letter: "o";	exp: 34;
+	speed: 1;	ac: 36;		radius: 20;	sleep: 25;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 2|6 of normal_damage;
+};
+
+creature "Vorpal Bunny" {
+	level: 11;	hd: 2|3;	letter: "r";	exp: 2;
+	speed: 2;	ac: 10;		radius: 8;	sleep: 30;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	defense: infra;
+	move: move_normal, random_20;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|5 of normal_damage;
+};
+
+creature "Nasty Little Gnome" {
+	level: 11;	hd: 4|8;	letter: "p";	exp: 32;
+	speed: 1;	ac: 10;		radius: 18;	sleep: 10;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_1d2_obj;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	  spell 1/5: tel_short, tel_long, lght_wnd;
+	  spell 1/5: summon_mon;
+	attack:	hits for 1|5 of normal_damage;
+};
+
+creature "Hobgoblin" {
+	level: 11;	hd: 12|8;	letter: "H";	exp: 38;
+	speed: 1;	ac: 38;		radius: 20;	sleep: 30;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|10 of normal_damage;
+};
+
+creature "Black Mamba" {
+	level: 12;	hd: 10|8;	letter: "R";	exp: 40;
+	speed: 2;	ac: 32;		radius: 10;	sleep: 1;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 4|4 of poison;
+};
+
+creature "Grape Jelly" {
+	level: 12;	hd: 52|8;	letter: "J";	exp: 60;
+	speed: 1;	ac: 1;		radius: 2;	sleep: 99;
+	treasure: none;
+	defense: fire, acid, light, no_sleep;
+	move: attack_only;
+	special: none;
+	  spell 1/11: drain_mana;
+	attack:	touches for 5|8 of lose_exp;
+};
+
+creature "Master Yeek" {
+	level: 12;	hd: 5|8;	letter: "y";	exp: 28;
+	speed: 1;	ac: 24;		radius: 18;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	  spell 1/8: tel_short, slow_per;
+	attack:	hits for 1|8 of normal_damage;
+};
+
+creature "Priest" {
+	level: 12;	hd: 7|8;	letter: "p";	exp: 36;
+	speed: 1;	ac: 22;		radius: 20;	sleep: 40;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	  spell 1/5: lght_wnd, hold_per;
+	attack:	hits for 2|3 of normal_damage;
+};
+
+creature "Giant Clear Ant" {
+	level: 12;	hd: 3|7;	letter: "a";	exp: 24;
+	speed: 1;	ac: 18;		radius: 12;	sleep: 60;
+	treasure: none;
+	defense: animal;
+	move: move_normal;
+	special: invisible;
+	spell: none;
+	attack:	bites for 1|4 of normal_damage;
+};
+
+creature "Air Spirit" {
+	level: 12;	hd: 5|8;	letter: "E";	exp: 40;
+	speed: 3;	ac: 20;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: no_sleep;
+	move: move_normal, random_75;
+	special: invisible, open_door;
+	spell: none;
+	attack:	hits for 1|3 of normal_damage;
+};
+
+creature "Skeleton Human" {
+	level: 12;	hd: 12|8;	letter: "s";	exp: 38;
+	speed: 1;	ac: 30;		radius: 20;	sleep: 30;
+	treasure: none;
+	defense: evil, undead, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|8 of normal_damage;
+};
+
+creature "Human Zombie" {
+	level: 12;	hd: 11|8;	letter: "z";	exp: 34;
+	speed: 1;	ac: 24;		radius: 20;	sleep: 20;
+	treasure: none;
+	defense: evil, undead, fire, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|4 of normal_damage,
+		hits for 1|4 of normal_damage;
+};
+
+creature "Moaning Spirit" {
+	level: 12;	hd: 4|8;	letter: "G";	exp: 44;
+	speed: 1;	ac: 20;		radius: 14;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, undead, light, no_sleep;
+	move: move_normal, random_20;
+	special: invisible, phase, picks_up;
+	  spell 1/15: tel_long, drain_mana;
+	attack:	wails for 0|0 of cause_fear,
+		touches for 1|8 of lose_dex;
+};
+
+creature "Swordsman" {
+	level: 12;	hd: 11|8;	letter: "p";	exp: 40;
+	speed: 1;	ac: 34;		radius: 20;	sleep: 20;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|5 of normal_damage;
+};
+
+creature "Killer Brown Beetle" {
+	level: 13;	hd: 13|8;	letter: "K";	exp: 38;
+	speed: 1;	ac: 40;		radius: 10;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 3|4 of normal_damage;
+};
+
+creature "Ogre" {
+	level: 13;	hd: 13|8;	letter: "o";	exp: 42;
+	speed: 1;	ac: 32;		radius: 20;	sleep: 30;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 2|8 of normal_damage;
+};
+
+creature "Giant Red Speckled Frog" {
+	level: 13;	hd: 6|8;	letter: "f";	exp: 32;
+	speed: 1;	ac: 20;		radius: 12;	sleep: 30;
+	treasure: none;
+	defense: animal, fire, acid;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 3|4 of normal_damage;
+};
+
+creature "Magic User" {
+	level: 13;	hd: 7|8;	letter: "p";	exp: 35;
+	speed: 1;	ac: 10;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	  spell 1/3: tel_short, blind, summon_mon;
+	attack:	hits for 2|2 of normal_damage;
+};
+
+creature "Black Orc" {
+	level: 13;	hd: 12|8;	letter: "o";	exp: 40;
+	speed: 1;	ac: 36;		radius: 20;	sleep: 20;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|4 of normal_damage;
+};
+
+creature "Giant Long-Eared Bat" {
+	level: 13;	hd: 5|8;	letter: "b";	exp: 20;
+	speed: 3;	ac: 20;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 1|4 of normal_damage,
+		claws for 1|2 of normal_damage,
+		claws for 1|2 of normal_damage;
+};
+
+creature "Giant Gnat" {
+	level: 13;	hd: 1|2;	letter: "F";	exp: 1;
+	speed: 3;	ac: 4;		radius: 8;	sleep: 10;
+	treasure: none;
+	defense: animal, fire, poison;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|1 of normal_damage;
+};
+
+creature "Killer Green Beetle" {
+	level: 14;	hd: 16|8;	letter: "K";	exp: 46;
+	speed: 1;	ac: 45;		radius: 12;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 4|4 of normal_damage;
+};
+
+creature "Giant Flea" {
+	level: 14;	hd: 2|2;	letter: "F";	exp: 1;
+	speed: 2;	ac: 25;		radius: 8;	sleep: 10;
+	treasure: none;
+	defense: animal, fire, poison;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|2 of normal_damage;
+};
+
+creature "Giant White Dragon Fly" {
+	level: 14;	hd: 5|8;	letter: "F";	exp: 54;
+	speed: 1;	ac: 20;		radius: 20;	sleep: 50;
+	treasure: none;
+	defense: animal, fire, poison;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/10: frost;
+	attack:	bites for 1|6 of cold_damage;
+};
+
+creature "Hill Giant" {
+	level: 14;	hd: 16|8;	letter: "P";	exp: 52;
+	speed: 1;	ac: 36;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|6 of normal_damage;
+};
+
+creature "Skeleton Hobgoblin" {
+	level: 14;	hd: 13|8;	letter: "s";	exp: 46;
+	speed: 1;	ac: 34;		radius: 20;	sleep: 30;
+	treasure: none;
+	defense: evil, undead, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 2|5 of normal_damage;
+};
+
+creature "Flesh Golem" {
+	level: 14;	hd: 12|8;	letter: "g";	exp: 48;
+	speed: 1;	ac: 10;		radius: 12;	sleep: 10;
+	treasure: none;
+	defense: frost, fire, no_sleep;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage;
+};
+
+creature "White Dragon Bat" {
+	level: 14;	hd: 2|6;	letter: "b";	exp: 40;
+	speed: 3;	ac: 20;		radius: 12;	sleep: 50;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/4: frost;
+	attack:	bites for 1|3 of cold_damage;
+};
+
+creature "Giant Black Louse" {
+	level: 14;	hd: 1|1;	letter: "l";	exp: 1;
+	speed: 2;	ac: 7;		radius: 6;	sleep: 10;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	defense: acid, light;
+	move: move_normal, random_40;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|2 of normal_damage;
+};
+
+creature "Guardian Naga" {
+	level: 15;	hd: 24|8;	letter: "n";	exp: 60;
+	speed: 1;	ac: 50;		radius: 20;	sleep: 120;
+	treasure: carry_obj, carry_gold, has_random_60, has_1d2_obj;
+	defense: evil, fire, poison, acid;
+	defense: infra;
+	move: move_normal, random_20;
+	special: picks_up;
+	spell: none;
+	attack:	crushes for 2|8 of normal_damage,
+		bites for 1|8 of normal_damage;
+};
+
+creature "Giant Grey Bat" {
+	level: 15;	hd: 4|8;	letter: "b";	exp: 22;
+	speed: 3;	ac: 22;		radius: 12;	sleep: 15;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 1|6 of normal_damage,
+		claws for 1|2 of normal_damage,
+		claws for 1|2 of normal_damage;
+};
+
+creature "Giant Clear Centipede" {
+	level: 15;	hd: 5|8;	letter: "c";	exp: 30;
+	speed: 1;	ac: 30;		radius: 12;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal;
+	special: invisible;
+	spell: none;
+	attack:	bites for 2|4 of normal_damage,
+		stings for 2|4 of normal_damage;
+};
+
+creature "Giant Yellow Tick" {
+	level: 15;	hd: 20|8;	letter: "t";	exp: 48;
+	speed: 0;	ac: 48;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal, fire;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 3|9 of poison;
+};
+
+creature "Giant Ebony Ant" {
+	level: 15;	hd: 3|4;	letter: "a";	exp: 3;
+	speed: 1;	ac: 24;		radius: 12;	sleep: 60;
+	treasure: none;
+	defense: animal;
+	move: move_normal;
+	special: multiply;
+	spell: none;
+	attack:	bites for 2|3 of normal_damage;
+};
+
+creature "Frost Giant" {
+	level: 15;	hd: 17|8;	letter: "P";	exp: 54;
+	speed: 1;	ac: 38;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, fire;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|6 of cold_damage;
+};
+
+creature "Clay Golem" {
+	level: 15;	hd: 14|8;	letter: "g";	exp: 50;
+	speed: 1;	ac: 20;		radius: 12;	sleep: 10;
+	treasure: none;
+	defense: stone, no_sleep;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	hits for 1|8 of normal_damage,
+		hits for 1|8 of normal_damage;
+};
+
+creature "Huge White Bat" {
+	level: 15;	hd: 3|8;	letter: "b";	exp: 3;
+	speed: 2;	ac: 12;		radius: 7;	sleep: 40;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|6 of normal_damage;
+};
+
+creature "Giant Tan Bat" {
+	level: 15;	hd: 3|8;	letter: "b";	exp: 18;
+	speed: 2;	ac: 18;		radius: 12;	sleep: 40;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 1|2 of cause_fear,
+		claws for 1|1 of normal_damage,
+		claws for 1|1 of normal_damage;
+};
+
+creature "Violet Mold" {
+	level: 15;	hd: 17|8;	letter: "m";	exp: 50;
+	speed: 1;	ac: 15;		radius: 2;	sleep: 70;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	  spell 1/9: drain_mana;
+	attack:	hits for 1|2 of cause_paralysis;
+};
+
+creature "Umber Hulk" {
+	level: 16;	hd: 20|8;	letter: "U";	exp: 75;
+	speed: 1;	ac: 20;		radius: 20;	sleep: 10;
+	treasure: none;
+	defense: evil, fire, light, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	gazes for 0|0 of confusion,
+		hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage,
+		bites for 2|6 of normal_damage;
+};
+
+creature "Gelatinous Cube" {
+	level: 16;	hd: 45|8;	letter: "C";	exp: 36;
+	speed: 0;	ac: 18;		radius: 12;	sleep: 1;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	treasure: has_random_90, has_2d2_obj;
+	defense: fire, no_sleep;
+	move: move_normal, random_20;
+	special: eats_other, picks_up;
+	spell: none;
+	attack:	touches for 1|10 of acid_damage;
+};
+
+creature "Giant Black Rat" {
+	level: 16;	hd: 3|4;	letter: "r";	exp: 3;
+	speed: 1;	ac: 16;		radius: 8;	sleep: 20;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	defense: infra;
+	move: move_normal, random_20;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|5 of poison;
+};
+
+creature "Giant Green Dragon Fly" {
+	level: 16;	hd: 5|8;	letter: "F";	exp: 58;
+	speed: 1;	ac: 20;		radius: 20;	sleep: 50;
+	treasure: none;
+	defense: animal, frost, fire;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/10: gas;
+	attack:	bites for 1|6 of poison;
+};
+
+creature "Fire Giant" {
+	level: 16;	hd: 20|8;	letter: "P";	exp: 62;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, frost, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|7 of fire_damage;
+};
+
+creature "Green Dragon Bat" {
+	level: 16;	hd: 2|7;	letter: "b";	exp: 44;
+	speed: 3;	ac: 22;		radius: 12;	sleep: 50;
+	treasure: none;
+	defense: animal, frost, light, infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/4: gas;
+	attack:	bites for 1|3 of poison;
+};
+
+creature "Quasit" {
+	level: 16;	hd: 5|8;	letter: "q";	exp: 48;
+	speed: 1;	ac: 30;		radius: 20;	sleep: 20;
+	treasure: carry_small_obj, carry_obj, has_1d2_obj;
+	defense: evil, no_sleep;
+	move: move_normal, random_20;
+	special: invisible, open_door;
+	  spell 1/10: tel_short, tel_long, tel_to;
+	  spell 1/10: lght_wnd, fear;
+	attack:	bites for 1|6 of lose_dex,
+		claws for 1|3 of normal_damage,
+		claws for 1|3 of normal_damage;
+};
+
+creature "Troll" {
+	level: 17;	hd: 17|8;	letter: "T";	exp: 64;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 40;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|4 of normal_damage,
+		hits for 1|4 of normal_damage,
+		bites for 1|6 of normal_damage;
+};
+
+creature "Water Spirit" {
+	level: 17;	hd: 8|8;	letter: "E";	exp: 58;
+	speed: 2;	ac: 28;		radius: 12;	sleep: 40;
+	treasure: none;
+	defense: fire, no_sleep;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	hits for 2|4 of normal_damage;
+};
+
+creature "Giant Brown Scorpion" {
+	level: 17;	hd: 11|8;	letter: "S";	exp: 62;
+	speed: 1;	ac: 44;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 2|4 of normal_damage,
+		stings for 1|7 of lose_str;
+};
+
+creature "Earth Spirit" {
+	level: 17;	hd: 13|8;	letter: "E";	exp: 64;
+	speed: 1;	ac: 40;		radius: 10;	sleep: 50;
+	treasure: none;
+	defense: stone, no_sleep;
+	move: move_normal, random_20;
+	special: open_door, phase, picks_up;
+	spell: none;
+	attack:	hits for 1|8 of normal_damage,
+		hits for 1|8 of normal_damage;
+};
+
+creature "Fire Spirit" {
+	level: 18;	hd: 10|8;	letter: "E";	exp: 66;
+	speed: 2;	ac: 30;		radius: 16;	sleep: 20;
+	treasure: none;
+	defense: frost, no_sleep, infra;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	hits for 2|6 of fire_damage;
+};
+
+creature "Uruk-Hai Orc" {
+	level: 18;	hd: 14|8;	letter: "o";	exp: 68;
+	speed: 1;	ac: 42;		radius: 20;	sleep: 20;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|5 of normal_damage;
+};
+
+creature "Stone Giant" {
+	level: 18;	hd: 22|8;	letter: "P";	exp: 80;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, stone, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|8 of normal_damage;
+};
+
+creature "Stone Golem" {
+	level: 19;	hd: 28|8;	letter: "g";	exp: 100;
+	speed: 0;	ac: 75;		radius: 12;	sleep: 10;
+	treasure: none;
+	defense: stone, no_sleep;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	hits for 1|10 of normal_damage,
+		hits for 1|10 of normal_damage;
+};
+
+creature "Grey Ooze" {
+	level: 19;	hd: 6|8;	letter: "O";	exp: 40;
+	speed: 1;	ac: 10;		radius: 15;	sleep: 1;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	defense: fire, acid, no_sleep;
+	move: move_normal, random_75;
+	special: eats_other, picks_up;
+	spell: none;
+	attack:	touches for 2|6 of cold_damage;
+};
+
+creature "Disenchanter Ooze" {
+	level: 19;	hd: 6|8;	letter: "O";	exp: 50;
+	speed: 1;	ac: 15;		radius: 15;	sleep: 1;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, acid, no_sleep;
+	move: move_normal, random_75;
+	special: eats_other, picks_up;
+	spell: none;
+	attack:	touches for 0|0 of disenchant;
+};
+
+creature "Giant Spotted Rat" {
+	level: 19;	hd: 4|3;	letter: "r";	exp: 3;
+	speed: 1;	ac: 20;		radius: 8;	sleep: 20;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	defense: infra;
+	move: move_normal, random_20;
+	special: multiply;
+	spell: none;
+	attack:	bites for 1|5 of poison;
+};
+
+creature "Mummified Kobold" {
+	level: 19;	hd: 13|8;	letter: "M";	exp: 46;
+	speed: 1;	ac: 24;		radius: 20;	sleep: 75;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_90;
+	defense: evil, undead, fire, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage;
+};
+
+creature "Killer Black Beetle" {
+	level: 19;	hd: 18|8;	letter: "K";	exp: 75;
+	speed: 1;	ac: 46;		radius: 12;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 4|5 of normal_damage;
+};
+
+creature "Red Mold" {
+	level: 19;	hd: 17|8;	letter: "m";	exp: 64;
+	speed: 1;	ac: 16;		radius: 2;	sleep: 70;
+	treasure: none;
+	defense: frost, acid, no_sleep, infra;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	touches for 4|4 of fire_damage;
+};
+
+creature "Quylthulg" {
+	level: 20;	hd: 4|8;	letter: "Q";	exp: 200;
+	speed: 1;	ac: 1;		radius: 10;	sleep: 0;
+	treasure: none;
+	defense: no_sleep, max_hp;
+	move: magic_only;
+	special: invisible;
+	  spell 1/7: tel_short, summon_mon;
+	attack: none;
+};
+
+creature "Giant Red Bat" {
+	level: 20;	hd: 5|8;	letter: "b";	exp: 40;
+	speed: 2;	ac: 24;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 1|7 of normal_damage,
+		claws for 1|3 of normal_damage,
+		claws for 1|3 of normal_damage;
+};
+
+creature "Giant Black Dragon Fly" {
+	level: 20;	hd: 4|8;	letter: "F";	exp: 58;
+	speed: 1;	ac: 22;		radius: 20;	sleep: 50;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/9: acid;
+	attack:	bites for 1|6 of cause_blindness;
+};
+
+creature "Cloud Giant" {
+	level: 20;	hd: 24|8;	letter: "P";	exp: 125;
+	speed: 1;	ac: 44;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|8 of lightning_damage;
+};
+
+creature "Black Dragon Bat" {
+	level: 21;	hd: 2|8;	letter: "b";	exp: 50;
+	speed: 3;	ac: 24;		radius: 12;	sleep: 50;
+	treasure: none;
+	defense: animal, frost, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/4: acid;
+	attack:	bites for 1|3 of acid_damage;
+};
+
+creature "Blue Dragon Bat" {
+	level: 21;	hd: 3|6;	letter: "b";	exp: 54;
+	speed: 3;	ac: 26;		radius: 12;	sleep: 50;
+	treasure: none;
+	defense: animal, frost, poison, infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/4: light;
+	attack:	bites for 1|3 of lightning_damage;
+};
+
+creature "Mummified Orc" {
+	level: 21;	hd: 14|8;	letter: "M";	exp: 56;
+	speed: 1;	ac: 28;		radius: 20;	sleep: 75;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: evil, undead, fire, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 2|4 of normal_damage,
+		hits for 2|4 of normal_damage;
+};
+
+creature "Killer Boring Beetle" {
+	level: 21;	hd: 18|8;	letter: "K";	exp: 70;
+	speed: 1;	ac: 48;		radius: 12;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 4|5 of normal_damage;
+};
+
+creature "Killer Stag Beetle" {
+	level: 22;	hd: 20|8;	letter: "K";	exp: 80;
+	speed: 1;	ac: 50;		radius: 12;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 3|4 of normal_damage,
+		hits for 1|12 of normal_damage;
+};
+
+creature "Black Mold" {
+	level: 22;	hd: 15|8;	letter: "m";	exp: 68;
+	speed: 1;	ac: 18;		radius: 2;	sleep: 50;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	hits for 4|3 of normal_damage;
+};
+
+creature "Iron Golem" {
+	level: 22;	hd: 80|8;	letter: "g";	exp: 160;
+	speed: -1;	ac: 99;		radius: 12;	sleep: 10;
+	treasure: none;
+	defense: acid, no_sleep;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	hits for 1|12 of normal_damage,
+		hits for 1|12 of normal_damage;
+};
+
+creature "Giant Yellow Scorpion" {
+	level: 22;	hd: 12|8;	letter: "S";	exp: 60;
+	speed: 1;	ac: 38;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|8 of normal_damage,
+		stings for 2|5 of poison;
+};
+
+creature "Green Ooze" {
+	level: 22;	hd: 4|8;	letter: "O";	exp: 6;
+	speed: 0;	ac: 5;		radius: 15;	sleep: 1;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, no_sleep;
+	move: move_normal, random_40;
+	special: open_door, eats_other, picks_up, multiply;
+	spell: none;
+	attack:	touches for 2|3 of acid_damage;
+};
+
+creature "Black Ooze" {
+	level: 23;	hd: 6|8;	letter: "O";	exp: 7;
+	speed: -1;	ac: 6;		radius: 10;	sleep: 1;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, no_sleep;
+	move: move_normal, random_40;
+	special: open_door, eats_other, picks_up, multiply;
+	  spell 1/11: drain_mana;
+	attack:	touches for 2|6 of corrosion;
+};
+
+creature "Warrior" {
+	level: 23;	hd: 15|8;	letter: "p";	exp: 60;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 40;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|5 of normal_damage;
+};
+
+creature "Red Dragon Bat" {
+	level: 23;	hd: 3|8;	letter: "b";	exp: 60;
+	speed: 3;	ac: 28;		radius: 12;	sleep: 50;
+	treasure: none;
+	defense: animal, frost, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/4: fire;
+	attack:	bites for 1|3 of fire_damage;
+};
+
+creature "Killer Blue Beetle" {
+	level: 23;	hd: 20|8;	letter: "K";	exp: 85;
+	speed: 1;	ac: 50;		radius: 14;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 4|5 of normal_damage;
+};
+
+creature "Giant Silver Ant" {
+	level: 23;	hd: 6|8;	letter: "a";	exp: 45;
+	speed: 1;	ac: 38;		radius: 10;	sleep: 60;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 4|4 of acid_damage;
+};
+
+creature "Crimson Mold" {
+	level: 23;	hd: 16|8;	letter: "m";	exp: 65;
+	speed: 1;	ac: 18;		radius: 2;	sleep: 50;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	hits for 1|3 of normal_damage,
+		touches for 0|0 of cause_fear;
+};
+
+creature "Forest Wight" {
+	level: 24;	hd: 12|8;	letter: "W";	exp: 140;
+	speed: 1;	ac: 30;		radius: 20;	sleep: 30;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, undead, fire, light;
+	defense: no_sleep;
+	move: move_normal, random_20;
+	special: open_door;
+	  spell 1/15: fear;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage,
+		touches for 12|8 of lose_exp;
+};
+
+creature "Berzerker" {
+	level: 24;	hd: 15|8;	letter: "p";	exp: 65;
+	speed: 1;	ac: 20;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|8 of normal_damage,
+		hits for 1|8 of normal_damage;
+};
+
+creature "Mummified Human" {
+	level: 24;	hd: 17|8;	letter: "M";	exp: 70;
+	speed: 1;	ac: 34;		radius: 20;	sleep: 60;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: evil, undead, fire, no_sleep;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 2|4 of normal_damage,
+		hits for 2|4 of normal_damage;
+};
+
+creature "Banshee" {
+	level: 24;	hd: 6|8;	letter: "G";	exp: 60;
+	speed: 2;	ac: 24;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, undead, light, no_sleep;
+	move: move_normal, random_20, random_40;
+	special: invisible, phase, picks_up;
+	  spell 1/15: tel_long, drain_mana;
+	attack:	wails for 0|0 of cause_fear,
+		touches for 14|8 of lose_exp;
+};
+
+creature "Giant Troll" {
+	level: 25;	hd: 19|8;	letter: "T";	exp: 85;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, fire, infra;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage,
+		bites for 3|4 of normal_damage;
+};
+
+creature "Giant Brown Tick" {
+	level: 25;	hd: 18|8;	letter: "t";	exp: 70;
+	speed: 0;	ac: 50;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal, fire;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|10 of poison,
+		stings for 1|1 of cause_blindness;
+};
+
+creature "Killer Red Beetle" {
+	level: 25;	hd: 20|8;	letter: "K";	exp: 85;
+	speed: 1;	ac: 50;		radius: 14;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 4|4 of lose_str;
+};
+
+creature "Wooden Mold" {
+	level: 25;	hd: 25|8;	letter: "m";	exp: 100;
+	speed: 1;	ac: 50;		radius: 2;	sleep: 50;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	touches for 2|6 of poison;
+};
+
+creature "Giant Blue Dragon Fly" {
+	level: 25;	hd: 6|8;	letter: "F";	exp: 75;
+	speed: 1;	ac: 24;		radius: 20;	sleep: 50;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/9: light;
+	attack:	bites for 1|6 of normal_damage;
+};
+
+creature "Giant Grey Ant Lion" {
+	level: 26;	hd: 19|8;	letter: "A";	exp: 90;
+	speed: 1;	ac: 40;		radius: 10;	sleep: 40;
+	treasure: none;
+	defense: animal, frost, fire;
+	move: move_normal, random_20;
+	special: eats_other;
+	spell: none;
+	attack:	bites for 2|12 of normal_damage;
+};
+
+creature "Disenchanter Bat" {
+	level: 26;	hd: 4|8;	letter: "b";	exp: 75;
+	speed: 3;	ac: 24;		radius: 14;	sleep: 1;
+	treasure: none;
+	defense: animal, fire, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	hits for 0|0 of disenchant;
+};
+
+creature "Giant Fire Tick" {
+	level: 26;	hd: 16|8;	letter: "t";	exp: 90;
+	speed: 1;	ac: 54;		radius: 14;	sleep: 20;
+	treasure: none;
+	defense: animal, frost, infra;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	spits for 3|7 of fire_damage;
+};
+
+creature "White Wraith" {
+	level: 26;	hd: 15|8;	letter: "W";	exp: 165;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, undead, fire, light;
+	defense: no_sleep;
+	move: move_normal, random_20;
+	special: open_door;
+	  spell 1/12: fear;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage,
+		touches for 15|8 of lose_exp;
+};
+
+creature "Giant Black Scorpion" {
+	level: 26;	hd: 13|8;	letter: "S";	exp: 85;
+	speed: 1;	ac: 50;		radius: 12;	sleep: 20;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|10 of normal_damage,
+		stings for 2|5 of poison;
+};
+
+creature "Clear Ooze" {
+	level: 26;	hd: 4|8;	letter: "O";	exp: 12;
+	speed: 1;	ac: 14;		radius: 10;	sleep: 1;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	defense: frost, fire, acid, no_sleep;
+	move: move_normal, random_20;
+	special: invisible, eats_other, picks_up;
+	spell: none;
+	attack:	touches for 1|8 of confusion;
+};
+
+creature "Killer Fire Beetle" {
+	level: 27;	hd: 13|8;	letter: "K";	exp: 95;
+	speed: 1;	ac: 45;		radius: 14;	sleep: 30;
+	treasure: none;
+	defense: animal, frost, infra;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 3|4 of normal_damage,
+		spits for 4|5 of fire_damage;
+};
+
+creature "Vampire" {
+	level: 27;	hd: 20|8;	letter: "V";	exp: 175;
+	speed: 1;	ac: 45;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_1d2_obj;
+	defense: evil, undead, fire, light;
+	defense: no_sleep;
+	move: move_normal;
+	special: open_door;
+	  spell 1/9: hold_per, fear;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage,
+		touches for 18|8 of lose_exp;
+};
+
+creature "Giant Red Dragon Fly" {
+	level: 27;	hd: 7|8;	letter: "F";	exp: 75;
+	speed: 1;	ac: 24;		radius: 20;	sleep: 50;
+	treasure: none;
+	defense: animal, frost, poison, infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	breath 1/8: fire;
+	attack:	bites for 1|6 of cause_fear;
+};
+
+creature "Shimmering Mold" {
+	level: 27;	hd: 32|8;	letter: "m";	exp: 180;
+	speed: 1;	ac: 24;		radius: 2;	sleep: 50;
+	treasure: none;
+	defense: fire, acid, no_sleep;
+	move: attack_only;
+	special: none;
+	spell: none;
+	attack:	touches for 5|4 of lightning_damage;
+};
+
+creature "Black Knight" {
+	level: 28;	hd: 25|8;	letter: "p";	exp: 140;
+	speed: 1;	ac: 60;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: evil, frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	  spell 1/15: ser_wnd;
+	attack:	hits for 5|5 of normal_damage;
+};
+
+creature "Mage" {
+	level: 28;	hd: 10|8;	letter: "p";	exp: 150;
+	speed: 1;	ac: 30;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: frost, fire, infra;
+	move: move_normal;
+	special: open_door;
+	  spell 1/3: tel_short, tel_long, tel_to;
+	  spell 1/3: blind, confuse, summon_mon;
+	attack:	hits for 2|5 of normal_damage;
+};
+
+creature "Ice Troll" {
+	level: 28;	hd: 22|8;	letter: "T";	exp: 160;
+	speed: 1;	ac: 46;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, fire;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|5 of normal_damage,
+		hits for 1|5 of normal_damage,
+		bites for 3|6 of cold_damage;
+};
+
+creature "Giant Purple Worm" {
+	level: 29;	hd: 65|8;	letter: "w";	exp: 400;
+	speed: 1;	ac: 65;		radius: 14;	sleep: 30;
+	treasure: none;
+	defense: animal, frost, fire, infra;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	hits for 1|8 of normal_damage,
+		bites for 2|8 of acid_damage,
+		stings for 1|8 of poison;
+};
+
+creature "Young Blue Dragon" {
+	level: 29;	hd: 33|8;	letter: "d";	exp: 300;
+	speed: 1;	ac: 50;		radius: 20;	sleep: 70;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: dragon, evil, infra;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/11: fear;
+	breath 1/11: light;
+	attack:	claws for 1|4 of normal_damage,
+		claws for 1|4 of normal_damage,
+		bites for 1|6 of normal_damage;
+};
+
+creature "Young White Dragon" {
+	level: 29;	hd: 32|8;	letter: "d";	exp: 275;
+	speed: 1;	ac: 50;		radius: 20;	sleep: 70;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: dragon, evil, fire;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/11: fear;
+	breath 1/11: frost;
+	attack:	claws for 1|4 of normal_damage,
+		claws for 1|4 of normal_damage,
+		bites for 1|6 of normal_damage;
+};
+
+creature "Young Green Dragon" {
+	level: 29;	hd: 32|8;	letter: "d";	exp: 290;
+	speed: 1;	ac: 50;		radius: 20;	sleep: 70;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: dragon, evil, infra;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/11: fear;
+	breath 1/11: gas;
+	attack:	claws for 1|4 of normal_damage,
+		claws for 1|4 of normal_damage,
+		bites for 1|6 of normal_damage;
+};
+
+creature "Giant Fire Bat" {
+	level: 29;	hd: 5|8;	letter: "b";	exp: 85;
+	speed: 2;	ac: 30;		radius: 14;	sleep: 10;
+	treasure: none;
+	defense: animal, frost, poison, light;
+	defense: infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 3|6 of fire_damage,
+		claws for 1|4 of normal_damage,
+		claws for 1|4 of normal_damage;
+};
+
+creature "Giant Glowing Rat" {
+	level: 29;	hd: 3|3;	letter: "r";	exp: 4;
+	speed: 1;	ac: 24;		radius: 8;	sleep: 20;
+	treasure: none;
+	defense: animal, frost, fire, poison;
+	defense: infra;
+	move: move_normal, random_20;
+	special: multiply;
+	spell: none;
+	attack:	bites for 2|6 of lightning_damage;
+};
+
+creature "Skeleton Troll" {
+	level: 30;	hd: 14|8;	letter: "s";	exp: 225;
+	speed: 1;	ac: 55;		radius: 20;	sleep: 20;
+	treasure: none;
+	defense: evil, undead, no_sleep, max_hp;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage,
+		bites for 3|4 of normal_damage;
+};
+
+creature "Giant Lightning Bat" {
+	level: 30;	hd: 8|8;	letter: "b";	exp: 80;
+	speed: 2;	ac: 34;		radius: 15;	sleep: 10;
+	treasure: none;
+	defense: animal, poison, infra;
+	move: move_normal, random_40;
+	special: none;
+	spell: none;
+	attack:	bites for 3|8 of lightning_damage,
+		claws for 1|5 of normal_damage,
+		claws for 1|5 of normal_damage;
+};
+
+creature "Giant Static Ant" {
+	level: 30;	hd: 8|8;	letter: "a";	exp: 80;
+	speed: 1;	ac: 40;		radius: 10;	sleep: 60;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 5|5 of lightning_damage;
+};
+
+creature "Grave Wight" {
+	level: 30;	hd: 12|8;	letter: "W";	exp: 325;
+	speed: 1;	ac: 35;		radius: 20;	sleep: 30;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, undead, fire, light;
+	defense: no_sleep, max_hp;
+	move: move_normal, random_20;
+	special: open_door;
+	  spell 1/10: ser_wnd, fear;
+	attack:	hits for 1|7 of normal_damage,
+		hits for 1|7 of normal_damage,
+		touches for 20|8 of lose_exp;
+};
+
+creature "Killer Slicer Beetle" {
+	level: 30;	hd: 22|8;	letter: "K";	exp: 200;
+	speed: 1;	ac: 55;		radius: 14;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 5|8 of normal_damage;
+};
+
+creature "Giant White Ant Lion" {
+	level: 30;	hd: 20|8;	letter: "A";	exp: 175;
+	speed: 1;	ac: 45;		radius: 12;	sleep: 40;
+	treasure: none;
+	defense: animal, fire;
+	move: move_normal, random_20;
+	special: eats_other;
+	spell: none;
+	attack:	bites for 3|10 of cold_damage;
+};
+
+creature "Ghost" {
+	level: 31;	hd: 13|8;	letter: "G";	exp: 350;
+	speed: 2;	ac: 30;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_1d2_obj;
+	defense: evil, undead, light, no_sleep;
+	defense: max_hp;
+	move: move_normal, random_20;
+	special: invisible, phase, picks_up;
+	  spell 1/15: tel_long, drain_mana;
+	attack:	wails for 0|0 of cause_fear,
+		touches for 22|8 of lose_exp,
+		claws for 1|10 of lose_int;
+};
+
+creature "Giant Black Ant Lion" {
+	level: 31;	hd: 23|8;	letter: "A";	exp: 170;
+	speed: 1;	ac: 45;		radius: 14;	sleep: 40;
+	treasure: none;
+	defense: animal, frost, fire;
+	move: move_normal, random_20;
+	special: eats_other;
+	spell: none;
+	attack:	bites for 2|12 of normal_damage,
+		spits for 3|6 of acid_damage;
+};
+
+creature "Death Watch Beetle" {
+	level: 31;	hd: 25|8;	letter: "K";	exp: 190;
+	speed: 1;	ac: 60;		radius: 16;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 5|4 of normal_damage,
+		wails for 5|6 of normal_damage;
+};
+
+creature "Ogre Mage" {
+	level: 31;	hd: 14|8;	letter: "o";	exp: 250;
+	speed: 1;	ac: 42;		radius: 20;	sleep: 30;
+	treasure: carry_obj, carry_gold, has_random_90;
+	defense: evil, frost, fire, infra;
+	defense: max_hp;
+	move: move_normal;
+	special: open_door;
+	  spell 1/5: tel_short, tel_to, ser_wnd;
+	  spell 1/5: hold_per, summon_mon, slow_per;
+	attack:	hits for 3|6 of normal_damage;
+};
+
+creature "Two-Headed Troll" {
+	level: 32;	hd: 14|8;	letter: "T";	exp: 275;
+	speed: 1;	ac: 48;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, fire, infra, max_hp;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|8 of normal_damage,
+		hits for 1|8 of normal_damage,
+		bites for 1|6 of normal_damage,
+		bites for 1|6 of normal_damage;
+};
+
+creature "Invisible Stalker" {
+	level: 32;	hd: 19|8;	letter: "E";	exp: 200;
+	speed: 3;	ac: 46;		radius: 20;	sleep: 20;
+	treasure: none;
+	defense: no_sleep;
+	move: move_normal, random_75;
+	special: invisible, open_door;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage;
+};
+
+creature "Giant Hunter Ant" {
+	level: 32;	hd: 12|8;	letter: "a";	exp: 150;
+	speed: 1;	ac: 40;		radius: 16;	sleep: 1;
+	treasure: none;
+	defense: animal;
+	move: move_normal;
+	special: none;
+	spell: none;
+	attack:	bites for 4|8 of normal_damage;
+};
+
+creature "Ninja" {
+	level: 32;	hd: 15|8;	letter: "p";	exp: 300;
+	speed: 1;	ac: 65;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: evil, frost, fire, infra;
+	defense: max_hp;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 3|4 of poison,
+		hits for 3|4 of lose_str;
+};
+
+creature "Barrow Wight" {
+	level: 33;	hd: 13|8;	letter: "W";	exp: 375;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, undead, fire, light;
+	defense: no_sleep, max_hp;
+	move: move_normal, random_20;
+	special: open_door;
+	  spell 1/8: ser_wnd, hold_per, fear;
+	attack:	hits for 1|8 of normal_damage,
+		hits for 1|8 of normal_damage,
+		touches for 26|8 of lose_exp;
+};
+
+creature "Skeleton 2-Headed Troll" {
+	level: 33;	hd: 20|8;	letter: "s";	exp: 325;
+	speed: 1;	ac: 48;		radius: 20;	sleep: 20;
+	treasure: none;
+	defense: evil, undead, no_sleep, max_hp;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 1|9 of normal_damage,
+		hits for 1|9 of normal_damage,
+		bites for 1|5 of normal_damage,
+		bites for 1|5 of normal_damage;
+};
+
+creature "Water Elemental" {
+	level: 33;	hd: 25|8;	letter: "E";	exp: 325;
+	speed: 1;	ac: 36;		radius: 12;	sleep: 50;
+	treasure: none;
+	defense: fire, no_sleep;
+	move: move_normal, random_20;
+	special: eats_other;
+	spell: none;
+	attack:	hits for 1|10 of normal_damage,
+		hits for 1|10 of normal_damage;
+};
+
+creature "Fire Elemental" {
+	level: 33;	hd: 25|8;	letter: "E";	exp: 350;
+	speed: 0;	ac: 40;		radius: 16;	sleep: 70;
+	treasure: none;
+	defense: frost, no_sleep, infra;
+	move: move_normal, random_20;
+	special: eats_other;
+	spell: none;
+	attack:	hits for 4|6 of fire_damage;
+};
+
+creature "Lich" {
+	level: 34;	hd: 25|8;	letter: "L";	exp: 750;
+	speed: 1;	ac: 50;		radius: 20;	sleep: 60;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: evil, undead, light, no_sleep;
+	defense: max_hp;
+	move: move_normal;
+	special: open_door;
+	  spell 1/5: tel_short, tel_long, tel_to;
+	  spell 1/5: ser_wnd, hold_per, blind;
+	  spell 1/5: confuse, fear, slow_per;
+	  spell 1/5: drain_mana;
+	attack:	touches for 2|8 of lose_dex,
+		touches for 30|8 of lose_exp,
+		touches for 0|0 of eat_charges;
+};
+
+creature "Master Vampire" {
+	level: 34;	hd: 23|8;	letter: "V";	exp: 700;
+	speed: 1;	ac: 55;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_1d2_obj;
+	defense: evil, undead, fire, light;
+	defense: no_sleep, max_hp;
+	move: move_normal;
+	special: open_door;
+	  spell 1/7: ser_wnd, hold_per, fear;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage,
+		touches for 32|8 of lose_exp;
+};
+
+creature "Spirit Troll" {
+	level: 34;	hd: 15|8;	letter: "G";	exp: 425;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_1d2_obj;
+	defense: evil, undead, light, no_sleep;
+	defense: max_hp;
+	move: move_normal;
+	special: invisible, phase, picks_up;
+	spell: none;
+	attack:	claws for 1|5 of normal_damage,
+		claws for 1|5 of normal_damage,
+		bites for 1|6 of normal_damage,
+		touches for 0|0 of lose_wis;
+};
+
+creature "Giant Red Scorpion" {
+	level: 34;	hd: 18|8;	letter: "S";	exp: 275;
+	speed: 2;	ac: 50;		radius: 12;	sleep: 40;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 1|6 of normal_damage,
+		stings for 1|4 of poison;
+};
+
+creature "Earth Elemental" {
+	level: 34;	hd: 30|8;	letter: "E";	exp: 375;
+	speed: 0;	ac: 60;		radius: 10;	sleep: 90;
+	treasure: none;
+	defense: stone, no_sleep;
+	move: move_normal, random_20;
+	special: open_door, phase, eats_other, picks_up;
+	spell: none;
+	attack:	hits for 4|6 of normal_damage,
+		hits for 4|6 of normal_damage;
+};
+
+creature "Young Black Dragon" {
+	level: 35;	hd: 32|8;	letter: "d";	exp: 600;
+	speed: 1;	ac: 55;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/11: fear;
+	breath 1/11: acid;
+	attack:	claws for 1|5 of normal_damage,
+		claws for 1|5 of normal_damage,
+		bites for 1|6 of normal_damage;
+};
+
+creature "Young Red Dragon" {
+	level: 35;	hd: 36|8;	letter: "d";	exp: 650;
+	speed: 1;	ac: 60;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: dragon, evil, frost, infra;
+	defense: max_hp;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/10: fear;
+	breath 1/10: fire;
+	attack:	claws for 1|8 of normal_damage,
+		claws for 1|8 of normal_damage,
+		bites for 2|8 of normal_damage;
+};
+
+creature "Necromancer" {
+	level: 35;	hd: 17|8;	letter: "p";	exp: 600;
+	speed: 1;	ac: 40;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_1d2_obj;
+	defense: frost, fire, infra, max_hp;
+	move: move_normal;
+	special: open_door;
+	  spell 1/3: tel_long, tel_to, ser_wnd;
+	  spell 1/3: hold_per, blind, fear;
+	  spell 1/3: summon_und;
+	attack:	hits for 2|6 of normal_damage;
+};
+
+creature "Mummified Troll" {
+	level: 35;	hd: 18|8;	letter: "M";	exp: 400;
+	speed: 1;	ac: 38;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, undead, fire, no_sleep;
+	defense: max_hp;
+	move: move_normal;
+	special: open_door;
+	spell: none;
+	attack:	hits for 2|6 of normal_damage,
+		hits for 2|6 of normal_damage;
+};
+
+creature "Giant Red Ant Lion" {
+	level: 35;	hd: 23|8;	letter: "A";	exp: 350;
+	speed: 1;	ac: 48;		radius: 14;	sleep: 40;
+	treasure: none;
+	defense: animal, frost, infra;
+	move: move_normal, random_20;
+	special: eats_other;
+	spell: none;
+	attack:	bites for 3|12 of fire_damage;
+};
+
+creature "Mature White Dragon" {
+	level: 35;	hd: 48|8;	letter: "d";	exp: 1000;
+	speed: 1;	ac: 65;		radius: 20;	sleep: 70;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_2d2_obj;
+	defense: dragon, evil, fire, max_hp;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/10: fear;
+	breath 1/10: frost;
+	attack:	claws for 1|8 of normal_damage,
+		claws for 1|8 of normal_damage,
+		bites for 2|8 of normal_damage;
+};
+
+creature "Xorn" {
+	level: 36;	hd: 20|8;	letter: "X";	exp: 650;
+	speed: 1;	ac: 80;		radius: 20;	sleep: 10;
+	treasure: none;
+	defense: stone, max_hp;
+	move: move_normal;
+	special: open_door, phase, picks_up;
+	spell: none;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage;
+};
+
+creature "Giant Mottled Ant Lion" {
+	level: 36;	hd: 24|8;	letter: "A";	exp: 350;
+	speed: 2;	ac: 50;		radius: 14;	sleep: 40;
+	treasure: none;
+	defense: animal, frost, fire;
+	move: move_normal, random_20;
+	special: eats_other;
+	spell: none;
+	attack:	bites for 2|10 of normal_damage;
+};
+
+creature "Grey Wraith" {
+	level: 36;	hd: 23|8;	letter: "W";	exp: 700;
+	speed: 1;	ac: 50;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	defense: evil, undead, fire, light;
+	defense: no_sleep, max_hp;
+	move: move_normal, random_20;
+	special: open_door;
+	  spell 1/8: ser_wnd, hold_per, fear;
+	attack:	hits for 1|10 of normal_damage,
+		hits for 1|10 of normal_damage,
+		touches for 34|8 of lose_exp;
+};
+
+creature "Young Multi-Hued Dragon" {
+	level: 36;	hd: 40|8;	letter: "d";	exp: 1250;
+	speed: 1;	ac: 55;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_4d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/5: fear;
+	breath 1/5: light, gas, acid, frost;
+	breath 1/5: fire;
+	attack:	claws for 1|9 of normal_damage,
+		claws for 1|9 of normal_damage,
+		bites for 2|10 of normal_damage;
+};
+
+creature "Mature Blue Dragon" {
+	level: 36;	hd: 48|8;	letter: "d";	exp: 1200;
+	speed: 1;	ac: 75;		radius: 20;	sleep: 70;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_2d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/9: fear;
+	breath 1/9: light;
+	attack:	claws for 1|8 of normal_damage,
+		claws for 1|8 of normal_damage,
+		bites for 2|10 of normal_damage;
+};
+
+creature "Mature Green Dragon" {
+	level: 36;	hd: 48|8;	letter: "d";	exp: 1100;
+	speed: 1;	ac: 70;		radius: 20;	sleep: 70;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_2d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/10: fear;
+	breath 1/10: gas;
+	attack:	claws for 1|4 of normal_damage,
+		claws for 1|4 of normal_damage,
+		bites for 1|6 of normal_damage;
+};
+
+creature "Iridescent Beetle" {
+	level: 37;	hd: 32|8;	letter: "K";	exp: 850;
+	speed: 1;	ac: 60;		radius: 16;	sleep: 30;
+	treasure: none;
+	defense: animal;
+	move: move_normal, random_20;
+	special: none;
+	spell: none;
+	attack:	bites for 4|6 of normal_damage,
+		hits for 1|12 of normal_damage,
+		gazes for 0|0 of cause_paralysis;
+};
+
+creature "King Vampire" {
+	level: 37;	hd: 38|8;	letter: "V";	exp: 1000;
+	speed: 1;	ac: 65;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_1d2_obj;
+	defense: evil, undead, fire, light;
+	defense: no_sleep, max_hp;
+	move: move_normal;
+	special: open_door;
+	  spell 1/7: ser_wnd, hold_per, fear;
+	attack:	hits for 1|6 of normal_damage,
+		hits for 1|6 of normal_damage,
+		touches for 38|8 of lose_exp;
+};
+
+creature "King Lich" {
+	level: 37;	hd: 52|8;	letter: "L";	exp: 1400;
+	speed: 1;	ac: 65;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: evil, undead, light, no_sleep;
+	defense: max_hp;
+	move: move_normal;
+	special: open_door;
+	  spell 1/3: tel_short, tel_long, tel_to;
+	  spell 1/3: ser_wnd, hold_per, blind;
+	  spell 1/3: confuse, fear, slow_per;
+	  spell 1/3: drain_mana;
+	attack:	touches for 2|10 of lose_dex,
+		touches for 36|8 of lose_exp,
+		touches for 0|0 of eat_charges;
+};
+
+creature "Mature Red Dragon" {
+	level: 37;	hd: 60|8;	letter: "d";	exp: 1400;
+	speed: 1;	ac: 80;		radius: 20;	sleep: 30;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_2d2_obj;
+	defense: dragon, evil, frost, infra;
+	defense: max_hp;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/8: confuse, fear;
+	breath 1/8: fire;
+	attack:	claws for 1|10 of normal_damage,
+		claws for 1|10 of normal_damage,
+		bites for 2|12 of normal_damage;
+};
+
+creature "Mature Black Dragon" {
+	level: 37;	hd: 58|8;	letter: "d";	exp: 1350;
+	speed: 1;	ac: 55;		radius: 20;	sleep: 30;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_2d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/9: fear;
+	breath 1/9: acid;
+	attack:	claws for 1|8 of normal_damage,
+		claws for 1|8 of normal_damage,
+		bites for 2|10 of normal_damage;
+};
+
+creature "Mature Multi-Hued Dragon" {
+	level: 38;	hd: 80|8;	letter: "d";	exp: 1650;
+	speed: 1;	ac: 65;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_2d2_obj, has_4d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal, random_20;
+	special: none;
+	  spell 1/5: hold_per, confuse, fear;
+	breath 1/5: light, gas, acid, frost;
+	breath 1/5: fire;
+	attack:	claws for 1|10 of normal_damage,
+		claws for 1|10 of normal_damage,
+		bites for 2|12 of normal_damage;
+};
+
+creature "Ancient White Dragon" {
+	level: 38;	hd: 88|8;	letter: "D";	exp: 1500;
+	speed: 2;	ac: 80;		radius: 20;	sleep: 80;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_4d2_obj;
+	defense: dragon, evil, fire, max_hp;
+	move: move_normal;
+	special: none;
+	  spell 1/9: hold_per, confuse, fear;
+	breath 1/9: frost;
+	attack:	claws for 1|8 of normal_damage,
+		claws for 1|8 of normal_damage,
+		bites for 2|8 of normal_damage;
+};
+
+creature "Emperor Wight" {
+	level: 38;	hd: 48|8;	letter: "W";	exp: 1600;
+	speed: 2;	ac: 40;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_90, has_1d2_obj;
+	defense: evil, undead, fire, light;
+	defense: no_sleep, max_hp;
+	move: move_normal, random_20;
+	special: open_door;
+	  spell 1/6: ser_wnd, hold_per, fear;
+	attack:	hits for 1|12 of normal_damage,
+		hits for 1|12 of normal_damage,
+		touches for 42|8 of lose_exp;
+};
+
+creature "Black Wraith" {
+	level: 38;	hd: 50|8;	letter: "W";	exp: 1700;
+	speed: 1;	ac: 55;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: evil, undead, fire, light;
+	defense: no_sleep, max_hp;
+	move: move_normal, random_20;
+	special: open_door;
+	  spell 1/7: ser_wnd, hold_per, fear;
+	attack:	hits for 1|12 of normal_damage,
+		hits for 1|12 of normal_damage,
+		touches for 44|8 of lose_exp;
+};
+
+creature "Nether Wraith" {
+	level: 39;	hd: 58|8;	letter: "W";	exp: 2100;
+	speed: 1;	ac: 55;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: evil, undead, fire, light;
+	defense: no_sleep, max_hp;
+	move: move_normal, random_20;
+	special: invisible, open_door, phase;
+	  spell 1/6: tel_short, ser_wnd, hold_per;
+	  spell 1/6: fear, summon_und;
+	attack:	hits for 1|12 of normal_damage,
+		hits for 1|12 of normal_damage,
+		touches for 52|8 of lose_exp;
+};
+
+creature "Sorcerer" {
+	level: 39;	hd: 30|8;	letter: "p";	exp: 2150;
+	speed: 2;	ac: 50;		radius: 20;	sleep: 10;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj;
+	defense: frost, fire, infra, max_hp;
+	move: move_normal;
+	special: open_door;
+	  spell 1/3: tel_short, tel_long, tel_to;
+	  spell 1/3: ser_wnd, hold_per, blind;
+	  spell 1/3: confuse, fear, summon_mon;
+	  spell 1/3: summon_und, slow_per;
+	attack:	hits for 2|8 of normal_damage;
+};
+
+creature "Ancient Blue Dragon" {
+	level: 39;	hd: 87|8;	letter: "D";	exp: 2500;
+	speed: 2;	ac: 90;		radius: 20;	sleep: 80;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_4d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal;
+	special: none;
+	  spell 1/8: hold_per, confuse, fear;
+	breath 1/8: light;
+	attack:	claws for 1|9 of normal_damage,
+		claws for 1|9 of normal_damage,
+		bites for 2|12 of normal_damage;
+};
+
+creature "Ancient Green Dragon" {
+	level: 39;	hd: 90|8;	letter: "D";	exp: 2400;
+	speed: 2;	ac: 85;		radius: 20;	sleep: 80;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_4d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal;
+	special: none;
+	  spell 1/9: hold_per, confuse, fear;
+	breath 1/9: gas;
+	attack:	claws for 1|8 of normal_damage,
+		claws for 1|8 of normal_damage,
+		bites for 2|10 of normal_damage;
+};
+
+creature "Ancient Black Dragon" {
+	level: 39;	hd: 90|8;	letter: "D";	exp: 2500;
+	speed: 2;	ac: 90;		radius: 20;	sleep: 70;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_4d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal;
+	special: none;
+	  spell 1/7: hold_per, confuse, fear;
+	breath 1/7: acid;
+	attack:	claws for 1|9 of normal_damage,
+		claws for 1|9 of normal_damage,
+		bites for 2|10 of normal_damage;
+};
+
+creature "Crystal Ooze" {
+	level: 40;	hd: 12|8;	letter: "O";	exp: 8;
+	speed: -1;	ac: 30;		radius: 10;	sleep: 1;
+	treasure: carry_small_obj, carry_obj, carry_gold, has_random_60;
+	defense: fire, acid, no_sleep;
+	move: move_normal, random_20;
+	special: invisible, open_door, eats_other, picks_up;
+	special: multiply;
+	spell: none;
+	attack:	touches for 4|4 of cold_damage;
+};
+
+creature "Disenchanter Worm" {
+	level: 40;	hd: 10|8;	letter: "w";	exp: 30;
+	speed: 0;	ac: 5;		radius: 7;	sleep: 10;
+	treasure: none;
+	defense: animal, frost, fire, acid;
+	defense: light;
+	move: move_normal, random_75;
+	special: multiply;
+	spell: none;
+	attack:	crawls_on for 1|4 of disenchant;
+};
+
+creature "Rotting Quylthulg" {
+	level: 40;	hd: 12|8;	letter: "Q";	exp: 1000;
+	speed: 2;	ac: 1;		radius: 20;	sleep: 0;
+	treasure: none;
+	defense: no_sleep, max_hp;
+	move: magic_only;
+	special: invisible;
+	  spell 1/4: tel_short, summon_und;
+	attack: none;
+};
+
+creature "Ancient Red Dragon" {
+	level: 40;	hd: 105|8;	letter: "D";	exp: 2750;
+	speed: 2;	ac: 100;		radius: 20;	sleep: 70;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_2d2_obj, has_4d2_obj;
+	defense: dragon, evil, frost, infra;
+	defense: max_hp;
+	move: move_normal;
+	special: none;
+	  spell 1/6: hold_per, blind, confuse;
+	  spell 1/6: fear;
+	breath 1/6: fire;
+	attack:	claws for 1|10 of normal_damage,
+		claws for 1|10 of normal_damage,
+		bites for 2|14 of normal_damage;
+};
+
+creature "Death Quasit" {
+	level: 40;	hd: 55|8;	letter: "q";	exp: 1000;
+	speed: 3;	ac: 80;		radius: 20;	sleep: 0;
+	treasure: carry_obj, has_1d2_obj;
+	defense: evil, no_sleep;
+	move: move_normal, random_20;
+	special: invisible, open_door;
+	  spell 1/10: tel_short, tel_long, tel_to;
+	  spell 1/10: lght_wnd, fear;
+	attack:	bites for 3|6 of lose_dex,
+		claws for 3|3 of normal_damage,
+		claws for 3|3 of normal_damage;
+};
+
+creature "Emperor Lich" {
+	level: 40;	hd: 38|40;	letter: "L";	exp: 10000;
+	speed: 2;	ac: 75;		radius: 20;	sleep: 50;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_2d2_obj;
+	defense: evil, undead, light, no_sleep;
+	defense: max_hp;
+	move: move_normal;
+	special: open_door;
+	  spell 1/2: tel_short, tel_long, tel_to;
+	  spell 1/2: ser_wnd, hold_per, blind;
+	  spell 1/2: confuse, fear, slow_per;
+	  spell 1/2: drain_mana;
+	attack:	touches for 2|12 of lose_dex,
+		touches for 46|8 of lose_exp,
+		touches for 0|0 of eat_charges;
+};
+
+creature "Ancient Multi-Hued Dragon" {
+	level: 40;	hd: 52|40;	letter: "D";	exp: 12000;
+	speed: 2;	ac: 100;		radius: 20;	sleep: 70;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj, has_2d2_obj, has_4d2_obj;
+	defense: dragon, evil, infra, max_hp;
+	move: move_normal;
+	special: none;
+	  spell 1/5: hold_per, blind, confuse;
+	  spell 1/5: fear, slow_per;
+	breath 1/5: light, gas, acid, frost;
+	breath 1/5: fire;
+	attack:	claws for 1|12 of normal_damage,
+		claws for 1|12 of normal_damage,
+		bites for 3|12 of normal_damage;
+};
+
+creature "Evil Iggy" {
+	level: 50;	hd: 60|40;	letter: "p";	exp: 18000;
+	speed: 2;	ac: 80;		radius: 30;	sleep: 0;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj, has_2d2_obj, has_4d2_obj;
+	defense: evil, no_sleep, max_hp;
+	move: move_normal;
+	special: invisible, open_door, picks_up;
+	  spell 1/3: tel_short, ser_wnd, hold_per;
+	  spell 1/3: blind, fear, summon_und;
+	  spell 1/3: slow_per, drain_mana;
+	attack:	hits for 4|6 of lose_str,
+		insults for 0|0 of steal_obj;
+};
+
+creature "Balrog" {
+	level: 100;	hd: 75|40;	letter: "B";	exp: 55000;
+	speed: 3;	ac: 125;		radius: 40;	sleep: 0;
+	treasure: carry_obj, carry_gold, has_random_60, has_random_90;
+	treasure: has_1d2_obj, has_2d2_obj, has_4d2_obj;
+	defense: evil, no_sleep, max_hp;
+	move: move_normal;
+	special: invisible, open_door, phase, eats_other;
+	special: picks_up, win_creature;
+	  spell 1/3: tel_to, ser_wnd, hold_per;
+	  spell 1/3: blind, summon_und, slow_per;
+	  spell 1/3: drain_mana;
+	breath 1/3: fire;
+	attack:	hits for 10|12 of fire_damage,
+		tramples for 8|12 of normal_damage,
+		touches for 0|0 of eat_charges;
+};
+
+unused {
+          attack: bites for 2|5 of normal_damage,
+                  gazes for 0|0 of confusion,
+                  gazes for 0|0 of cause_fear;
+};
