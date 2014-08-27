@@ -79,7 +79,7 @@ else
         echo yacc not present.  not compiling the utilities.
 fi
 
-AC_CONFIG_FILES([Makefile 
+AC_CONFIG_FILES([Makefile  po/Makefile.in
                  lib/Makefile
                  utils/Makefile
                  utils/mc/Makefile

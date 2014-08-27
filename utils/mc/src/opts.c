@@ -16,6 +16,7 @@
    along with mc; if not, write to the Free Software
    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA */
 
+#include <config.h>
 #include <stdlib.h>
 #define _GL_GETOPT_H
 #include "argp.h"

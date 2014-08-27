@@ -33,8 +33,7 @@
 #include "st.h"
 #include "opts.h"
 #include "race-class.h"
-#include "constant.h"
-
+#include "object_constant.h"
 
 
 

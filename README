@@ -72,3 +72,4 @@ The build sequence is in this order:
 4. sudo make install
 
 To run bootstrap, you require git.
+after running bootstrap, remove the po directory and its reference in Makefile.am
