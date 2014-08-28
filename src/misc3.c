@@ -1805,6 +1805,8 @@ calc_spells (stat)
 	{
 	  // j is (i+1)th spell learned 
 	  j = spell_order[i];
+          if (j == MAX_SPELLS)
+            continue;
 	  if (spell_status[j].forgotten)
 	    {
 	      if (msp_ptr[j].slevel <= p_ptr->lev)
@@ -2001,7 +2003,7 @@ gain_spells ()
 	      if (j >= 0 && j < i && j < 22)
 		{
 		  new_spells--;
-                  spell_status[j].learned = 1;
+                  spell_status[spells[j]].learned = 1;
 		  spell_order[last_known++] = spells[j];
 		  for (; j <= i - 1; j++)
 		    spells[j] = spells[j + 1];
@@ -2020,7 +2022,7 @@ gain_spells ()
 	  while (new_spells)
 	    {
 	      j = randint (i) - 1;
-              spell_status[j].learned = 1;
+              spell_status[spells[j]].learned = 1;
 	      spell_order[last_known++] = spells[j];
 	      snprintf (tmp_str, sizeof (tmp_str),
 			"You have learned the prayer of %s.",

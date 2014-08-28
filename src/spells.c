@@ -1867,6 +1867,15 @@ genocide ()
   return (killed);
 }
 
+/* Provide permanent resistance to poison gas to the character	*/
+int
+resist_poison_gas()
+{
+  py.flags.gas_resist = 1;
+  msg_print ("There is an odd sensation in your chest.");
+  return TRUE;
+}
+
 
 /* Change speed of any creature .			-RAK-	*/
 /* NOTE: cannot slow a winning creature (BALROG)		 */

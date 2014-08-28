@@ -651,8 +651,11 @@ poison_gas (dam, kb_str)
      int dam;
      char *kb_str;
 {
+  if (py.flags.gas_resist)
+    dam = dam / 1.5;
   take_hit (dam, kb_str);
-  py.flags.poisoned += 12 + randint (dam);
+  if (py.flags.gas_resist == 0)
+    py.flags.poisoned += 12 + randint (dam);
 }
 
 

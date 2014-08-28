@@ -2526,7 +2526,7 @@ treasure "[The Mages' Guide to Power]" : stacks_with_others_of_this_kind {
 	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
 	 damage: 1|1;
 	  spell: frost_ball, recharge_item_ii, teleport_other;
-	  spell: haste_self, fire_ball, word_of_destruction;
+	  spell: haste_self, fire_ball, resist_poison_gas, word_of_destruction;
 	  spell: genocide;
            sold: by_magic_shop;
 };
@@ -2570,7 +2570,7 @@ treasure "[Exorcisms and Dispellings]" : stacks_with_others_of_this_kind {
 	  to_ac: 0;		   to_hit: 0;	 to_dam: 0;	      ac: 0;
 	 damage: 1|1;
 	 prayer: pray_prayer, dispel_undead, heal;
-	 prayer: dispel_evil, glyph_of_warding, holy_word;
+	 prayer: dispel_evil, resist_poison_gas, glyph_of_warding, holy_word;
            sold: by_temple;
 };
 

@@ -115,6 +115,7 @@ calc_bonuses ()
   p_ptr->cold_resist = FALSE;
   p_ptr->regenerate = FALSE;
   p_ptr->lght_resist = FALSE;
+  p_ptr->gas_resist = FALSE;
   p_ptr->ffall = FALSE;
 
   old_dis_ac = m_ptr->dis_ac;

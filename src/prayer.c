@@ -166,10 +166,12 @@ pray ()
 		case 29:
 		  dispel_creature (CD_EVIL, (int) (3 * py.misc.lev));
 		  break;
-		case 30:
+                case 30:
+                  resist_poison_gas();
+		case 31:
 		  warding_glyph ();
 		  break;
-		case 31:
+		case 32:
 		  remove_fear ();
 		  cure_poison ();
 		  hp_player (1000);

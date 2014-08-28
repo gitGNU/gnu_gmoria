@@ -624,6 +624,8 @@ This spell works like @samp{teleport_self}, but operates on another creature.
 This spell makes the player move a little faster.
 @item fire_ball
 This spell throws a ball of fire at a group of opponents.
+@item resist_poison_gas
+This spell gives a permanent, non-cumulative small resistance to poison gas.
 @item word_of_destruction
 This spell destroys everything on the screen.
 @item genocide
@@ -691,6 +693,8 @@ This prayer attempts to utterly destroy an undead creature.
 This prayer restores up to 200 of the player's hit-points.
 @item dispel_evil
 This prayer attempts to utterly destroy an evil creature.
+@item resist_poison_gas
+This prayer gives a permanent, non-cumulative small resistance to poison gas.
 @item glyph_of_warding
 This prayer leaves a 'Glyph' on the ground that creatures cann't pass over.  See the @samp{scare_monster} value of the @samp{unique_function} attribute for which object is dropped on the ground.
 @item holy_word

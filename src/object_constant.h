@@ -212,5 +212,5 @@
 #define OBJ_BOLT_RANGE	 18	/* Maximum range of bolts and balls      */
 #define OBJ_RUNE_PROT	 3000	/* Rune of protection resistance         */
 
-#define MAX_SPELLS       31     /* This many spells in the game            */
+#define MAX_SPELLS       32     /* This many spells in the game            */
 #endif

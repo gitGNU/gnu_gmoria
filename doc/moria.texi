@@ -2222,11 +2222,12 @@ I  Turn Undead            15  12     27  21
 @verbatim
 (Exorcisms and Dispellings)
 A  Prayer                 15  14     29  22
-B  Dispel Undead         17  14     31  24
+B  Dispel Undead          17  14     31  24
 C  Heal                   21  16     33  28
-D  Dispel Evil           25  20     35  32
-E  Glyph of Warding       33  24     37  36
-F  Holy Word              39  32     39  38
+D  Dispel Evil            25  20     35  32
+E  Resist Poison Gas      31  45     --  -- 
+F  Glyph of Warding       33  24     37  36
+G  Holy Word              39  32     39  38
 @end verbatim
 @end group
 @end example
@@ -2383,8 +2384,9 @@ B  Recharge Item II             21  12      29  23      --  --
 C  Teleport Other               23  12      31  25      --  --
 D  Haste Self                   25  12      33  25      --  --
 E  Fire Ball                    29  18      35  25      --  --
-F  Word of Destruction          33  21      37  30      --  --
-G  Genocide                     37  25      --  --      --  --
+F  Resist Poison Gas            31  45      --  --      --  --
+G  Word of Destruction          33  21      37  30      --  --
+H  Genocide                     37  25      --  --      --  --
 @end verbatim
 @end group
 @end example

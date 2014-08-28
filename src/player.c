@@ -46,7 +46,7 @@ char *spell_names[2][MAX_SPELLS] = {
   "Turn Stone to Mud", "Create Food", "Recharge Item I", "Sleep II",
   "Polymorph Other", "Identify", "Sleep III", "Fire Bolt", "Slow Monster",
   "Frost Ball", "Recharge Item II", "Teleport Other", "Haste Self",
-  "Fire Ball", "Word of Destruction", "Genocide",
+  "Fire Ball", "Resist Poison Gas", "Word of Destruction", "Genocide"
   }, {
   /* Priest Spells, start at index 31 */
   "Detect Evil", "Cure Light Wounds", "Bless", "Remove Fear", "Call Light",
@@ -56,7 +56,7 @@ char *spell_names[2][MAX_SPELLS] = {
   "Orb of Draining", "Cure Serious Wounds", "Sense Invisible",
   "Protection from Evil", "Earthquake", "Sense Surroundings",
   "Cure Critical Wounds", "Turn Undead", "Prayer", "Dispel Undead",
-  "Heal", "Dispel Evil", "Glyph of Warding", "Holy Word"
+  "Heal", "Dispel Evil", "Resist Poison Gas", "Glyph of Warding", "Holy Word"
   }
 };
 

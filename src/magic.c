@@ -176,10 +176,12 @@ cast ()
 		    fire_ball (GF_FIRE, dir, char_row, char_col, 72,
 			       spell_names[28]);
 		  break;
-		case 30:
+                case 30:
+                  resist_poison_gas();
+		case 31:
 		  destroy_area (char_row, char_col);
 		  break;
-		case 31:
+		case 32:
 		  genocide ();
 		  break;
 		default:

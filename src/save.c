@@ -222,6 +222,7 @@ sv_write ()
   wr_byte (f_ptr->acid_resist);
   wr_byte (f_ptr->regenerate);
   wr_byte (f_ptr->lght_resist);
+  wr_byte (f_ptr->gas_resist);
   wr_byte (f_ptr->ffall);
   wr_byte (f_ptr->sustain_str);
   wr_byte (f_ptr->sustain_int);
@@ -741,6 +742,7 @@ get_char (generate)
 	  rd_byte (&f_ptr->acid_resist);
 	  rd_byte (&f_ptr->regenerate);
 	  rd_byte (&f_ptr->lght_resist);
+	  rd_byte (&f_ptr->gas_resist);
 	  rd_byte (&f_ptr->ffall);
 	  rd_byte (&f_ptr->sustain_str);
 	  rd_byte (&f_ptr->sustain_int);

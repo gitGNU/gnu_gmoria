@@ -552,6 +552,7 @@ void teleport_to ();
 int teleport_monster ();
 int mass_genocide ();
 int genocide ();
+int resist_poison_gas();
 int speed_monsters ();
 int sleep_monsters2 ();
 int mass_poly ();

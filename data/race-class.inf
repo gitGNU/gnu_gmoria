@@ -1045,6 +1045,9 @@ class "Mage" {
     spell fire_ball {
       level: 29;	mana: 18;	fail: 65;	exp: 88;
     },
+    spell resist_poison_gas {
+      level: 31;	mana: 45;	fail: 95;	exp: 100;
+    },
     spell word_of_destruction {
       level: 33;	mana: 21;	fail: 80;	exp: 125;
     },
@@ -1181,6 +1184,9 @@ class "Priest" {
     },
     prayer dispel_evil {
       level: 25;	mana: 20;	fail: 70;	exp: 75;
+    },
+    prayer resist_poison_gas {
+      level: 31;	mana: 45;	fail: 95;	exp: 100;
     },
     prayer glyph_of_warding {
       level: 33;	mana: 24;	fail: 90;	exp: 125;

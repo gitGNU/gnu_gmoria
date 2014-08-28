@@ -192,6 +192,7 @@ typedef struct player_type
     int8u acid_resist;		/* Resistance to acid  */
     int8u regenerate;		/* Regenerate hit pts  */
     int8u lght_resist;		/* Resistance to light */
+    int8u gas_resist;		/* Resistance to gas   */
     int8u ffall;		/* No damage falling   */
     int8u sustain_str;		/* Keep strength       */
     int8u sustain_int;		/* Keep intelligence   */

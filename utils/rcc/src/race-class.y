@@ -307,8 +307,9 @@ spellsInit[] =
     { "teleport_other", 26},
     { "haste_self", 27},
     { "fire_ball", 28},
-    { "word_of_destruction", 29},
-    { "genocide", 30},
+    { "resist_poison_gas", 29},
+    { "word_of_destruction", 30},
+    { "genocide", 31},
     { NULL, 0 },
 };
 
@@ -344,8 +345,9 @@ prayersInit[] =
     { "dispel_undead", 26},
     { "heal", 27},
     { "dispel_evil", 28},
-    { "glyph_of_warding", 29},
-    { "holy_word", 30},
+    { "resist_poison_gas", 29},
+    { "glyph_of_warding", 30},
+    { "holy_word", 31},
     { NULL, 0 },
 };
 /*
