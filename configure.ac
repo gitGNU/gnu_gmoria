@@ -17,7 +17,7 @@ dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 AC_PREREQ(2.59)
-AC_INIT([gmoria],[5.7.1],[gmoria@nym.hush.com], [], [http://sv.nongnu.org/p/gmoria/])
+AC_INIT([gmoria],[5.7.2],[gmoria@nym.hush.com], [], [http://sv.nongnu.org/p/gmoria/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_SRCDIR([src/main.c])
 AM_INIT_AUTOMAKE

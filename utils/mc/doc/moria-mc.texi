@@ -118,16 +118,13 @@ class humanoid {
 
 It is very similar to the creature block.  The name isn't in quotes because the name of the class will not show up anywhere in the monsters_tables.c file.  The attributes that go inside of a class block are the same as the creature block.  
 
-@menu
-* Class Blocks::		Detailed information on class blocks.
-* Creature Blocks::		Detailed information on creature blocks.
-@end menu
-
 The monster-definition file is made up of sequences of these class and creature blocks.  A complete monster-defintion file would have many creatures, that derive from many classes which derive from many classes.  The use of classes help reduce errors, and increase consistency in the final product.  Using too many classes make changing the monster-definition file a trickier thing to accomplish.  you will want to strike a balance.
 
 The monster compiler will tell you when you reference a class that doesn't exist or if you've forgotten a semi-colon.  It will also tell you if you've forgotten an important attribute.
 
 @menu
+* Class Blocks::		Detailed information on class blocks.
+* Creature Blocks::		Detailed information on creature blocks.
 * Attributes::			Detailed information on supported attributes.
 * Deriving Attributes::		What to watch out for when deriving attributes.
 @end menu
