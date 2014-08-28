@@ -19,3 +19,5 @@ info_TEXINFOS=moria.texi
 CLEANFILES=moria.dvi
 
 EXTRA_DIST=faq
+
+AM_MAKEINFOFLAGS = --no-split
