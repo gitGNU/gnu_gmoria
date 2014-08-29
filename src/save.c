@@ -765,10 +765,25 @@ get_char (generate)
 	  rd_short ((int16u *) & inven_weight);
 	  rd_short ((int16u *) & equip_ctr);
           rd_long (&max_spells);
+          //taking care of two cases here:
+          //1. where max_spells is more than MAX_SPELLS
+          //2. where max_spells is less than MAX_SPELLS
+          for (i = 0; i < MAX_SPELLS; i++)
+            spell_order[i] = MAX_SPELLS;
+          memset (spell_status, 0, sizeof (spell_status));
           if (max_spells > MAX_SPELLS)
-            max_spells = MAX_SPELLS;
-          rd_longs (spell_order, max_spells);
-          rd_longs ((int32u*)spell_status, max_spells);
+            {
+              rd_longs (spell_order, MAX_SPELLS);
+              rd_longs ((int32u*)spell_status, MAX_SPELLS);
+            }
+          else
+            {
+              rd_longs (spell_order, max_spells);
+              rd_longs ((int32u*)spell_status, max_spells);
+            }
+          for (i = 0; i < MAX_SPELLS; i++)
+            if (spell_order[i] == max_spells)
+              spell_order[i] = MAX_SPELLS;
 	  rd_bytes (object_ident, OBJECT_IDENT_SIZE);
 	  rd_long (&randes_seed);
 	  rd_long (&town_seed);
