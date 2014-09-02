@@ -25,6 +25,6 @@ usage: ${top_builddir}/utils/mc/src/$(GAME_NAME)-mc
 # installed.  meanwhile, we can still create a pdf or html pages.
 #install-am:
 
-AM_MAKEINFOFLAGS = --no-split
+AM_MAKEINFOFLAGS = --no-split --no-headers
 EXTRA_DIST = package.texi.in
 CLEANFILES = usage moria-mc.info

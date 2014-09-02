@@ -25,6 +25,6 @@ usage: ${top_builddir}/utils/rcc/src/$(GAME_NAME)-rcc
 # installed.  meanwhile, we can still create a pdf or html pages.
 #install-am:
 
-AM_MAKEINFOFLAGS = --no-split
+AM_MAKEINFOFLAGS = --no-split --no-headers
 EXTRA_DIST = package.texi.in
 CLEANFILES = usage moria-rcc.info

@@ -20,4 +20,4 @@ CLEANFILES=moria.dvi
 
 EXTRA_DIST=faq
 
-AM_MAKEINFOFLAGS = --no-split
+AM_MAKEINFOFLAGS = --no-split --no-headers
