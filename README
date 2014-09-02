@@ -73,3 +73,10 @@ The build sequence is in this order:
 4. sudo make install
 
 To run bootstrap, you require git.
+
+
+To run with script, use the command:
+$ script -c /usr/local/bin/moria --timing=timing-file typescript-file
+and then to replay it:
+$ scriptreplay -t timing-file typescript-file
+
