@@ -64,18 +64,14 @@ by the Foundation.
 
 @contents
 
-@c All the nodes can be updated using the EMACS command
-@c texinfo-every-node-update, which is normally bound to C-c C-u C-e.
-@node Top, Overview, (dir), (dir)
+@node Top, The Treasure-Definition File, (dir), (dir)
+@chapter Overview
+@cindex greetings
+@cindex overview
 
-@ifinfo
-This file documents the Treasure-Compiler for gmoria @command{moria-tc} software.
-@end ifinfo
+This document describes the treasure-compiler (@emph{tc}).  It is a code-generation tool that is used to create files called treasure_tables.c and treasure_constant.h in gmoria.  Editing those files by hand can be error prone, and @emph{tc} creates those files so you don't have to bother.  It reads in a single human-readable file that completely describes the attributes of all of the objects in the game, and it generates code to be compiled into the game.  The compiler issues warnings and errors when things don't quite make sense.  The audience for this tool is a developer who wants to add new objects to the game in a safe way.  This document describes how to use this tool, and the format of the treasure-definition file.  Objects in the game are called `treasure' for historical reasons only.  Treasures include things that can be picked up, but they can also be dynamic elements of the dungeon, like doors or traps.  Treasures include everything that can be seen in the game that isn't a monster or a wall.
 
-@c All the menus can be updated with the EMACS command
-@c texinfo-all-menus-update, which is normally bound to C-c C-u C-a.
 @menu
-* Overview::                    Introduction.
 * The Treasure-Definition File::About @command{moria-tc}'s input file.
 * A Small Example::		See it in action.
 * Invoking tc::			How to run @command{moria-tc}.
@@ -84,14 +80,7 @@ This file documents the Treasure-Compiler for gmoria @command{moria-tc} software
 * Problems::                    Reporting bugs.
 @end menu
 
-@node Overview, The Treasure-Definition File, Top, Top
-@chapter Overview
-@cindex greetings
-@cindex overview
-
-This document describes the treasure-compiler (@emph{tc}).  It is a code-generation tool that is used to create files called treasure_tables.c and treasure_constant.h in gmoria.  Editing those files by hand can be error prone, and @emph{tc} creates those files so you don't have to bother.  It reads in a single human-readable file that completely describes the attributes of all of the objects in the game, and it generates code to be compiled into the game.  The compiler issues warnings and errors when things don't quite make sense.  The audience for this tool is a developer who wants to add new objects to the game in a safe way.  This document describes how to use this tool, and the format of the treasure-definition file.  Objects in the game are called `treasure' for historical reasons only.  Treasures include things that can be picked up, but they can also be dynamic elements of the dungeon, like doors or traps.  Treasures include everything that can be seen in the game that isn't a monster or a wall.
-
-@node The Treasure-Definition File, Class Blocks, Overview, Top
+@node The Treasure-Definition File, Class Blocks, Top, Top
 @chapter The Treasure-Defintion File
 
 The treasure-definition file describes all of the objects in the game.  @emph{tc} reads in this file to create the treasure_tables.c and treasure_constant.h files.  It is meant to be human-readable, easily understood and modified by programmers who might not understand the intricacies of how the various arrays and constants fit together. 
