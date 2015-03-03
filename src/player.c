@@ -67,7 +67,8 @@ char *spell_names[2][MAX_SPELLS] = {
    see fill_class_backpacks */
 int16u player_init[MAX_CLASS][MAX_DEFAULT_PACK_ITEMS];
 
-int get_store_item_index(int tval, int subval)
+int 
+get_store_item_index (int tval, int subval)
 {
   int i;
   for (i = MAX_DUNGEON_OBJ; i < OBJ_OPEN_DOOR; i++)
@@ -78,7 +79,8 @@ int get_store_item_index(int tval, int subval)
   return -1;
 }
 
-int get_dungeon_item_index(int tval, int subval)
+int
+get_dungeon_item_index (int tval, int subval)
 {
   int i;
   for (i = 0; i < MAX_DUNGEON_OBJ; i++)
@@ -89,13 +91,14 @@ int get_dungeon_item_index(int tval, int subval)
   return -1;
 }
 
-void fill_class_backpacks()
+void
+fill_class_backpacks ()
 {
   int i;
   for (i = 0; i < MAX_CLASS; i++)
     {
       player_init[i][0] = get_store_item_index(TV_FOOD, 90);
-      if (player_init[i][0] == -1)
+      if (player_init[i][0] == 65535)
         {
           restore_term();
           fprintf (stderr, "Error! "
@@ -104,7 +107,7 @@ void fill_class_backpacks()
           exit(1);
         }
       player_init[i][1] = get_store_item_index(TV_LIGHT, 192);
-      if (player_init[i][1] == -1)
+      if (player_init[i][1] == 65535)
         {
           restore_term();
           fprintf (stderr, "Error! "
@@ -113,7 +116,7 @@ void fill_class_backpacks()
           exit(1);
         }
       player_init[i][2] = get_dungeon_item_index(TV_CLOAK, 1);
-      if (player_init[i][2] == -1)
+      if (player_init[i][2] == 65535)
         {
           restore_term();
           fprintf (stderr, "Error! "
@@ -122,7 +125,7 @@ void fill_class_backpacks()
           exit(1);
         }
       player_init[i][3] = get_dungeon_item_index(TV_SWORD, 3);
-      if (player_init[i][3] == -1)
+      if (player_init[i][3] == 65535)
         {
           restore_term();
           fprintf (stderr, "Error! "
@@ -133,7 +136,7 @@ void fill_class_backpacks()
       if (class[i].spell == NONE)
         {
           player_init[i][4] = get_dungeon_item_index(TV_SOFT_ARMOR, 2);
-          if (player_init[i][4] == -1)
+          if (player_init[i][4] == 65535)
             {
               restore_term();
               fprintf (stderr, "Error! "
@@ -145,7 +148,7 @@ void fill_class_backpacks()
       else if (class[i].spell == MAGE)
         {
           player_init[i][4] = get_dungeon_item_index(TV_MAGIC_BOOK, 64);
-          if (player_init[i][4] == -1)
+          if (player_init[i][4] == 65535)
             {
               restore_term();
               fprintf (stderr, "Error! "
@@ -158,7 +161,7 @@ void fill_class_backpacks()
         {
           player_init[i][4] = 322;
           player_init[i][4] = get_dungeon_item_index(TV_PRAYER_BOOK, 64);
-          if (player_init[i][4] == -1)
+          if (player_init[i][4] == 65535)
             {
               fprintf (stderr, "Error! Can't"
                        " find a TV_PRAYER_BOOK item of subval 64 (%s)%s.\n",
