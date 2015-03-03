@@ -201,6 +201,9 @@ main (argc, argv)
 	exit_game ();
       }
 
+  /* Init default backpacks */
+  fill_class_backpacks();
+
   /* call this routine to grab a file pointer to the highscore file */
   /* and prepare things to relinquish setuid privileges */
   init_scorefile ();
@@ -224,8 +227,6 @@ main (argc, argv)
 
   /* Init the store inventories                 */
   store_init ();
-  /* Init default backpacks */
-  fill_class_backpacks();
 
   /* Auto-restart of saved file */
   if (argv[0] != NULL)
@@ -351,6 +352,127 @@ char_inven_init ()
 	inven_init.ident |= ID_SHOW_HITDAM;
       inven_carry (&inven_init);
     }
+
+
+  //big hack here benfix, remove me  XXX XXX XXX FIXME
+  //invcopy (&inventory[INVEN_LIGHT], get_dungeon_item_index (TV_LIGHT, 193));
+  //equip_ctr++;
+      //get_dungeon_item_index(TV_FLASK, 64);
+
+  //testing potion
+  /*
+  invcopy (&inven_init, get_dungeon_item_index (TV_POTION1, 106));
+  store_bought (&inven_init);
+  inven_carry (&inven_init);
+  */
+
+  //testing the add light routine
+
+  // 1
+  // make first lantern in data/items.inf have a p1 of 0
+  // and a relsubval of 0
+
+  /*
+  invcopy (&inventory[INVEN_LIGHT], get_dungeon_item_index(TV_LIGHT, 0));
+  equip_ctr++;
+  invcopy (&inven_init, get_dungeon_item_index(TV_FLASK, 64));
+  store_bought (&inven_init);
+  inven_carry (&inven_init);
+  */
+
+  // 2
+  //make first lantern in data/items.inf have a p1 of 0
+  //and a relsubval of 0
+
+  /*
+  invcopy (&inventory[INVEN_LIGHT], get_dungeon_item_index(TV_LIGHT, 0));
+  equip_ctr++;
+  invcopy (&inven_init, get_store_item_index(TV_LIGHT, 0));
+  inven_carry (&inven_init);
+  */
+
+  // 3
+  // make first torch have a p1 of 0.
+
+  /*
+  invcopy (&inventory[INVEN_LIGHT], get_dungeon_item_index (TV_LIGHT, 193));
+  equip_ctr++;
+  invcopy (&inven_init, get_store_item_index(TV_LIGHT, 0));
+  inven_carry (&inven_init);
+  */
+
+
+  // 4
+  // no changes to data/items.inf
+
+  /*
+  invcopy (&inven_init, get_store_item_index(TV_LIGHT, 0));
+  inven_carry (&inven_init);
+  */
+
+  // 5
+  // make first lantern in data/items.inf have a p1 of 0
+  // and a relsubval of 0
+
+  /*
+  invcopy (&inven_init, get_dungeon_item_index(TV_LIGHT, 0));
+  inven_carry (&inven_init);
+  invcopy (&inven_init, get_dungeon_item_index(TV_FLASK, 64));
+  store_bought (&inven_init);
+  inven_carry (&inven_init);
+  */
+
+  // 6
+  // make first torch have a p1 of 0.
+  // make first lantern in data/items.inf have a p1 of 0
+  // and a relsubval of 0
+
+  /*
+  invcopy (&inventory[INVEN_LIGHT], get_dungeon_item_index (TV_LIGHT, 193));
+  equip_ctr++;
+  invcopy (&inven_init, get_dungeon_item_index(TV_LIGHT, 0));
+  inven_carry (&inven_init);
+  invcopy (&inven_init, get_dungeon_item_index(TV_FLASK, 64));
+  store_bought (&inven_init);
+  inven_carry (&inven_init);
+  */
+
+  // 7
+  // make the first torch have a p1 of 0.
+  // make the second torch have a quantity of 1.
+
+  /*
+  invcopy (&inventory[INVEN_LIGHT], get_dungeon_item_index (TV_LIGHT, 193));
+  equip_ctr++;
+  */
+
+  // 8
+  // make the first torch have a p1 of 0.
+
+  /*
+  invcopy (&inventory[INVEN_LIGHT], get_dungeon_item_index (TV_LIGHT, 193));
+  equip_ctr++;
+  */
+
+  // 9
+  // make the first torch have a p1 of 0.
+  // and don't wear a weapon in robo.
+
+  /*
+  invcopy (&inventory[INVEN_LIGHT], get_dungeon_item_index (TV_LIGHT, 193));
+  equip_ctr++;
+  invcopy (&inven_init, get_dungeon_item_index (TV_STAFF, 0));
+  store_bought(&inven_init);
+    {
+      int q;
+      for (q = 0; q < 17; q++)
+        inven_carry (&inven_init);
+    }
+  */
+
+  // 10
+  // no changes to data/items.inf
+
 
   /* wierd place for it, but why not? */
   for (i = 0; i < MAX_SPELLS; i++)
