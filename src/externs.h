@@ -456,6 +456,8 @@ void bash ();
 
 /* player.c */
 void fill_class_backpacks();
+int get_dungeon_item_index (int tval, int subval);
+int get_store_item_index (int tval, int subval);
 
 /* potions.c */
 void quaff ();
