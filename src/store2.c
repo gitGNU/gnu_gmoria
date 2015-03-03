@@ -218,7 +218,7 @@ display_item (store_num, pos)
      int store_num, pos;
 {
   register int i;
-  register int32 j;
+  register int j;
   register store_type *s_ptr;
   inven_type *i_ptr;
   bigvtype out_val1, out_val2;
