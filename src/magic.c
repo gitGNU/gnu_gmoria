@@ -66,7 +66,7 @@ cast ()
 		case 1:
 		  if (get_dir (NULL, &dir))
 		    fire_bolt (GF_MAGIC_MISSILE, dir, char_row, char_col,
-			       damroll (2, 6), spell_names[0]);
+			       damroll (2, 6), spell_names[0][0]);
 		  break;
 		case 2:
 		  detect_monsters ();
@@ -87,7 +87,7 @@ cast ()
 		case 7:
 		  if (get_dir (NULL, &dir))
 		    fire_ball (GF_POISON_GAS, dir, char_row, char_col, 12,
-			       spell_names[6]);
+			       spell_names[0][6]);
 		  break;
 		case 8:
 		  if (get_dir (NULL, &dir))
@@ -96,7 +96,7 @@ cast ()
 		case 9:
 		  if (get_dir (NULL, &dir))
 		    fire_bolt (GF_LIGHTNING, dir, char_row, char_col,
-			       damroll (4, 8), spell_names[8]);
+			       damroll (4, 8), spell_names[0][8]);
 		  break;
 		case 10:
 		  td_destroy ();
@@ -121,7 +121,7 @@ cast ()
 		case 15:
 		  if (get_dir (NULL, &dir))
 		    fire_bolt (GF_FROST, dir, char_row, char_col,
-			       damroll (6, 8), spell_names[14]);
+			       damroll (6, 8), spell_names[0][14]);
 		  break;
 		case 16:
 		  if (get_dir (NULL, &dir))
@@ -149,7 +149,7 @@ cast ()
 		case 23:
 		  if (get_dir (NULL, &dir))
 		    fire_bolt (GF_FIRE, dir, char_row, char_col,
-			       damroll (9, 8), spell_names[22]);
+			       damroll (9, 8), spell_names[0][22]);
 		  break;
 		case 24:
 		  if (get_dir (NULL, &dir))
@@ -158,7 +158,7 @@ cast ()
 		case 25:
 		  if (get_dir (NULL, &dir))
 		    fire_ball (GF_FROST, dir, char_row, char_col, 48,
-			       spell_names[24]);
+			       spell_names[0][24]);
 		  break;
 		case 26:
 		  recharge (60);
@@ -174,7 +174,7 @@ cast ()
 		case 29:
 		  if (get_dir (NULL, &dir))
 		    fire_ball (GF_FIRE, dir, char_row, char_col, 72,
-			       spell_names[28]);
+			       spell_names[0][28]);
 		  break;
                 case 30:
                   resist_poison_gas();
