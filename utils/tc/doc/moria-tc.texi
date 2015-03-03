@@ -364,7 +364,7 @@ This attribute has different meanings when it used with objects of differing @sa
 @item FLASK
 @samp{p1} means the number of turns of light the flask holds.
 @item LIGHT
-@samp{p1} means the number of turns of light the object holds initially.
+@samp{p1} means the number of turns of light the object holds initially.  An odd numbered @{subval} denotes the object as a dungeon object and randomly sets the value of @{p1} such that a found torch or lantern is partially charged.
 @item DIGGING
 @samp{p1} determines how effective the digging tool is.  Legal values are 1, 2, and 3, with 3 being the most effective digging tool.
 @item POTION
@@ -466,6 +466,8 @@ It is not always desired to implicitly increment the subval by 1, so there is a 
 The @samp{subval} attribute is used to enumerate different objects of the same @samp{kind}.  Unforunately the gmoria source expects particular values for @samp{subval}s for various @samp{kind}s.  The user of this tool must be very careful when changing subvals -- it is possible that other source code must be changed to make the game function.
 
 When @samp{subval} is not specified the compiler will try to autonumber it -- picking the next available subval, or taking an existing subval if the object has the same name.
+
+Torches and Lanterns (@samp{TV_LIGHT} objects) that have an odd numbered @samp{subval} get their @samp{p1} value randomized.  This is so that dungeon torches will be partially charged, while store ones (even numbered @samp{subval}s) are fully charged.
 @item sold
 This attribute indicates which stores an object is sold in, and how frequently it is available for sale.
 It can be a combination of the following: @samp{by_general_store}, @samp{by_armoury}, @samp{by_weaponsmith}, @samp{by_temple}, @samp{by_alchemist}, @samp{by_magic_shop}, and @samp{exclusively_in_town}.  The value @samp{exclusively_in_town} indicates that this object never appears randomly in the dungeon, and is only for sale in a store.  The other values indicate which store sells this object.  To make the object appear in a General Store more frequently, the value would be @samp{by_general_store*2}, @samp{by_general_store*3}, etc.  The multiplier indicates that the object is 2 times more likely, 3 times more likely, etc. to appear for sale in the General Store.
