@@ -31,7 +31,6 @@ typedef char vtype[VTYPESIZ];
 /* note that since its output can easily exceed 80 characters, objdes must
    always be called with a bigvtype as the first paramter */
 typedef char bigvtype[BIGVTYPESIZ];
-typedef char stat_type[7];
 
 /* Many of the character fields used to be fixed length, which greatly
    increased the size of the executable.  I have replaced many fixed

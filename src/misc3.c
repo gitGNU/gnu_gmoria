@@ -258,7 +258,7 @@ void
 prt_stat (stat)
      int stat;
 {
-  stat_type out_val1;
+  vtype out_val1;
 
   cnv_stat (py.stats.use_stat[stat], out_val1, sizeof (out_val1));
   put_buffer (stat_names[stat], 6 + stat, STAT_COLUMN);
