@@ -72,7 +72,7 @@ The build sequence is in this order:
 3. make [builds the monster compiler, treasure compiler, and then the game]
 4. sudo make install
 
-To run bootstrap, you require git.
+To run bootstrap, git is required.
 
 
 To run with script, use the command:
