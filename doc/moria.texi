@@ -2290,6 +2290,8 @@ Removes @{damned@} objects that you are welding.
 Negates the fear placed on you by an enemy.
 @item Resist Heat and Cold
 Reduce damage you suffer from heat or cold attacks.
+@item Resist Poison Gas
+Permanently reduces damage you suffer from poison gas attacks.
 @item Sanctuary
 Causes neighboring monsters to fall asleep for a while.
 @item Sense Invisible
@@ -2437,6 +2439,8 @@ Polymorphs a monster into a different creature.
 Recharges a staff, rod, or wand.
 @item Remove Curse
 Allows you to unwield @{damned@} items.
+@item Resist Poison Gas
+Permanently reduces damage you suffer from poison gas attacks.
 @item Sleep I
 Causes a monster of your choosing to fall asleep.
 @item Sleep II
