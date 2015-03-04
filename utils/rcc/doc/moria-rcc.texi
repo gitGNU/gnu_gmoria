@@ -99,7 +99,7 @@ race "Dwarf" {
 
 The block starts with a keyword denoting the kind of block (a @code{race} block).  Following that there's a name for the block (@code{"Dwarf"}), and then there are a set of braces, followed by a semicolon.  The attributes of the dwarf race go inside of the braces (instead of @code{...}).
 
-The definition file has one @code{race} block for every race in the game, and one @code{class} block for every class in the game.  Lastly there is a @code{experience_levels} block that defines the number of experience points required to reach a given level.
+The definition file has one @code{race} block for every race in the game, and one @code{class} block for every class in the game.  There is also an @code{experience_levels} block that defines the number of experience points required to reach a given level.  Lastly there are two blocks that map the spell and prayer keywords to their displayed names (@code{spell_names}, and @code{prayer_names}.)
 
 The top-level structure of the definition file looks like this:
 
@@ -119,11 +119,24 @@ class "Warrior" {
 experience_levels {
         ...
 };
+.
+.
+.
+spell_names {
+        ...
+};
+.
+.
+.
+prayer_names {
+        ...
+};
 @end verbatim
 @menu
 * Race Blocks:: 		Detailed information on race blocks.
 * Class Blocks::		Detailed information on class blocks.
 * Experience Levels Block::	Detailed information on experience levels block.
+* Name Blocks::                 Detailed info on spell and prayer name blocks.
 @end menu
 
 The race & class compiler will stop processing the definition file when a semi-colon is missing or a required block is forgotten.  If an attribute is missing, the compiler will emit a warning. The consistency check option performs extra checking on the races and classes.
@@ -516,7 +529,7 @@ A spell-casting class can cast the following spells:
 @item
 @tab @code{fire_ball} @tab @tab @code{word_of_destruction}
 @item
-@tab @code{genocide}
+@tab @code{genocide} @tab @tab @code{resist_poison_gas}
 @end multitable
 For a short description about what these spells do, see the Treasure Compiler manual.
 
@@ -577,11 +590,11 @@ The @code{prayers} block is just like the @code{spells} block but it contains @c
 @item
 @tab @code{dispel_evil} @tab @tab @code{glyph_of_warding}
 @item
-@tab @code{holy_word}
+@tab @code{holy_word} @tab @tab @code{resist_poision_gas}
 @end multitable
 For a short description about what these prayers do, see the Treasure Compiler manual.
 
-@node Experience Levels Block, A Small Example, Prayers Block, The Definition File
+@node Experience Levels Block, Name Blocks, Prayers Block, The Definition File
 @section Experience Levels Block
 The @code{experience_levels} block defines the number of experience levels in the game, and what number of experience points is required to attain each level.
 These levels are augmented for each race and class combination, as seen in the @code{experience_factor} attribute of the @code{race} and @code{class} blocks.
@@ -595,7 +608,23 @@ The @code{experience_levels} block looks like:
 The first experience level is at 10 points, the second is at 100 points and so on.  The numbers must always increase.
 
 Take care when setting the values in this block, because it is one of the greatest determiners of game balance.
-@node A Small Example, Invoking rcc, Experience Levels Block, Top
+
+@node Name Blocks, A Small Example, Experience Levels Block, The Definition File
+@section Name Blocks
+
+When a spell or prayer is casted, or listed on screen it has a name.  The @code{spell_names} block lists the names of spells in the game, and the @code{prayer_names} block lists the names of prayers in the game.
+
+The ordering of the spells or prayers in these blocks does not matter.  The true ordering of spells is set by the ordering of spells in the Mage and Priest classes.
+
+There must be a name given for every possible spell or prayer.  For a list of spells see @ref{Spells Block}, for prayers see @ref{Prayers Block}.
+
+The name block looks like this:
+@verbatim
+  spell_names {
+    magic_missile: "Magic Missile";
+  };
+@end verbatim
+@node A Small Example, Invoking rcc, Name Blocks, Top
 @chapter A Small Example
 Let's take this definition file as an example; one race and one class is define.:
 @verbatim
@@ -655,6 +684,11 @@ class "Magic-User" {            experience_factor: 30;
 
 experience_levels {
   100, 500, 1800, 4400, 10200, 35000, 150000, 500000
+};
+
+spell_names {
+  magic_missile: "Magic Missile";
+  lightning_bolt: "Lightning Bolt";
 };
 @end verbatim
 The resulting file that @emph{rcc} outputs looks like this:
@@ -731,40 +765,53 @@ background_type background[MAX_BACKGROUND] = {
 spell_type magic_spell[MAX_CLASS][31] = {
   {                              /* Magic-User    */
    {1, 1, 22, 1},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
    {10, 4, 30, 6},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0},
-   {99, 99, 0, 0}
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0},
+   {MAX_SPELLS, MAX_SPELLS, 0, 0}
    }
 };
-@end verbatim
 
+char *spell_names[2][MAX_SPELLS] = {
+  {
+  /* Mage Spells */
+    "Magic Missile", "", "", "", "", "", "", "", "Lightning Bolt", 
+    "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
+    "", "", "", "", "", "", "", "", ""
+  }, {
+  /* Priest Prayers */
+    "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
+    "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
+    "", "", "", ""
+  }
+};
+@end verbatim
 
 @node Invoking rcc, Consistency Checks, A Small Example, Top
 @chapter Invoking @command{moria-rcc}

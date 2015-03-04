@@ -1,4 +1,4 @@
-#Copyright (C) 2014 Ben Asselstine
+#Copyright (C) 2014, 2015 Ben Asselstine
 #This file is licensed under the terms of the GNU GPL v3 or later.
 
 race "Human" {
@@ -1554,3 +1554,72 @@ experience_levels {
   1500000, 2500000, 5000000, 10000000
 };
 
+spell_names {
+  magic_missile: "Magic Missile";
+  detect_monsters: "Detect Monsters";
+  phase_door: "Phase Door";
+  light_area: "Light Area";
+  cure_light_wounds: "Cure Light Wounds";
+  find_hidden_traps_and_doors: "Find Hidden Traps/Doors";
+  stinking_cloud: "Stinking Cloud";
+  confusion: "Confusion";
+  lightning_bolt: "Lightning Bolt";
+  trap_and_door_destruction: "Trap/Door Destruction";
+  sleep_i: "Sleep I";
+  cure_poison: "Cure Poison";
+  teleport_self: "Teleport Self";
+  remove_curse: "Remove Curse";
+  frost_bolt: "Frost Bolt";
+  turn_stone_to_mud: "Turn Stone to Mud";
+  create_food: "Create Food";
+  recharge_item_i: "Recharge Item I";
+  sleep_ii: "Sleep II";
+  polymorph_other: "Polymorph Other";
+  identify: "Identify";
+  sleep_iii: "Sleep III";
+  fire_bolt: "Fire Bolt";
+  slow_monster: "Slow Monster";
+  frost_ball: "Frost Ball";
+  recharge_item_ii: "Recharge Item II";
+  teleport_other: "Teleport Other";
+  haste_self: "Haste Self";
+  fire_ball: "Fire Ball";
+  resist_poison_gas: "Resist Poison Gas";
+  word_of_destruction: "Word of Destruction";
+  genocide: "Genocide";
+};
+
+prayer_names {
+  detect_evil: "Detect Evil";
+  cure_light_wounds: "Cure Light Wounds";
+  bless: "Bless";
+  remove_fear: "Remove Fear";
+  call_light: "Call Light";
+  find_traps: "Find Traps";
+  detect_doors_and_stairs: "Detect Doors/Stairs";
+  slow_poison: "Slow Poison";
+  blind_creature: "Blind Creature";
+  portal: "Portal";
+  cure_medium_wounds: "Cure Medium Wounds";
+  chant: "Chant";
+  sanctuary: "Sanctuary";
+  create_food: "Create Food";
+  remove_curse: "Remove Curse";
+  resist_heat_and_cold: "Resist Heat and Cold";
+  neutralize_poison: "Neutralize Poison";
+  orb_of_draining: "Orb of Draining";
+  cure_serious_wounds: "Cure Serious Wounds";
+  sense_invisible: "Sense Invisible";
+  protection_from_evil: "Protection from Evil";
+  earthquake: "Earthquake";
+  sense_surroundings: "Sense Surroundings";
+  cure_critical_wounds: "Cure Critical Wounds";
+  turn_undead: "Turn Undead";
+  pray_prayer: "Prayer";
+  dispel_undead: "Dispel Undead";
+  heal: "Heal";
+  dispel_evil: "Dispel Evil";
+  resist_poison_gas: "Resist Poison Gas";
+  glyph_of_warding: "Glyph of Warding";
+  holy_word: "Holy Word";
+};

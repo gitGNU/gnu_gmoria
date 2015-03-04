@@ -1,7 +1,7 @@
 /* creature.y: a Moria race & class definition compiler
 
    Copyright (c) 1989 Joseph Hall
-   Copyright (C) 2014 Ben Asselstine
+   Copyright (C) 2014, 2015 Ben Asselstine
    Written by Ben Asselstine
 
    rcc is free software; you can redistribute it and/or modify
@@ -209,6 +209,18 @@ typedef struct
   spell_defined_t def;
 } spell_template_t;
 
+
+struct name_block_t
+{
+  char *name;
+  int val;
+};
+
+struct name_block_t * spell_names;
+int num_spells_named;
+struct name_block_t* prayer_names;
+int num_prayers_named;
+
 /*
  * symInit_t is used to initialize symbol tables with integer values
  */
@@ -359,6 +371,8 @@ void PutShopkeep(shopkeep_template_t *tmpl_P, int consistency_check);
 void PutBackground(background_template_t *tmpl_P, int consistency_check);
 void PutSpell (char *s, spell_template_t *tmpl_P, int consistency_check);
 void PutPrayer (char *s, spell_template_t *tmpl_P, int consistency_check);
+void PutSpellName(char *s1, char *s2, int consistency_check);
+void PutPrayerName(char *s1, char *s2, int consistency_check);
 void CheckBackground (int chart, int next);
 void PutClass (char *s, class_template_t *tmpl_P, int consistency_check);
 
@@ -395,7 +409,7 @@ int yyerror (char *s);
 %token ROLL SOCIAL_CLASS_BONUS ADJUST_PER_ONE_THIRD_LEVEL TITLES SPELLS SPELL
 %token LEVEL MANA FAIL EXP PRAYERS PRAYER ADJUST_BASE_TO_HIT 
 %token ADJUST_BASE_TO_HIT_WITH_BOWS ADJUST_USE_DEVICE ADJUST_DISARMING 
-%token ADJUST_SAVING_THROW
+%token ADJUST_SAVING_THROW SPELL_NAMES PRAYER_NAMES
 
 %{
 static symInit_t 
@@ -454,6 +468,8 @@ keywordInit[] =
     { "adjust_use_device", ADJUST_USE_DEVICE},
     { "adjust_disarming", ADJUST_DISARMING},
     { "adjust_saving_throw", ADJUST_SAVING_THROW},
+    { "spell_names", SPELL_NAMES},
+    { "prayer_names", PRAYER_NAMES},
     { NULL, 0 }
 };
 %}
@@ -484,6 +500,8 @@ keywordInit[] =
 race_and_class	:	race_def ';' race_and_class
 		|	class_def ';' race_and_class
 		|	exp_levels_def ';' race_and_class
+                |       spell_names_def ';' race_and_class
+                |       prayer_names_def ';' race_and_class
 		|	comment_def  race_and_class
 		|	/* empty */
 		;
@@ -1003,6 +1021,37 @@ more_exp_levels :	',' exp_level more_exp_levels
 		|	/* empty */
 		;
 
+spell_names_def	:	SPELL_NAMES '{' spell_names '}'
+                ;
+
+spell_names     :       spell_name more_spell_names
+                ;
+
+more_spell_names:       spell_name more_spell_names
+                |
+                ;
+
+spell_name      :       IDENTIFIER ':' STRING_LIT ';'
+                         { PutSpellName ($<sval>2, $<sval>3,
+                                         arguments.rcc.consistency_check);
+                         }
+                ;
+
+prayer_names_def:	PRAYER_NAMES '{' prayer_names '}'
+                ;
+
+prayer_names    :       prayer_name more_prayer_names
+                ;
+
+more_prayer_names:       prayer_name more_prayer_names
+                |
+                ;
+
+prayer_name      :       IDENTIFIER ':' STRING_LIT ';'
+                         { PutPrayerName ($<sval>2, $<sval>3,
+                                         arguments.rcc.consistency_check);
+                         }
+                ;
 %%
 
 
@@ -1467,6 +1516,85 @@ PutSpell (char *s, spell_template_t *tmpl_P, int consistency_check)
   tmpClass.val.spells[num-1] = tmpl_P->val;
   free (id);
 }
+
+int
+name_block_contains_type (struct name_block_t *names, int num_names, int type)
+{
+  int i;
+  for (i = 0; i < num_names; i++)
+    {
+      if (names[i].val == type)
+        return 1;
+    }
+  return 0;
+}
+
+int
+CheckSpellName (char *token, char *name, int type)
+{
+  if (name_block_contains_type (spell_names, num_spells_named, type))
+    {
+      yyerror (xasprintf("spell `%s' appears more than once in spell_names", token));
+      return 1;
+    }
+  return 0;
+}
+
+void
+PutSpellName (char *s, char *name, int consistency_check)
+{
+  //check if token is a spell name.
+  generic_t gval;
+  int type;
+  if (St_GetSym (spellsT_P, s, &type, &gval) != ST_SYM_FOUND) 
+    {
+      yyerror (xasprintf("unknown spell `%s'", s));
+      return;
+    }
+  if (consistency_check)
+    {
+       if (CheckSpellName(s, name, gval.i))
+         return;
+    }
+  num_spells_named++;
+  spell_names = realloc (spell_names, num_spells_named * sizeof (struct name_block_t));
+  spell_names[num_spells_named-1].name = strdup (name);
+  spell_names[num_spells_named-1].val = gval.i;
+}
+
+int
+CheckPrayerName (char *token, char *name, int type)
+{
+  if (name_block_contains_type (prayer_names, num_prayers_named, type))
+    {
+      yyerror (xasprintf("prayer `%s' appears more than once in prayer_names", token));
+      return 1;
+    }
+  return 0;
+}
+
+void
+PutPrayerName (char *s, char *name, int consistency_check)
+{
+  //check if token is a prayer name.
+  generic_t gval;
+  int type;
+  if (St_GetSym (prayersT_P, s, &type, &gval) != ST_SYM_FOUND) 
+    {
+      yyerror (xasprintf("unknown prayer `%s'", s));
+      return;
+    }
+  if (consistency_check)
+    {
+       if (CheckPrayerName(s, name, gval.i))
+         return;
+    }
+  num_prayers_named++;
+  prayer_names = realloc (prayer_names, num_prayers_named * sizeof (struct name_block_t));
+  prayer_names[num_prayers_named-1].name = strdup (name);
+  prayer_names[num_prayers_named-1].val = gval.i;
+}
+
 
 void
 PutPrayer (char *s, spell_template_t *tmpl_P, int consistency_check)
@@ -2008,6 +2136,30 @@ void CheckClasses()
       CheckClass(c);
     }
 }
+      
+void CheckNames()
+{
+  int i = 0;
+  while (spellsInit[i].name != NULL)
+  {
+    if (!name_block_contains_type (spell_names, num_spells_named, 
+                                   spellsInit[i].val))
+      {
+        yyerror (xasprintf ("spell %s lacks a name in spell_names", spellsInit[i].name));
+      }
+    i++;
+  }
+  i = 0;
+  while (prayersInit[i].name != NULL)
+  {
+    if (!name_block_contains_type (prayer_names, num_prayers_named, 
+                                   prayersInit[i].val))
+      {
+        yyerror (xasprintf ("prayer %s lacks a name in prayer_names", prayersInit[i].name));
+      }
+    i++;
+  }
+}
 
 void WriteExperienceTable()
 {
@@ -2511,10 +2663,9 @@ void WriteBackgrounds()
   fprintf (arguments.rcc.outfile, "};\n\n");
 }
       
-void WriteClassSpells(spell_t *spells, int num)
+void WriteClassSpells(int max, spell_t *spells, int num)
 {
   int i, j;
-  int max = MAX_SPELLS;
   for (i = 0; i < max; i++)
     {
       int found = 0;
@@ -2552,16 +2703,171 @@ void WriteSpells()
       fprintf (arguments.rcc.outfile, 
                "  {%-29s /* %-13s */\n", "", c->val.c.title);
       if (c->val.num_spells)
-        WriteClassSpells(c->val.spells, c->val.num_spells);
+        WriteClassSpells((sizeof (spellsInit) / sizeof (symInit_t)) -1,
+                         c->val.spells, c->val.num_spells);
       else if (c->val.num_prayers)
-        WriteClassSpells(c->val.prayers, c->val.num_prayers);
+        WriteClassSpells((sizeof (prayersInit) / sizeof (symInit_t)) -1,
+                         c->val.prayers, c->val.num_prayers);
       else
-        WriteClassSpells(c->val.spells, 0);
+        WriteClassSpells((sizeof (spellsInit) / sizeof (symInit_t)) -1,
+                         c->val.spells, 0);
       fprintf (arguments.rcc.outfile, "   }");
       if (i != num_classes - 1)
         fprintf (arguments.rcc.outfile, ",");
       fprintf (arguments.rcc.outfile, "\n");
     }
+  fprintf (arguments.rcc.outfile,"};\n\n");
+}
+
+char * lookup_spell_name (int idx)
+{
+  char *name = NULL;
+  int i;
+  for (i = 0; i < num_spells_named; i++)
+    {
+      if (spell_names[i].val == idx)
+        {
+          name = spell_names[i].name;
+          break;
+        }
+    }
+  return name;
+}
+
+char * lookup_prayer_name (int idx)
+{
+  char *name = NULL;
+  int i;
+  for (i = 0; i < num_prayers_named; i++)
+    {
+      if (prayer_names[i].val == idx)
+        {
+          name = prayer_names[i].name;
+          break;
+        }
+    }
+  return name;
+}
+
+void WriteSpellNames()
+{
+  //step 1 collect the spells
+  int i, j;
+  int max = (sizeof (spellsInit) / sizeof (symInit_t)) -1;
+  spell_t s[max];
+  memset (s, 0, sizeof (s));
+  int num_classes = St_TableSize(classT_P);
+  for (i = 0; i < num_classes; i++)
+    {
+      char *class = get_class_for_idx(i);
+      if (!class)
+        continue;
+      class_template_t *c = get_class(class);
+      if (c->val.num_spells)
+        {
+          for (j = 0; j < c->val.num_spells; j++)
+            {
+              if (s[c->val.spells[j].idx].line_no == 0)
+                s[c->val.spells[j].idx] = c->val.spells[j];
+            }
+        }
+    }
+  // step 2 dump them out, all pretty-print like.
+  fprintf (arguments.rcc.outfile, 
+    "  /* Mage Spells */\n");
+  int len = 0;
+  for (i = 0; i < max; i++)
+    {
+      char *name = lookup_spell_name (s[i].idx);
+      if (!name || s[i].line_no == 0)
+        name = "";
+      if (len == 0)
+        {
+          fprintf (arguments.rcc.outfile, "    ");
+          len += 4;
+        }
+      len += strlen (name) + 2;
+      fprintf (arguments.rcc.outfile, "\"%s\"", name);
+      if (i != max -1)
+        {
+          fprintf (arguments.rcc.outfile, ", ");
+          len += 2;
+        }
+      if (len >= 59)
+        {
+          fprintf (arguments.rcc.outfile, "\n");
+          len = 0;
+        }
+    }
+  fprintf (arguments.rcc.outfile, "\n");
+}
+
+void WritePrayerNames()
+{
+  //step 1 collect the prayers
+  int i, j;
+  int max = (sizeof (prayersInit) / sizeof (symInit_t)) -1;
+  spell_t s[max];
+  memset (s, 0, sizeof (s));
+  int num_classes = St_TableSize(classT_P);
+  for (i = 0; i < num_classes; i++)
+    {
+      char *class = get_class_for_idx(i);
+      if (!class)
+        continue;
+      class_template_t *c = get_class(class);
+      if (c->val.num_prayers)
+        {
+          for (j = 0; j < c->val.num_prayers; j++)
+            {
+              if (s[c->val.prayers[j].idx].line_no == 0)
+                s[c->val.prayers[j].idx] = c->val.prayers[j];
+            }
+        }
+    }
+  // step 2 dump them out, all pretty-print like.
+  fprintf (arguments.rcc.outfile, 
+    "  /* Priest Prayers */\n");
+  int len = 0;
+  for (i = 0; i < max; i++)
+    {
+      char *name = lookup_prayer_name (s[i].idx);
+      if (!name || s[i].line_no == 0)
+        name = "";
+      if (len == 0)
+        {
+          fprintf (arguments.rcc.outfile, "    ");
+          len += 4;
+        }
+      len += strlen (name) + 2;
+      fprintf (arguments.rcc.outfile, "\"%s\"", name);
+      if (i != max -1)
+        {
+          fprintf (arguments.rcc.outfile, ", ");
+          len += 2;
+        }
+      if (len >= 59)
+        {
+          fprintf (arguments.rcc.outfile, "\n");
+          len = 0;
+        }
+    }
+  fprintf (arguments.rcc.outfile, "\n");
+}
+
+void WriteNames()
+{
+  //pad the spell and prayer names
+  fprintf (arguments.rcc.outfile,
+    "char *spell_names[2][MAX_SPELLS] = {\n");
+  fprintf (arguments.rcc.outfile,
+    "  {\n");
+  WriteSpellNames ();
+  fprintf (arguments.rcc.outfile,
+    "  }, {\n");
+  WritePrayerNames ();
+  fprintf (arguments.rcc.outfile,
+    "  }\n");
   fprintf (arguments.rcc.outfile,"};\n\n");
 }
 
@@ -2593,6 +2899,7 @@ rcc_main (char *inputFilename)
     {
       CheckRaces();
       CheckClasses();
+      CheckNames();
     }
   WriteGenerationNotice();
   if (arguments.rcc.only_generate_constants)
@@ -2610,6 +2917,7 @@ rcc_main (char *inputFilename)
       WriteClassLevelAdjustmentTable();
       WriteBackgrounds();
       WriteSpells();
+      WriteNames();
     }
 
   return 0;

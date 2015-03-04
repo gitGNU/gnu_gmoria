@@ -35,31 +35,6 @@ int16u player_hp[MAX_PLAYER_LEVEL];
 int32u spell_order[MAX_SPELLS];
 spell_status_type spell_status[MAX_SPELLS];
 
-
-char *spell_names[2][MAX_SPELLS] = {
-  {
-  /* Mage Spells */
-  "Magic Missile", "Detect Monsters", "Phase Door", "Light Area",
-  "Cure Light Wounds", "Find Hidden Traps/Doors", "Stinking Cloud",
-  "Confusion", "Lightning Bolt", "Trap/Door Destruction", "Sleep I",
-  "Cure Poison", "Teleport Self", "Remove Curse", "Frost Bolt",
-  "Turn Stone to Mud", "Create Food", "Recharge Item I", "Sleep II",
-  "Polymorph Other", "Identify", "Sleep III", "Fire Bolt", "Slow Monster",
-  "Frost Ball", "Recharge Item II", "Teleport Other", "Haste Self",
-  "Fire Ball", "Resist Poison Gas", "Word of Destruction", "Genocide"
-  }, {
-  /* Priest Spells, start at index 31 */
-  "Detect Evil", "Cure Light Wounds", "Bless", "Remove Fear", "Call Light",
-  "Find Traps", "Detect Doors/Stairs", "Slow Poison", "Blind Creature",
-  "Portal", "Cure Medium Wounds", "Chant", "Sanctuary", "Create Food",
-  "Remove Curse", "Resist Heat and Cold", "Neutralize Poison",
-  "Orb of Draining", "Cure Serious Wounds", "Sense Invisible",
-  "Protection from Evil", "Earthquake", "Sense Surroundings",
-  "Cure Critical Wounds", "Turn Undead", "Prayer", "Dispel Undead",
-  "Heal", "Dispel Evil", "Resist Poison Gas", "Glyph of Warding", "Holy Word"
-  }
-};
-
 /* Each type of character starts out with a few provisions.	*/
 /* Note that the entries refer to elements of the object_list[] array*/
 /* 344 = Food Ration, 365 = Wooden Torch, 123 = Cloak, 318 = Beginners-Majik,
