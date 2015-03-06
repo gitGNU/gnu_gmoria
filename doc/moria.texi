@@ -1,5 +1,5 @@
 \input texinfo @c -*-texinfo-*-
-@c Copyright 2005 Ben Asselstine
+@c Copyright 2005, 2015 Ben Asselstine
 @c Copyright (c) 1989-94 James E. Wilson, Robert A. Koeneke
 @c This file uses the @command command introduced in Texinfo 4.0.
 @c %s**start of header
@@ -48,20 +48,20 @@ character, and then `run' that character over a period of
 days, weeks, even months, attempting to win the game by defeating
 the Balrog which lurks in the deeper levels.
 
-The player will begin his adventure on the town level where he
-may acquire supplies, weapons, armor, and magical devices by bartering 
-with various shop owners.  After preparing for his adventure, the 
-player can descend into the dungeons of @emph{moria} where fantastic adventures 
-await his coming!
+The character will begin the adventure on the town level where 
+supplies, weapons, armor, and magical devices can be acquired by bartering 
+with various shop owners.  After preparing for this adventure, the 
+character can descend into the dungeons of @emph{moria} where fantastic adventures 
+await!
 
-Before beginning your first adventure, you should read this document 
+Before beginning an adventure, this document should be read
 carefully.  The game of @emph{moria} is a complicated game (but not as complicated as other roguelikes), and will require a dedicated player to win.
 
 @menu
 * Running The Game::
 * The Character::
 * Adventuring::
-* Symbols On Your Screen::
+* Symbols On The Screen::
 * Commands::
 * The Town Level::
 * Within The Dungeon::
@@ -82,32 +82,27 @@ moria [ -o ] [ -r ] [ -s ] [ -S ] [ -n ] [ -w[seed] ] [ savefile ]
 @end verbatim
 
 By default, @emph{moria} will save and restore games from a file called
-moria.save in your home directory.  If the environment variable
+moria.save in the home directory.  If the environment variable
 MORIA_SAV is defined, then @emph{moria} will use that file name instead of the
 default.  If MORIA_SAV is not a complete path name, then the savefile
-will be created or restored from the current directory.  You can also
-explicitly specify a savefile on the command line.
+will be created or restored from the current directory.  The savefile can also be explicitly specified on the command line.
 
-If you use the -n option, @emph{moria} will create a new game, ignoring any
+When the -n option is used, @emph{moria} will create a new game, ignoring any
 savefile which may already exist.  This works best when a savefile name
 is specified on the command line, as this will prevent @emph{moria} from trying
-to overwrite the default savefile (if it exists) when you try to
-save your game.
+to overwrite the default savefile (if it exists) when saving a game.
 
-You move in various directions by pressing the numeric keypad keys,
-VMS-style.  If you specify -r, you move the same way you do in
-rogue.  You can also specify -o to force the VMS-style command set.
+Movement in various directions is accomplished by pressing the numeric keypad 
+keys, VMS-style.  When -r is specified, movement is accomplished in the same way as rogue.  When -o is specified, it forces the VMS-style command set.
 These options will override defaults stored in the savefile.  If these
 options are given multiple times, only the last one will take effect.
 
-If you specify -s, @emph{moria} prints all of the scores in the score file and
-exits.  On a multiuser system, if you specify -S, @emph{moria} prints
-only those scores belonging to you and then exits.
+When -s is specified, @emph{moria} displays all of the scores in the score file and exits.  On a multiuser system, when -S is specified, @emph{moria} displays
+only those scores belonging to the current user and then exits.
 
-If you specify -w, @emph{moria} will start up in wizard mode.  You can 
-resurrect a dead character by using this option when starting the game.
+When -w is specified, @emph{moria} will start up in wizard mode.  Dead characters can be resurrected using this option when starting the game.
 Resurrected characters are teleported to the town level and given zero
-hit points.  Wizard mode is intended for debugging the game, and for
+hit-points.  Wizard mode is intended for debugging the game, and for
 experimenting with new features.  To make random events happen in a predictable
 manner a seed number can be given to the -w option.  Using wizard mode to win 
 the game is considered cheating.  Games played with wizard mode are not scored.
@@ -137,8 +132,8 @@ classes, as will be shown later.
 @end menu
 
 In addition to the more visible stats, each character has certain
-abilities which are mainly determined by his race, class, and
-level, but are also modified by his stats.  The abilities are
+abilities which are mainly determined by their race, class, and
+level, but are also modified by their stats.  The abilities are
 @emph{fighting}, @emph{throwing/bows}, @emph{saving throw}, 
 @emph{stealth}, @emph{disarming}, @emph{magical devices}, @emph{perception}, 
 @emph{searching}, and @emph{infravision}.
@@ -147,15 +142,15 @@ Characters will be assigned an early history, with money and a
 social class based on that history.  Starting money is assigned
 based on history, charisma, and somewhat upon the average of a
 character's stats.  A character with below average stats will
-receive extra money to help him survive the first adventure.
+receive extra money to help them survive the first adventure.
 
 Each character will also have physical attributes such as race,
 height, weight, sex, and a physical description.  None of these,
 except weight, play any part in the game other than to give the
-player a "feeling" for his character.  Weight is used for computing 
+player a "feeling" for their character.  Weight is used for computing 
 carrying capacity and also for bashing.
 
-Finally, each character is assigned @emph{hit points} based on their
+Finally, each character is assigned @emph{hit-points} based on their
 race, class, and constitution.  Spell casters will also receive
 @emph{mana} which is expended when casting spells.  Mana is based on
 Wisdom for Priests and Intelligence for Mages.
@@ -166,7 +161,7 @@ Wisdom for Priests and Intelligence for Mages.
 @table @code
 @item Strength
 Strength is important in fighting with weapons and hand to
-hand combat.  A high strength can improve your chances of
+hand combat.  A high strength can improve the chances of
 hitting, and the amount of damage done with each hit.  Characters 
 with low strengths may receive penalties.  Strength
 is also useful in tunneling, body and shield bashing, and in
@@ -186,20 +181,20 @@ increases the chance of receiving new spells from a priest's
 deity, and it also increases the amount of mana a priest
 has.  No spell may be learned by priests with wisdom under
 8.  Wisdom also modifies a character's chance of resisting
-magical spells cast upon his person.
+magical spells cast upon their person.
 
 @item Dexterity
 Dexterity is a combination of agility and quickness.  A high
 dexterity may allow a character to get multiple blows with
-lighter weapons, thus greatly increasing his kill power, and
-may increase his chances of hitting with any weapon and
+lighter weapons, thus greatly increasing kill power, and
+may increase the chances of hitting with any weapon and
 dodging blows from enemies.  Dexterity is also useful in
-picking locks, disarming traps, and protecting yourself from
+picking locks, disarming traps, and protection from
 pick pockets.
 
 @item Constitution
 Constitution is a character's ability to resist damage to
-his body, and to recover from damage received.  Therefore a
+the body, and to recover from damage received.  Therefore a
 character with a high constitution will receive more hit
 points, and be more resistant to poisons.
 
@@ -214,11 +209,11 @@ charisma will also mean more starting money for the character.
 
 @node Character Sex, Character Abilities, Character Stats, The Character
 @section Character Sex
-You may choose to be either a male or a female character.  Only
-height and weight are affected by a character's sex.  Female
+The player may choose to be either a male or a female character.  Only
+height and weight are affected by a character's gender.  Female
 characters tend to be somewhat smaller and lighter than their
 male counterparts.  No adjustments to stats or abilities are made
-because of the sex of a character.  Female characters start out
+because of the gender of a character.  Female characters start out
 with slightly more money than male characters to help offset the
 weight penalty.
 
@@ -234,8 +229,8 @@ and may increase with the level of the character.
 @item Fighting
 Fighting is the ability to hit and do damage with weapons or
 fists.  Normally a character gets a single blow from any
-weapon, but if his dexterity and strength are high enough,
-he may receive more blows per round with lighter weapons.
+weapon, but if their dexterity and strength are high enough,
+they may receive more blows per round with lighter weapons.
 Strength and dexterity both modify the ability to hit an
 opponent.  This skill increases with the level of the character.
 
@@ -249,8 +244,8 @@ the character.
 
 @item Saving Throw
 A Saving Throw is the ability of a character to resist the
-effects of a spell cast on him by another person/creature.
-This does not include spells cast on the player by his own
+effects of a spell cast on them by another person or creature.
+This does not include spells cast on the character by their own
 stupidity, such as quaffing a nasty potion.  This ability
 increases with the level of the character, but then most
 high level creatures are better at casting spells, so it
@@ -260,7 +255,7 @@ tends to even out.  A high wisdom also increases this ability.
 The ability to move silently about is very useful.  Characters 
 with good stealth can usually surprise their opponents,
 gaining the first blow.  Also, creatures may fail to notice
-a stealthy character entirely, allowing a player to avoid
+a stealthy character entirely, allowing a character to avoid
 certain fights.  This skill is based entirely upon race and
 class, and will never improve unless magically enhanced.
 
@@ -295,7 +290,7 @@ improve unless magically enhanced.
 @item Infravision
 Infravision is the ability to see heat sources.  Since most
 of the dungeon is cool or cold, infravision will not allow
-the player to see walls and objects.  Infravision will allow
+the character to see walls and objects.  Infravision will allow
 a character to see any warm-blooded creatures up to a certain 
 distance.  This ability works equally well with or
 without a light source.  The majority of @emph{moria}'s creatures
@@ -308,7 +303,7 @@ enhanced.
 
 @node Choosing A Race, Race Versus Skills and Stats, Character Abilities, The Character
 @section Choosing A Race
-There are eight different races that you can choose from in
+There are eight different races that can be chosen from in
 @emph{moria}.  Some races are restricted as to what profession they may
 be, and each race has its own adjustments to a character's stats
 and abilities.
@@ -316,7 +311,7 @@ and abilities.
 @table @code
 @item Human
 The human is the base character, all other races are compared 
-to him.  Humans can choose any class, and are average
+to this race.  Humans can choose any class, and are average
 at everything.  Humans tend to go up levels faster than any
 other race, because of their shorter life spans.  No racial
 adjustments occur to characters choosing human.
@@ -379,7 +374,7 @@ stealth, and horrible at searching, disarming, and perception.
 Half-Orcs are, let's face it, ugly.  They tend to pay
 more for goods in town.  Half-Orcs do make good priests and
 rogues, for the simple reason that Half-Orcs tend to have
-great constitutions and lots of hit points.
+great constitutions and lots of hit-points.
 
 @item Half-Troll
 Half-Trolls are incredibly strong, and have the highest hit
@@ -434,83 +429,82 @@ Half-Troll    1      1      1       1    10     1    1  30 feet
 
 @node Choosing A Class, Race Versus Class, Race Versus Skills and Stats, The Character
 @section Choosing A Class
-Once a race has been chosen, you will need to pick a class.  Some
+Once a race has been chosen, the player will need to pick a class.  Some
 classes will not be available to certain races, for instance, a
-Half-Troll cannot become a Paladin.  For the first few adventures
-it is suggested that you run a warrior or rogue.  Spell casting
-generally requires a more experienced player that is familiar
-with survival techniques.
+Half-Troll cannot become a Paladin.  Players who are new to the game 
+should run a warrior or rogue.  Spell casting generally requires a more 
+experienced player that is familiar with survival techniques.
 
 @table @code
 @item Warrior
-A Warrior is a hack-and-slash character, who solves most of
-his problems by cutting them to pieces, but will occasionally 
-fall back on the help of a magical device.  His prime
+Warriors are hack-and-slash characters, who solve most of
+their problems by cutting them to pieces, but occasionally 
+falls back on the help of magical devices.  Their prime
 stats are Strength and Constitution, and a good Dexterity
 can really help at times.  A Warrior will be good at Fighting 
 and Throwing/Bows, but bad at most other skills.
 
 @item Mage
-A Mage must live by his wits.  He cannot hope to simply hack
-his way through the dungeon, and so must therefore use his
-magic to defeat, deceive, confuse, and escape.  A mage is
+Mages must live by their wits.  They cannot hope to simply hack
+their way through the dungeon, and so must therefore use their
+magic to defeat, deceive, confuse, and escape.  Mages are
 not really complete without an assortment of magical devices
-to use in addition to his spells.  He can master the higher
+to use in addition to their spells.  They can master the higher
 level magical devices far easier than anyone else, and has
 the best saving throw to resist effects of spells cast at
-him.  Intelligence and Dexterity are his primary stats.
-There is no rule that says a mage cannot become a good
-fighter, but spells are his true realm.
+them.  Intelligence and Dexterity are their primary stats.
+There is no rule that says a mages cannot become good
+fighters, but spells are their true realm.
 
 @item Priest
-A Priest is a character of holy devotion.  He explores the
+Priests are characters of holy devotion.  They explore the
 dungeon only to destroy the evil that lurks within, and if
-treasure just happens to fall into his pack, well, so much
-more to the glory of his temple!  A priest receives his
-spells from a deity, and therefore does not choose which
-spells he will learn.  He is familiar with magical devices,
-preferring to call them instruments of god, but Is not as
+treasure just happens to fall into their pack, well, so much
+more to the glory of their temple!  Priests receive their
+spells from a deity, and therefore do not choose which
+spells are learned.  They are familiar with magical devices,
+preferring to call them instruments of god, but is not as
 good as a mage in their use.  Priests have good saving
 throws, and make decent fighters, preferring blunt weapons
 over edged ones.  Wisdom and Charisma are the priest's
 primary stats.
 
 @item Rogue
-A Rogue is a character that prefers to live by his cunning,
-but is capable of fighting his way out of a tight spot.  He
-is the master of traps and locks, no device being impossible
-for him to overcome.  A rogue has a high stealth allowing
-him to sneak around many creatures without having to fight,
+Rogues are characters that prefer to live by their cunning,
+but is capable of fighting their way out of a tight spot.  They
+are the master of traps and locks, no device being impossible
+to overcome.  A rogue has a high stealth allowing
+them to sneak around many creatures without having to fight,
 or sneak up and get the first blow.  A rogue's perception is
-higher than any other class, and many times he will notice a
+higher than any other class, and many times they will notice a
 trap or secret door before having to search.  A rogue is
 better than a warrior or paladin with magical devices, but
-still can not rely on their performance.  Rogues can also
+still cannot rely on their performance.  Rogues can also
 learn a few spells, but not the powerful offensive spells
 mages can use.  A rogue's primary stats are Intelligence and
 Dexterity.
 
 @item Ranger
-A Ranger is a warrior/mage.  He is a good fighter, and the
+A Ranger is a warrior/mage.  They are good fighters, and the
 best of the classes with a missile weapon such as a bow.
-The ranger learns spells much more slowly than a mage, but
+Rangers learn spells much more slowly than a mage, but
 is capable of learning all but the most powerful spell.
-Because a ranger is really a dual class character, more
-experience is required for him to advance.  A ranger has a
-good stealth, good perception, good searching, a good saving
-throw, and is good with magical devices.  His primary stats
+Because rangers are really a dual class character, more
+experience is required for them to advance.  Rangers have
+good stealth, good perception, good searching, good saving
+throw, and is good with magical devices.  Their primary stats
 are Intelligence and Dexterity.
 
 @item Paladin
-A Paladin is a warrior/priest.  He is a very good fighter,
-second only to the warrior class, but not very good at missile 
-weapons.  He receives prayers at a slower pace then the
-priest, but can eventually learn all the prayers.  Because a
-paladin is really a dual class character, it requires more
-experience to advance him.  A paladin lacks much in the way
-of abilities.  He is poor at stealth, perception, searching,
-and magical devices.  He has a decent saving throw due to
-his divine alliance.  His primary stats are Strength and
+A Paladin is a warrior/priest.  They are very good fighters,
+second only to the warrior class, but are not very good at missile 
+weapons.  They receive prayers at a slower pace then the
+priest, but can eventually learn all the prayers.  Because
+paladins are dual class characters, it requires more
+experience to advance them.  A paladin lacks much in the way
+of abilities.  They are poor at stealth, perception, searching,
+and magical devices.  They have a decent saving throw due to
+their divine alliance.  A paladin's primary stats are Strength and
 Charisma.
 
 @end table
@@ -555,9 +549,9 @@ Paladin   9     5    4     2      2      4      2      2      +35%
 @node Experience, Getting Experience, Class Versus Skills, The Character
 @section Experience
 All characters receive experience during the game.  Experience
-determines your level, which determines hit points, mana points,
+determines the level, which determines hit-points, mana points,
 spells, abilities, etc.  The amount of experience required to
-advance a level increases as you play the game, according to
+advance a level increases as the game is played, according to
 race and class.
 
 @menu 
@@ -580,39 +574,39 @@ Using a scroll, potion, staff, wand, or rod for the first time and discovering w
 @item
 Casting a spell successfully for the first time
 @item
-Drinking a potion of gain experience or gain level
+Drinking a potion of gain experience
 @end itemize
 
 
 
-@node Adventuring, Symbols On Your Screen, Getting Experience, Top
+@node Adventuring, Symbols On The Screen, Getting Experience, Top
 @chapter Adventuring
-After you have created your character, you will begin your @emph{moria}
-adventure.  Symbols appearing on your screen will represent the
+After the character has been created, their dungeon adventure can begin.
+Symbols appearing on the screen represent the
 dungeon's walls, floor, objects, features, and creatures lurking
-about.  In order to direct your character through his adventure,
-you will enter single character commands.
+about.  In order to direct the character through their adventure,
+the player will enter single character commands.
 
 @emph{Moria} symbols and commands each have a help section devoted to
-them.  You should review these sections before attempting an
+them.  The player should review these sections before attempting an
 adventure.  Finally, a description of the town level and some
 general help on adventuring are included.
 
-@node Symbols On Your Screen, Commands, Adventuring, Top
-@chapter Symbols On Your Screen
-Symbols on your map can be broken down into three categories:
+@node Symbols On The Screen, Commands, Adventuring, Top
+@chapter Symbols On The Screen
+Symbols on the map can be broken down into three categories:
 Features of the dungeon such as walls, floor, doors, and traps;
 objects which can be picked up such as treasure, weapons, magical
 devices, etc; and creatures which may or may not move about the
-dungeon, but are mostly harmful to your character's well-being.
+dungeon, but are mostly harmful to the character's well-being.
 
 Some symbols can be in more than one category.  Also note that
 treasure may be embedded in a wall, and the wall must be removed
 before the treasure can be picked up.
 
 It will not be necessary to remember all of the symbols and their
-meanings.  A simple command, the @code{/}, will identify any character
-appearing on your map.  See the section on commands for further
+meanings.  A simple command, the @code{/}, will identify any symbol
+appearing on the map.  See the section on commands for further
 help.
 
 @verbatim
@@ -679,7 +673,7 @@ $   Creeping Coins      ,   Mushroom Patch
 
 @end verbatim
 
-Here is what your screen looks like after you've been playing @emph{moria} for a while:
+Here is what the screen looks like after a character has been adventuring in @emph{moria} for a while:
 @verbatim
 
                                  #            ' #
@@ -707,30 +701,30 @@ GOLD:  23868
                                                            Study 1000 feet
 @end verbatim
 
-The top line is where you see messages about what's happening in the game.  The bottom line is a status line, where you can see what level you're at, and other things like if you're hungry, afraid, poisioned, or if you're moving especially slow or fast.  On the left side of the screen you see your character's stats.  Everything else, is the map of the dungeon.
+The top line is where messages appear about what's happening in the game.  The bottom line is a status line, that shows what dungeon depth the character is at, and other things like if the character is hungry, afraid, poisioned, or moving especially slow or fast.  On the left side of the screen the character's stats can be seen.  Everything else, is the map of the dungeon.
 
-This picture shows an elf mage character (@code{@@}) in a lit room at 1000 feet below the surface.  You can see the walls of the room (@code{#}), and the empty lit tiles within it (@code{.}).  The room has one closed door (@code{+}), and one open door (@code{'}), and three other ways to leave.  The character has arrived to this room through a tunnel or hall coming from the top of the screen.  The tunnel is not lit like the room is.  It will be lit by your light source as you travel through it.  There are no monsters visible.
+This picture shows an elf mage character (@code{@@}) in a lit room at 1000 feet below the surface.  The walls of the room (@code{#}) can be seen, and the empty lit tiles within it (@code{.}).  The room has one closed door (@code{+}), and one open door (@code{'}), and three other ways to leave.  The character has arrived to this room through a tunnel or hall coming from the top of the screen.  The tunnel is not lit like the room is.  The tunnel will be lit by the character's light source as it travels through.  There are no monsters visible.
 
-From the statistics on the left side of the screen, you can see that the character is a @code{Mage (2nd)}, which is another way of saying that he is at level 27.  The reason that this character is at level 27 is because he has 38487 experience points.
+From the statistics on the left side of the screen, it can be seen that the character is a @code{Mage (2nd)}, which is another way of saying that it is at level 27.  The reason that this character is at level 27 is because it has 38487 experience points.
 
-He has 123 of 123 hit points available.  @code{MHP} means maximum hit points, while @code{CHP} means current hit points.  This spell-caster has exactly 66 mana (spell-casting) points to spend as he casts spells.  You can also see that he has some spells to learn.  The word @code{Study} in the bottom right shows this.
+The character has 123 of 123 hit-points available.  @code{MHP} means maximum hit-points, while @code{CHP} means current hit-points.  This spell-caster has exactly 66 mana (spell-casting) points to spend as spells are cast.  It can also be seen that this mage has some spells to learn.  The word @code{Study} in the bottom right shows this.
 
-You can see the character's current levels of strength, intelligence, wisdom, dexterity, constitution and charisma.  The character doesn't have 18 of 78 intelligence, he has 18 78/100 intelligence, which is more than just 18.
+The character's current levels of strength, intelligence, wisdom, dexterity, constitution and charisma can also be seen.  The character doesn't have 18 of 78 intelligence, they have 18 78/100 intelligence, which is more than just 18.
 
-His armor class is currently at 55, and he has a great number of gold pieces.
+Finally, the character's armor class is currently at 55, and has a great number of gold pieces.
 
-@node Commands, Special Keys, Symbols On Your Screen, Top
+@node Commands, Special Keys, Symbols On The Screen, Top
 @chapter Commands
 All commands are entered by pressing a single key.  Some commands
-are capital or control characters, which require you to hold down
+are capital or control characters, which require the player to hold down
 the shift or control key while pressing another key.  As a special 
 feature, control keys may be entered in a single stroke, or
 in two strokes, with a @code{^} character first.
 
 There are two command sets: the original command set which is the
-default, and the rogue like command set.  The rogue like command
-is generally more convenient, especially if you don't have a
-keypad.
+default (e.g. the original VMS-style command set), and the rogue-like 
+command set.  The rogue-like command is generally more convenient, 
+especially if the keyboard lacks a keypad.
 
 The following tables summarize the two command sets.  Certain
 commands may be preceded by an optional count, and certain commands 
@@ -820,7 +814,7 @@ Original command summary.
 @t{} @tab 
 @end multitable
 
-Rogue like command summary.
+Rogue-like command summary.
 @multitable {12345678} {1234567890123456789012345678} {12345678} {1234567890123456789012345678}
 @item
 @t{@tie{}@tie{}c@tie{}~} @tab Close a door @tab
@@ -890,17 +884,17 @@ Rogue like command summary.
 @node Special Keys, Direction, Commands, Commands 
 @section Special Keys
 Certain commands may be entered at any time input is accepted.
-The special character control-R, entered as a single key stroke,
+The special character control-R, entered as a single keystroke,
 will always refresh the screen.  This may be used at any prompt
 for input, and is otherwise ignored.
 
-If you are playing on a UNIX or similar system, then there are
+When playing on a UNIX or similar system, then there are
 some additional special characters used by @emph{moria}.  The special
-character control-C will interrupt @emph{moria}, and ask if you really
-want to die and quit the game.  If you choose not to die, @emph{moria}
+character control-C will interrupt @emph{moria}, and asks the player if 
+they really want the character to die and quit the game.  Should the player choose for the character not to die, @emph{moria}
 merely continues as before, except that resting, running,
-repeated commands, etc will be terminated.  You can suspend the
-game with control-Z, and return to the original command shell.
+repeated commands, etc will be terminated.  The game can be suspended
+with control-Z, and return to the original command shell.
 In this case, @emph{moria} is not terminated, and may be restarted at
 any time from the shell.  Alternatively, the special command @code{!}
 is available to run any normal shell command.  When it is complete, 
@@ -912,7 +906,7 @@ SPACE, ESCAPE, RETURN (control-m), or LINEFEED (control-j) can be
 used to continue after pausing to read the displayed message.
 
 It is possible to give control character commands in two key
-stroke, by typing a @code{^} followed by the appropriate letter of the
+strokes, by pressing a @code{^} followed by the appropriate letter of the
 alphabet.  This is useful when running @emph{moria} in circumstances
 where control characters are intercepted by some external process, 
 or by the operating system.
@@ -920,14 +914,12 @@ or by the operating system.
 @node Direction, Command Counts, Special Keys, Commands 
 @section Direction
 For the original style command set, a direction is given by a
-digit which is in the appropriate orientation on your keypad.
-For the rogue like command set, a direction is given by one of
+digit which is in the appropriate orientation on the keypad.
+For the rogue-like command set, a direction is given by one of
 the letters @code{hykulnjb}.  Again, the relative position of the keys
 on the keyboard gives a clue as to the direction.  The digit @code{5}
-for the original commands, and the period @code{.} for rogue like commands, 
-is a null direction indicator.  This is only allowed in a
-movement command (to stay in one place) or in a look command (to
-look in all directions).
+for the original commands, and the period @code{.} for rogue-like commands, 
+is a null direction indicator.  This means to stay in one place, or when in a look command to look in all directions.
 
 @multitable {1234567890123456789012345678}{1234567890123456789012345678}
 @item
@@ -957,22 +949,22 @@ Rogue-like Directions
 @end multitable
 
 Movement is accomplished by specifying a direction immediately.
-Simply press the appropriate key and you character will move one
-step in that direction.  You can only move onto and through floor
+Simply press the appropriate key and the character will move one
+step in that direction.  The character can only move onto and through floor
 spots, and only if they contain no creatures or obstructing
 objects such as a closed door.
 
 Other commands that require a direction will prompt for it.
 
-Moving your character one step at a time can be time consuming
+Moving the character one step at a time can be time consuming
 and boring, so a faster method has been supplied.  For the original 
-style command set, by using the Run command @code{.}, you may move
-in a direction until something interesting happens.  For
+VMS-style command set, by using the Run command @code{.}, the character 
+may move in a direction until something interesting happens.  For
 instance, by pressing the period key @code{.} followed by the direction 
-8, your character would continue to move up the screen, only
+8, the character would continue to move up the screen, only
 coming to a stop after at least one condition is satisfied.  For
-the rogue like command set, typing a shifted directional letter
-will move you in that direction until something interesting happens.  
+the rogue-like command set, typing a shifted directional letter
+will move the character in that direction until something interesting happens.  
 The stopping conditions are described more completely in
 the run command description below.
 
@@ -981,122 +973,120 @@ the run command description below.
 
 Some commands can be executed a fixed number of times by preceding 
 them with a count.  Counted commands will execute until the
-count expires, or until you type any character, or until something 
+count expires, or until any key is pressed, or until something 
 significant happens, such as being attacked.  Thus, a
 counted command doesn't work to attack another creature.  While
 the command is being repeated, the number of times left to be
 repeated will flash by on the command line at the bottom of the
 screen.
 
-To give a count to a command in the rogue like mode, type the
+To give a count to a command in the rogue-like mode, type the
 number in digits, then the command.  A count of zero defaults to
 a count of 99.
 
-To give a count to a command in the original mode, type a @code{#},
+To give a count to a command in the original mode, press @code{#},
 followed by the digits.  To count a movement command (which is
-itself a digit), type a space after the number, and you will then
-be prompted for the command.
+itself a digit), type a space after the number, and then give the command.
 
 Counted commands are very useful for searching or tunneling, as
-they automatically terminate on success, or if you are attacked.
-You may also terminate a counted command, or a Run command, by
-typing any character.  This character is ignored, but it is
+they automatically terminate on success, or if the character is attacked.
+A counted command or a Run can be terminated a counted command by pressing
+any key.  This character is ignored, but it is
 safest to use a SPACE or ESCAPE which are always ignored as commands.
 
 @node Selection of objects, Command descriptions,Command Counts, Commands 
 Many commands will also prompt for a particular object to be
-used.  For example, the command to read a scroll will ask you
-which of the scrolls that you are carrying that you wish to read.
-In such cases, the selection is made by typing a letter of the
-alphabet; if you are selecting from your pack, you may also type
+used.  For example, the command to read a scroll will ask
+which of the scrolls that the character is carrying is to be read.
+In such cases, the selection is made by pressing a key for that letter of the
+alphabet; when selecting from the backpack, the player may also type
 a digit to select the item whose inscription is that digit.  The
 prompt will indicate the possible letters, and will also allow
-you to type the key @code{*}, which causes all of the available
-options to be described.
+the @code{*} key to be pressed, which causes all of the available
+options to be described (e.g. it lists all of the scrolls that can be read).
 
 The particular object may be selected by an upper case or a lower
 case letter.  If lower case or a digit is used, the selection
 takes place immediately.  If upper case is used, then the particular 
 option is described, and you are given the option of confirming or 
 retracting that choice.  Upper case selection is thus
-safer, but requires an extra key stroke.
+safer, but requires an extra keystroke.
 
 
 @node Command descriptions,The Town Level,Selection of objects, Commands 
 @section Command descriptions
 In the following command descriptions, the original style key is
-given.  If the rogue like key for that command is different, then
+given.  If the rogue-like key for that command is different, then
 it will be shown following the original key.
 
 @table @code
 @item B <Dir> (f <Dir>)
 @itemx Bash. 
 The bash command includes breaking open doors and chests, or
-bashing an opponent.  Your bashing ability increases with
+bashing an opponent.  The bashing ability increases with
 weight and strength.  In addition, when bashing an opponent,
-you will either perform a body bash, or, if wielding a
+it will either perform a body bash, or, when wielding a
 shield, perform a shield bash which is more effective.
 
-Bashing a door can throw you off balance, but this will not
+Bashing a door can throw the character off-balance, but this will not
 generally be a problem.  Doors that have been jammed closed
 with spikes can only be opened by bashing.  Locked doors may
 also be bashed open.  Bashing a door open will permanently
 break it.
 
-Bashing a creature affects both you and the opponent.
-Depending on your dexterity, you may or may not be thrown
-off balance allowing free moves to your opponent.  If the
-bash is successful, your opponent may be thrown off balance,
-thus giving you some free hits or a chance to run.  Huge
+Bashing a creature affects both the character and the opponent.
+Depending on dexterity, the character may or may not be thrown
+off-balance allowing free moves to the opponent.  If the
+bash is successful, the opponent may be thrown off-balance,
+thus giving the character some free hits or a chance to flee.  Huge
 creatures such as ancient dragons will be difficult or
-impossible to bash successfully.
+even impossible to bash successfully.
 
-A player automatically performs a shield bash instead of a
-body bash, if he is currently wearing a shield.  A shield
+A character automatically performs a shield bash instead of a
+body bash, when they are currently wearing a shield.  A shield
 bash adds the damage of a shield to that of the bash, so it
 is more effective.  Size and material both affect the damage
 that a shield will do.
 
-You can apply a count to this command, but if you are thrown
-off balance, the count will be reset straight away.
+Bashing can be done with a command-count, but if the character is 
+town off-balance, the count will be reset straight away.
 
 @item C
-@itemx Print character (to screen or file).
-This command allows the player to either display his character 
-on the terminal screen, or to print an entire character
+@itemx Display character (on screen or saving to a file.)
+This command allows the player to either display the character 
+details on the terminal screen, or to save an entire character
 info listing to a file.  The character's history, equipment,
-and inventory list are also included if you chose to print
-it to a file.
+and inventory list are also included when saving to a file.
 
 @item D <Dir>
 @itemx Disarm a trap.
-You can attempt to disarm floor traps, or trapped chests.
-If you fail to disarm a trap, there is a chance that you
-blunder and set it off.  You can only disarm a trap on a
-chest after finding it with the search command.  This command 
+The character can attempt to disarm floor traps, or trapped chests.
+When the character tries and fails to disarm a trap, there is a chance that 
+the blunder will set it off.  Traps on chests can only be disarmed after 
+firstly finding the trap with the search command.  This command 
 can have a count.
 
 @item E
 @itemx Eat some food.
 A character must eat occasionally to remain effective.  As a
 character grows hungry, a message will appear at the bottom
-of the screen saying "@t{Hungry}".  If a character remains
-hungry long enough, he will become weak, eventually start
+of the screen saying "@t{Hungry}".  When a character remains
+hungry for too long, they will become weak, and eventually start
 fainting, and finally die of starvation.
 
 @item F
 @itemx Fill a lamp or lantern with oil.
-If your character is currently using a lamp for light, and
-if he has a flask of oil in inventory, he may refill the
+When the character is using a lamp for a light source, and
+has a flask of oil in the pack, they may refill the
 lamp by using this command.  A lamp is capable of a maximum
 of 15000 turns of light, and each flask has 7500 turns of
 oil contained in it.
 
 @item G
 @itemx Gain new spells.
-To actually learn new spells, you must use this command.
-When you are able to learn some spells, the word "@t{Study}"
-will appear on the status line at the bottom of the screen.
+This command causes the character to learn new spells.
+When the character is able to learn some spells, the word "@t{Study}"
+appears on the status line at the bottom of the screen.
 Mages, rogues, and rangers must have the magic books containing 
 new spells to be able to learn them.  Priests and
 Paladins are given their prayers by their gods, and hence do
@@ -1105,16 +1095,15 @@ They do need the book in order to use the prayers.
 
 @item L (W)
 @itemx Location on map.
-The location command allows you to look at all parts of the
+The location command allows the player to look at all parts of the
 current dungeon level.  The displayed view of the dungeon is
-shifted to bring your current position as close to the
-center as possible.  You may then shift the displayed map in
-any of the eight possible directions.  Each shift moves your
+shifted to bring the character's current position as close to the
+center as possible.  The map can then be shifted using
+any of the eight possible directions.  Each shift moves the
 view point by one half screen.  The top line displays a map
 section number, each map section having a height and width
 one half that of the display, and indicates the direction of
-the display from your current position.  If you exit this
-command while you are not on the display, then the display
+the display from the character's current position.  When this command is exited and the character is not on the display, then the display
 is centered again.
 
 @item M
@@ -1123,64 +1112,60 @@ This command will show the entire map, reduced by a factor
 of nine, on the screen.  Since nine places map into every
 character on the screen, only the major dungeon features
 will be visible.  This is especially useful for finding
-where the stairs are in relation to your current position.
+where the stairs are in relation to the character's current position.
 It is also useful for identifying unexplored areas.
 
 @item R
 @itemx Rest for a number of turns.
-You may rest one turn with the null movement command.  Resting 
+The character may rest one turn with the null movement command.  Resting 
 for longer periods of time is accomplished by using the
-Rest command, followed by the number of turns you want to
-rest your character.  Resting will continue until the specified 
+Rest command, followed by the number of turns to rest.
+Resting will continue until the specified 
 duration has expired, or something to wake the character happens, 
 such as a creature wandering by, or getting
 hungry, or some disability like blindness expiring.  It is
-sometimes a good idea to rest a beat-up character until he
-regains some of his hit points, but be sure to have plenty
+sometimes a good idea to rest a beat-up character until they
+regain some of their hit-points, but be sure to have plenty
 of food if you rest often.
 
-If you have accidentally entered in a rest period too large,
-or change your mind about the resting period, you may wake
-your character up by typing any character.  Space is best,
+The character can be awakened by pressing any key.  Space is best,
 since if the rest ends just before the character is typed,
 the space is ignored as a command.
 
 It is also possible to rest by typing the count first, and
 using either the Rest or the null movement command.
 
-If you type @code{*} for the rest count, your character will rest
-until both hp and mana reach their maximum values.  As
-above, you will immediately stop resting if anything
+When @code{*} is given for the rest count, the character will rest
+until both hit-points and mana reach their maximum values.  As
+above, the character will immediately be awakened if anything
 interesting happens.
 
 @item S (#)
 @itemx Search mode toggle. 
-The Searching toggle will take you into and out of search
+The Searching toggle will take the character into and out of search
 mode.  When first pressed, the message "@t{Searching}" will
-appear at the bottom of the screen.  You are now taking two
-turns for each command, one for the command and one turn to
-search.  This means that you are taking twice the time to
+appear on the status line at the bottom of the screen.  The character is 
+now taking two turns for each command, one for the command and one turn to
+search.  This means that the character is taking twice the time to
 move about the dungeon, and therefore twice the food.  If a
-creature should happen by or attack you, search mode will
-automatically shut off.  You may also turn off search mode
-by again pressing the @code{S} (or @code{#}) key.
+creature should happen by or attack, search mode will
+automatically toggled off.  Search mode can also be turned off by again pressing the @code{S} (or @code{#}) key.
 
 @item T <Dir> (control-<Dir>)
 @itemx Tunnel through rock. 
-Tunneling (Mining) is a very useful art.  There are four
-kinds of rock present in the dungeons of @emph{moria}: Permanent
-Rock, Granite Rock, Magma Intrusion, and Quartz Veins.  Permanent 
-Rock is exactly that, permanent.  Granite is very
-hard, therefore hard to dig through, and contains no valuable 
-metals.  Magma and Quartz veins are softer and sometimes bear 
-valuable metals and gems, shown as a @code{$} or a @code{*}
-character.  You can tell if the metal or gems are embedded
-into the wall by trying to move onto them.  If you can't
-move over them, you'll have to dig them out.  There is an
-option which causes magma and quartz to be displayed differently 
+Tunneling (Mining) is a very useful art in the dungeons of @emph{moria}.
+There are four kinds of rock: Permanent Rock, Granite Rock, 
+Magma Intrusion, and Quartz Veins.  Permanent Rock is exactly 
+that, permanent.  Granite is very hard, therefore hard to dig 
+through, and contains no valuable metals.  Magma and Quartz 
+veins are softer and sometimes bear valuable metals and gems, 
+shown as a @code{$} or a @code{*} symbol.  When the character can't
+move over these symbols, it means they are embedded in the rock, and 
+the tunnel command must be used to dig them out.  There is a
+game option which causes magma and quartz to be displayed differently 
 than other rock types.
 
-Tunneling can be VERY difficult by hand, so when you dig be
+Tunneling can be VERY difficult by hand, so when digging be
 sure to wield either a shovel or a pick.  Magical shovels
 and picks can be found which allow the wielder to dig much
 faster than normal, and a good strength also helps.
@@ -1190,15 +1175,16 @@ Tunneling can have a count.
 @item V
 @itemx View scoreboard.
 This command will display the contents of the score board on
-the screen.  On a multiuser system, typing @code{V} the first
+the screen.  On a multiuser system, pressing @code{V} the first
 time will show only those scores from the score board that
-are yours, and typing @code{V} again will show all users' scores.
+belong to the current user, and pressing @code{V} again will show
+all users' scores.
 
 @item a <Dir> (z <Dir>)
 @itemx Aim a wand.
 Wands must be aimed in a direction to be used.  Wands are
 magical devices and therefore use the Magical Devices ability 
-of the player.  They will either affect the first
+of the character.  They will either affect the first
 object/creature encountered, or affect anything in a given
 direction, depending upon the wand.  An obstruction such as
 a door or wall will generally stop the effects of a wand
@@ -1206,7 +1192,7 @@ from traveling further.
 
 @item b (P)
 @itemx Browse a book.
-You can only read a book if you are of its realm.  Therefore
+Books can only be read if the character is of its realm.  Therefore
 a magic user could read a magic book, but not a holy book.
 Warriors will not be able to read either kind of book.  When
 the browse command is used, all of the spells or prayers
@@ -1220,39 +1206,39 @@ different prayers in four books.
 @itemx Close a door.
 Nonintelligent and certain other creatures will not be able
 to open a door.  Therefore shutting doors can be a life
-saver.  You must be adjacent to an open door, and you cannot
-close broken doors.  Bashing a door open will break it.
+saver.  To close a door, the character must be adjacent to an open door, and 
+broken doors cannot be closed.  Bashing a closed door will break it and leave it permanently open.
 
 @item d
-@itemx Drop an object from your inventory.
-You can drop an object onto the floor beneath you if that
+@itemx Drop an object from the inventory.
+Objects can be dropped onto the floor beneath the character if that
 floor spot does not already contain an object.  Doors and
-traps are considered objects in this sense.  If you have
-several objects of the same kind, you will be prompted for
+traps are considered objects in this sense.  If the character has
+several objects of the same kind, the player will be prompted for
 dropping one or all of them.  It is possible to directly
 drop things which you are wielding or wearing.
 
 @item e
 @itemx Display a list of equipment being used.
 Use the Equipment command to display a list of objects
-currently being used by your character.  Each object has a
+currently being worn or wielded by the character.  Each object has a
 specific place where it is placed, and that only one object
 of each type may be used at any one time, excepting rings of
 which two can be worn, one on each hand.
 
 @item f <Dir> (t <Dir>)
 @itemx Fire/Throw an object/use a missile weapon.
-You may throw any object carried by your character.  Depending 
+Any object carried by the character can be thrown.  Depending 
 upon the weight of an object, it may travel across a
-room or drop down beside you.  If you throw an object such
-as an arrow, only one will be used at a time.
+room or drop down beside the character.  When a stackable object 
+like an arrow is thrown, only one will be thrown at a time.
 
-If you throw at a creature, your chance of hitting the
-creature is determined by your plusses to hit, your ability
-at throwing, and the object's plusses to hit.  Once the
+When throwing at a creature, the chance of hitting the
+creature is determined by the character's plusses to hit, the 
+ability at throwing, and the object's plusses to hit.  Once the
 creature is hit, the object may or may not do any actual
 damage to it.  Certain objects in the dungeon can do great
-amounts of damage when thrown, but it's for you to figure
+amounts of damage when thrown, but it's for the player to figure
 out the obscure ones.  Oil flasks are considered to be lit
 before thrown; therefore, they will do fire damage to a
 creature if they hit it.
@@ -1265,21 +1251,22 @@ killer...
 
 @item i
 @itemx Display a list of objects being carried.
-This command displays a list of all objects being carried,
-but not currently in use.  You may carry up to 22 different
-kinds of objects, not including those in your equipment
-list.  Depending upon your strength, you will be able carry
-many identical objects before hitting your weight limit.
+This command displays an inventory of all objects being carried,
+but not currently in use (e.g. being worn or wielded).  The character may 
+carry up to 22 different kinds of objects in the pack.  Depending upon 
+strength, the character will be able carry many identical objects before 
+hitting the weight limit.  After the weight limit is exceeded the character 
+will move slower due to the encumbrance.
 
 @item j <Dir> (S <Dir>)
 @itemx Jam a door with an iron spike.
 Most humanoid and many intelligent creatures can simply open
 a closed door, and can eventually get through a locked door.
-Therefore you may spike a door in order to jam it.  Each
+Therefore the character may also spike a door in order to jam it.  Each
 spike used on a door will increase its strength, although
-the more spikes you add, the less effect each additional
+as more spikes are jammed, the less effect each additional
 spike has.  It is very easy to jam a door so much as to make
-it impossible for your character to bash it down, so spike
+it impossible for the character to bash it down, so spike
 doors wisely.  The bigger a creature is, the easier it can
 bash a door down.  Therefore twenty or more spikes might be
 necessary to slow down a dragon, where one spike would slow
@@ -1290,18 +1277,18 @@ down a kobold.  This command can be counted.
 The Look command is useful in identifying the exact type of
 object or creature shown on the screen.  Also, if a creature
 is on top of an object, the look command will describe both.
-You can see creatures and objects up to 200 feet away (20
-spaces).  You may freely use the Look command without the
-creatures getting a move on you.
+Creatures and objects can be seen up to 200 feet away (20
+spaces or tiles).  The Look command can be used freely without the
+creatures getting a turn to move against the character.
 
 Looking in a particular direction sees everything within a
 cone of vision which just overlaps the cones of the two
 adjacent directions.  Looking with the null direction @code{5}
 (or @code{.}) sees everything which there is to be seen.
 
-You are also able to access you monster memories with this
-command.  If you see a creature, you are prompted to ask if
-you wish to see a short paragraph of information about your
+The character is able to access monster memories with this
+command.  When the character sees a creature, the player has the option
+to view a short paragraph of information about prior
 experiences with that creature.  See also the section on
 being attacked.
 
@@ -1312,47 +1299,46 @@ it, and must also have in the inventory a magical book from
 which the spell may be read.  Each spell has a chance of
 failure which starts out fairly large but decreases as a
 character gains levels.  If a character does not have enough
-mana, the chance of failure is greatly increased, and he
-gambles on losing a point of constitution.  You will be
+mana, the chance of failure is greatly increased, and
+gambles on losing a point of constitution.  The player will be
 prompted for confirmation before trying to cast a spell when
-you don't have enough mana.  Since a character must read the
-spell from a book, he cannot be blind or confused when casting 
+there is insufficient mana.  Since a character must read the
+spell from a book, they cannot be blind or confused when casting 
 a spell, and there must be some light present.
 
 @item o <Dir>
 @itemx Open a door, chest, or lock.
-To open an object such as a door or chest, you must use the
-Open command.  If the object is locked, the Open command
-will attempt to pick the lock, based on your ability at
-disarming.  If an object is trapped and you open it, the
+To open an object such as a door or chest, the
+Open command can be used.  If the object is locked, the Open command
+will attempt to pick the lock, based on the character's disarm ability.
+If an object is trapped and the character opens it, the
 trap will be set off.  This command can be counted, because
-you may need several tries to get a locked door or chest
-open.
+the locked object may require several tries to open.
 
 @item p
 @itemx Read a prayer.
-To pay effectively, a character must have learned the
+To pray effectively, a character must have learned the
 prayer, and must also have in the inventory a holy book from
 which the prayer may be read.  Each prayer has a chance of
 being ignored which starts out fairly large but decreases as
 a character gains levels.  If a character does not have
 enough mana, the chance of failure is greatly increased, and
-he gambles on losing a point of constitution.  You will be
-prompted for confirmation before trying to pray when you
-don't have enough mana.  Since a character must read the
-prayer from a book, he cannot be blind or confused when
+gambles on losing a point of constitution.  The player will be
+prompted for confirmation before trying to pray when there is 
+insufficient mana.  Since a character must read the
+prayer from a book, they cannot be blind or confused when
 praying, and there must be some light present.
 
 @item q
 @itemx Quaff a potion.
 To drink a potion use the Quaff command.  A potion affects
-the player in some manner.  The effects of the potion may be
+the character in some manner.  The effects of the potion may be
 immediately noticed, or they may be subtle and unnoticed.
 
 @item r
 @itemx Read a scroll.
 To read a scroll use the Read command.  Most scroll spells
-either affect the player or the area around the player; a
+either affect the player or the area around the character; a
 few cases such as identify scrolls act on other objects.
 Two scrolls, the identify scroll and the recharge scroll,
 have titles which can be read without setting them off, and
@@ -1361,25 +1347,24 @@ by pressing ESCAPE can be saved for future use.
 @item s
 @itemx Search general area one turn.
 The Search command can be used to locate hidden traps and
-secret doors about the player.  More than a single turn of
-searching will be required in most cases.  You should always
+secret doors about the character.  More than a single turn of
+searching will be required in most cases.  The character should always
 search a chest before trying to open it because they are
-generally trapped.  This command can be counted, which is
-useful if you are really sure of finding something eventually.  
-A counted search ends as soon as anything is found.
+generally trapped.  This command can be counted, and the counted 
+search ends as soon as anything is found.
 
 @item t (T)
 @itemx Take off a piece of equipment. 
 Use the Take Off command to remove an object from use, and
-return it to your inventory.  Occasionally you will run into
-a cursed item which cannot be removed.  Cursed items are
-always bad, and can only be taken off after removing the
+return it to the character's pack, or inventory.  Occasionally the 
+character will have a cursed item which cannot be removed.  Cursed
+items are always bad, and can only be taken off after removing the
 curse.
 
 @item u (Z)
 @itemx Use/Zap a staff.
 The Use command will activate a staff.  Like scrolls, most
-staffs have an area effect.  Because staffs are generally
+staves have an area effect.  Because staves are generally
 more powerful than most other items, they are also harder to
 use correctly.
 
@@ -1390,37 +1375,37 @@ version of @emph{moria}.
 
 @item w
 @itemx Wear or wield an item being carried.
-To wear or wield an object in your inventory, use the
+To wear or wield an object in the character's inventory, use the
 Wear/Wield command.  If another object is already in use for
-the same function, it is automatically removed first; if you
-are wearing two rings, you are given a choice of which one
+the same function, it is automatically removed first; if the character
+is wearing two rings, the player is given a choice of which one
 to remove.  An object's bonuses cannot be gained until it is
 worn or wielded.
 
 @item x (X)
 @itemx Exchange primary and secondary weapons.
 A secondary weapon is any weapon which may be needed often.
-Instead of searching through your inventory, you may use the
-exchange command to keep the weapon ready.  For instance, if
-you wanted to use your bow most of the time, but needed a
-sword for close combat, you could wield your sword, use the
-exchange command to make it the secondary weapon, then wield
-your bow.  If the sword was suddenly needed, simply use the
+Instead of searching through the inventory, the character may use the
+exchange command to keep the weapon ready (e.g. slung over the 
+character's back).  For instance, if the bow was going to be used primarily, 
+but needed a sword for close combat, the character could wield the sword, 
+use the exchange command to make it the secondary weapon, then wield
+the bow.  If the sword was suddenly needed, simply use the
 exchange command to switch between the bow and the sword.
 
 @item /
 @itemx Identify a character shown on screen.
-Use the identify command to find out what a character
+Use the identify command to find out what a symbol
 displayed on the screen stands for.  For instance, by pressing 
-@code{/.}, you can find out that the @code{.} stands for a floor
-spot.  When used with a creature, the identify command will
-tell you only what class of creature the symbol stands for,
+@code{/.}, the player can find out that the @code{.} stands for a floor
+spot, or tile.  When used with a creature, the identify command will
+only tell what class of creature the symbol stands for,
 not the specific creature; therefore, use the look command
 for this information.
 
-If you identify the character for a creature in your monster
-memory, you are also prompted to ask if you wish to see a
-paragraph of information on those creatures identified by
+When identifying a symbol for a creature in the character's monster
+memory, the player has the option to view 
+a paragraph of information on those creatures identified by
 the given character.  Several creatures may be identified in
 this way.  Typing ESCAPE after the paragraph for any
 creature will abort back to command level.  See also the
@@ -1428,64 +1413,63 @@ section on being attacked.
 
 @item ?
 @itemx Display a list of commands.
-The ? command displays a quick reference help page on the
+The @code{?} command displays a quick reference help page on the
 screen.
 
 @item -
 @itemx Move without pickup.
-This is followed by a move command, and causes you to move
-over any object without picking it up.  You can associate a
-count with this command.
+This is followed by a move command, and causes the character to move
+over an object without automatically picking it up.  This command can be counted.
 
 @item =
 @itemx Set options.
-This is a free move, to set various @emph{moria} options.  The
+This is a free move, to set various game options in @emph{moria}.  The
 available options are:
 
 @enumerate
 @item
 Cut known corners when running.  This is on by default, and
-the only reason for switching it off would be if you had the
-search flag on and wished to look for doors in the extremity
+the only reason for switching it off would be if the character had the
+search mode on and wished to look for secret doors in the extremity
 of every corner.
 
 @item
 Examine potential corners when running.  This is on by
-default, and allows you to run along an unknown curving corridor.  
-If, however, you are running from a creature, you
+default, and allows the character to run along an unknown curving corridor.  
+If however, the character is running from a creature, the player
 may wish to switch this option off, because the creature
 will cut the corner.
 
 @item
-Print self during a run.  This is off by default, which
+Display self during a run.  This is off by default, which
 gives faster screen updating.
 
 @item
 Stop when map sector changes.  This is off by default, but
-can be switched on if you wish to stop running whenever a
+can be switched on to stop running whenever a
 new part of the dungeon appears in view.
 
 @item
 Treat open doors as empty space while running.  This is off
-by default, in which case you stop whenever you run up to an
+by default, in which case the character stops whenever they run up to an
 open door.
 
 @item
 Prompt to pick up objects.  This is off by default, in which
-case stepping over an object automatically causes you to
-pick it up.  With the option on, you get prompted in all
-such cases with a description of the object to see if you
-really want to take it.
+case stepping over an object automatically causes the character to
+pick it up.  With the option on, the player gets prompted in all
+such cases with a description of the object to see if it should be put
+into the character's pack.
 
 @item
-Rogue like command set.  This option controls the command
+Rogue-like command set.  This option controls the command
 set in use.  It is off by default.
 
 @item
 Show weights in inventory.  This is off by default: switching 
 it on causes the inventory and equipment listings to
 include the weight of all objects.  This may be useful to
-know if your pack is getting too heavy.
+know if the character's pack is getting too heavy.
 
 @item 
 Highlight and notice mineral seams.  This is off by default.
@@ -1499,16 +1483,16 @@ the `Where' (or `Locate') command.
 
 @item
 Beep for invalid character.  This is on by default.  When
-on, the program will beep for most invalid characters, such
-as trying to choose a spell that you haven't learned yet.
+this option is on, the program will beep for most invalid characters, such
+as trying to choose a spell that hasn't been learned yet.
 When off, there are no such beeps.
 
 @item
 Display rest/repeat counts.  This is on by default.  When
 on, the program will progressively display the remaining
 turns left while resting, and for repeated commands.  For
-those trying to play over a 2400 bps or less connection, or
-for those playing on very slow microcomputers, turning this
+those trying to play over a very slow connection, or
+for those playing on very slow computers, turning this
 off will make resting and repeated commands work much faster.
 
 @item
@@ -1519,31 +1503,31 @@ haggle for, and all prices displayed in the stores will be
 the actual prices you have to pay.
 @end enumerate
 
-The setting of all these options persist in your savefile,
-even after you die.
+The setting of all these options persist in the savefile,
+even after the character dies.
 
 @item ^P
 @itemx Previous message.
 The Control-P command will redisplay the last message
-printed on the message line at the top of your screen.  A
+displayed on the message line at the top of the screen.  A
 second such command will display all of the saved messages.
-You may also give this command a count to specify the number
+This command can be given a count to specify the number
 of previous messages to display.  At present, only 22 messages 
 are saved.
 
 @item ^K (^Q)
-@itemx Kill your character.
-To exit the game without saving your character (i.e. kill
-him/her) use the Control-K command.  Once exited in this
-manner, your character is nonrecoverable.
+@itemx Kill the character.
+To exit the game without saving the character (i.e. killing
+the character) use the Control-K command.  Once exited in this
+manner, the character is nonrecoverable.
 
 @item ^X
-@itemx Save your character and exit the game.
-To save your game so that it can be restarted later, use the
+@itemx Save the character and exit the game.
+To save the game so that it can be restarted later, use the
 Control-X command.  Save files will also be generated if the
-game crashes due to a system error.  When you die, a reduced
-save file is produced containing only your monster memory,
-and your option settings.
+game crashes due to a system error.  When the character dies, a reduced
+savefile is produced containing only the monster memory,
+and the option settings.
 
 @item @{
 @itemx Inscribe an object.
@@ -1559,39 +1543,40 @@ item.
 
 If the inscription on an item is a single digit, that digit
 can be used to refer to it when using, wearing, or wielding
-an item from your pack.  For example, if you keep a pick in
-your pack with the inscription 1, you can switch to the pick
-by wielding item 1 without checking your full inventory list
-to find out which item the pick is.
+an item from inside the pack.  For example, if a shovel is kept in
+the pack with the inscription @code{1}, you can switch to the shovel
+by wielding item @code{1} without checking the full inventory list
+to find out which item the shovel is.
 
 @item !
 @itemx Shell out of game.
 Use the Shell command @code{!} to temporarily exit the game to
-execute UNIX or MSDOS commands.  You may reenter the game by
-typing exit to end the spawned process.  This is not implemented 
-in the Macintosh version.
+execute UNIX or DOS commands.  The game can be reentered by
+typing exit to end the spawned process.
 
 @item <
 @itemx Go up an up staircase.
-If you move onto an up staircase you may use the @code{<} command
-to go up one level.  There is always one staircase going up
-on every level except for the town level (this does not mean
-it's easy to find).  Going up a staircase will always take
-you to a new dungeon area except for the town level, which
-remains the same for the duration of your character.
+If the character moves onto an up staircase the @code{<} command
+will take the character to go up one level (e.g. one level of dungeon depth).
+There is always one staircase going up on every level except for 
+the town level (this does not mean it's easy to find).  Going up a 
+staircase will always take the character
+to a new dungeon area except for the town level, which
+remains the same for the duration of the current character's game.
 
 @item >
 @itemx Go down a down staircase.
-If you are on top of a down staircase you may use the @code{>}
-command to go down one level.  There are always two or three
+If the character is on top of a down staircase the @code{>}
+command may be used to go down one level of dungeon depth.  There are 
+always two or three
 staircases going down on each level, except the town level
-which has only one.  Going down will always take you to a
+which has only one.  Going down will always take the character to a
 new dungeon area.
 
 @item . <Dir> (shift <Dir>)
 @itemx Move in direction. 
-The Run command will move you in the indicated direction
-until either you have to make a choice as between two directions, 
+The Run command will move the character in the indicated direction
+until either a choice needs to be made between two directions, 
 or something interesting happens.  There are options
 which determine behavior at corners, and at screen boundaries.  
 More precisely, the conditions which stop a run are
@@ -1600,21 +1585,21 @@ as follows:
 @enumerate
 @item
 A creature appears on the screen, one already on the screen
-moves, or a creature attacks you or casts a spell at you.
+moves, or a creature attacks or casts a spell at the character.
 
 @item
-You move next to an object, or a feature such as a door or
+The character moves next to an object, or a feature such as a door or
 trap.
 
 @item
-You come to the end of open space, or the end of a passage,
+The character comes to the end of open space, or the end of a passage,
 or a junction of passages, or a hole in a wall.
 
 @item
 Anything typed during a run causes the run to stop.  The
-character causing this to occur is ignored.  It is best to
+keyboard key causing this to occur is ignored.  It is best to
 use a space, which is ignored as a command, just in case the
-run stops just before you type the character.
+run stops just before the key is pressed.
 
 @item
 Various changes of state, such as recovery from fear or loss
@@ -1622,39 +1607,40 @@ of heroism, will stop a run.
 @end enumerate
 
 Corners are more complex.  A corner allows a choice between
-adjacent rectangular and diagonal directions.  If you can
+adjacent rectangular and diagonal directions.  If the character can
 see walls which ensure that the diagonal gives a faster
 traversal, then action is determined by the "cut corners"
-options.  If it is set, then you move diagonally through the
-corner.  This gives you maximum speed (as is nice if you are
+options.  If it is set, then the character moves diagonally through the
+corner.  This gives maximum speed (as is nice when
 fleeing a hidden creature).  On the other hand, this option
-should not be set if you want more careful coverage (as when
-you are searching) so that you take two moves through the
+should not be set if more careful coverage is desired (as when
+searching) so that the character take two moves through the
 corner.
 
 At a potential corner, where walls are not yet visible ahead
 of the rectangular direction, the "examine corners" option
-is considered.  If set, you will move straight into the
+is considered.  If set, the character will move straight into the
 corner, which will light up all the corner and so determine
-where you can go from there.  This allows you to follow
-corners in new passages.  If the option is not set, you
-stop.  This allows highly cautious running where you want to
-stop at all potential choice points.
+where to go from there.  This allows the character to follow
+corners in new passages.  If the option is not set, the character
+stops.  This allows highly cautious running where the character
+stops at all potential choice points.
 
-If you move off the screen while running, then a new section
+If the character moves off the screen while running, then a new section
 of the dungeon is displayed and the run continues.  However,
-if the "stop when map changes" option is set, you will stop.
+if the "stop when map changes" option is set, the character will stop.
 Again, this is an option for nervous players; after all,
-there may be a dragon on the new screen.
+there may be a dragon on the new screen, and running into a dragon can 
+be bad for the character's health.
 @end table
 
 
 @node The Town Level,Townspeople, Command descriptions, Top
 @chapter The Town Level
-The town level is where you will begin your adventure.  The town
+The town level is where the character will begin the adventure.  The town
 consists of six buildings, each with an entrance, some townspeople, 
-and a wall which surrounds the town.  The first time you are
-in town it will be daytime, but you may return to find that darkness 
+and a wall which surrounds the town.  At the start of the game it will be
+daytime in the town, but later on the character may return to find that darkness 
 has fallen.  (Note that some spells may act differently in
 the town level.)
 
@@ -1678,49 +1664,46 @@ of half-drunk warriors, who take offense or become annoyed just
 for the fun of it.
 
 Most of the townspeople should be avoided by the largest possible
-distance when you wander from store to store.  Fights will break
-out though, so be prepared.  Since your character grew up in this
+distance when wandering from store to store.  Fights will break
+out though, so be prepared.  Since the character grew up in this
 world of intrigue, no experience is awarded for killing on the
 town level.
 
 
 @node Supplies,Town Buildings,Townspeople, The Town Level
 @section Supplies
-Your character will begin his adventure with some supplies
-already on him.  Use the Inventory @code{i} command to check what
+The character will begin the adventure with some supplies
+already in the backpack.  Use the Inventory @code{i} command to check what
 these supplies are.  It will be necessary to buy other supplies
 before continuing into the dungeon, however, so be sure to enter
 each of the stores.
 
 @node Town Buildings,Within The Dungeon,Supplies, The Town Level
 @section Town Buildings
-You may enter any of the stores, if they are open, and barter
-with the owner for items you can afford.  When bartering, you
-enter prices you will pay (or accept) for some object.  You can
-either enter the absolute amount, or precede a number with a plus
-or minus sign to give a positive or negative increment on your
-previous offer.  If you have previously given an increment or
-decrement amount, you can just type RETURN, and the program will
-use the last increment amount that you typed.  But be warned that
-the owners can easily be insulted, and may even throw you out for
+The character may enter any of the stores, if they are open, and barter
+with the owner for items that can be afforded.  When bartering, the player
+enters prices you will pay (or accept) for some object.  An absolute amount
+can be entered, or an amount preceded with a plus
+or minus sign to give a positive or negative increment on the
+previous offer.  When an increment has been previously given, pressing RETURN
+will use the previous increment.  But be warned that
+the owners can easily be insulted, and may even throw the character out for
 a while if you insult them too often.  To enter a store, simply
-move onto the entrance represented by the numbers 1 through 6.
+move onto the entrance represented by the numbers @code{1} through @code{6}.
 
-If you consistently bargain well in a store, that is, you reach
+If the character consistently bargains well in a store, that is, you reach
 the final offer much more often than not, then the store owner
-will eventually recognize that you are a superb haggler, and will
+will eventually recognize that the character is a superb haggler, and will
 go directly to the final offer instead of haggling with you.
 Items which cost less than 10 gold pieces do not count, as haggling 
 well with these items is usually either very easy or almost
 impossible.
 
 Once inside a store, the store inventory will appear on the
-screen along with a set of options for your character.  You may
-browse the store's inventory if it takes more than one page to
-display, and you may sell to, or purchase items from, his inventory.  
-You can execute your inventory and equipment commands to
-see what you are carrying.  Not shown with the options are the
-wear, take off, and exchange commands which will also work, but
+screen along with a set of options for the character.  The store's inventory
+can be browsed if there is more than one page to display.  Items can be sold to, or purchased from the character's backpack.
+Regular inventory and equipment commands can be executed in a store.
+Although the wear, take off, and exchange commands do not appear in the options, they will still work, but
 were excluded to keep the options simple.
 
 Stores do not always have everything in stock.  As the game
@@ -1730,11 +1713,11 @@ while you are adventuring, so don't always expect to be able to
 get back everything you have sold.
 
 Store owners will not buy harmful or useless items.  If an object
-is unidentified, they will pay you some base price for it.  Once
+is unidentified, they will pay some base price for it.  Once
 they have bought it they will immediately identify the object.
 If it is a good object, they will add it to their inventory.  If
 it was a bad bargain, they simply throw the item away.  In any
-case, you may receive some knowledge of the item if another is
+case, the player may receive some knowledge of the item if another is
 encountered.
 
 @table @code
@@ -1774,63 +1757,63 @@ staves.  The entrance to the Magic Shop is a @code{6}.
 
 @node Within The Dungeon,Attacking and Being Attacked,Town Buildings,Top 
 @chapter Within The Dungeon
-Once your character is adequately supplied with food, light,
-armor, and weapons, he is ready to enter the dungeon.  Move on
-top of the @code{>} symbol and use the down @code{>} command.  Your character 
+Once the character is adequately supplied with food, light,
+armor, and weapons, it is time to enter the dungeon.  Move on
+top of the @code{>} symbol and use the down @code{>} command.  The character 
 enters a maze of interconnecting staircases and finally
-passes through a one-way door.  He is now on the first level of
+passes through a one-way door.  The character is now on the first level of
 the dungeon (50 feet), and must survive many horrible and challenging 
 encounters to find the treasure lying about.
 
 There are two sources for light once inside the dungeon: permanent 
 light which has been magically placed within rooms, and a
-light source carried by the player.  If neither is present, the
+light source carried by the character.  If neither is present, the
 character will be unable to map or see any attackers.  Lack of
-light will also affect searching, picking locks, and disarming.
+light will also affect searching, picking locks, disarming, and casting spells.
 
-A character must wield a torch or lamp in order to supply his own
+A character must wield a torch or lamp in order to supply their own
 light.  Once a torch or lamp has only 50 or less turns left
 before burning out, the message "@t{Your light is growing faint}"
 will be displayed at random intervals.  Once a torch is burnt
 out, it is useless and can be dropped.  A lamp or lantern can be
-refilled with oil by using the Fill @code{F} command.  You must of
-course be carrying extra oil to refill a lantern.
+refilled with oil by using the Fill @code{F} command, however the character must
+be carrying extra oil to refill a lantern.
 
 @node Attacking and Being Attacked,Monster Memories,Within The Dungeon,Top 
 @chapter Attacking and Being Attacked
-Attacking is simple in @emph{moria}.  If you move into a creature, you
-attack it.  You can attack from a distance by firing a missile,
+Attacking is simple in @emph{moria}.  When moving into a creature, 
+the character attacks it.  The character can attack from a distance by firing a missile,
 or by magical means such as aiming a wand.  Creatures attack in
-the same way; if they move into you, they attack you.  Some
+the same way; if they move into the character, they attack.  Some
 creatures can also cast spells from a distance, and others can
-breathe fire or worse on you from a distance.
+breathe fire or worse from a distance.
 
 @menu
 * Monster Memories::
-* Your Weapon::
+* The Character's Weapon::
 * Body and Shield Bashes::
-* Your Armor Class::
+* The Character's Armor Class::
 * Crowns::
 * Magic Spells::
 @end menu
 
-Creatures moving in walls can not be attacked by wands and other
-magic attacks normally stopped by walls.  You can attack a
+Creatures moving in walls cannot be attacked by wands and other
+magic attacks normally stopped by walls.  The character can attack a
 creature in a wall normally though by trying to move into the
 wall space containing the creature.  However, in order to attack
-an invisible creature in a wall, you must tunnel into the wall
-containing the creature.  If you just try to move into the wall,
-you will bump your head and look quite silly.
+an invisible creature in a wall, the character must tunnel into the wall
+containing the creature.  Trying to move into the wall will bump the 
+character's head, and they will look quite silly.
 
-If you are wielding a weapon, the damage for the weapon is used
-when you hit a creature.  Otherwise, you get two fist strikes.
+If the character is wielding a weapon, the damage for the weapon is used
+when a creature is hit.  Otherwise, the character gets two fist strikes.
 Very strong creatures can do a lot of damage with their fists...
-You may have a primary weapon, and a secondary weapon which is
-kept on your belt or shoulder for immediate use.  You can switch
-between your primary and secondary weapons with the exchange command.  
+The character may have a primary weapon, and a secondary weapon which is
+kept on the belt or shoulder for immediate use.  Weapons can be switched 
+with the exchange command.  
 Be sure to wield the proper weapon when fighting.  Hitting
-a dragon over the head with a bow will simply make him mad, and
-get you killed.
+a dragon over the head with a bow will simply make it mad, and
+get the character killed.
 
 Missile weapons, such as bows, can be wielded, and then the
 proper missile, in this case an arrow, can be fired across the
@@ -1843,30 +1826,30 @@ class.  A hit is a strike that does some damage; a miss may in
 fact reach a target, but fails to do any damage.  Higher armor
 classes make it harder to do damage, and so lead to more misses.
 
-@node Monster Memories,Your Weapon,Attacking and Being Attacked,Attacking and Being Attacked
+@node Monster Memories,The Character's Weapon,Attacking and Being Attacked,Attacking and Being Attacked
 @section Monster Memories
 There are hundreds of different creatures in the mines of @emph{moria},
 many of which look the same on the screen.  The exact species of
 a creature can be discovered by looking at it.  It is also very
 difficult to keep track of the capabilities of various creatures.
-Rather than forcing you to keep notes, @emph{moria} automatically keeps
-track of your experiences with a particular creature.  This is
-called the monster memory.  You monster memory recalls the particular 
-attacks of each creature which you have suffered, as well
-as recalling if you have observed them to multiply or move erratically, 
+Rather than forcing the player to keep notes, @emph{moria} automatically keeps
+track of prior experiences with a particular creature.  This is
+called the @emph{monster memory}.  The monster memory recalls the particular 
+attacks of each creature which the character has suffered, as well
+as recalling if the character has observed them to multiply or move erratically, 
 or drop treasure, or many other attributes.
 
-If you have killed enough of a particular creature, or suffered
-enough attacks, recalling the monster memory may also provide you
-with information not otherwise available, such as a armor class
+If the character has killed enough of a particular creature, or suffered
+enough attacks, recalling the monster memory may also provide 
+information not otherwise available, such as a armor class
 or hit dice.  These are not explained, but may be useful to give
 the relative danger of each creature.  This memory can be passed
-on to a new character even after you die, by means of a reduced
-save file.
+on to a new character even after the character dies, by means of a reduced
+savefile.
 
-@node Your Weapon,Body and Shield Bashes,Monster Memories,Attacking and Being Attacked
-@section Your Weapon
-Carrying a weapon in your backpack does you no good.  You must
+@node The Character's Weapon,Body and Shield Bashes,Monster Memories,Attacking and Being Attacked
+@section The Character's Weapon
+Carrying a weapon in a backpack doesn't do much good.  The character must
 wield a weapon before it can be used in a fight.  A secondary
 weapon can be kept by wielding it and then using the exchange
 command.  A secondary weapon is not in use, simply ready to be
@@ -1876,11 +1859,10 @@ Weapons have two main characteristics, their ability to hit and
 their ability to do damage, expressed as @code{(+#,+#)}.  A normal
 weapon would be @code{(+0,+0)}.  Many weapons in @emph{moria} have magical
 bonuses to hit and/or do damage.  Some weapons are cursed, and
-have penalties that hurt the player.  Cursed weapons cannot be
+have penalties that hurt the character.  Cursed weapons cannot be
 unwielded until the curse is lifted.
 
-@emph{Moria} assumes that your youth in the rough environment near the
-dungeons has taught you the relative merits of different weapons,
+@emph{Moria} assumes that the youth of the character spent in the rough environment near the dungeons has taught the relative merits of different weapons,
 and displays as part of their description the damage dice which
 define their capabilities.  The ability to damage is added to the
 dice roll for that weapon.  The dice used for a given weapon is
@@ -1888,9 +1870,9 @@ displayed as @code{#d#}.  The first number indicates how many dice to
 roll, and the second indicates how many sides they have.  A "2d6"
 weapon will give damage from 2 to 12, plus any damage bonus.  The
 weight of a weapon is also a consideration.  Heavy weapons may
-hit harder, but they are also harder to use.  Depending on your
-strength and the weight of the weapon, you may get several hits
-in one turn.
+hit harder, but they are also harder to use.  Depending on the
+strength stat and the weight of the weapon, the character may get several hits
+in a single turn.
 
 Missile booster weapons, such as bows, have their characteristics
 added to those of the missile used, if the proper weapon/missile
@@ -1898,10 +1880,10 @@ combination is used.  Also, these weapons will multiply the base
 damage of the missile by a number from 2 to 4, depending on the
 strength of the weapon.  This multiplier is displayed as @code{(x#)}.
 
-Although you receive any magical bonuses an unidentified weapon
+Although the character receives any magical bonuses an unidentified weapon
 may possess when you wield it, those bonuses will not be added in
-to the displayed values of to-hit and to-dam on your character
-sheet.  You must identify the weapon before the displayed values
+to the displayed values of to-hit and to-dam on the character
+sheet.  Weapons must be identified before the displayed values
 reflect the real values used.
 
 Finally, some rare weapons have special abilities.  These are
@@ -1913,39 +1895,39 @@ Special weapons are denoted by the following abbreviations:
 @table @code
 @item DF
 @itemx Defender.
-A magical weapon that helps the wielder defend himself, thus
-increasing his/her armor class, and protecting him/her
+A magical weapon that helps wielders defend themselves, thus
+increasing their armor class, and protecting them
 against damage from fire, frost, acid, lightning, and falls.
-This weapon also will increase your stealth, let you see
-invisible creatures, protect you from paralyzation attacks,
-and help you regenerate hit points and mana faster.  As a
-result of the regeneration ability, you will use up food
+This weapon also will increase stealth, let the character see
+invisible creatures, protect from paralyzation attacks,
+and help regenerate hit-points and mana faster.  As a
+result of the regeneration ability, the character will use up food
 faster than normal while wielding such a weapon.
 
 @item FB
 @itemx Frost Brand.
 A magical weapon of ice that delivers a cold critical to
-heat based creatures.  It will inflict one and a half times
-the normal damage when used against a heat based creature.
+heat-based creatures.  It will inflict one and a half times
+the normal damage when used against a heat-based creature.
 
 @item FT
 @itemx Flame Tongue.
 A magical weapon of flame that delivers a heat critical to
-cold based creatures.  It will inflict one and a half times
-the normal damage when used against cold based or inflammable 
+cold-based creatures.  It will inflict one and a half times
+the normal damage when used against cold-based or inflammable 
 creatures.
 
 @item HA
 @itemx Holy Avenger.
 A Holy Avenger is one of the most powerful of weapons.  A
-Holy Avenger will increase your strength and your armor
-class.  This weapon will do extra damage when used against
-evil and undead creatures, and will also give you the ability 
+Holy Avenger will increase the strength and the armor
+class of the wielder.  This weapon will do extra damage when used against
+evil and undead creatures, and will also give the ability 
 to see invisible creatures.
 
 @item SA
 @itemx Slay Animal.
-A Slay Animal weapon is a special purpose weapon whose sole
+A Slay Animal weapon is a special-purpose weapon whose sole
 intent is to destroy all the dangerous animals in the world.
 An animal is any creature natural to the world.  Therefore
 an orc would not be an animal, but a giant snake would be.
@@ -1954,34 +1936,34 @@ used against an animal.
 
 @item SD
 @itemx Slay Dragon.
-A Slay Dragon weapon is a special purpose weapon whose sole
+A Slay Dragon weapon is a special-purpose weapon whose sole
 intent is to destroy dragon-kind.  Therefore, when used
 against a dragon, the amount of damage done is four times
 the normal amount.
 
 @item SE
 @itemx Slay Evil.
-A Slay Evil weapon is a special purpose weapon whose sole
+A Slay Evil weapon is a special-purpose weapon whose sole
 intent is to destroy all forms of evil.  When used against
 an evil creature, either alive or undead, the damage done
 twice the normal amount.
 
 @item SU
 @itemx Slay Undead.
-A Slay Undead weapon is a special purpose weapon whose sole
+A Slay Undead weapon is a special-purpose weapon whose sole
 intent is to destroy all forms of undead.  This weapon is
 hated and feared by the intelligent undead, for a single
 blow from this weapon will inflict three times the normal
-amount of damage.  This weapon also gives you the ability to
+amount of damage.  This weapon also gives the ability to
 see invisible creatures, which is especially useful against
 undead, since many of them are normally invisible.
 @end table
 
-@node Body and Shield Bashes,Your Armor Class,Your Weapon,Attacking and Being Attacked
+@node Body and Shield Bashes,The Character's Armor Class,The Character's Weapon,Attacking and Being Attacked
 @section Body and Shield Bashes
 Weight is the primary factor in being able to bash something, but
-strength plays a role too.  After bashing, a character may be off
-balance for several rounds depending upon his dexterity.
+strength plays a role too.  After bashing, a character may be off-balance 
+for several rounds depending upon the dexterity stat.
 
 Doors can be broken down by bashing them.  Once a door is bashed
 open, it is forever useless and cannot be closed.
@@ -1993,26 +1975,25 @@ the strong and ignorant to see what is inside.
 
 Finally, a creature may be bashed.  If a shield is currently
 being worn, the bash is a shield bash and will do more damage.
-In either case, a bash may throw an opponent off balance for a
-number of rounds, allowing a player to get in a free hit or more.
-If the player is thrown off balance, his opponent may get free
-hits on him.  This is a risky attack.
+In either case, a bash may throw an opponent off-balance for a
+number of rounds, allowing the character to get in a free hit or more.
+If the character is thrown off-balance, the opponent may get free
+hits.  This is a risky attack.
 
-@node Your Armor Class,Crowns,Body and Shield Bashes,Attacking and Being Attacked
-@section Your Armor Class
+@node The Character's Armor Class,Crowns,Body and Shield Bashes,Attacking and Being Attacked
+@section The Character's Armor Class
 Armor class is a number that describes the amount and the quality
 of armor being worn.  Armor class will generally run from about 0
 to 60, but could become negative or greater than 60 in rare
 cases.
 
-The larger your armor class, the more protective it is.  A negative 
-armor class would actually help get you hit.  Armor protects
-you in three manners.  One, it makes you harder to be hit for
+The larger the armor class, the more protective it is.  A negative 
+armor class would actually help the character get hit.  Armor protects
+in three manners.  One, it makes the character harder to be hit for
 damage.  A hit for no damage is the same as a miss.  Two, good
-
-armor will absorb some of the damage that your character would
-have taken.  An armor class of 30 would absorb 15% of any damage
-meant for him.  Three, acid damage is reduced by wearing body
+armor will absorb some of the damage that the character would
+have taken.  An armor class of 30 absorbs 15% of damage.
+Three, acid damage is reduced by wearing body
 armor.  It is obvious that a high armor class is a must for surviving 
 the lower levels of @emph{moria}.
 
@@ -2022,7 +2003,7 @@ with its description.  Armor that is found within the dungeon
 must be identified before these values will be displayed.  All
 armor always has the base armor class displayed, to which the
 bonus is added.  It is always possible to figure this out anyway,
-by watching the effect it has on your displayed armor class.
+by watching the effect it has on the displayed armor class.
 
 Armor class values are always displayed between a set of brackets
 as @code{[#]} or @code{[#,+#]}.  The first value is the armor class of the
@@ -2041,7 +2022,7 @@ the following abbreviations:
 @item RA
 @itemx Resist Acid.
 A character using such an object will take only one-third
-normal damage from any acid thrown upon him.  In addition,
+normal damage from any acid thrown upon them.  In addition,
 armor so enchanted will resist the acid's effects and not be
 damaged by it.
 
@@ -2063,20 +2044,19 @@ one-third damage from electrical attacks.
 @item R
 @itemx Resistance.
 A character wearing armor with this ability will have resistance 
-to Acid, Cold, Fire, and Lightning as explained in
-each part above.
+to Acid, Cold, Fire, and Lightning as explained in each part above.
 @end table
 
-@node Crowns,Magic Spells,Your Armor Class,Attacking and Being Attacked
+@node Crowns,Magic Spells,The Character's Armor Class,Attacking and Being Attacked
 @section Crowns
-Some crowns also have special magical abilities that improve your
+Some crowns also have special magical abilities that improve
 chances in a battle.
 
 @table @code
 @item Crown of Might
-This is the great crown of the warriors.  The wearer will
-have an increased strength, dexterity, and constitution, and
-will also be immune to any foe's attempt to slow or paralyze
+This is the great crown of the warriors.  This crown confers
+an increased strength, dexterity, and constitution, and
+the wearer will also be immune to any foe's attempt to slow or paralyze
 him or her.
 
 @item Crown of the Magi
@@ -2094,29 +2074,29 @@ able to see even invisible creatures, and will have an
 increased ability to locate traps and secret doors.
 
 @item Crown of Regeneration
-This crown will help you regenerate hit points and mana more
-quickly than normal, allowing you to fight longer before
-needing to rest.  You will use of food faster than normal
+This crown will help you regenerate hit-points and mana more
+quickly than normal, allowing the character to fight longer before
+needing to rest.  The character will use food faster than normal
 while wearing this crown because of the regenerative
 effects.
 
 @item Crown of Beauty
-This crown looks impressive, and will increase your
+This crown looks impressive, and will increase
 charisma, but is otherwise not useful.
 @end table
 
 @node Magic Spells,Priest Spells,Crowns,Attacking and Being Attacked
 @section Magic Spells
 
-All player characters except warriors are able to learn some form of
+All characters except warriors are able to learn some form of
 magic spells.  There are two kinds of magic, magic spells, which mages,
 rogues, and rangers get, and prayers, which priests and paladins have.
 Each spell has a minimum level required for learning it, a mana score,
 which is the mana points required to cast it, and a failure percentage.
 
-Mana points are determined by your experience level, and the level of
-your key stat.  For mages, rogues, and rangers, the key stat is intelligence,
-for priests and paladins the key stat is wisdom.  The effect of your key
+Mana points are determined by the character's experience level, and the level of
+a key stat.  For mages, rogues, and rangers, the key stat is intelligence,
+for priests and paladins the key stat is wisdom.  The effect of the key
 stat is shown by the following table.
 
 @example
@@ -2134,12 +2114,10 @@ stat is shown by the following table.
 @end group
 @end example
 
-Your mana score is the factor times your experience level plus 1.
-If your key stat is 7 or less, your mana score will be zero (not one)
-and you will not be able to use any spells.  If you attempt to cast a
-spell that calls for more mana than you have, the rate of failure is much
-greater than normal, you will faint for a few turns afterward, and you stand
-the chance of damaging your health.
+The mana score is the factor times the experience level plus 1.
+If the key stat is 7 or less, the mana score will be zero (not one)
+and the character will not be able to use any spells.  When attempting to cast a spell that calls for more mana than the character has, the rate of failure is much
+greater than normal.  The character will faint for a few turns afterward, and there is a chance at damaging health too.
 
 @menu
 * Priest Spells::
@@ -2152,9 +2130,9 @@ the chance of damaging your health.
 
 Priest spells are received from the character's deity.  When the @code{G}
 command is issued to learn new spells, spells are chosen randomly from
-the spells that you are able to cast.  You need not
-have the book the spell is in to learn it, because your God gave it to you,
-but you do need the book to cast the spell.  Failure percentages and spell
+the spells that the character is able to cast.  The character need not
+have the book the spell is in to learn it, because the god gave it to the character,
+but the book is needed to cast the spell.  Failure percentages and spell
 effectiveness are based on wisdom for priests and paladins.
 
 @menu
@@ -2247,15 +2225,15 @@ Lights up an area.
 @item Chant
 Improves armor class and fighting ability for a medium period of time.
 @item Create Food
-Causes a food item to be dropped at your feet.
+Causes a food item to be dropped at the character's feet.
 @item Cure Critical Wounds
-Cures a very large number of hit points.
+Cures a very large number of hit-points.
 @item Cure Light Wounds
-Cures a small number of hit points.
+Cures a small number of hit-points.
 @item Cure Medium Wounds
-Cures a medium number of hit points.
+Cures a medium number of hit-points.
 @item Cure Serious Wounds
-Cures a large number of hit points.
+Cures a large number of hit-points.
 @item Detect Doors/Stairs
 Finds all the doors and stairs on the screen.
 @item Detect Evil
@@ -2273,25 +2251,25 @@ Leaves a 'Glyph' that monsters won't pass over.
 @item Heal
 Restores 200 Hit Points.
 @item Holy Word
-Dispels evil, removes fear, cures poison, restores 1000 HPs, restores all stats, and invulnerability for 3 turns.
+Dispels evil, removes fear, cures poison, restores 1000 hit-points, restores all stats, and invulnerability for 3 turns.
 @item Neutralize Poison
 Cures you of poison.
 @item Orb of Draining
 Offensive spell that drains levels from monsters.
 @item Portal
-Teleports you a short distance away.
+Teleports the character a short distance away.
 @item Prayer
 Improves armor class and fighting ability for a long period of time.
 @item Protection from Evil
-Causes evil creatures to do less damage to you.
+Causes evil creatures to do less damage.
 @item Remove Curse
 Removes @{damned@} objects that you are welding.
 @item Remove Fear
-Negates the fear placed on you by an enemy.
+Negates the fear placed on the character by an enemy.
 @item Resist Heat and Cold
-Reduce damage you suffer from heat or cold attacks.
+Reduce damage from heat or cold attacks.
 @item Resist Poison Gas
-Permanently reduces damage you suffer from poison gas attacks.
+Permanently reduces damage from poison gas attacks.
 @item Sanctuary
 Causes neighboring monsters to fall asleep for a while.
 @item Sense Invisible
@@ -2299,7 +2277,7 @@ Finds all invisible creatures on the screen.
 @item Sense Surroundings
 Maps the dungeon appearing on the screen.
 @item Slow Poison
-Reduces the rate HP are lost due to poison.
+Reduces the rate hit-points are lost due to poison.
 @item Turn Undead
 Attempts to cause undead creatures to flee.
 @end table
@@ -2310,15 +2288,15 @@ Attempts to cause undead creatures to flee.
 Mage Spells are more powerful and offensive in nature than priest
 spells.  This offsets the fact that magicians are generally weaker
 than any other class.  Because mage spells are learned though
-study, you must have the correct magic book to learn and cast a
-spell.  Learning spells can be banked up.  For example:  You are a
+study, the correct magic book must be present in the character's pack to learn and cast a
+spell.  Learning spells can be banked up.  For example:  a
 second level mage who had learned Magic Missile and can learn one
-more spell.  You do not wish to learn Detect Monsters, Phase Door
-or Light Area.  You can wait until you are third level and learn
+more spell.  If the mage does not wish to learn Detect Monsters, Phase Door
+or Light Area, the mage can wait until the third level and learn
 both the Cure Light Wounds and Stinking Cloud, both third level
 spells.  Spell failure and effectiveness is based on intelligence
 for mages, rangers, and rogues.  Rangers can learn all but the most
-powerful offensive spell.  Rogues can not learn any offensive spell.
+powerful offensive spell.  Rogues cannot learn any offensive spell.
 
 @menu
 * Mage Spell Levels And Mana::
@@ -2402,11 +2380,11 @@ Note:  Rangers don't get spells until 3rd level, Rogues 5th level.
 @item Confusion
 Confuses a monster for a short time.
 @item Create Food
-Causes a food item to be dropped at your feet.
+Causes a food item to be dropped at the character's feet.
 @item Cure Light Wounds
-Restores a small number of hit points.
+Restores a small number of hit-points.
 @item Cure Poison
-Neutralizes the poison running through your veins.
+Neutralizes the poison running through the character's veins.
 @item Detect Monsters
 Displays all the monsters on the screen.
 @item Find Hidden Traps/Doors
@@ -2422,27 +2400,27 @@ Shoots a bolt of frost toward a monster.
 @item Genocide
 Destroys a particular monster on the level.
 @item Haste Self
-Causes you to move faster temporarily.
+Causes the character to move faster temporarily.
 @item Identify
-Identifies an unknown object in your pack.
+Identifies an unknown object in the pack.
 @item Light Area
-Illuminates the area you are in with light.
+Illuminates the area with light.
 @item Lightning Bolt
-Shoots a bolt of lightning at your enemy.
+Shoots a bolt of lightning at the enemy.
 @item Magic Missile
 Traditional bolt of magic used to damage enemies.
 @item Phase Door
-Teleports you a short distance.
+Teleports the character a short distance.
 @item Polymorph Other
 Polymorphs a monster into a different creature.
 @item Recharge Item I and II
 Recharges a staff, rod, or wand.
 @item Remove Curse
-Allows you to unwield @{damned@} items.
+Allows @{damned@} items to be taken off.
 @item Resist Poison Gas
-Permanently reduces damage you suffer from poison gas attacks.
+Permanently reduces damage from poison gas attacks.
 @item Sleep I
-Causes a monster of your choosing to fall asleep.
+Causes a specified monster to fall asleep.
 @item Sleep II
 Causes neighboring monsters to fall asleep.
 @item Sleep III
@@ -2452,7 +2430,7 @@ Causes a monster to move slower.
 @item Stinking Cloud
 Shoots a ball of noxious vapors to do damage.
 @item Teleport Self
-Teleports you to a new place on the level.
+Teleports the character to a new place on the level.
 @item Teleport Other
 Teleports an enemy to a new place on the level.
 @item Trap/Door Destruction
@@ -2471,14 +2449,14 @@ of spell failure and greater Mana cost.
 @subsection Using Offensive Spells Against Monsters
 
 Monsters have a chance to save themselves from damage caused by
-offensive spells, just like the player has a chanced to be saved from
+offensive spells, just like the character has a chance to be saved from
 damage by monster spells.  This chance is greater for higher level
 monsters than for lower level monsters.  Also, some spells will never
 work against monsters whose level is higher than the character's
 experience level.
 
 Many monsters are immune to certain kinds of attack, and will suffer little
-or no damage from such attacks.  For example, a fire breathing dragon will
+or no damage from such attacks.  For example, a fire-breathing dragon will
 suffer little damage from a fire ball, but will suffer greatly from a
 frost ball.  Also, undead creatures will not be affected by sleep spells,
 since they never sleep.
@@ -2489,61 +2467,59 @@ since they never sleep.
 The mines are full of objects just waiting to be picked up and
 used.  How did they get there?  Well, the main source for useful
 items are all the foolish adventurers that proceeded into the
-dungeon before you.  They get killed, and the helpful creatures
+dungeon beforehand.  They get killed, and the helpful creatures
 scatter the various treasure throughout the dungeon.  Most cursed
 items are placed there by the joyful evil sorcerers, who enjoy a
-good joke when it gets you killed.
+good joke when it gets someone killed.
 @menu
 * Cursed Objects::
 * Mining::
 * Staircases Secret Doors Passages and Rooms::
 @end menu
 
-You pick up objects by moving on top of them.  You can carry up
-to 22 different items in your backpack while wearing and wielding
-many others.  Although you are limited to 22 different items, you
-may be carrying several items of each kind, restricted only by
-the amount of weight your character can carry.  Your weight limit
-is determined by your strength.  Only one object may occupy a
+The character picks up objects by moving on top of them.  Up to 22 
+different items can be carried in the backpack while wearing and wielding
+many others.  Although limited to 22 different items, several items of each kindcan be carried, restricted only by the amount of weight the character can carry.  The weight limit
+is determined by the strength stat.  Only one object may occupy a
 given floor location, which may or may not also contain one
 creature.  Doors, traps, and staircases are considered objects
 for this purpose.
 
-If you try to carry more weight than your limit, you will move
-more slowly than normal until you drop the extra weight.  If
-picking up an object would take you over your weight limit, then
-you will be asked whether you really want to pick it up.  It is a
-good idea to leave the object alone if you are fleeing from a
+when carrying more weight than the character is able, they will move
+more slowly than normal until the extra weight is dropped.  If
+picking up an object would take the character over their weight limit, then
+the player will be asked whether or not the object should be picked up. 
+It is a good idea to leave the object alone when fleeing from a
 monster.
 
 Many objects found within the dungeon have special commands for
-their use.  Wands must be Aimed, staffs must be Used, scrolls
-must be Read, and potions must be Quaffed.  In any case, you must
-first be able to carry an object before you can use it.  Some
+their use.  Wands must be Aimed, staves must be Used, scrolls
+must be Read, and potions must be Quaffed.  In any case, the character must
+first be able to carry an object before it can be used.  Some
 objects, such as chests, are very complex.  Chests contain other
 objects and may be trapped, and/or locked.  Read the list of
-player commands carefully for a further understanding of chests.
+commands carefully for a further understanding of chests.
 
 One item in particular will be discussed here.  The scroll of
 "Word-of-Recall" can be found within the dungeon, or bought at
-the temple in town.  It acts in two manners, depending upon your
-current location.  If read within the dungeon, it will teleport
-you back to town.  If read in town, it will teleport you back
-down to the deepest level of the dungeon on which your character
+the temple in town.  It acts in two manners, depending upon the character's
+location.  If read within the dungeon, it will teleport
+the character back to town.  If read in town, it will teleport the character back
+down to the deepest level of the dungeon on which the character
 has previously been.  This makes the scroll very useful for getting 
 back to the deeper levels of @emph{moria}.  Once the scroll has
 been read, it takes a while for the spell to act, so don't expect
-it to save you in a crisis.
+it to save the character in a crisis.
 
-The game provides some automatic inscriptions to help you keep
-track of your possessions.  Wands and staves which are known to
+The game provides some automatic inscriptions to help keep
+track of possessions.  Wands and staves which are known to
 be empty will be inscribed with "@t{empty}".  Objects which have been
 tried at least once, but haven't been identified yet will be
 inscribed with "@t{tried}".  Cursed objects are inscribed with
-"@t{damned}".  Also, occasionally you will notice that something in
-your inventory or equipment list seems to be magical.  High level
+"@t{damned}".  Also, occasionally the character will notice that something in
+the pack or equipment list seems to be magical.  High level
 characters are much more likely to notice this than beginning
-characters.  When you do notice this, the item in question will
+characters.  When the character does notice this, the item in question will
 be inscribed with "@t{magik}".
 
 And lastly, a final warning: not all objects are what they seem.
@@ -2553,12 +2529,12 @@ get up...
 @section Cursed Objects
 Some objects, mainly armor and weapons, have had curses laid upon
 them.  These horrible objects will look like any other normal
-item, but will detract from your character's stats or abilities
+item, but will detract from the character's stats or abilities
 if worn.  They will also be impossible to remove until a remove
 curse is done.
 
-If you wear or wield a cursed item, you will immediately feel
-something wrong.  The item will also be inscribed "@t{damned}".
+When a cursed item is worn or wieled, the character will immediately feel
+that something has gone wrong.  The item will also be inscribed "@t{damned}".
 
 @node Mining,Staircases Secret Doors Passages and Rooms,Cursed Objects,Objects Found In The Dungeon
 @section Mining
@@ -2575,84 +2551,83 @@ ability of the tool.  A pick or shovel also has plusses to hit
 and damage, and can be used as a weapon.
 
 When a vein of quartz or magma is located, the character should
-wield his pick or shovel and begin digging out a section.  When
-that section is removed, he should locate another section of the
-vein, and begin the process again.  Since granite rock is much
+wield a pick or shovel and begin digging out a section.  When
+that section is removed, another section of the vein can be located, 
+and begin the process again.  Since granite rock is much
 harder to dig through, it is much faster to follow the vein
-exactly and dig around the granite.  There is an option for
+exactly and dig around the granite.  There is a game option for
 highlighting magma and quartz.
 
-If the character has a scroll or staff of treasure location, he
-can immediately locate all strikes of treasure within a vein
+If the character has a scroll or staff of treasure location, all strikes
+of treasure within a vein can be immediately
 shown on the screen.  This makes mining much easier and more profitable.
 
 It is sometimes possible to get a character trapped within the
 dungeon by using various magical spells and items.  So it is a
 very good idea to always carry some kind of digging tool, even
-when you are not planning on tunneling for treasure.
+when tunneling for treasure is not a goal.
 
 @node Staircases Secret Doors Passages and Rooms,Winning The Game,Mining,Objects Found In The Dungeon
 @section Staircases, Secret Doors, Passages and Rooms
-Staircases are the manner in which you get deeper, or climb out
+Staircases are the manner in which the character gets deeper, or climbs out
 of the dungeon.  The symbols for the up and down staircases are
 the same as the commands to use them.  A @code{<} represents an up
-staircase and a @code{>} represents a down staircase.  You must move
-your character over the staircase before you can use them.
+staircase and a @code{>} represents a down staircase.  The character must move
+on top of the staircase before they can be used.
 
 Each level has at least one up staircase, and at least two down
-staircases.  There are no exceptions to this rule.  You may have
+staircases.  There are no exceptions to this rule.  The character may have
 trouble finding some well hidden secret doors, but the stairs are
 there.
 
 Many secret doors are used within the dungeon to confuse and
 demoralize adventurers foolish enough to enter.  But with some
-luck, and lots of concentration, you can find these secret doors.
+luck, and lots of concentration, these secret doors can be found.
 Secret doors will sometimes hide rooms or corridors, or even
 entire sections of that level of the dungeon.  Sometimes they
 simply hide small empty closets or even dead ends.
 
 Creatures in the dungeon will generally know and use these secret
-doors.  If they leave one open, you will be able to go right
-through it.  If they close it behind them you will have to search
-for the catch first.  Once a secret door has been discovered by
-you, it is drawn as a known door and no more searching will be
+doors.  If they leave one open, the character will be able to go right
+through it.  If they close it behind them the character will have to search
+for the catch first.  Once a secret door has been discovered,
+it is drawn as a known door and no more searching will be
 required to use it.
 
 
 @node Winning The Game,Upon Death and Dying,Staircases Secret Doors Passages and Rooms,Top
 @chapter Winning The Game
-Once your character has progressed into killing dragons with but
-a mean glance and snap of his fingers, he may be ready to take on
+Once the character has progressed into killing dragons with but
+a mean glance and snap of the fingers, they may be ready to take on
 the Balrog.  The Balrog will appear on most levels after level
-49, so don't go down there until you are ready for him.
+49 (a depth of 2450 feet), so don't go down there until the character is
+ready to take on the biggest and baddest creature in the game.
 
 The Balrog cannot be killed in some of the easier methods used on
-normal creatures.  Because of the Balrog's cunning, he will
-teleport away to another level if a spell such as destruction is
-used upon him, and the Balrog cannot be polymorphed, slept, confused, 
-or genocided.  Magical spells like coldball are effective
-against him, as are weapons, but he is difficult to kill, and if
-allowed to escape to another level can heal himself.
+normal creatures.  The Balrog will cunningly teleport to another level 
+if a spell such as destruction is cast.  Also, the Balrog cannot be 
+polymorphed, slept, confused or genocided.  Magical spells like coldball 
+are effective, as are weapons, but the Balrog is difficult to kill, and if
+allowed to escape to another level it can heal itself.
 
-If you should actually survive the attempt of killing the Balrog,
-you will receive the status of WINNER.  Since you have defeated
-the toughest creature alive, your character is ready to retire
-and cannot be saved.  When you quit the game, your character
+If the character should actually survive the attempt of killing the Balrog,
+they will receive the status of WINNER.  Since the toughest creature 
+alive has been defeated, the character is ready to retire
+and cannot be saved.  When you quit the game, the character
 receives a surprise bonus score.
 
 
 @node Upon Death and Dying, Wizards,Winning The Game, Top
 @chapter Upon Death and Dying
-If your character falls below 0 hit points, he has died and cannot 
-be restored.  A tombstone showing information about your
-character will be displayed.  You are also permitted to get a
-record of your character, and all your equipment (identified)
-either on the screen or in a file.
+If the character falls below 0 hit-points, they have died and cannot 
+be restored.  A tombstone showing information about the
+character will be displayed.  A record of the character will be provided, 
+along with all of the equipment (identified) either on the screen or saved in a file.
 
-Your character will leave behind a reduced save file, which contains 
-only the monster memory and your option choices.  It may be
+The character will leave behind a reduced savefile, which contains 
+only the monster memory and the game option choices.  It may be
 restored, in which case the new character is generated exactly as
-if the file was not there, but the new player will find his monster 
+if the file was not there, but the new character will find the monster 
 memory containing all the experience of past incarnations.
 
 @node Wizards,Contributors,Upon Death and Dying, Top
