@@ -1012,7 +1012,7 @@ static struct opt_desc
   {
   "Running: examine potential corners", &find_examine},
   {
-  "Running: print self during run", &find_prself},
+  "Running: display self during run", &find_prself},
   {
   "Running: stop when map sector changes", &find_bound},
   {

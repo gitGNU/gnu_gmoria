@@ -7,7 +7,7 @@
 ^F - Delete monsters.
 ^G - Allocate treasures.
 ^I - Identify.
-^O - Print random objects sample.
+^O - Display random objects sample.
 ^T - Teleport player.
 ^W - Wizard password on/off.
 @  - Create any object *CAN CAUSE FATAL ERROR*

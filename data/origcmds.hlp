@@ -43,7 +43,7 @@ Type ESCAPE to abort the look command at any point.
 
 Some commands will prompt for a spell, or an inventory item. Selection is
 by an alphabetic character - entering a capital causes a desription to be
-printed, and the selection may be aborted.
+displayed, and the selection may be aborted.
 
 Typing `R*' will make you rest until both your mana and your hp reach their
 maximum values.
