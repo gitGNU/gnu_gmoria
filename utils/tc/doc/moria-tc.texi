@@ -364,7 +364,7 @@ This attribute has different meanings when it used with objects of differing @sa
 @item FLASK
 @samp{p1} means the number of turns of light the flask holds.
 @item LIGHT
-@samp{p1} means the number of turns of light the object holds initially.  An odd numbered @{subval} denotes the object as a dungeon object and randomly sets the value of @{p1} such that a found torch or lantern is partially charged.
+@samp{p1} means the number of turns of light the object holds initially.  An odd numbered @samp{subval} denotes the object as a dungeon object and randomly sets the value of @samp{p1} such that a found torch or lantern is partially charged.
 @item DIGGING
 @samp{p1} determines how effective the digging tool is.  Legal values are 1, 2, and 3, with 3 being the most effective digging tool.
 @item POTION
