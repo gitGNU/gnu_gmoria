@@ -595,10 +595,16 @@ general help on adventuring are included.
 @node Symbols On The Screen, Commands, Adventuring, Top
 @chapter Symbols On The Screen
 Symbols on the map can be broken down into three categories:
-Features of the dungeon such as walls, floor, doors, and traps;
-objects which can be picked up such as treasure, weapons, magical
-devices, etc; and creatures which may or may not move about the
+@enumerate
+@item
+Features of the dungeon such as walls, floor, doors, and traps.
+@item
+Objects which can be picked up such as treasure, weapons, armor, magical
+devices, etc.
+@item
+Creatures which may or may not move about the
 dungeon, but are mostly harmful to the character's well-being.
+@end enumerate
 
 Some symbols can be in more than one category.  Also note that
 treasure may be embedded in a wall, and the wall must be removed
@@ -1153,8 +1159,14 @@ automatically toggled off.  Search mode can also be turned off by again pressing
 @item T <Dir> (CTRL+<Dir>)
 @itemx Tunnel through rock. 
 Tunneling (Mining) is a very useful art in the dungeons of @emph{moria}.
-There are four kinds of rock: Permanent Rock, Granite Rock, 
-Magma Intrusion, and Quartz Veins.  Permanent Rock is exactly 
+There are four kinds of rock: 
+@enumerate
+@item Permanent Rock
+@item Granite Rock
+@item Magma Intrusion
+@item Quartz Veins
+@end enumerate
+Permanent Rock is exactly 
 that, permanent.  Granite is very hard, therefore hard to dig 
 through, and contains no valuable metals.  Magma and Quartz 
 veins are softer and sometimes bear valuable metals and gems, 
@@ -2089,9 +2101,14 @@ charisma, but is otherwise not useful.
 @section Magic Spells
 
 All characters except warriors are able to learn some form of
-magic spells.  There are two kinds of magic, magic spells, which mages,
-rogues, and rangers get, and prayers, which priests and paladins have.
-Each spell has a minimum level required for learning it, a mana score,
+magic spells.  There are two kinds of magic in the game:
+@enumerate
+@item Magic Spells
+@item Prayers
+@end enumerate
+Magic spells can be casted by mages, rogues, and rangers.
+Prayers can be prayed by priests and paladins.
+Each spell/prayer has a minimum level required for learning it, a mana score,
 which is the mana points required to cast it, and a failure percentage.
 
 Mana points are determined by the character's experience level, and the level of
