@@ -1825,6 +1825,8 @@ class.  A hit is a strike that does some damage; a miss may in
 fact reach a target, but fails to do any damage.  Higher armor
 classes make it harder to do damage, and so lead to more misses.
 
+In @emph{Moria}, your character can wear any armor or wield any weapon -- it is not limited by race or class.
+
 @node Monster Memories,The Character's Weapon,Attacking and Being Attacked,Attacking and Being Attacked
 @section Monster Memories
 There are hundreds of different creatures in the mines of @emph{moria},
