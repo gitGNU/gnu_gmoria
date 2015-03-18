@@ -2054,10 +2054,9 @@ chances in a battle.
 
 @table @code
 @item Crown of Might
-This is the great crown of the warriors.  This crown confers
-an increased strength, dexterity, and constitution, and
-the wearer will also be immune to any foe's attempt to slow or paralyze
-him or her.
+This is the great crown of the warriors.  This crown increases
+the strength, dexterity, and constitution of the wearer.
+Any attempt to paralyze or slow the character will fail.
 
 @item Crown of the Magi
 This is the great crown of the wizards.  The wearer will
