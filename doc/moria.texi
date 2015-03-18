@@ -570,7 +570,7 @@ Disarming traps
 @item
 Picking locks
 @item
-Using a scroll, potion, staff, wand, or rod for the first time and discovering what it did
+Using a scroll, potion, staff, or wand, for the first time and discovering what it did
 @item
 Casting a spell successfully for the first time
 @item
@@ -2412,7 +2412,7 @@ Teleports the character a short distance.
 @item Polymorph Other
 Polymorphs a monster into a different creature.
 @item Recharge Item I and II
-Recharges a staff, rod, or wand.
+Recharges a staff, or wand.
 @item Remove Curse
 Allows @{damned@} items to be taken off.
 @item Resist Poison Gas
