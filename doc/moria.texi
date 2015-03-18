@@ -1880,7 +1880,7 @@ and displays as part of their description the damage dice which
 define their capabilities.  The ability to damage is added to the
 dice roll for that weapon.  The dice used for a given weapon is
 displayed as @code{#d#}.  The first number indicates how many dice to
-roll, and the second indicates how many sides they have.  A "2d6"
+roll, and the second indicates how many sides they have.  A @code{2d6}
 weapon will give damage from 2 to 12, plus any damage bonus.  The
 weight of a weapon is also a consideration.  Heavy weapons may
 hit harder, but they are also harder to use.  Depending on the
