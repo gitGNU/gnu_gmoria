@@ -883,17 +883,17 @@ Rogue-like command summary.
 @node Special Keys, Direction, Commands, Commands 
 @section Special Keys
 Certain commands may be entered at any time input is accepted.
-The special character control-R, entered as a single keystroke,
+The special character CTRL+R, entered as a single keystroke,
 will always refresh the screen.  This may be used at any prompt
 for input, and is otherwise ignored.
 
 When playing on a UNIX or similar system, then there are
 some additional special characters used by @emph{moria}.  The special
-character control-C will interrupt @emph{moria}, and asks the player if 
+character CTRL+C will interrupt @emph{moria}, and asks the player if 
 they really want the character to die and quit the game.  Should the player choose for the character not to die, @emph{moria}
 merely continues as before, except that resting, running,
 repeated commands, etc will be terminated.  The game can be suspended
-with control-Z, and return to the original command shell.
+with CTRL+Z, and return to the original command shell.
 In this case, @emph{moria} is not terminated, and may be restarted at
 any time from the shell.  Alternatively, the special command @code{!}
 is available to run any normal shell command.  When it is complete, 
@@ -901,7 +901,7 @@ is available to run any normal shell command.  When it is complete,
 
 For many input requests or queries, the special character ESCAPE
 will abort the command.  For the "@t{-more-}" message prompts, any of
-SPACE, ESCAPE, RETURN (control-m), or LINEFEED (control-j) can be
+SPACE, ESCAPE, RETURN (CTRL+Shift+M), or LINEFEED (CTRL+J) can be
 used to continue after pausing to read the displayed message.
 
 It is possible to give control character commands in two keystrokes, 
@@ -1150,7 +1150,7 @@ move about the dungeon, and therefore twice the food.  If a
 creature should happen by or attack, search mode will
 automatically toggled off.  Search mode can also be turned off by again pressing the @code{S} (or @code{#}) key.
 
-@item T <Dir> (control-<Dir>)
+@item T <Dir> (CTRL+<Dir>)
 @itemx Tunnel through rock. 
 Tunneling (Mining) is a very useful art in the dungeons of @emph{moria}.
 There are four kinds of rock: Permanent Rock, Granite Rock, 
