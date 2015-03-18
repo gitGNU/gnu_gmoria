@@ -44,7 +44,7 @@ GNU Library General Public License for more details.
 
 The game of @emph{moria} is a single player dungeon simulation.  A
 player may choose from a number of races and classes when creating a 
-character, and then `run' that character over a period of
+character, and then @emph{run} that character over a period of
 days, weeks, even months, attempting to win the game by defeating
 the Balrog which lurks in the deeper levels.
 
@@ -583,7 +583,7 @@ Drinking a potion of gain experience
 @chapter Adventuring
 After the character has been created, their dungeon adventure can begin.
 Symbols appearing on the screen represent the
-dungeon's walls, floor, objects, features, and creatures lurking
+dungeon walls, floor, objects, features, and creatures lurking
 about.  In order to direct the character through their adventure,
 the player will enter single character commands.
 
@@ -1479,7 +1479,7 @@ treat them as interesting objects.  This is handy when mining.
 Setting this option does not immediately highlight all
 minerals, but only those which are subsequently displayed.
 To display all minerals, just move the map around a bit with
-the `Where' (or `Locate') command.
+the @emph{Where} (or @emph{Locate}) command.
 
 @item
 Beep for invalid character.  This is on by default.  When
@@ -2247,7 +2247,7 @@ Randomly toggles corridors into walls and vice versa.
 @item Find Traps
 Locates all the traps on the screen.
 @item Glyph of Warding
-Leaves a 'Glyph' that monsters won't pass over.
+Leaves a @emph{Glyph} that monsters won't pass over.  Appears as a trap.
 @item Heal
 Restores 200 Hit Points.
 @item Holy Word
