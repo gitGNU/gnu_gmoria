@@ -718,8 +718,8 @@ Finally, the character's armor class is currently at 55, and has a great number 
 All commands are entered by pressing a single key.  Some commands
 are capital or control characters, which require the player to hold down
 the shift or control key while pressing another key.  As a special 
-feature, control keys may be entered in a single stroke, or
-in two strokes, with a @code{^} character first.
+feature, control keys may be entered in a single keystroke, or
+in two keystrokes, with a @code{^} character first.
 
 There are two command sets: the original command set which is the
 default (e.g. the original VMS-style command set), and the rogue-like 
@@ -730,8 +730,7 @@ The following tables summarize the two command sets.  Certain
 commands may be preceded by an optional count, and certain commands 
 must be followed by a direction.  These conditions are
 indicated in the tables by @code{@@} for an optional count, and @code{~} for
-a direction.  If a particular command requires additional key
-strokes, then they will be prompted for.
+a direction.  If a particular command requires additional keystrokes, then they will be prompted for.
 
 @menu
 * Special Keys::
@@ -905,8 +904,8 @@ will abort the command.  For the "@t{-more-}" message prompts, any of
 SPACE, ESCAPE, RETURN (control-m), or LINEFEED (control-j) can be
 used to continue after pausing to read the displayed message.
 
-It is possible to give control character commands in two key
-strokes, by pressing a @code{^} followed by the appropriate letter of the
+It is possible to give control character commands in two keystrokes, 
+by pressing a @code{^} followed by the appropriate letter of the
 alphabet.  This is useful when running @emph{moria} in circumstances
 where control characters are intercepted by some external process, 
 or by the operating system.
