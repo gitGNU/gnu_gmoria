@@ -530,7 +530,7 @@ receive_offer (store_num, comment, new_offer, last_offer, num_offer, factor)
 static int
 purchase_haggle (store_num, price, item, best_price)
      int store_num;
-     int32 *price;
+     int *price;
      inven_type *item;
      int *best_price;
 {
@@ -739,7 +739,7 @@ purchase_haggle (store_num, price, item, best_price)
 static int
 sell_haggle (store_num, price, item, item_val)
      int store_num;
-     int32 *price;
+     int *price;
      inven_type *item;
      int item_val;
 {
