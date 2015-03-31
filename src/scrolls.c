@@ -158,7 +158,8 @@ read_scroll ()
 	         to move to a different place.  Check for that here.  It can
 	         move arbitrarily far if an identify scroll was used on
 	         another identify scroll, but it always moves down. */
-	      while (i_ptr->tval != TV_SCROLL || i_ptr->flags != 0x00000008)
+	      while (i_ptr->tval != TV_SCROLL || 
+                     object_list[i_ptr->index].effect_idx != 3)
 		{
 		  item_val--;
 		  i_ptr = &inventory[item_val];
