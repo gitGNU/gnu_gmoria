@@ -392,6 +392,12 @@ wizard_create ()
   sscanf (tmp_str, pattern, &tmp_lval);
   i_ptr->flags = tmp_lval;
 
+  prt ("Effect Index: ", 0, 0);
+  if (!get_string (tmp_str, 0, 14, 8))
+    return;
+  tmp_lval = atol (tmp_str);
+
+  i_ptr->cost = tmp_lval;
   prt ("Cost : ", 0, 0);
   if (!get_string (tmp_str, 0, 9, 8))
     return;
@@ -403,6 +409,13 @@ wizard_create ()
     return;
   tmp_val = atoi (tmp_str);
   i_ptr->level = tmp_val;
+
+  prt ("Index : ", 0, 0);
+  if (!get_string (tmp_str, 0, 10, 3))
+    return;
+  tmp_val = atoi (tmp_str);
+  if (tmp_val >= 0)
+    i_ptr->index = tmp_val;
 
   if (get_check ("Allocate?"))
     {
