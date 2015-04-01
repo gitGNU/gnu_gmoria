@@ -23,6 +23,7 @@
 #include "externs.h"
 
 #include <string.h>
+#include <stdlib.h>
 
                         
 
@@ -80,7 +81,7 @@ aim ()
                       while (j == 23)
                         {
                           j = get_random_wand_effect_index();
-                          if (j == -1)
+                          if (j < 0)
                             {
                               msg_print ("Nothing happens.");
                               ident = TRUE;
@@ -179,7 +180,7 @@ aim ()
                     case 23:
                       break;
 		    default:
-		      msg_print ("Internal error in wands()");
+                      msg_print ("Internal error in wands()");
 		      break;
 		    }
 		  /* End of Wands.                  */
@@ -217,7 +218,7 @@ int get_random_wand_effect_index()
   int effects[MAX_DUNGEON_OBJ];
   for (i = 0; i < MAX_DUNGEON_OBJ; i++)
     {
-      if (object_list[i].tval == TV_SCROLL)
+      if (object_list[i].tval == TV_WAND)
         {
           effects[j] = object_list[i].effect_idx;
           j++;
