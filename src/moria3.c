@@ -260,7 +260,7 @@ cast_spell (prompt, item_val, sn, sc)
         }
     }
   s_ptr = magic_spell[py.misc.pclass];
-  for (j = 0; j < MAX_SPELLS; j++)
+  for (j = first_spell; j < MAX_SPELLS; j++)
     {
       if (s_ptr[j].slevel <= py.misc.lev && spell_status[j].learned)
         {
