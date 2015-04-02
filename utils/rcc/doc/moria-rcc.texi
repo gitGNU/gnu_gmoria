@@ -428,7 +428,8 @@ The @code{class} block defines the warriors, mages, rogues (etc), that a charact
 
     adjust_per_one_third_level { . . . };
 
-    titles { . . . };
+    male_titles { . . . };
+    female_titles { . . . };
 
     spells { . . . };
 
@@ -439,7 +440,7 @@ A class can have a @code{spells} block or a @code{prayers} block (or neither), b
 @menu
 * Class Attributes::            Detailed information on class attributes.
 * Level Adjustment Block::      Info on adjust_per_one_third_level blocks.
-* Titles Block::                Detailed information on the titles block.
+* Titles Blocks::                Detailed information on the titles blocks.
 * Spells Block::                Detailed information on the spells block.
 * Prayers Block::               Detailed information on the prayers block.
 @end menu
@@ -460,7 +461,7 @@ The attributes of the @code{class} block all have their equivalents in the @code
 The class is the main driver of these attributes.  The ethos behind this is: what the character does is more important than what the character was born as.  Some of these attributes are modified again according to the character's level in the @code{adjust_per_one_third_level} block.  The race modifies the values set in this block.  For information on what these attributes mean, see @ref{Race Attributes}.
 The attributes on the left are all unsigned 8-bit integers (unlike their same-named race counterparts which are 16-bit signed integers).  The attributes on the right are all signed 16-bit integers.
 
-@node Level Adjustment Block, Titles Block, Class Attributes, Class Blocks
+@node Level Adjustment Block, Titles Blocks, Class Attributes, Class Blocks
 @section Level Adjustment Block
 Some of the class' abilities are improved as the character gains experience.  The @code{adjust_per_one_third_level} block is what controls this effect.  Here is a sample of the block:
 @verbatim
@@ -474,19 +475,19 @@ Some of the class' abilities are improved as the character gains experience.  Th
 @end verbatim
 The idea behind this block is that the character just naturally improves in these attributes during the game.  The effect is meant to be subtle because only one third of the characters' levels are considered in the calculation.  For example, if the character has attained the 31st experience level, the @code{base_to_hit_with_bows} attribute is adjusted by +41 points (31 / 3 * 4).
 
-@node Titles Block, Spells Block, Titles Block, Class Blocks
-@section Titles Block
-Every experience level has a new "title", or name.  A first level mage is a @samp{Novice}.  A 38th level rogue is an @samp{Assassin}.  The @code{titles} block sets all of the names of the experience levels for the @code{class} that contains it.  There must be one title for every level specified in the @code{experience_levels} block.  For example if there are only 5 experience levels, a title block for a fictional "Mechanic" class might look like:
+@node Titles Blocks, Spells Block, Titles Blocks, Class Blocks
+@section Titles Blocks
+Every experience level has a new "title", or name, per gender.  A first level mage is a @samp{Novice}.  A 38th level rogue is an @samp{Assassin}.  The @code{male_titles} block sets all of the names of the experience levels for the @code{class} that contains it, but only for the male characters.  There must be one title for every level specified in the @code{experience_levels} block.  For example if there are only 5 experience levels, a title block for females in a fictional "Mechanic" class might look like:
 @verbatim
-  titles {
+  female_titles {
     "Grease Monkey", "Oil Changer", "Journeyman Mechanic",
     "Engine Specialist", "Master Mechanic"
   };
 @end verbatim
-The @code{titles} block is one way that the game reveals itself slowly over time.  Seeing a new title is a reward for attaining a new level, so create them with that in mind (e.g. try not to make boring titles).  This can be a difficult task because there are usually 40 titles per class.
+The @code{female_titles} block is one way that the game reveals itself slowly over time.  Seeing a new title is a reward for attaining a new level, so create them with that in mind (e.g. try not to make boring titles).  This can be a difficult task because there are usually 40 titles per class.
 Titles are limited to a maximum length of 13 characters on the main game screen.
 
-@node Spells Block, Prayers Block, Titles Block, Class Blocks
+@node Spells Block, Prayers Block, Titles Blocks, Class Blocks
 @section Spells Block
 Some classes can cast spells and some can't.  When classes can cast spells, the class has a @code{spells} block which defines which spells the class can cast.  The @code{spells} block has this structure:
 @verbatim
@@ -671,7 +672,12 @@ class "Magic-User" {            experience_factor: 30;
     adjust_use_device: 4;       adjust_disarming: 3;
   };
 
-  titles {
+  male_titles {
+    "Wizard (1st)", "Wizard (2nd)", "Wizard (3rd)", "Wizard (4th)",
+    "Wizard (5th)", "Wizard (6th)", "Wizard (7th)", "Wizard (8th)"
+  };
+
+  female_titles {
     "Wizard (1st)", "Wizard (2nd)", "Wizard (3rd)", "Wizard (4th)",
     "Wizard (5th)", "Wizard (6th)", "Wizard (7th)", "Wizard (8th)"
   };

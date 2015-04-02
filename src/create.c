@@ -501,7 +501,13 @@ get_money ()
   gold -= tmp;			/* Stat adj */
   gold += monval (a_ptr[A_CHR]);	/* Charisma adj */
   if (!py.misc.male)
-    gold += 50;			/* She charmed the banker into it! -CJS- */
+    gold += 50;			/* In trying to make this game a realistic
+                                   dungeon simulation, it was deemed important
+                                   for females to weigh less than males.  But
+                                   having less body weight means that less can
+                                   be carried!  This extra 50 gold pieces is
+                                   a bad attempt to offset the sex-based
+                                   disparity in encumbrance. */
   if (gold < 80)
     gold = 80;			/* Minimum */
   py.misc.au = gold;

@@ -167,8 +167,10 @@ typedef struct
 typedef struct
 {
   class_type c;
-  char *titles_argz;
-  size_t titles_len;
+  char *male_titles_argz;
+  size_t male_titles_len;
+  char *female_titles_argz;
+  size_t female_titles_len;
   int adjust_per_one_third_level[MAX_LEV_ADJ];
   spell_t *spells;
   int num_spells;
@@ -406,10 +408,10 @@ int yyerror (char *s);
 %token DEXTERITY_MODIFIER CONSTITUTION_MODIFIER CHARISMA_MODIFIER
 %token EXPERIENCE_FACTOR CLASSES STORE_PRICE_ADJUST_BY_RACE SHOPKEEP STORE
 %token HAGGLE_PER INFLATE MAX_INSULTS MAX_COST BACKGROUNDS BACKGROUND FRAGMENT
-%token ROLL SOCIAL_CLASS_BONUS ADJUST_PER_ONE_THIRD_LEVEL TITLES SPELLS SPELL
-%token LEVEL MANA FAIL EXP PRAYERS PRAYER ADJUST_BASE_TO_HIT 
-%token ADJUST_BASE_TO_HIT_WITH_BOWS ADJUST_USE_DEVICE ADJUST_DISARMING 
-%token ADJUST_SAVING_THROW SPELL_NAMES PRAYER_NAMES
+%token ROLL SOCIAL_CLASS_BONUS ADJUST_PER_ONE_THIRD_LEVEL MALE_TITLES 
+%token FEMALE_TITLES SPELLS SPELL LEVEL MANA FAIL EXP PRAYERS PRAYER 
+%token ADJUST_BASE_TO_HIT ADJUST_BASE_TO_HIT_WITH_BOWS ADJUST_USE_DEVICE 
+%token ADJUST_DISARMING ADJUST_SAVING_THROW SPELL_NAMES PRAYER_NAMES
 
 %{
 static symInit_t 
@@ -454,7 +456,8 @@ keywordInit[] =
     { "roll", ROLL},
     { "social_class_bonus", SOCIAL_CLASS_BONUS},
     { "adjust_per_one_third_level", ADJUST_PER_ONE_THIRD_LEVEL},
-    { "titles", TITLES},
+    { "male_titles", MALE_TITLES},
+    { "female_titles", FEMALE_TITLES},
     { "spells", SPELLS},
     { "spell", SPELL},
     { "level", LEVEL},
@@ -796,7 +799,8 @@ more_frag_attrs :	frag_attr ';' more_frag_attrs
 
 class_attributes:	class_attribute ';' class_attributes
                 |	adjust_per_lev ';' class_attributes
-                |	titles_def ';' class_attributes
+                |	male_titles_def ';' class_attributes
+                |	female_titles_def ';' class_attributes
                 |	spells_def ';' class_attributes
                 |	prayers_def ';' class_attributes
 		|	/* empty */
@@ -881,20 +885,20 @@ adj_attr        :       ADJUST_BASE_TO_HIT ':' INT_LIT
                                  tmpClass.def.adjust_saving_throw = TRUE;}
                 ;
 
-titles_def      :       TITLES '{' titles '}'
+male_titles_def :       MALE_TITLES '{' male_titles '}'
 				{ /*PutTitles();*/ }
 		;
 
-titles          :	title more_titles
+male_titles     :	male_title more_male_titles
 		;
 
-title           :	STRING_LIT
+male_title      :	STRING_LIT
 				{ 
                                  if (arguments.rcc.consistency_check)
                                    {
                                      const char *t = NULL;
-                                     char *argz = tmpClass.val.titles_argz;
-                                     size_t len = tmpClass.val.titles_len;
+                                     char *argz = tmpClass.val.male_titles_argz;
+                                     size_t len = tmpClass.val.male_titles_len;
                                      while ((t = argz_next (argz, len, t)))
                                        {
                                          if (strcmp (t, $<sval>1) == 0)
@@ -907,12 +911,49 @@ title           :	STRING_LIT
                                        }
                                    }
 
-                                 argz_add (&tmpClass.val.titles_argz,
-                                           &tmpClass.val.titles_len, 
+                                 argz_add (&tmpClass.val.male_titles_argz,
+                                           &tmpClass.val.male_titles_len, 
                                            $<sval>1); }
 		;
 
-more_titles     :	',' title more_titles
+more_male_titles :	',' male_title more_male_titles
+		|	/* empty */
+		;
+
+female_titles_def :       FEMALE_TITLES '{' female_titles '}'
+				{ /*PutTitles();*/ }
+		;
+
+female_titles   :	female_title more_female_titles
+		;
+
+female_title    :	STRING_LIT
+				{ 
+                                 if (arguments.rcc.consistency_check)
+                                   {
+                                     const char *t = NULL;
+                                     char *argz = 
+                                       tmpClass.val.female_titles_argz;
+                                     size_t len = 
+                                       tmpClass.val.female_titles_len;
+                                     while ((t = argz_next (argz, len, t)))
+                                       {
+                                         if (strcmp (t, $<sval>1) == 0)
+                                           {
+                                             char *msg = 
+                                               xasprintf ("duplicate title %s",
+                                                          $<sval>1);
+                                             yyerror (msg);
+                                           }
+                                       }
+                                   }
+
+                                 argz_add (&tmpClass.val.female_titles_argz,
+                                           &tmpClass.val.female_titles_len, 
+                                           $<sval>1); }
+		;
+
+more_female_titles :	',' female_title more_female_titles
 		|	/* empty */
 		;
 
@@ -2075,10 +2116,11 @@ void CheckClass(class_template_t *c)
         ErrMsgLineNo(xasprintf("prayer has level exceeding %d", max_levels), c->val.prayers[i].line_no);
     }
   if (num_experience_levels != 
-      argz_count (c->val.titles_argz, c->val.titles_len))
+      argz_count (c->val.male_titles_argz, c->val.male_titles_len))
     {
       ErrMsgLineNo(xasprintf("%d titles given for `%s' but need %d",
-                             argz_count(c->val.titles_argz, c->val.titles_len),
+                             argz_count(c->val.male_titles_argz, 
+                                        c->val.male_titles_len),
                              c->val.c.title, max_levels), -1);
     }
 
@@ -2419,15 +2461,19 @@ void WriteClassTitles()
            "/* Class titles for different levels"
            "                            */\n");
   fprintf (arguments.rcc.outfile,
-           "char *player_title[MAX_CLASS][MAX_PLAYER_LEVEL] = {\n");
+           "char *player_title[MAX_CLASS][2][MAX_PLAYER_LEVEL] = {\n");
   for (i = 0; i < num_classes; i++)
     {
       char *class = get_class_for_idx(i);
       if (!class)
         continue;
       class_template_t *c = get_class(class);
-      fprintf (arguments.rcc.outfile, "  /* %-13s */\n", class);
-      WriteTitlesForClass(c->val.titles_argz, c->val.titles_len);
+      fprintf (arguments.rcc.outfile, "  /* %s %-13s */\n", "Female", class);
+fprintf (arguments.rcc.outfile, "{\n");
+      WriteTitlesForClass(c->val.female_titles_argz, c->val.female_titles_len);
+      fprintf (arguments.rcc.outfile, "  /* %s %-15s */\n", "Male", class);
+      WriteTitlesForClass(c->val.male_titles_argz, c->val.male_titles_len);
+fprintf (arguments.rcc.outfile, "},\n");
     }
   fprintf (arguments.rcc.outfile, "};\n\n");
 }

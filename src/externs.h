@@ -95,7 +95,7 @@ extern cave_type cave[MAX_HEIGHT][MAX_WIDTH];
 
 /* Following are player variables				*/
 extern player_type py;
-extern char *player_title[MAX_CLASS][MAX_PLAYER_LEVEL];
+extern char *player_title[MAX_CLASS][2][MAX_PLAYER_LEVEL];
 extern race_type race[MAX_RACES];
 extern int background_start[MAX_RACES];
 extern background_type background[MAX_BACKGROUND];
