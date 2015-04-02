@@ -507,7 +507,8 @@ get_money ()
                                    having less body weight means that less can
                                    be carried!  This extra 50 gold pieces is
                                    a bad attempt to offset the sex-based
-                                   disparity in encumbrance. */
+                                   disparity in encumbrance and bashing
+                                   ability. */
   if (gold < 80)
     gold = 80;			/* Minimum */
   py.misc.au = gold;
