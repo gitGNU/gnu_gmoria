@@ -286,7 +286,7 @@ prt_lnum (header, num, row, column)
 {
   vtype out_val;
 
-  snprintf (out_val, sizeof (out_val), "%s: %6ld", header, num);
+  snprintf (out_val, sizeof (out_val), "%s: %6ld", header, (int)num);
   put_buffer (out_val, row, column);
 }
 

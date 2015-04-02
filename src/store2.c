@@ -300,7 +300,7 @@ store_prt_gold ()
 {
   vtype out_val;
 
-  snprintf (out_val, sizeof (out_val), "Gold Remaining : %ld", py.misc.au);
+  snprintf (out_val, sizeof (out_val), "Gold Remaining : %ld", (int)py.misc.au);
   prt (out_val, 18, 17);
 }
 
