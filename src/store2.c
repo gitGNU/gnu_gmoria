@@ -992,7 +992,7 @@ store_purchase (store_num, cur_top)
      int store_num;
      int *cur_top;
 {
-  int32 price;
+  int price;
   register int i, choice;
   bigvtype out_val, tmp_str;
   register store_type *s_ptr;
@@ -1111,7 +1111,7 @@ store_sell (store_num, cur_top)
      int store_num, *cur_top;
 {
   int item_val, item_pos;
-  int32 price;
+  int price;
   bigvtype out_val, tmp_str;
   inven_type sold_obj;
   register int sell, choice, flag;
