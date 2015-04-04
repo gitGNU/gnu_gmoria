@@ -47,6 +47,7 @@ gmoria uses gnulib which targets many operating systems, and ncurses is everywhe
 11. Increased the maximum number of scroll, wand and staff effects to from 32 per TVAL to 2^32-1.  TV_SCROLL2 has disappeared.  The opportunity for multiple simultaneous effects has disappeared for these TVALs (but none had multiple simultaneous effects anyway, like potions and food have).
 12. Added new "resist poison gas" spell and prayer to Mages and Priests.  It confers a permanent & small resistance to poison gas on the character.  This is meant to offset the threat of a gas attack by an Ancient Multi-Hued dragon by enough to make it a little more fair (e.g. not as many insta-deaths).  The resistance is damage / 1.5.  This changes the save-game format.
 13. Added class titles for female characters.
+14. No longer spawning monsters on top of rubble.
 
 
 To build this software from the tarball you need the following:

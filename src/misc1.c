@@ -853,7 +853,8 @@ alloc_monster (num, dis, slp)
 	  x = randint (cur_width - 2);
 	}
       while (cave[y][x].fval >= MIN_CLOSED_SPACE || (cave[y][x].cptr != 0) ||
-	     (distance (y, x, char_row, char_col) <= dis));
+	     (distance (y, x, char_row, char_col) <= dis) ||
+             (cave[y][x].tptr != 0 && t_list[cave[y][x].tptr].tchar == ':'));
 
       l = get_mons_num (dun_level);
       /* Dragons are always created sleeping here, so as to give the player a
