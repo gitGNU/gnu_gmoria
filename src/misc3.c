@@ -177,7 +177,8 @@ alloc_object (alloc_set, typ, num)
       /* don't put an object beneath the player, this could cause problems
          if player is standing under rubble, or on a trap */
       while ((!(*alloc_set) (cave[i][j].fval)) ||
-	     (cave[i][j].tptr != 0) || (i == char_row && j == char_col));
+	     (cave[i][j].tptr != 0) || (i == char_row && j == char_col) ||
+             (typ == 3 /*rubble */ && cave[i][j].cptr != 0));
       if (typ < 4)
 	{			/* typ == 2 not used, used to be visible traps */
 	  if (typ == 1)
