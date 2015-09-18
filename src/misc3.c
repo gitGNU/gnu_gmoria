@@ -315,6 +315,18 @@ prt_num (header, num, row, column)
   snprintf (out_val, sizeof (out_val), "%s: %6d", header, num);
   put_buffer (out_val, row, column);
 }
+static void
+prt_num_pair (header, num, num2, row, column)
+     char *header;
+     int num, num2, row, column;
+{
+  vtype out_val;
+
+  char buf[32];
+  snprintf (buf, sizeof (buf), "%d/%d", num, num2);
+  snprintf (out_val, sizeof (out_val), "%s:%7s", header, buf);
+  put_buffer (out_val, row, column);
+}
 
 /* Print long number at given row, column */
 static void
@@ -998,9 +1010,9 @@ prt_stat_block ()
     prt_stat (i);
   prt_num ("LEV ", (int) m_ptr->lev, 13, STAT_COLUMN);
   prt_lnum ("EXP ", m_ptr->exp, 14, STAT_COLUMN);
-  prt_num ("MANA", m_ptr->cmana, 15, STAT_COLUMN);
-  prt_num ("MHP ", m_ptr->mhp, 16, STAT_COLUMN);
-  prt_num ("CHP ", m_ptr->chp, 17, STAT_COLUMN);
+  prt_num_pair ("MANA", m_ptr->cmana, m_ptr->mana, 15, STAT_COLUMN);
+  prt_num_pair ("HP  ", m_ptr->chp, m_ptr->mhp, 16, STAT_COLUMN);
+  //prt_num ("CHP ", m_ptr->chp, 17, STAT_COLUMN);
   prt_num ("AC  ", m_ptr->dis_ac, 19, STAT_COLUMN);
   prt_lnum ("GOLD", m_ptr->au, 20, STAT_COLUMN);
   prt_winner ();
