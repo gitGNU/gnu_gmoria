@@ -696,9 +696,9 @@ CHR :     15                     # #
                          ####+#### #
 LEV :     27             #........ #
 EXP :  38487             #.......###
-MANA:     66             #....@..#
-MHP :    123             #........
-CHP :    123             #.......#     
+MANA:  66/66             #....@..#
+HP  :123/123             #........
+                         #.......#     
                          #.......#
 AC  :     55             ####.#'##
 GOLD:  23868
@@ -713,7 +713,7 @@ This picture shows an elf mage character (@code{@@}) in a lit room at 1000 feet 
 
 From the statistics on the left side of the screen, it can be seen that the character is a @code{Mage (2nd)}, which is another way of saying that it is at level 27.  The reason that this character is at level 27 is because it has 38487 experience points.
 
-The character has 123 of 123 hit-points available.  @code{MHP} means maximum hit-points, while @code{CHP} means current hit-points.  This spell-caster has exactly 66 mana (spell-casting) points to spend as spells are cast.  It can also be seen that this mage has some spells to learn.  The word @code{Study} in the bottom right shows this.
+The character has 123 of 123 hit-points available.  @code{HP} shows the current hit points and then the maximum hit-points.  This spell-caster has exactly 66 mana (spell-casting) points to spend as spells are cast.  It can also be seen that this mage has some spells to learn.  The word @code{Study} in the bottom right shows this.
 
 The character's current levels of strength, intelligence, wisdom, dexterity, constitution and charisma can also be seen.  The character doesn't have 18 of 78 intelligence, they have 18 78/100 intelligence, which is more than just 18.
 
