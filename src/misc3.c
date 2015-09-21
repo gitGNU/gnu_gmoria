@@ -497,7 +497,7 @@ prt_level ()
 void
 prt_cmana ()
 {
-  prt_int (py.misc.cmana, 15, STAT_COLUMN + 6);
+  prt_num_pair ("MANA", py.misc.cmana, py.misc.mana, 15, STAT_COLUMN);
 }
 
 
@@ -505,7 +505,7 @@ prt_cmana ()
 void
 prt_mhp ()
 {
-  prt_int (py.misc.mhp, 16, STAT_COLUMN + 6);
+  prt_num_pair ("HP  ", py.misc.chp, py.misc.mhp, 16, STAT_COLUMN);
 }
 
 
@@ -513,7 +513,7 @@ prt_mhp ()
 void
 prt_chp ()
 {
-  prt_int (py.misc.chp, 17, STAT_COLUMN + 6);
+  prt_num_pair ("HP  ", py.misc.chp, py.misc.mhp, 16, STAT_COLUMN);
 }
 
 
