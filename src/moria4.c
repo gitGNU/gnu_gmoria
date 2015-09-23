@@ -231,7 +231,7 @@ disarm_trap ()
 	  i_ptr = &t_list[c_ptr->tptr];
 	  i = i_ptr->tval;
 	  level = i_ptr->level;
-	  if (i == TV_VIS_TRAP)	/* Floor trap    */
+	  if (i == TV_VIS_TRAP && i_ptr->subval > 0)	/* Floor trap    */
 	    {
 	      if ((tot + 100 - level) > randint (100))
 		{

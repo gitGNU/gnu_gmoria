@@ -522,6 +522,12 @@ objdes (out_val, out_val_len, i_ptr, pref)
     case TV_INVIS_TRAP:
     case TV_VIS_TRAP:
     case TV_UP_STAIR:
+      if (i_ptr->subval == 0)
+        snprintf (out_val, out_val_len, "%s.  It is expired.", 
+                  object_list[i_ptr->index].name);
+      else
+        snprintf (out_val, out_val_len, "%s.", object_list[i_ptr->index].name);
+      return;
     case TV_DOWN_STAIR:
       snprintf (out_val, out_val_len, "%s.", object_list[i_ptr->index].name);
       return;

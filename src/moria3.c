@@ -43,6 +43,8 @@ hit_trap (y, x)
   dam = pdamroll (t_ptr->damage);
   switch (t_ptr->subval)
     {
+    case 0:                     /* An Expired Trap (harmless) */
+      break;
     case 1:			/* Open pit */
       msg_print ("You fell into a pit!");
       if (py.flags.ffall)
@@ -230,6 +232,8 @@ hit_trap (y, x)
       msg_print ("Unknown trap value.");
       break;
     }
+  if (t_ptr->tchar == '^' && t_ptr->subval < SCARE_MONSTER)
+    t_ptr->subval = 0;
 }
 
 
