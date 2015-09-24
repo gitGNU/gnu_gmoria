@@ -256,9 +256,9 @@ disarm_trap ()
 		  py.flags.confused = 0;
 		  move_char (dir, FALSE);
 		  py.flags.confused += tmp;
-                  /* once the trap goes off, it's gone. 
+                  /* once the floor trap goes off, it's expired. 
                      it can't go off twice! */
-                  delete_object (y, x);
+	          t_list[c_ptr->tptr].subval = 0;
 		}
 	    }
 	  else if (i == TV_CHEST)
@@ -289,7 +289,7 @@ disarm_trap ()
 		      msg_print ("You set a trap off!");
 		      known2 (i_ptr);
 		      chest_trap (y, x);
-                      /* once the trap goes off, it's gone.
+                      /* once the floor trap goes off, it's gone.
                        it can't go off twice! */
                       i_ptr->flags &= ~CH_TRAPPED;
 		    }
