@@ -432,3 +432,27 @@ wizard_create ()
   else
     msg_print ("Aborted.");
 }
+
+void
+wizard_simple_create ()
+{
+  vtype tmp_str;
+  register int tmp_val;
+  register cave_type *c_ptr;
+  prt ("What is the index of the item you wish to create : ", 0, 0);
+  if (!get_string (tmp_str, 0, 52, 3))
+    return;
+  int idx = atoi (tmp_str);
+  if (idx < 0 || idx > MAX_OBJECTS)
+    {
+      msg_print ("Aborted.");
+      return;
+    }
+  c_ptr = &cave[char_row][char_col];
+  if (c_ptr->tptr != 0)
+    delete_object (char_row, char_col);
+  tmp_val = popt ();
+  invcopy (&t_list[tmp_val], idx);
+  c_ptr->tptr = tmp_val;
+  msg_print ("Allocated.");
+}

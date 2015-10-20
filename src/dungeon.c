@@ -1602,6 +1602,9 @@ do_command (com_val)
 	    case '@':
 	      wizard_create ();
 	      break;
+            case '%':
+              wizard_simple_create ();
+              break;
 	    default:
 	      if (keybinding == KEYBINDING_ROGUELIKE)
 		prt ("Type '?' or '\\' for help.", 0, 0);

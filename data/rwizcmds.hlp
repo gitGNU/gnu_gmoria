@@ -11,5 +11,6 @@
 ^T - Teleport player.
 ^W - Wizard password on/off.
 @  - Create any object *CAN CAUSE FATAL ERROR*
+%  - Create any object by its index in the object_list array.
 +  - Gain experience.
 &  - Summon monster.
