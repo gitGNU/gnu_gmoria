@@ -2525,6 +2525,12 @@ PutTreasure (char *s, template_t *tmpl_P, int consistency_check)
     NotDefined (tmpl_P->val.name, "LEVEL");
   if (!tmpl_P->def.stackable)
     NotDefined (tmpl_P->val.name, "STACKABLE");
+  if (tmpl_P->val.tval == TV_STAFF && !tmpl_P->def.special)
+    NotDefined (tmpl_P->val.name, "STAFF_CASTS");
+  if (tmpl_P->val.tval == TV_SCROLL && !tmpl_P->def.special)
+    NotDefined (tmpl_P->val.name, "SCROLL_CASTS");
+  if (tmpl_P->val.tval == TV_WAND && !tmpl_P->def.special)
+    NotDefined (tmpl_P->val.name, "WAND_CASTS");
 
   if (consistency_check)
     ConsistencyCheckTreasure (&tmpl_P->val, &tmpl_P->state);

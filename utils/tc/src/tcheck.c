@@ -40,25 +40,10 @@ TErrMsg (treasure_type *t, char *s)
 void
 ConsistencyCheckTreasure (treasure_type *t, state_type *s)
 {
-  if (t->tval == TV_STAFF)
-    {
-      if (t->flags == 0)
-	TErrMsg (t, "No `staff_casts' attribute specified");
-    }
-  else if (t->tval == TV_FOOD && s->mushroom_flag)
+  if (t->tval == TV_FOOD && s->mushroom_flag)
     {
       if (t->flags ==  0)
 	TErrMsg (t, "No `eating_causes' attribute specified");
-    }
-  else if (t->tval == TV_WAND)
-    {
-      if (t->flags == 0)
-	TErrMsg (t, "No `wand_casts' attribute specified");
-    }
-  else if (t->tval == TV_SCROLL)
-    {
-      if (t->flags == 0)
-	TErrMsg (t, "No `scroll_casts' attribute specified");
     }
   else if (t->tval == TV_MAGIC_BOOK)
     {
