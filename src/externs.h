@@ -498,6 +498,7 @@ int set_null ();
 int set_acid_destroy ();
 int set_fire_destroy ();
 int set_large ();
+int set_book ();
 int general_store ();
 int armory ();
 int weaponsmith ();
@@ -623,6 +624,7 @@ int get_random_wand_effect_index();
 void wizard_light ();
 void change_character ();
 void wizard_create ();
+void wizard_simple_create ();
 
 /* call functions which expand tilde before calling open/fopen */
 #define open topen

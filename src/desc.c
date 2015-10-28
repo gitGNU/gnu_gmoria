@@ -277,7 +277,7 @@ identify (item)
 
   i_ptr = &inventory[*item];
 
-  if (i_ptr->flags & TR_CURSED)
+  if (set_book (i_ptr) == FALSE && i_ptr->flags & TR_CURSED)
     add_inscribe (i_ptr, ID_DAMD);
 
   if (!known1_p (i_ptr))

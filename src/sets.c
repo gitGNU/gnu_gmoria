@@ -240,6 +240,19 @@ set_large (item)		/* Items too large to fit in chests         -DJG- */
 }
 
 int
+set_book (inven_type *item)
+{
+  switch (item->tval)
+    {
+    case TV_MAGIC_BOOK:
+    case TV_PRAYER_BOOK:
+      return TRUE;
+    default:
+      return FALSE;
+    }
+}
+
+int
 general_store (element)
      int element;
 {
