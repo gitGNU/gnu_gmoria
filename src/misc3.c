@@ -1732,6 +1732,16 @@ get_spell (spell, num, sn, sc, prompt, first_spell)
 }
 
 
+static int
+count_spells_learned ()
+{
+  int i, num_spells_learned = 0;
+  for (i = 0; i < MAX_SPELLS; i++)
+    if (spell_status[i].learned)
+      num_spells_learned++;
+  return num_spells_learned;
+}
+
 /* calculate number of spells player should have, and learn forget spells
    until that number is met -JEW- */
 void
@@ -1859,9 +1869,10 @@ calc_spells (stat)
     }
   else if (new_spells < 0)
     {
+      int num_spells_learned = count_spells_learned ();
       /*forget spells until new_spells zero or no more spells known, spells
          are forgotten in the opposite order that they were learned */
-      for (i = MAX_SPELLS; new_spells; i--)
+      for (i = MAX_SPELLS; new_spells && num_spells_learned; i--)
 	{
 	  //j is the (i+1)th spell learned 
 	  j = spell_order[i];
@@ -2068,10 +2079,7 @@ calc_mana (stat)
   register int32 value;
 
   p_ptr = &py.misc;
-  int i, num_spells_learned = 0;
-  for (i = 0; i < MAX_SPELLS; i++)
-    if (spell_status[i].learned)
-      num_spells_learned++;
+  int i, num_spells_learned = count_spells_learned ();
 
   if (num_spells_learned > 0)
     {
