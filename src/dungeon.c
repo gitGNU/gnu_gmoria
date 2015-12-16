@@ -1510,6 +1510,11 @@ do_command (com_val)
 	      res_stat (A_CON);
 	      res_stat (A_DEX);
 	      res_stat (A_CHR);
+              py.misc.cmana = py.misc.mana;
+              prt_cmana ();
+              py.misc.chp = py.misc.mhp;
+              prt_chp ();
+		    
 	      f_ptr = &py.flags;
 	      if (f_ptr->slow > 1)
 		f_ptr->slow = 1;
