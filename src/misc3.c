@@ -1997,7 +1997,8 @@ gain_spells ()
           if (spell_status[j].learned == 0 &&
               msp_ptr[j].slevel <= p_ptr->lev)
             {
-              if (stat == A_INT && has_spell_in_book(j, TV_MAGIC_BOOK))
+              if ((stat == A_INT && has_spell_in_book(j, TV_MAGIC_BOOK)) ||
+                  (stat == A_WIS && has_spell_in_book(j, TV_PRAYER_BOOK)))
                 {
                   spells[i] = j;
                   i++;
