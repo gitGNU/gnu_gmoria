@@ -1872,13 +1872,13 @@ calc_spells (stat)
       int num_spells_learned = count_spells_learned ();
       /*forget spells until new_spells zero or no more spells known, spells
          are forgotten in the opposite order that they were learned */
-      for (i = MAX_SPELLS; new_spells && num_spells_learned; i--)
+      for (i = MAX_SPELLS - 1; new_spells && num_spells_learned; i--)
 	{
 	  //j is the (i+1)th spell learned 
 	  j = spell_order[i];
 	  // shifting by amounts greater than number of bits in long gives
 	  // an undefined result, so don't shift for unknown spells 
-	  if (spell_status[j].learned)
+	  if (j < MAX_SPELLS && spell_status[j].learned)
 	    {
 	      spell_status[j].learned = 0;
 	      spell_status[j].forgotten = 1;
