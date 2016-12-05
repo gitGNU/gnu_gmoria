@@ -1874,6 +1874,8 @@ calc_spells (stat)
          are forgotten in the opposite order that they were learned */
       for (i = MAX_SPELLS - 1; new_spells && num_spells_learned; i--)
 	{
+          if (i < 0)
+           break;
 	  //j is the (i+1)th spell learned 
 	  j = spell_order[i];
 	  // shifting by amounts greater than number of bits in long gives
