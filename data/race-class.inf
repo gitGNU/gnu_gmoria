@@ -646,10 +646,10 @@ race "Dwarf" {
       }
     },
     background 58 59 {
-      fragment "straight" {
+      fragment "straight " {
         roll: 90;	social_class_bonus: 50;
       },
-      fragment "wavy" {
+      fragment "wavy " {
         roll: 100;	social_class_bonus: 50;
       }
     },
